@@ -3,6 +3,9 @@
 <head>
   <title>Petals by Trishel</title>
 
+  <!-- NO ZOOM / APP FEEL -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
   <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
 
   <style>
@@ -13,54 +16,226 @@
       text-align: center;
     }
 
-    .container { padding: 20px; }
-
-    .logo { width: 90px; border-radius: 50%; }
-
-    .grid {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
+    .container {
+      padding: 20px;
     }
 
+    .logo {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+    }
+
+    h1 { font-size: 26px; }
+    h2 { font-size: 22px; margin-top: 20px; }
+
+    /* GRID (APP STYLE) */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 15px;
+      padding: 10px;
+    }
+
+    /* CARDS */
     .card {
       background: white;
-      margin: 10px;
-      padding: 12px;
-      width: 170px;
-      border-radius: 15px;
+      padding: 15px;
+      border-radius: 18px;
       box-shadow: 0 6px 15px rgba(0,0,0,0.08);
+      font-size: 15px;
     }
 
-    .card img {
-      width: 100%;
-      border-radius: 10px;
-    }
-
+    /* INPUTS */
     select, input {
-      margin: 5px;
-      padding: 6px;
-      border-radius: 6px;
+      width: 100%;
+      padding: 12px;
+      margin-top: 8px;
+      border-radius: 10px;
       border: 1px solid #ccc;
-      width: 90%;
+      font-size: 15px;
     }
 
+    /* BUTTONS */
     button {
-      margin: 5px;
-      padding: 8px;
-      border: none;
-      border-radius: 8px;
+      width: 100%;
+      padding: 12px;
+      margin-top: 10px;
+      border-radius: 10px;
       background: #ff9bb3;
       color: white;
+      border: none;
+      font-size: 15px;
       cursor: pointer;
     }
 
     .summary {
       background: #ffe4ec;
-      padding: 15px;
-      border-radius: 10px;
-      display: inline-block;
+      padding: 20px;
+      border-radius: 12px;
       margin-top: 20px;
+      font-size: 18px;
+    }
+
+    textarea {
+      width: 95%;
+      height: 160px;
+      margin-top: 10px;
+      border-radius: 12px;
+      padding: 12px;
+    }
+
+    .guide {
+      background:#ffe4ec;
+      padding:12px;
+      border-radius:12px;
+      margin:15px auto;
+      width:90%;
+      font-size:15px;
+      color:#555;
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <img src="logo.png" class="logo">
+  <h1>Petals by Trishel 💐</h1>
+
+  <div class="guide">
+    💐 For every <b>3 flowers</b> + <b>3 fillers</b>
+  </div>
+
+  <h2>Customize Your Bouquet 🌸</h2>
+  <p style="font-size:14px; color:#777;">Select flowers, choose colors, and add quantity</p>
+
+  <div class="grid">
+
+    <!-- ROSE -->
+    <div class="card">
+      <p>Rose ₱50</p>
+      <select id="roseColor">
+        <option>Pink</option><option>Red</option><option>Yellow</option><option>White</option>
+      </select>
+      <input id="roseQty" type="number" placeholder="Qty">
+      <button onclick="addFlower('Rose', 50, 'roseColor', 'roseQty')">Add</button>
+    </div>
+
+    <!-- TULIP -->
+    <div class="card">
+      <p>Tulip ₱55</p>
+      <select id="tulipColor">
+        <option>Pink</option><option>Purple</option><option>Yellow</option>
+      </select>
+      <input id="tulipQty" type="number" placeholder="Qty">
+      <button onclick="addFlower('Tulip', 55, 'tulipColor', 'tulipQty')">Add</button>
+    </div>
+
+    <!-- SUNFLOWER -->
+    <div class="card">
+      <p>Sunflower ₱60</p>
+      <select id="sunColor">
+        <option>Yellow</option>
+      </select>
+      <input id="sunQty" type="number" placeholder="Qty">
+      <button onclick="addFlower('Sunflower', 60, 'sunColor', 'sunQty')">Add</button>
+    </div>
+
+    <!-- LAVENDER -->
+    <div class="card">
+      <p>Lavender ₱35</p>
+      <select id="lavColor">
+        <option>Purple</option>
+      </select>
+      <input id="lavQty" type="number" placeholder="Qty">
+      <button onclick="addFlower('Lavender', 35, 'lavColor', 'lavQty')">Add</button>
+    </div>
+
+  </div>
+
+  <!-- WRAPPER -->
+  <h2>Wrapper ₱50</h2>
+  <select id="wrapperColor">
+    <option>White</option>
+    <option>Black</option>
+    <option>Pink</option>
+    <option>Kraft</option>
+  </select>
+  <button onclick="addWrapper()">Add Wrapper</button>
+
+  <p id="wrapperList"></p>
+
+  <!-- TOTAL -->
+  <div class="summary">
+    Total: ₱<span id="total">0</span>
+  </div>
+
+  <!-- RECEIPT -->
+  <h2>Order Receipt</h2>
+  <button onclick="generateOrder()">Generate Order</button>
+
+  <textarea id="orderText"></textarea>
+
+  <button onclick="copyOrder()">Copy Order</button>
+
+</div>
+
+<script>
+let total = 0;
+let order = [];
+let wrappers = [];
+
+const WRAPPER_PRICE = 50;
+
+function addFlower(name, price, colorId, qtyId) {
+  let color = document.getElementById(colorId).value;
+  let qty = parseInt(document.getElementById(qtyId).value);
+  if (!qty) return alert("Enter quantity");
+
+  order.push({ name, color, qty, price });
+  calculateTotal();
+}
+
+function addWrapper() {
+  let color = document.getElementById("wrapperColor").value;
+  wrappers.push(color);
+  document.getElementById("wrapperList").innerText = wrappers.join(", ");
+  calculateTotal();
+}
+
+function calculateTotal() {
+  total = 0;
+  order.forEach(item => total += item.price * item.qty);
+  total += wrappers.length * WRAPPER_PRICE;
+  document.getElementById("total").innerText = total;
+}
+
+function generateOrder() {
+  let msg = "🌸 Petals by Trishel Order:\n\n";
+
+  if (wrappers.length > 0) {
+    msg += "Wrapper: " + wrappers.join(", ") + "\n\n";
+  }
+
+  order.forEach(item => {
+    msg += `• ${item.name} (${item.color}) x${item.qty}\n`;
+  });
+
+  msg += "\nTotal: ₱" + total;
+  document.getElementById("orderText").value = msg;
+}
+
+function copyOrder() {
+  let text = document.getElementById("orderText").value;
+  navigator.clipboard.writeText(text);
+  alert("Copied! Paste it in your Google Form 💐");
+}
+</script>
+
+</body>
+</html>      margin-top: 20px;
     }
 
     textarea {
