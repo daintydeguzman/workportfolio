@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Petals by Trishel</title>
+  <title>Petals by Trishel - Customize</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
   <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
 
@@ -13,54 +15,310 @@
       text-align: center;
     }
 
-    .container { padding: 20px; }
+    .container { padding: 15px; }
 
-    .logo { width: 90px; border-radius: 50%; }
+    h1 { font-size: 22px; }
 
     .grid {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
     }
 
     .card {
       background: white;
-      margin: 10px;
       padding: 12px;
-      width: 170px;
       border-radius: 15px;
-      box-shadow: 0 6px 15px rgba(0,0,0,0.08);
-    }
-
-    .card img {
-      width: 100%;
-      border-radius: 10px;
+      box-shadow: 0 5px 12px rgba(0,0,0,0.08);
+      font-size: 14px;
     }
 
     select, input {
-      margin: 5px;
-      padding: 6px;
-      border-radius: 6px;
+      width: 100%;
+      padding: 10px;
+      margin-top: 6px;
+      border-radius: 8px;
       border: 1px solid #ccc;
-      width: 90%;
+      font-size: 14px;
     }
 
     button {
-      margin: 5px;
-      padding: 8px;
-      border: none;
+      width: 100%;
+      padding: 10px;
+      margin-top: 8px;
       border-radius: 8px;
+      border: none;
       background: #ff9bb3;
       color: white;
-      cursor: pointer;
+      font-size: 14px;
     }
 
     .summary {
       background: #ffe4ec;
       padding: 15px;
+      margin-top: 15px;
       border-radius: 10px;
-      display: inline-block;
-      margin-top: 20px;
+    }
+
+    textarea {
+      width: 95%;
+      height: 150px;
+      margin-top: 10px;
+      border-radius: 10px;
+      padding: 10px;
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>🌸 Customize Your Bouquet</h1>
+
+<div class="grid">
+
+<!-- TULIPS -->
+<div class="card">
+  <p>Tulips ₱55</p>
+  <select id="tulipsColor">
+    <option>Pink</option><option>Purple</option><option>Yellow</option>
+    <option>Orange</option><option>Blue</option><option>White</option>
+  </select>
+  <input id="tulipsQty" type="number" placeholder="Qty">
+  <button onclick="addFlower('Tulips',55,'tulipsColor','tulipsQty')">Add</button>
+</div>
+
+<!-- LILY -->
+<div class="card">
+  <p>Lily ₱55</p>
+  <select id="lilyColor">
+    <option>Pink</option><option>Purple</option><option>Blue</option><option>White</option>
+  </select>
+  <input id="lilyQty" type="number" placeholder="Qty">
+  <button onclick="addFlower('Lily',55,'lilyColor','lilyQty')">Add</button>
+</div>
+
+<!-- GERBERA -->
+<div class="card">
+  <p>Gerbera ₱45</p>
+  <select id="gerberaColor">
+    <option>Red</option><option>Yellow</option><option>Pink</option><option>White</option>
+  </select>
+  <input id="gerberaQty" type="number" placeholder="Qty">
+  <button onclick="addFlower('Gerbera',45,'gerberaColor','gerberaQty')">Add</button>
+</div>
+
+<!-- SUNFLOWER -->
+<div class="card">
+  <p>Sunflower ₱60</p>
+  <select id="sunflowerColor">
+    <option>Yellow</option>
+  </select>
+  <input id="sunflowerQty" type="number" placeholder="Qty">
+  <button onclick="addFlower('Sunflower',60,'sunflowerColor','sunflowerQty')">Add</button>
+</div>
+
+<!-- HIBISCUS -->
+<div class="card">
+  <p>Hibiscus ₱60</p>
+  <select id="hibiscusColor">
+    <option>Red</option><option>Pink</option><option>Yellow</option>
+    <option>Orange</option><option>White</option>
+  </select>
+  <input id="hibiscusQty" type="number" placeholder="Qty">
+  <button onclick="addFlower('Hibiscus',60,'hibiscusColor','hibiscusQty')">Add</button>
+</div>
+
+<!-- PEONY -->
+<div class="card">
+  <p>Peony ₱75</p>
+  <select id="peonyColor">
+    <option>Pink</option><option>Red</option><option>White</option>
+    <option>Yellow</option><option>Purple</option>
+  </select>
+  <input id="peonyQty" type="number" placeholder="Qty">
+  <button onclick="addFlower('Peony',75,'peonyColor','peonyQty')">Add</button>
+</div>
+
+<!-- SUNDROP -->
+<div class="card">
+  <p>Sundrop ₱65</p>
+  <select id="sundropColor">
+    <option>Yellow</option>
+  </select>
+  <input id="sundropQty" type="number" placeholder="Qty">
+  <button onclick="addFlower('Sundrop',65,'sundropColor','sundropQty')">Add</button>
+</div>
+
+<!-- STARGAZER LILY -->
+<div class="card">
+  <p>Stargazer Lily ₱75</p>
+  <select id="stargazerColor">
+    <option>Pink</option>
+  </select>
+  <input id="stargazerQty" type="number" placeholder="Qty">
+  <button onclick="addFlower('Stargazer Lily',75,'stargazerColor','stargazerQty')">Add</button>
+</div>
+
+<!-- BIG DAISY -->
+<div class="card">
+  <p>Big Daisy ₱65</p>
+  <select id="bigdaisyColor">
+    <option>Pink</option><option>Purple</option><option>Yellow</option>
+    <option>White</option><option>Orange</option><option>Blue</option>
+  </select>
+  <input id="bigdaisyQty" type="number" placeholder="Qty">
+  <button onclick="addFlower('Big Daisy',65,'bigdaisyColor','bigdaisyQty')">Add</button>
+</div>
+
+<!-- TIGER LILY -->
+<div class="card">
+  <p>Tiger Lily ₱55</p>
+  <select id="tigerlilyColor">
+    <option>Pink</option><option>Purple</option><option>Yellow</option>
+    <option>Orange</option><option>Blue</option><option>White</option>
+  </select>
+  <input id="tigerlilyQty" type="number" placeholder="Qty">
+  <button onclick="addFlower('Tiger Lily',55,'tigerlilyColor','tigerlilyQty')">Add</button>
+</div>
+
+<!-- LAVENDER -->
+<div class="card">
+  <p>Lavender ₱35</p>
+  <select id="lavenderColor">
+    <option>Purple</option>
+  </select>
+  <input id="lavenderQty" type="number" placeholder="Qty">
+  <button onclick="addFlower('Lavender',35,'lavenderColor','lavenderQty')">Add</button>
+</div>
+
+<!-- ROSE -->
+<div class="card">
+  <p>Rose ₱50</p>
+  <select id="roseColor">
+    <option>Pink</option><option>Red</option><option>Orange</option>
+    <option>Yellow</option><option>White</option>
+  </select>
+  <input id="roseQty" type="number" placeholder="Qty">
+  <button onclick="addFlower('Rose',50,'roseColor','roseQty')">Add</button>
+</div>
+
+<!-- SMALL DAISY -->
+<div class="card">
+  <p>Small Daisy ₱25</p>
+  <select id="smalldaisyColor">
+    <option>Pink</option><option>Purple</option><option>Yellow</option>
+    <option>White</option><option>Orange</option><option>Blue</option>
+  </select>
+  <input id="smalldaisyQty" type="number" placeholder="Qty">
+  <button onclick="addFlower('Small Daisy',25,'smalldaisyColor','smalldaisyQty')">Add</button>
+</div>
+
+<!-- PLUMERIA -->
+<div class="card">
+  <p>Plumeria ₱55</p>
+  <select id="plumeriaColor">
+    <option>White</option><option>Yellow</option><option>Pink</option>
+    <option>Red</option><option>Orange</option>
+  </select>
+  <input id="plumeriaQty" type="number" placeholder="Qty">
+  <button onclick="addFlower('Plumeria',55,'plumeriaColor','plumeriaQty')">Add</button>
+</div>
+
+</div>
+
+<!-- WRAPPER -->
+<h2>Wrapper ₱50 each</h2>
+<select id="wrapperColor">
+  <option>White</option><option>Black</option><option>Pink</option>
+  <option>Blue</option><option>Yellow</option><option>Kraft</option>
+  <option>Purple</option><option>Red</option>
+</select>
+
+<button onclick="addWrapper()">Add Wrapper</button>
+
+<p id="wrapperList"></p>
+
+<!-- TOTAL -->
+<div class="summary">
+  Total: ₱<span id="total">0</span>
+</div>
+
+<!-- RECEIPT -->
+<h2>Order Receipt</h2>
+
+<button onclick="generateOrder()">Generate</button>
+
+<textarea id="orderText"></textarea>
+
+<button onclick="copyOrder()">Copy Order</button>
+
+</div>
+
+<script>
+let total = 0;
+let order = [];
+let wrappers = [];
+
+const WRAPPER_PRICE = 50;
+
+function addFlower(name, price, colorId, qtyId) {
+  let color = document.getElementById(colorId).value;
+  let qty = parseInt(document.getElementById(qtyId).value);
+
+  if (!qty || qty <= 0) return alert("Enter quantity");
+
+  order.push({ name, color, qty, price });
+  calculateTotal();
+}
+
+function addWrapper() {
+  let color = document.getElementById("wrapperColor").value;
+  wrappers.push(color);
+
+  document.getElementById("wrapperList").innerText =
+    "Wrappers: " + wrappers.join(", ");
+
+  calculateTotal();
+}
+
+function calculateTotal() {
+  total = 0;
+
+  order.forEach(item => {
+    total += item.price * item.qty;
+  });
+
+  total += wrappers.length * WRAPPER_PRICE;
+
+  document.getElementById("total").innerText = total;
+}
+
+function generateOrder() {
+  let msg = "🌸 Petals by Trishel Order\n\n";
+
+  order.forEach(item => {
+    msg += `• ${item.name} (${item.color}) x${item.qty}\n`;
+  });
+
+  if (wrappers.length > 0) {
+    msg += "\nWrappers: " + wrappers.join(", ");
+  }
+
+  msg += "\n\nTOTAL: ₱" + total;
+
+  document.getElementById("orderText").value = msg;
+}
+
+function copyOrder() {
+  navigator.clipboard.writeText(document.getElementById("orderText").value);
+  alert("Copied! Paste it in your Google Form 💐");
+}
+</script>
+
+</body>
+</html>      margin-top: 20px;
     }
 
     textarea {
