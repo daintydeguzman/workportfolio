@@ -1,298 +1,1004 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Petals by Trishel - Customize</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dainty De Guzman | Virtual Assistant</title>
 
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+<style>
+:root {
+    --bg: #faf8f6;
+    --white: #ffffff;
+    --pink: #d8a8b6;
+    --dark: #302b2d;
+    --muted: #82797c;
+    --line: #e9e2e1;
+}
 
-  <style>
-    body {
-      font-family: 'Poppins', sans-serif;
-      background: #fff0f5;
-      margin: 0;
-      text-align: center;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+body {
+    background: var(--bg);
+    color: var(--dark);
+    font-family: 'DM Sans', sans-serif;
+    line-height: 1.7;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.container {
+    max-width: 1120px;
+    margin: auto;
+    padding: 0 45px;
+}
+
+/* NAVIGATION */
+
+nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(250,248,246,.96);
+    border-bottom: 1px solid var(--line);
+    backdrop-filter: blur(12px);
+}
+
+.nav-inner {
+    max-width: 1120px;
+    margin: auto;
+    padding: 19px 45px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.brand {
+    font-family: 'Playfair Display', serif;
+    font-size: 19px;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+.nav-links {
+    display: flex;
+    gap: 23px;
+}
+
+.nav-links a {
+    font-size: 10px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--muted);
+}
+
+.nav-links a:hover {
+    color: #ad7185;
+}
+
+/* HERO */
+
+.hero {
+    min-height: 670px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-top: 90px;
+    padding-bottom: 85px;
+}
+
+.eyebrow {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    color: #b47c8e;
+    text-transform: uppercase;
+}
+
+.hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(65px, 10vw, 112px);
+    font-weight: 400;
+    line-height: .95;
+    letter-spacing: -3px;
+    margin: 30px 0;
+}
+
+.hero h1 span {
+    display: block;
+    color: var(--pink);
+}
+
+.hero-subtitle {
+    font-size: 19px;
+    color: var(--muted);
+    margin-bottom: 32px;
+}
+
+.specialties {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.6px;
+    line-height: 2.5;
+}
+
+.hero-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid var(--line);
+    margin-top: 65px;
+    padding-top: 22px;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.hero-bottom p {
+    color: var(--muted);
+    font-size: 12px;
+}
+
+.email-link {
+    color: #a76d80;
+    font-size: 12px;
+    border-bottom: 1px solid var(--pink);
+}
+
+/* GENERAL SECTIONS */
+
+.section {
+    padding: 100px 0;
+    border-top: 1px solid var(--line);
+}
+
+.section-label {
+    font-size: 10px;
+    letter-spacing: 2px;
+    font-weight: 700;
+    color: #b47c8e;
+    margin-bottom: 20px;
+}
+
+.section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(36px, 5vw, 52px);
+    font-weight: 400;
+    line-height: 1.2;
+    max-width: 750px;
+    margin-bottom: 30px;
+}
+
+.intro {
+    max-width: 790px;
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 2;
+}
+
+/* PROFILE */
+
+.principles {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+    margin-top: 55px;
+}
+
+.principle {
+    background: var(--white);
+    border: 1px solid var(--line);
+    padding: 28px;
+}
+
+.principle h3 {
+    font-size: 11px;
+    letter-spacing: 1.5px;
+    margin-bottom: 10px;
+}
+
+.principle p {
+    color: var(--muted);
+    font-size: 12px;
+}
+
+.subheading {
+    font-family: 'Playfair Display', serif;
+    font-size: 27px;
+    font-weight: 400;
+    margin: 70px 0 25px;
+}
+
+.experience-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+}
+
+.experience h3 {
+    font-size: 14px;
+    margin-bottom: 15px;
+}
+
+.experience ul {
+    list-style: none;
+}
+
+.experience li {
+    color: var(--muted);
+    font-size: 12px;
+    padding: 9px 0;
+    border-bottom: 1px solid var(--line);
+}
+
+.experience li::before {
+    content: "— ";
+    color: var(--pink);
+}
+
+/* SERVICES */
+
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1px;
+    background: var(--line);
+    border: 1px solid var(--line);
+    margin-top: 45px;
+}
+
+.service {
+    background: var(--bg);
+    padding: 36px;
+    min-height: 190px;
+}
+
+.service-number {
+    font-size: 10px;
+    letter-spacing: 2px;
+    color: #b47c8e;
+}
+
+.service h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 24px;
+    font-weight: 400;
+    margin: 17px 0 12px;
+}
+
+.service p {
+    font-size: 12px;
+    color: var(--muted);
+}
+
+/* TOOLS */
+
+.tools-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+    margin-top: 40px;
+}
+
+.tool {
+    padding: 25px 28px;
+    background: var(--white);
+    border: 1px solid var(--line);
+}
+
+.tool h3 {
+    font-size: 11px;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+}
+
+.tool p {
+    font-size: 12px;
+    color: var(--muted);
+}
+
+.tool-note {
+    font-size: 11px;
+    color: var(--muted);
+    margin-top: 25px;
+    font-style: italic;
+}
+
+/* WORK SAMPLES */
+
+.samples-section {
+    background: #f5eff0;
+}
+
+.samples-intro {
+    font-size: 13px;
+    color: var(--muted);
+    max-width: 650px;
+}
+
+.samples-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+    margin-top: 45px;
+}
+
+.sample-card {
+    background: var(--white);
+    border: 1px solid var(--line);
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    min-height: 205px;
+    transition: .25s;
+}
+
+.sample-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 30px #302b2d0c;
+}
+
+.sample-number {
+    color: #b47c8e;
+    font-size: 10px;
+    letter-spacing: 2px;
+    font-weight: 700;
+}
+
+.sample-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 400;
+    font-size: 23px;
+    margin: 15px 0 8px;
+}
+
+.sample-card p {
+    color: var(--muted);
+    font-size: 12px;
+}
+
+.sample-link {
+    margin-top: auto;
+    padding-top: 22px;
+    font-size: 10px;
+    letter-spacing: 1px;
+    font-weight: 700;
+    color: #a76d80;
+}
+
+.sample-link:hover {
+    color: var(--dark);
+}
+
+.sample-note {
+    margin-top: 25px;
+    color: var(--muted);
+    font-size: 11px;
+}
+
+/* WORKFLOW */
+
+.workflow {
+    background: #f3eaeb;
+}
+
+.workflow-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 25px;
+    margin-top: 45px;
+}
+
+.step {
+    border-top: 1px solid #cbaeb6;
+    padding-top: 20px;
+}
+
+.step-number {
+    font-family: 'Playfair Display', serif;
+    font-size: 35px;
+    color: #bd8999;
+}
+
+.step h3 {
+    font-size: 13px;
+    margin: 12px 0;
+}
+
+.step p {
+    color: var(--muted);
+    font-size: 12px;
+}
+
+/* CONTACT */
+
+.contact {
+    padding: 110px 0;
+    text-align: center;
+}
+
+.contact .section-title {
+    margin: 20px auto;
+}
+
+.contact-desc {
+    font-size: 13px;
+    color: var(--muted);
+    max-width: 520px;
+    margin: auto;
+}
+
+.contact-info {
+    margin-top: 35px;
+    display: flex;
+    justify-content: center;
+    gap: 35px;
+    flex-wrap: wrap;
+    font-size: 12px;
+}
+
+.contact-info a {
+    color: #a76d80;
+    border-bottom: 1px solid var(--pink);
+}
+
+/* FOOTER */
+
+.footer {
+    border-top: 1px solid var(--line);
+    padding: 28px 0;
+}
+
+.footer-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.footer p {
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: .5px;
+}
+
+.footer a {
+    font-size: 11px;
+    color: #a76d80;
+}
+
+/* RESPONSIVE DESIGN */
+
+@media(max-width: 700px) {
+    .container, .nav-inner {
+        padding-left: 23px;
+        padding-right: 23px;
     }
 
-    .container { padding: 15px; }
-
-    h1 { font-size: 22px; }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 12px;
+    .nav-inner {
+        flex-direction: column;
+        gap: 15px;
     }
 
-    .card {
-      background: white;
-      padding: 12px;
-      border-radius: 15px;
-      box-shadow: 0 5px 12px rgba(0,0,0,0.08);
-      font-size: 14px;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
+    .nav-links {
+        gap: 12px;
+        flex-wrap: wrap;
+        justify-content: center;
     }
 
-    input, select {
-      width: 100%;
-      box-sizing: border-box;
-      padding: 10px;
-      border-radius: 8px;
-      border: 1px solid #ccc;
-      font-size: 14px;
+    .nav-links a {
+        font-size: 9px;
     }
 
-    button {
-      width: 100%;
-      padding: 10px;
-      border-radius: 8px;
-      border: none;
-      background: #ff9bb3;
-      color: white;
-      font-size: 14px;
-      cursor: pointer;
+    .hero {
+        min-height: 580px;
     }
 
-    .summary {
-      background: #ffe4ec;
-      padding: 15px;
-      margin-top: 15px;
-      border-radius: 10px;
+    .hero h1 {
+        font-size: 70px;
     }
 
-    textarea {
-      width: 95%;
-      height: 150px;
-      margin-top: 10px;
-      border-radius: 10px;
-      padding: 10px;
+    .principles,
+    .experience-grid,
+    .services-grid,
+    .tools-grid,
+    .samples-grid {
+        grid-template-columns: 1fr;
     }
-  </style>
+
+    .workflow-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .section {
+        padding: 75px 0;
+    }
+
+    .hero-bottom {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+}
+
+@media(max-width: 400px) {
+    .hero h1 {
+        font-size: 57px;
+    }
+
+    .workflow-grid {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
 </head>
 
 <body>
 
+<!-- NAVIGATION -->
+
+<nav>
+<div class="nav-inner">
+    <a href="#home" class="brand">DAINTY DE GUZMAN.</a>
+
+    <div class="nav-links">
+        <a href="#profile">Profile</a>
+        <a href="#services">Services</a>
+        <a href="#tools">Tools</a>
+        <a href="#works">Work Samples</a>
+        <a href="#workflow">Workflow</a>
+        <a href="#contact">Contact</a>
+    </div>
+</div>
+</nav>
+
+<!-- HOME -->
+
+<header class="container hero" id="home">
+
+    <p class="eyebrow">Independent Virtual Assistant Portfolio</p>
+
+    <h1>DAINTY<br><span>DE GUZMAN</span></h1>
+
+    <p class="hero-subtitle">VIRTUAL ASSISTANT</p>
+
+    <p style="font-size:18px;color:var(--muted);margin-bottom:25px;">
+        Reliable support. Organized operations. Better business flow.
+    </p>
+
+    <p style="font-size:14px;color:var(--muted);max-width:690px;margin-bottom:25px;">
+        Providing dependable administrative, data management, customer communication, and e-commerce support to help businesses stay organized and operate efficiently.
+    </p>
+
+    <p class="specialties">
+        ADMIN SUPPORT &nbsp; | &nbsp;
+        DATA ENTRY &nbsp; | &nbsp;
+        CUSTOMER COMMUNICATION &nbsp; | &nbsp;
+        E-COMMERCE
+    </p>
+
+    <div class="hero-bottom">
+        <p>Based in the Philippines | Open to remote opportunities</p>
+
+        <a class="email-link" href="mailto:daintydeguzman.work@gmail.com">
+            daintydeguzman.work@gmail.com
+        </a>
+    </div>
+
+</header>
+
+<!-- 01 PROFILE -->
+
+<section class="section" id="profile">
 <div class="container">
 
+    <p class="section-label">01 / PROFILE</p>
 
-<img src="logo.png" width="100">
-  <h1>Petals by Trishel</h1>
-  
-</div>
-  <!-- PRE-MADE -->
-<div style="background:#ffe4ec; padding:15px; border-radius:10px; margin-top:10px;">
-  <h3>🌸 Pre-made Bouquets</h3>
-  <p>
-    Our pre-made bouquet collection is coming soon 💐✨
-    Stay tuned for ready-made arrangements with fixed prices and elegant designs.
-  </p>
-</div>
+    <h2 class="section-title">
+        Organized, resourceful, and committed to keeping your business running smoothly.
+    </h2>
 
+    <div class="intro">
+
+        <p>
+            Hello! I'm Dainty De Guzman, a Civil Engineering student from the Philippines with a strong foundation in organization, information management, customer communication, and administrative support.
+        </p>
+
+        <br>
+
+        <p>
+            Through hands-on small-business experience, academic projects, and independent professional development, I've built practical skills in managing inquiries, processing orders, maintaining records, organizing information, and handling day-to-day administrative tasks.
+        </p>
+
+        <br>
+
+        <p>
+            I bring a structured and detail-oriented approach to every responsibility. Whether it's keeping records accurate, managing customer communications, updating spreadsheets, or organizing business operations, I understand the importance of consistency, accountability, and attention to detail.
+        </p>
+
+        <br>
+
+        <p>
+            I take initiative, adapt quickly to new systems, and approach challenges with a solutions-oriented mindset. My goal is to provide reliable support that allows business owners and teams to focus their time and energy on growing their business.
+        </p>
+
+        <br>
+
+        <p>
+            I don't just aim to complete tasks. I aim to make work easier, more organized, and more efficient.
+        </p>
+
+    </div>
+
+    <div class="principles">
+
+        <div class="principle">
+            <h3>ATTENTION TO DETAIL</h3>
+            <p>
+                Committed to accuracy, consistency, and maintaining reliable records.
+            </p>
+        </div>
+
+        <div class="principle">
+            <h3>ORGANIZATION & EFFICIENCY</h3>
+            <p>
+                Able to structure information, prioritize responsibilities, and keep workflows organized.
+            </p>
+        </div>
+
+        <div class="principle">
+            <h3>PROFESSIONAL COMMUNICATION</h3>
+            <p>
+                Communicates clearly and professionally when handling inquiries, updates, and coordination.
+            </p>
+        </div>
+
+        <div class="principle">
+            <h3>ADAPTABILITY & INITIATIVE</h3>
+            <p>
+                Quick to understand new processes, take ownership of responsibilities, and find practical solutions.
+            </p>
+        </div>
+
+    </div>
+
+    <h3 class="subheading">Relevant Experience</h3>
+
+    <div class="experience-grid">
+
+        <div class="experience">
+
+            <h3>Small-Business Operations & Customer Support</h3>
+
+            <ul>
+                <li>Managed customer inquiries and communicated order information with clarity and professionalism.</li>
+                <li>Assisted with order processing, payment recording, and transaction documentation.</li>
+                <li>Maintained organized business records and monitored inventory information.</li>
+                <li>Supported social media activities and customer engagement.</li>
+                <li>Coordinated order details to help ensure smooth day-to-day operations.</li>
+            </ul>
+
+        </div>
+
+        <div class="experience">
+
+            <h3>Academic Research & Administrative Work</h3>
+
+            <ul>
+                <li>Conducted research, gathered information, and organized findings into structured documents.</li>
+                <li>Prepared, formatted, and reviewed academic reports and written materials.</li>
+                <li>Worked with spreadsheets, numerical information, and organized records.</li>
+                <li>Applied analytical thinking, accuracy, and attention to detail when completing project requirements.</li>
+            </ul>
+
+        </div>
+
+    </div>
+
+</div>
+</section>
+
+<!-- 02 SERVICES -->
+
+<section class="section" id="services">
 <div class="container">
-  
-  <!-- GUIDE -->
-  <div class="guide">
-    💐 <b>Bouquet Guide:</b><br>
-    For every <b>3 flowers</b> + <b>3 fillers</b>.
-  </div>
 
-<p style="font-size:13px;">Customize your bouquet 💐</p>
+    <p class="section-label">02 / SERVICES</p>
 
-<!-- FLOWERS -->
-<div class="grid">
+    <h2 class="section-title">
+        How I can support your day-to-day work.
+    </h2>
 
-  <div class="card"><p>Tulips ₱55</p>
-    <select id="tulipsColor">
-      <option>Pink</option><option>Purple</option><option>Yellow</option>
-      <option>Orange</option><option>Blue</option><option>White</option>
-    </select>
-    <input id="tulipsQty"><button onclick="addFlower('Tulips',55,'tulipsColor','tulipsQty')">Add</button>
-  </div>
+    <div class="services-grid">
 
-  <div class="card"><p>Lily ₱55</p>
-    <select id="lilyColor">
-      <option>Pink</option><option>Purple</option><option>Blue</option><option>White</option>
-    </select>
-    <input id="lilyQty"><button onclick="addFlower('Lily',55,'lilyColor','lilyQty')">Add</button>
-  </div>
+        <div class="service">
+            <span class="service-number">01 / ADMINISTRATION</span>
+            <h3>Administrative Support</h3>
+            <p>
+                Keeping everyday operations organized and manageable. Document preparation and formatting · File management · Task coordination · Calendar organization · Administrative assistance
+            </p>
+        </div>
 
-  <div class="card"><p>Gerbera ₱45</p>
-    <select id="gerberaColor">
-      <option>Red</option><option>Yellow</option><option>Pink</option><option>White</option>
-    </select>
-    <input id="gerberaQty"><button onclick="addFlower('Gerbera',45,'gerberaColor','gerberaQty')">Add</button>
-  </div>
+        <div class="service">
+            <span class="service-number">02 / INFORMATION</span>
+            <h3>Data Management & Research</h3>
+            <p>
+                Turning information into accurate, organized, and usable records. Data entry · Spreadsheet management · Data organization · Online research · Information gathering
+            </p>
+        </div>
 
-  <div class="card"><p>Sunflower ₱60</p>
-    <select id="sunflowerColor"><option>Yellow</option></select>
-    <input id="sunflowerQty"><button onclick="addFlower('Sunflower',60,'sunflowerColor','sunflowerQty')">Add</button>
-  </div>
+        <div class="service">
+            <span class="service-number">03 / COMMUNICATION</span>
+            <h3>Customer Communication</h3>
+            <p>
+                Supporting positive customer experiences through clear and professional communication. Email management · Customer inquiries · Message handling · Order updates · Follow-ups
+            </p>
+        </div>
 
-  <div class="card"><p>Hibiscus ₱60</p>
-    <select id="hibiscusColor">
-      <option>Red</option><option>Pink</option><option>Yellow</option>
-      <option>Orange</option><option>White</option>
-    </select>
-    <input id="hibiscusQty"><button onclick="addFlower('Hibiscus',60,'hibiscusColor','hibiscusQty')">Add</button>
-  </div>
+        <div class="service">
+            <span class="service-number">04 / OPERATIONS</span>
+            <h3>E-commerce Support</h3>
+            <p>
+                Helping maintain organized order processes and business records. Order processing · Order tracking · Inventory monitoring · Product information updates · Customer order coordination
+            </p>
+        </div>
 
-  <div class="card"><p>Peony ₱75</p>
-    <select id="peonyColor">
-      <option>Pink</option><option>Red</option><option>White</option>
-      <option>Yellow</option><option>Purple</option>
-    </select>
-    <input id="peonyQty"><button onclick="addFlower('Peony',75,'peonyColor','peonyQty')">Add</button>
-  </div>
-
-  <div class="card"><p>Sundrop ₱65</p>
-    <select id="sundropColor"><option>Yellow</option></select>
-    <input id="sundropQty"><button onclick="addFlower('Sundrop',65,'sundropColor','sundropQty')">Add</button>
-  </div>
-
-  <div class="card"><p>Stargazer Lily ₱75</p>
-    <select id="stargazerColor"><option>Pink</option></select>
-    <input id="stargazerQty"><button onclick="addFlower('Stargazer Lily',75,'stargazerColor','stargazerQty')">Add</button>
-  </div>
-
-  <div class="card"><p>Big Daisy ₱65</p>
-    <select id="bigdaisyColor">
-      <option>Pink</option><option>Purple</option><option>Yellow</option>
-      <option>White</option><option>Orange</option><option>Blue</option>
-    </select>
-    <input id="bigdaisyQty"><button onclick="addFlower('Big Daisy',65,'bigdaisyColor','bigdaisyQty')">Add</button>
-  </div>
-
-  <div class="card"><p>Tiger Lily ₱55</p>
-    <select id="tigerlilyColor">
-      <option>Pink</option><option>Purple</option><option>Yellow</option>
-      <option>Orange</option><option>Blue</option><option>White</option>
-    </select>
-    <input id="tigerlilyQty"><button onclick="addFlower('Tiger Lily',55,'tigerlilyColor','tigerlilyQty')">Add</button>
-  </div>
-
-  <div class="card"><p>Lavender ₱35</p>
-    <select id="lavenderColor"><option>Purple</option></select>
-    <input id="lavenderQty"><button onclick="addFlower('Lavender',35,'lavenderColor','lavenderQty')">Add</button>
-  </div>
-
-  <div class="card"><p>Rose ₱50</p>
-    <select id="roseColor">
-      <option>Pink</option><option>Red</option><option>Orange</option>
-      <option>Yellow</option><option>White</option>
-    </select>
-    <input id="roseQty"><button onclick="addFlower('Rose',50,'roseColor','roseQty')">Add</button>
-  </div>
-
-  <div class="card"><p>Small Daisy ₱25</p>
-    <select id="smalldaisyColor">
-      <option>Pink</option><option>Purple</option><option>Yellow</option>
-      <option>White</option><option>Orange</option><option>Blue</option>
-    </select>
-    <input id="smalldaisyQty"><button onclick="addFlower('Small Daisy',25,'smalldaisyColor','smalldaisyQty')">Add</button>
-  </div>
-
-  <div class="card"><p>Plumeria ₱55</p>
-    <select id="plumeriaColor">
-      <option>White</option><option>Yellow</option><option>Pink</option>
-      <option>Red</option><option>Orange</option>
-    </select>
-    <input id="plumeriaQty"><button onclick="addFlower('Plumeria',55,'plumeriaColor','plumeriaQty')">Add</button>
-  </div>
+    </div>
 
 </div>
+</section>
 
-<!-- WRAPPER -->
-<h2>Wrapper (₱50 Fixed)</h2>
-<select id="wrapperColor">
-  <option>White</option><option>Black</option><option>Pink</option>
-  <option>Blue</option><option>Yellow</option><option>Kraft</option>
-  <option>Purple</option><option>Red</option>
-</select>
+<!-- 03 TOOLS -->
 
-<button onclick="addWrapper()">Add Wrapper</button>
+<section class="section" id="tools">
+<div class="container">
 
-<p id="wrapperList"></p>
+    <p class="section-label">03 / TOOLS</p>
 
-<!-- TOTAL -->
-<div class="summary">
-  Total: ₱<span id="total">0</span>
+    <h2 class="section-title">
+        Tools I'm familiar with.
+    </h2>
+
+    <p class="intro">
+        I work with a range of digital tools to manage information, streamline administrative tasks, organize workflows, and support business communication. I'm also comfortable adapting to new platforms and learning the systems already used by your team.
+    </p>
+
+    <div class="tools-grid">
+
+        <div class="tool">
+            <h3>DOCUMENTS & SPREADSHEETS</h3>
+            <p>
+                Google Docs, Google Sheets, Google Drive, Microsoft Word, Microsoft Excel
+            </p>
+        </div>
+
+        <div class="tool">
+            <h3>COMMUNICATION</h3>
+            <p>
+                Gmail, Google Meet, Zoom, Messenger
+            </p>
+        </div>
+
+        <div class="tool">
+            <h3>PLANNING & PRODUCTIVITY</h3>
+            <p>
+                Google Calendar, Trello, Notion
+            </p>
+        </div>
+
+        <div class="tool">
+            <h3>DESIGN & SOCIAL MEDIA</h3>
+            <p>
+                Canva, Facebook
+            </p>
+        </div>
+
+    </div>
+
+    <p class="tool-note">
+        I focus on using each tool carefully and effectively, and I'm ready to adapt to the platforms and processes your team already uses.
+    </p>
+
 </div>
+</section>
 
-<!-- RECEIPT -->
-<h2>Order Receipt</h2>
+<!-- 04 WORK SAMPLES -->
 
-<button onclick="generateOrder()">Generate</button>
-<textarea id="orderText"></textarea>
-<button onclick="copyOrder()">Copy Order</button>
+<section class="section samples-section" id="works">
+<div class="container">
+
+    <p class="section-label">04 / PORTFOLIO</p>
+
+    <h2 class="section-title">
+        Selected Work & Projects.
+    </h2>
+
+    <p class="samples-intro">
+        A collection of practical demonstrations that show how I approach common virtual assistant responsibilities, from organizing information and managing communication to supporting everyday business operations.
+    </p>
+
+    <div class="samples-grid">
+
+        <div class="sample-card">
+            <span class="sample-number">SAMPLE 01</span>
+            <h3>Email Management</h3>
+            <p>
+                Professional email scenarios, client communication, and inbox organization.
+            </p>
+            <a class="sample-link" href="YOUR_EMAIL_SAMPLE_LINK" target="_blank" rel="noopener">
+                VIEW PROJECT ↗
+            </a>
+        </div>
+
+        <div class="sample-card">
+            <span class="sample-number">SAMPLE 02</span>
+            <h3>Data Entry & Spreadsheets</h3>
+            <p>
+                Organized spreadsheet records, data encoding, and information management.
+            </p>
+            <a class="sample-link" href="YOUR_DATA_ENTRY_LINK" target="_blank" rel="noopener">
+                VIEW PROJECT ↗
+            </a>
+        </div>
+
+        <div class="sample-card">
+            <span class="sample-number">SAMPLE 03</span>
+            <h3>Administrative Support</h3>
+            <p>
+                Task trackers, to-do lists, scheduling, and workflow organization.
+            </p>
+            <a class="sample-link" href="YOUR_ADMIN_SAMPLE_LINK" target="_blank" rel="noopener">
+                VIEW PROJECT ↗
+            </a>
+        </div>
+
+        <div class="sample-card">
+            <span class="sample-number">SAMPLE 04</span>
+            <h3>Customer Support</h3>
+            <p>
+                Sample customer inquiries, order updates, and professional support responses.
+            </p>
+            <a class="sample-link" href="YOUR_CUSTOMER_SUPPORT_LINK" target="_blank" rel="noopener">
+                VIEW PROJECT ↗
+            </a>
+        </div>
+
+        <div class="sample-card">
+            <span class="sample-number">SAMPLE 05</span>
+            <h3>E-commerce Assistance</h3>
+            <p>
+                Order tracking, inventory monitoring, and product information records.
+            </p>
+            <a class="sample-link" href="YOUR_ECOMMERCE_LINK" target="_blank" rel="noopener">
+                VIEW PROJECT ↗
+            </a>
+        </div>
+
+        <div class="sample-card">
+            <span class="sample-number">SAMPLE 06</span>
+            <h3>Social Media Support</h3>
+            <p>
+                Sample Canva graphics, captions, and content planning.
+            </p>
+            <a class="sample-link" href="YOUR_SOCIAL_MEDIA_LINK" target="_blank" rel="noopener">
+                VIEW PROJECT ↗
+            </a>
+        </div>
+
+    </div>
+
+    <p class="sample-note">
+        Note: These are portfolio demonstrations and practice projects, not representations of completed client engagements.
+    </p>
 
 </div>
+</section>
 
-<script>
+<!-- 05 WORKING STYLE -->
 
-let order = [];
-let wrappers = [];
+<section class="section workflow" id="workflow">
+<div class="container">
 
-function addFlower(name, price, colorId, qtyId) {
-  let color = document.getElementById(colorId).value;
-  let qty = parseInt(document.getElementById(qtyId).value);
+    <p class="section-label">05 / WORKING STYLE</p>
 
-  if (!qty || qty <= 0) return alert("Enter quantity");
+    <h2 class="section-title">
+        A simple, reliable workflow.
+    </h2>
 
-  order.push({ name, color, qty, price });
-  calculateTotal();
-}
+    <div class="workflow-grid">
 
-function addWrapper() {
-  let color = document.getElementById("wrapperColor").value;
-  wrappers.push(color);
+        <div class="step">
+            <span class="step-number">01</span>
+            <h3>Understand</h3>
+            <p>
+                Establish clear expectations by identifying task requirements, priorities, instructions, and the desired outcome.
+            </p>
+        </div>
 
-  document.getElementById("wrapperList").innerText =
-    "Wrappers: " + wrappers.join(", ");
+        <div class="step">
+            <span class="step-number">02</span>
+            <h3>Organize</h3>
+            <p>
+                Structure information, plan the necessary steps, and establish an efficient approach to completing the work.
+            </p>
+        </div>
 
-  calculateTotal();
-}
+        <div class="step">
+            <span class="step-number">03</span>
+            <h3>Complete</h3>
+            <p>
+                Handle responsibilities with accuracy, attention to detail, and accountability while maintaining quality standards.
+            </p>
+        </div>
 
-function calculateTotal() {
-  let total = 0;
+        <div class="step">
+            <span class="step-number">04</span>
+            <h3>Update</h3>
+            <p>
+                Provide timely updates, communicate important details, and deliver completed work in the agreed format.
+            </p>
+        </div>
 
-  order.forEach(item => {
-    total += item.price * item.qty;
-  });
+    </div>
 
-  if (wrappers.length > 0) {
-    total += 50; // FIXED WRAPPER PRICE ONLY ONCE
-  }
+</div>
+</section>
 
-  document.getElementById("total").innerText = total;
-}
+<!-- CONTACT -->
 
-function generateOrder() {
-  let msg = "🌸 Petals by Trishel Order\n\n";
+<section class="contact" id="contact">
+<div class="container">
 
-  order.forEach(item => {
-    msg += `• ${item.name} (${item.color}) x${item.qty}\n`;
-  });
+    <p class="section-label">LET'S WORK TOGETHER</p>
 
-  if (wrappers.length > 0) {
-    msg += "\nWrappers: " + wrappers.join(", ");
-    msg += "\nWrapper Fee: ₱50\n";
-  }
+    <h2 class="section-title">
+        Reliable support makes a difference.
+    </h2>
 
-  let total = document.getElementById("total").innerText;
-  msg += "\nTOTAL: ₱" + total;
+    <p class="contact-desc">
+        Every successful business needs someone who can keep the details organized, handle responsibilities efficiently, and make everyday operations easier. I'm ready to bring my organizational skills, practical experience, and commitment to quality into a professional working relationship. Let's discuss how I can contribute to your business.
+    </p>
 
-  document.getElementById("orderText").value = msg;
-}
+    <div class="contact-info">
+        <a href="mailto:daintydeguzman.work@gmail.com">
+            Email Me
+        </a>
 
-function copyOrder() {
-  navigator.clipboard.writeText(document.getElementById("orderText").value);
-  alert("Copied! Paste it in your Google Form 💐");
-}
+        <a href="https://www.linkedin.com/in/dainty-trishel-de-guzman-117a583a8/" target="_blank" rel="noopener">
+            LinkedIn Profile ↗
+        </a>
+    </div>
 
-</script>
+    <br><br>
+
+    <p class="eyebrow">DAINTY DE GUZMAN</p>
+
+    <p style="font-size:11px;color:var(--muted);margin-top:10px;">
+        Virtual Assistant · Philippines
+    </p>
+
+</div>
+</section>
+
+<!-- FOOTER -->
+
+<footer class="footer">
+<div class="container footer-inner">
+
+    <p>© 2026 DAINTY DE GUZMAN. ALL RIGHTS RESERVED.</p>
+
+    <a href="#home">BACK TO TOP ↑</a>
+
+</div>
+</footer>
 
 </body>
 </html>
