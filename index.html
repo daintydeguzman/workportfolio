@@ -88,71 +88,66 @@ nav {
 
 /* HERO */
 
+
 .hero {
     min-height: 670px;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding-top: 90px;
-    padding-bottom: 85px;
-}
-
-.eyebrow {
-    font-size: 10px;
-    font-weight: 700;
-    letter-spacing: 3px;
-    color: #b47c8e;
-    text-transform: uppercase;
-}
-
-.hero h1 {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(65px, 10vw, 112px);
-    font-weight: 400;
-    line-height: .95;
-    letter-spacing: -3px;
-    margin: 30px 0;
-}
-
-.hero h1 span {
-    display: block;
-    color: var(--pink);
-}
-
-.hero-subtitle {
-    font-size: 19px;
-    color: var(--muted);
-    margin-bottom: 32px;
-}
-
-.specialties {
-    font-size: 10px;
-    font-weight: 700;
-    letter-spacing: 1.6px;
-    line-height: 2.5;
-}
-
-.hero-bottom {
-    display: flex;
-    justify-content: space-between;
     align-items: center;
-    border-top: 1px solid var(--line);
-    margin-top: 65px;
-    padding-top: 22px;
-    flex-wrap: wrap;
-    gap: 15px;
+    justify-content: space-between;
+    gap: 65px;
+    padding-top: 75px;
+    padding-bottom: 75px;
 }
 
-.hero-bottom p {
-    color: var(--muted);
-    font-size: 12px;
+.hero-content {
+    flex: 1;
+    min-width: 0;
 }
 
-.email-link {
-    color: #a76d80;
-    font-size: 12px;
-    border-bottom: 1px solid var(--pink);
+.hero-photo {
+    flex: 0 0 340px;
+    width: 340px;
+    height: 430px;
+    overflow: hidden;
+    border: 1px solid var(--line);
+    background: #f1e8e9;
 }
+
+.hero-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    display: block;
+}
+
+@media(max-width: 700px) {
+    .hero {
+        flex-direction: column-reverse;
+        align-items: flex-start;
+        gap: 35px;
+        padding-top: 55px;
+        padding-bottom: 55px;
+    }
+
+    .hero-photo {
+        width: 220px;
+        height: 270px;
+        flex: none;
+        align-self: center;
+    }
+
+    .hero h1 {
+        font-size: 70px;
+    }
+}
+
+@media(max-width: 400px) {
+    .hero h1 {
+        font-size: 57px;
+    }
+}
+
 
 /* GENERAL SECTIONS */
 
