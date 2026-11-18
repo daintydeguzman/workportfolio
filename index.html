@@ -1,4 +1,4 @@
-
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -86,68 +86,108 @@ nav {
     color: #ad7185;
 }
 
-/* HERO */
-
+/* HOME */
 
 .hero {
     min-height: 670px;
-    display: flex;
+    display: grid;
+    grid-template-columns: 1.3fr .7fr;
     align-items: center;
-    justify-content: space-between;
-    gap: 65px;
+    gap: 55px;
     padding-top: 75px;
     padding-bottom: 75px;
 }
 
 .hero-content {
-    flex: 1;
     min-width: 0;
 }
 
+.eyebrow {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    color: #b47c8e;
+    text-transform: uppercase;
+}
+
+.hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(65px, 8vw, 105px);
+    font-weight: 400;
+    line-height: .95;
+    letter-spacing: -3px;
+    margin: 30px 0;
+}
+
+.hero h1 span {
+    display: block;
+    color: var(--pink);
+}
+
+.hero-subtitle {
+    font-size: 19px;
+    color: var(--muted);
+    margin-bottom: 25px;
+}
+
+.hero-description {
+    font-size: 14px;
+    color: var(--muted);
+    margin-bottom: 25px;
+    max-width: 590px;
+}
+
+.hero-tagline {
+    font-size: 18px;
+    color: var(--muted);
+    margin-bottom: 18px;
+}
+
+.specialties {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.6px;
+    line-height: 2.5;
+}
+
 .hero-photo {
-    flex: 0 0 340px;
-    width: 340px;
-    height: 430px;
-    overflow: hidden;
-    border: 1px solid var(--line);
-    background: #f1e8e9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .hero-photo img {
     width: 100%;
-    height: 100%;
+    max-width: 340px;
+    height: 440px;
     object-fit: cover;
-    object-position: center top;
-    display: block;
+    object-position: center;
+    border: 10px solid var(--white);
+    outline: 1px solid var(--line);
+    box-shadow: 15px 15px 0 #f0e3e6;
 }
 
-@media(max-width: 700px) {
-    .hero {
-        flex-direction: column-reverse;
-        align-items: flex-start;
-        gap: 35px;
-        padding-top: 55px;
-        padding-bottom: 55px;
-    }
-
-    .hero-photo {
-        width: 220px;
-        height: 270px;
-        flex: none;
-        align-self: center;
-    }
-
-    .hero h1 {
-        font-size: 70px;
-    }
+.hero-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid var(--line);
+    margin-top: 35px;
+    padding-top: 20px;
+    flex-wrap: wrap;
+    gap: 15px;
 }
 
-@media(max-width: 400px) {
-    .hero h1 {
-        font-size: 57px;
-    }
+.hero-bottom p {
+    color: var(--muted);
+    font-size: 12px;
 }
 
+.email-link {
+    color: #a76d80;
+    font-size: 12px;
+    border-bottom: 1px solid var(--pink);
+}
 
 /* GENERAL SECTIONS */
 
@@ -474,6 +514,26 @@ nav {
 
 /* RESPONSIVE DESIGN */
 
+@media(max-width: 900px) {
+    .hero {
+        grid-template-columns: 1fr .7fr;
+        gap: 30px;
+    }
+
+    .hero-photo img {
+        height: 370px;
+    }
+
+    .hero h1 {
+        font-size: 70px;
+    }
+
+    .principles,
+    .workflow-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
 @media(max-width: 700px) {
     .container, .nav-inner {
         padding-left: 23px;
@@ -496,11 +556,27 @@ nav {
     }
 
     .hero {
-        min-height: 580px;
+        grid-template-columns: 1fr;
+        min-height: auto;
+        padding-top: 65px;
+        gap: 40px;
+    }
+
+    .hero-content {
+        order: 1;
+    }
+
+    .hero-photo {
+        order: 0;
+    }
+
+    .hero-photo img {
+        max-width: 270px;
+        height: 340px;
     }
 
     .hero h1 {
-        font-size: 70px;
+        font-size: 65px;
     }
 
     .principles,
@@ -527,7 +603,7 @@ nav {
 
 @media(max-width: 400px) {
     .hero h1 {
-        font-size: 57px;
+        font-size: 55px;
     }
 
     .workflow-grid {
@@ -558,9 +634,6 @@ nav {
 
 <!-- HOME -->
 
-
-<!-- HOME -->
-
 <header class="container hero" id="home">
 
     <div class="hero-content">
@@ -571,11 +644,11 @@ nav {
 
         <p class="hero-subtitle">VIRTUAL ASSISTANT</p>
 
-        <p style="font-size:18px;color:var(--muted);margin-bottom:25px;">
+        <p class="hero-tagline">
             Reliable support. Organized operations. Better business flow.
         </p>
 
-        <p style="font-size:14px;color:var(--muted);max-width:600px;margin-bottom:25px;">
+        <p class="hero-description">
             Providing dependable administrative, data management, customer communication, and e-commerce support to help businesses stay organized and operate efficiently.
         </p>
 
@@ -682,7 +755,6 @@ nav {
     <div class="experience-grid">
 
         <div class="experience">
-
             <h3>Small-Business Operations & Customer Support</h3>
 
             <ul>
@@ -691,11 +763,9 @@ nav {
                 <li>Maintained organized business records and monitored inventory information.</li>
                 <li>Coordinated order details to help ensure smooth day-to-day operations.</li>
             </ul>
-
         </div>
 
         <div class="experience">
-
             <h3>Academic Research & Administrative Work</h3>
 
             <ul>
@@ -704,7 +774,6 @@ nav {
                 <li>Worked with spreadsheets, numerical information, and organized records.</li>
                 <li>Applied analytical thinking, accuracy, and attention to detail when completing project requirements.</li>
             </ul>
-
         </div>
 
     </div>
@@ -801,7 +870,7 @@ nav {
         </div>
 
         <div class="tool">
-            <h3>DESIGN & DOCUMENTATION</h3>
+            <h3>DESIGN</h3>
             <p>
                 Canva
             </p>
@@ -997,3 +1066,4 @@ nav {
 
 </body>
 </html>
+```
