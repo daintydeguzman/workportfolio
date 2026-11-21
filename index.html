@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -468,6 +469,18 @@ nav {
 .contact-info a {
     color: #a76d80;
     border-bottom: 1px solid var(--pink);
+    transition: .25s;
+}
+
+.contact-info a:hover {
+    color: var(--dark);
+}
+
+.contact-email {
+    display: inline-block;
+    margin-top: 25px;
+    font-size: 12px;
+    color: var(--muted);
 }
 
 /* FOOTER */
@@ -619,17 +632,30 @@ nav {
 
         <p class="hero-subtitle">VIRTUAL ASSISTANT</p>
 
-        <p style="font-size:14px;color:var(--muted);max-width:520px;line-height:2;">
-           A reliable, resourceful, and detail-driven VA who brings initiative, professionalism, and a thoughtful approach to every task. I make things happen, keep details in check, and bring structure to the everyday—always with purpose, precision, and a commitment to doing things exceptionally well.
+        <p style="font-size:18px;color:var(--muted);margin-bottom:25px;">
+            Reliable support. Organized operations. Better business flow.
         </p>
 
-        <p class="specialties" style="margin-top:25px;">
-            ADMIN SUPPORT &nbsp; | &nbsp; DATA ENTRY &nbsp; | &nbsp; CUSTOMER COMMUNICATION
+        <p style="font-size:14px;color:var(--muted);max-width:690px;margin-bottom:25px;">
+            Providing dependable administrative, data management, customer communication, and e-commerce support to help businesses stay organized and operate efficiently.
+        </p>
+
+        <p class="specialties">
+            ADMIN SUPPORT &nbsp; | &nbsp;
+            DATA ENTRY &nbsp; | &nbsp;
+            CUSTOMER COMMUNICATION &nbsp; | &nbsp;
+            E-COMMERCE
         </p>
 
         <div class="hero-bottom">
-            <p>The difference is often in the details.</p>
-            <a class="email-link" href="mailto:daintydeguzman.work@gmail.com">GET IN TOUCH ↗</a>
+            <p>Based in the Philippines | Open to remote opportunities</p>
+
+            <a class="email-link"
+               href="https://mail.google.com/mail/?view=cm&fs=1&to=daintydeguzman.work@gmail.com"
+               target="_blank"
+               rel="noopener noreferrer">
+                daintydeguzman.work@gmail.com
+            </a>
         </div>
 
     </div>
@@ -648,33 +674,51 @@ nav {
     <p class="section-label">01 / PROFILE</p>
 
     <h2 class="section-title">
-        Making Every Detail Work in Your Favor.
+        Organized, resourceful, and committed to keeping your business running smoothly.
     </h2>
 
-    <p class="intro">
-        I am a Virtual Assistant with practical experience supporting small-business operations and academic projects. My background has helped me develop skills in customer communication, order coordination, record keeping, data organization, and administrative tasks. I approach responsibilities with structure, attention to detail, and a strong sense of accountability. I value clear communication, consistent work, and delivering accurate results. I am ready to support businesses by helping keep daily operations organized, manageable, and efficient.
-    </p>
+    <div class="intro">
+
+        <p>
+            I am a Virtual Assistant with practical experience supporting small-business operations and academic projects. My background has helped me develop skills in customer communication, order coordination, recordkeeping, data organization, and administrative tasks.
+        </p>
+
+        <br>
+
+        <p>
+            I approach responsibilities with structure, attention to detail, and a strong sense of accountability. I value clear communication, consistent work, and delivering accurate results. I am ready to support businesses by helping keep daily operations organized, manageable, and efficient.
+        </p>
+
+    </div>
 
     <div class="principles">
 
         <div class="principle">
-            <h3>ORGANIZED</h3>
-            <p>I keep information, records, and tasks structured and easy to manage.</p>
+            <h3>ATTENTION TO DETAIL</h3>
+            <p>
+                Committed to accuracy, consistency, and maintaining reliable records.
+            </p>
         </div>
 
         <div class="principle">
-            <h3>ACCURATE</h3>
-            <p>I pay attention to details and review my work carefully.</p>
+            <h3>ORGANIZATION & EFFICIENCY</h3>
+            <p>
+                Able to structure information, prioritize responsibilities, and keep workflows organized.
+            </p>
         </div>
 
         <div class="principle">
-            <h3>ADAPTABLE</h3>
-            <p>I am comfortable learning new tools, instructions, and workflows.</p>
+            <h3>PROFESSIONAL COMMUNICATION</h3>
+            <p>
+                Communicates clearly and professionally when handling inquiries, updates, and coordination.
+            </p>
         </div>
 
         <div class="principle">
-            <h3>DEPENDABLE</h3>
-            <p>I take responsibility for assigned tasks and communicate progress clearly.</p>
+            <h3>ADAPTABILITY & INITIATIVE</h3>
+            <p>
+                Quick to understand new processes, take ownership of responsibilities, and find practical solutions.
+            </p>
         </div>
 
     </div>
@@ -684,6 +728,7 @@ nav {
     <div class="experience-grid">
 
         <div class="experience">
+
             <h3>Small-Business Operations & Customer Support</h3>
 
             <ul>
@@ -693,9 +738,11 @@ nav {
                 <li>Supported social media activities and customer engagement.</li>
                 <li>Coordinated order details to help ensure smooth day-to-day operations.</li>
             </ul>
+
         </div>
 
         <div class="experience">
+
             <h3>Academic Research & Administrative Work</h3>
 
             <ul>
@@ -704,6 +751,7 @@ nav {
                 <li>Worked with spreadsheets, numerical information, and organized records.</li>
                 <li>Applied analytical thinking, accuracy, and attention to detail when completing project requirements.</li>
             </ul>
+
         </div>
 
     </div>
@@ -815,8 +863,6 @@ nav {
 </div>
 </section>
 
-
-
 <!-- 04 WORK SAMPLES -->
 
 <section class="section samples-section" id="works">
@@ -829,8 +875,7 @@ nav {
     </h2>
 
     <p class="samples-intro">
-        A collection of practical demonstrations showcasing my
-        administrative, organizational, and communication skills.
+        A collection of practical demonstrations that show how I approach common virtual assistant responsibilities, from organizing information and managing communication to supporting everyday business operations.
     </p>
 
     <div class="samples-grid">
@@ -838,41 +883,66 @@ nav {
         <div class="sample-card">
             <span class="sample-number">SAMPLE 01</span>
             <h3>Email Management</h3>
-            <p>Professional email scenarios, client communication, and inbox organization.</p>
-            <a class="sample-link" href="email-management.html">VIEW PROJECT ↗</a>
+            <p>
+                Professional email scenarios, client communication, and inbox organization.
+            </p>
+            <a class="sample-link" href="email-management.html">
+                VIEW PROJECT ↗
+            </a>
         </div>
 
         <div class="sample-card">
             <span class="sample-number">SAMPLE 02</span>
             <h3>Data Entry & Spreadsheets</h3>
-            <p>Organized spreadsheet records and information management.</p>
-            <a class="sample-link" href="data-entry.html">VIEW PROJECT ↗</a>
+            <p>
+                Organized spreadsheet records, data encoding, and information management.
+            </p>
+            <a class="sample-link" href="data-entry.html">
+                VIEW PROJECT ↗
+            </a>
         </div>
 
         <div class="sample-card">
             <span class="sample-number">SAMPLE 03</span>
             <h3>Administrative Support</h3>
-            <p>Task trackers, to-do lists, and workflow organization.</p>
-            <a class="sample-link" href="administrative-support.html">VIEW PROJECT ↗</a>
+            <p>
+                Task trackers, to-do lists, scheduling, and workflow organization.
+            </p>
+            <a class="sample-link" href="administrative-support.html">
+                VIEW PROJECT ↗
+            </a>
         </div>
 
         <div class="sample-card">
             <span class="sample-number">SAMPLE 04</span>
             <h3>Customer Support</h3>
-            <p>Customer inquiries, order updates, and professional responses.</p>
-            <a class="sample-link" href="customer-support.html">VIEW PROJECT ↗</a>
+            <p>
+                Sample customer inquiries, order updates, and professional support responses.
+            </p>
+            <a class="sample-link" href="customer-support.html">
+                VIEW PROJECT ↗
+            </a>
         </div>
 
+        <div class="sample-card">
+            <span class="sample-number">SAMPLE 05</span>
+            <h3>E-commerce Assistance</h3>
+            <p>
+                Order tracking, inventory monitoring, and product information records.
+            </p>
+            <a class="sample-link" href="ecommerce-support.html">
+                VIEW PROJECT ↗
+            </a>
+        </div>
 
     </div>
 
     <p class="sample-note">
-        These are portfolio demonstrations and independent practice projects.
+        Note: These are portfolio demonstrations and practice projects, not representations of completed client engagements.
     </p>
 
 </div>
 </section>
-
 
 <!-- 05 WORKING STYLE -->
 
@@ -890,25 +960,33 @@ nav {
         <div class="step">
             <span class="step-number">01</span>
             <h3>Understand</h3>
-            <p>Establish clear expectations by identifying task requirements, priorities, instructions, and the desired outcome.</p>
+            <p>
+                Establish clear expectations by identifying task requirements, priorities, instructions, and the desired outcome.
+            </p>
         </div>
 
         <div class="step">
             <span class="step-number">02</span>
             <h3>Organize</h3>
-            <p>Structure information, plan the necessary steps, and establish an efficient approach to completing the work.</p>
+            <p>
+                Structure information, plan the necessary steps, and establish an efficient approach to completing the work.
+            </p>
         </div>
 
         <div class="step">
             <span class="step-number">03</span>
             <h3>Complete</h3>
-            <p>Handle responsibilities with accuracy, attention to detail, and accountability while maintaining quality standards.</p>
+            <p>
+                Handle responsibilities with accuracy, attention to detail, and accountability while maintaining quality standards.
+            </p>
         </div>
 
         <div class="step">
             <span class="step-number">04</span>
             <h3>Update</h3>
-            <p>Provide timely updates, communicate important details, and deliver completed work in the agreed format.</p>
+            <p>
+                Provide timely updates, communicate important details, and deliver completed work in the agreed format.
+            </p>
         </div>
 
     </div>
@@ -932,12 +1010,24 @@ nav {
     </p>
 
     <div class="contact-info">
-        <a href="mailto:daintydeguzman.work@gmail.com">Email Me</a>
 
-        <a href="https://www.linkedin.com/in/dainty-trishel-de-guzman-117a583a8/" target="_blank" rel="noopener">
-            LinkedIn Profile ↗
+        <a href="https://mail.google.com/mail/?view=cm&fs=1&to=daintydeguzman.work@gmail.com"
+           target="_blank"
+           rel="noopener noreferrer">
+            EMAIL ME ↗
         </a>
+
+        <a href="https://www.linkedin.com/in/dainty-trishel-de-guzman-117a583a8/"
+           target="_blank"
+           rel="noopener noreferrer">
+            LINKEDIN PROFILE ↗
+        </a>
+
     </div>
+
+    <p class="contact-email">
+        daintydeguzman.work@gmail.com
+    </p>
 
     <br><br>
 
@@ -955,7 +1045,7 @@ nav {
 <footer class="footer">
 <div class="container footer-inner">
 
-    <p>© 2026 DAINTY DE GUZMAN. ALL RIGHTS RESERVED.</p>
+    <p>© 2026 DAINTY DE GUZMAN </p>
 
     <a href="#home">BACK TO TOP ↑</a>
 
