@@ -4,8 +4,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Data Entry | Dainty De Guzman</title>
+<title>Data Entry & Spreadsheets | Dainty De Guzman</title>
 
 <style>
 * {
@@ -19,165 +18,189 @@ body {
     color: #393239;
 }
 
-main {
-    max-width: 1100px;
-    margin: auto;
-    padding: 45px 25px;
+header {
+    padding: 25px 8%;
+    border-bottom: 1px solid #f0e4e8;
 }
 
-.back {
-    display: inline-block;
+.back-link {
+    color: #8b5268;
     text-decoration: none;
-    color: #89566d;
     font-size: 13px;
-    margin-bottom: 35px;
+}
+
+.back-link:hover {
+    text-decoration: underline;
+}
+
+main {
+    max-width: 1100px;
+    margin: 55px auto;
+    padding: 0 25px;
+}
+
+.category {
+    color: #9a6478;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 15px;
 }
 
 h1 {
     font-size: 32px;
     font-weight: 600;
-    margin: 0 0 12px;
-    color: #493640;
+    margin: 0 0 15px;
 }
 
-.intro {
+.description {
+    color: #756c72;
     font-size: 14px;
-    color: #81747b;
-    line-height: 1.7;
+    line-height: 1.8;
     max-width: 650px;
     margin-bottom: 30px;
 }
 
-.section-title {
-    font-size: 17px;
-    font-weight: 600;
-    margin-bottom: 8px;
-}
-
-.description {
-    font-size: 13px;
-    color: #81747b;
-    margin-bottom: 20px;
-    line-height: 1.6;
-}
-
-.file-actions {
+.file-info {
     display: flex;
+    justify-content: space-between;
+    align-items: center;
     flex-wrap: wrap;
-    gap: 10px;
+    gap: 15px;
     margin-bottom: 18px;
 }
 
-.file-button {
+.file-name {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.file-type {
+    color: #987183;
+    font-size: 12px;
+    margin-top: 5px;
+}
+
+.open-button {
     display: inline-block;
-    padding: 11px 18px;
-    background: #713e56;
+    background: #8b5268;
     color: white;
+    padding: 11px 20px;
     text-decoration: none;
     font-size: 12px;
-    border-radius: 5px;
+    border-radius: 3px;
+    transition: 0.2s;
 }
 
-.file-button.secondary {
-    background: #f2e8ed;
-    color: #713e56;
+.open-button:hover {
+    background: #704054;
 }
 
-.excel-container {
+.spreadsheet-container {
     width: 100%;
-    height: 600px;
-    overflow: hidden;
     background: white;
-    border: 1px solid #eadde3;
-    border-radius: 8px;
+    border: 1px solid #eadde2;
+    border-radius: 5px;
+    overflow: hidden;
 }
 
-.excel-container iframe {
+.spreadsheet-container iframe {
     display: block;
     width: 100%;
-    height: 100%;
+    height: 700px;
     border: none;
 }
 
 .note {
-    font-size: 11px;
-    color: #968991;
-    margin-top: 13px;
-    line-height: 1.6;
+    font-size: 12px;
+    color: #8b8187;
+    line-height: 1.7;
+    margin-top: 15px;
 }
 
 footer {
-    margin-top: 50px;
-    padding-top: 20px;
-    border-top: 1px solid #eadde3;
+    text-align: center;
+    padding: 30px 15px;
+    color: #9b8e95;
     font-size: 11px;
-    color: #968991;
+    border-top: 1px solid #f0e4e8;
+    margin-top: 70px;
+}
+
+@media (max-width: 600px) {
+    main {
+        margin-top: 35px;
+    }
+
+    h1 {
+        font-size: 26px;
+    }
+
+    .spreadsheet-container iframe {
+        height: 550px;
+    }
+
+    .open-button {
+        width: 100%;
+        text-align: center;
+    }
 }
 </style>
 </head>
 
 <body>
 
+<header>
+    <a class="back-link" href="index.html#works">
+        ← Back to Portfolio
+    </a>
+</header>
+
 <main>
 
-<a href="index.html#works" class="back">← Back to Portfolio</a>
+    <div class="category">Work Sample / 01</div>
 
-<h1>Data Entry</h1>
+    <h1>Data Entry & Spreadsheets</h1>
 
-<p class="intro">
-    Organized data management with attention to accuracy,
-    consistency, and clear documentation. This sample demonstrates
-    my ability to maintain structured records and organize tasks
-    using Microsoft Excel.
-</p>
+    <p class="description">
+        Organized spreadsheet records and information management using
+        Microsoft Excel, with a focus on accuracy, consistency, and
+        efficient recordkeeping.
+    </p>
 
-<p class="section-title">Task Tracker</p>
+    <div class="file-info">
+        <div>
+            <div class="file-name">Data Entry Spreadsheet</div>
+            <div class="file-type">Microsoft Excel Workbook</div>
+        </div>
 
-<p class="description">
-    An organized spreadsheet for tracking assignments, priorities,
-    progress, and important task notes.
-</p>
+        <a
+            class="open-button"
+            href="https://1drv.ms/x/c/a9ade26c3957d83d/IQRen-R94rXBQ5Jt58D049mMAV4U-QoqMzQ7Eja1pcP0MKY"
+            target="_blank"
+            rel="noopener noreferrer">
+            Open in Excel ↗
+        </a>
+    </div>
 
-<div class="file-actions">
+    <div class="spreadsheet-container">
+        <iframe
+            src="https://1drv.ms/x/c/a9ade26c3957d83d/IQRen-R94rXBQ5Jt58D049mMAV4U-QoqMzQ7Eja1pcP0MKY?em=2&wdAllowInteractivity=False&AllowTyping=True&ActiveCell='Data%20Entry'!A1&wdHideGridlines=True&wdDownloadButton=True&wdInConfigurator=True"
+            loading="lazy"
+            title="Data Entry Excel Spreadsheet">
+        </iframe>
+    </div>
 
-<a
-href="https://1drv.ms/x/c/a9ade26c3957d83d/IQQesVXZ9Fu2QYUtE7AxuNDOAUpnJlPvHMoWIAFOS6RmPIE"
-target="_blank"
-rel="noopener noreferrer"
-class="file-button">
-Open in Excel ↗
-</a>
+    <p class="note">
+        The workbook is displayed above for viewing. You may also open it
+        separately in Excel using the button above.
+    </p>
 
-<a
-href="https://1drv.ms/x/c/a9ade26c3957d83d/IQQesVXZ9Fu2QYUtE7AxuNDOAUpnJlPvHMoWIAFOS6RmPIE?download=1"
-target="_blank"
-rel="noopener noreferrer"
-class="file-button secondary">
-Download File ↓
-</a>
-
-</div>
-
-<div class="excel-container">
-
-<iframe
-src="https://1drv.ms/x/c/a9ade26c3957d83d/IQQesVXZ9Fu2QYUtE7AxuNDOAUpnJlPvHMoWIAFOS6RmPIE?em=2&wdAllowInteractivity=True&AllowTyping=True&ActiveCell='Task%20Tracker'!A2&wdHideHeaders=True&wdDownloadButton=True"
-loading="lazy"
-allowfullscreen>
-</iframe>
-
-</div>
-
-<p class="note">
-    * Spreadsheet preview is embedded from Microsoft Excel Online.
-    Open the file in Excel for a larger view and additional functionality.
-</p>
+</main>
 
 <footer>
     © 2026 Dainty De Guzman. All rights reserved.
 </footer>
-
-</main>
 
 </body>
 </html>
