@@ -34,8 +34,8 @@ header {
 }
 
 main {
-    max-width: 1100px;
-    margin: 55px auto;
+    max-width: 1200px;
+    margin: 50px auto;
     padding: 0 25px;
 }
 
@@ -57,8 +57,8 @@ h1 {
     color: #756c72;
     font-size: 14px;
     line-height: 1.8;
-    max-width: 650px;
-    margin-bottom: 30px;
+    max-width: 700px;
+    margin-bottom: 35px;
 }
 
 .file-info {
@@ -84,8 +84,8 @@ h1 {
 .open-button {
     display: inline-block;
     background: #8b5268;
-    color: white;
-    padding: 11px 20px;
+    color: #ffffff;
+    padding: 12px 22px;
     text-decoration: none;
     font-size: 12px;
     border-radius: 3px;
@@ -98,7 +98,8 @@ h1 {
 
 .spreadsheet-container {
     width: 100%;
-    background: white;
+    height: 750px;
+    background: #ffffff;
     border: 1px solid #eadde2;
     border-radius: 5px;
     overflow: hidden;
@@ -107,7 +108,7 @@ h1 {
 .spreadsheet-container iframe {
     display: block;
     width: 100%;
-    height: 700px;
+    height: 100%;
     border: none;
 }
 
@@ -130,14 +131,15 @@ footer {
 @media (max-width: 600px) {
     main {
         margin-top: 35px;
+        padding: 0 18px;
     }
 
     h1 {
         font-size: 26px;
     }
 
-    .spreadsheet-container iframe {
-        height: 550px;
+    .spreadsheet-container {
+        height: 600px;
     }
 
     .open-button {
@@ -185,15 +187,16 @@ footer {
 
     <div class="spreadsheet-container">
         <iframe
-            src="https://1drv.ms/x/c/a9ade26c3957d83d/IQRen-R94rXBQ5Jt58D049mMAV4U-QoqMzQ7Eja1pcP0MKY?em=2&wdAllowInteractivity=False&AllowTyping=True&ActiveCell='Data%20Entry'!A1&wdHideGridlines=True&wdDownloadButton=True&wdInConfigurator=True"
+            src="https://1drv.ms/x/c/a9ade26c3957d83d/IQRen-R94rXBQ5Jt58D049mMAV4U-QoqMzQ7Eja1pcP0MKY?em=2&wdAllowInteractivity=False&AllowTyping=True&ActiveCell='Data%20Entry'!A1&wdHideGridlines=True&wdHideHeaders=True&wdDownloadButton=True&wdInConfigurator=True"
+            title="Data Entry Excel Spreadsheet"
             loading="lazy"
-            title="Data Entry Excel Spreadsheet">
+            allowfullscreen>
         </iframe>
     </div>
 
     <p class="note">
-        The workbook is displayed above for viewing. You may also open it
-        separately in Excel using the button above.
+        View the spreadsheet directly on this page or open the full
+        workbook separately in Microsoft Excel.
     </p>
 
 </main>
