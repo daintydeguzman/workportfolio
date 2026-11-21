@@ -21,26 +21,25 @@ body {
 main {
     max-width: 1000px;
     margin: auto;
-    padding: 50px 25px;
+    padding: 40px 25px;
 }
 
 nav {
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    padding-bottom: 25px;
+    padding-bottom: 20px;
     border-bottom: 1px solid #eee4e7;
 }
 
 nav a {
-    color: #8b6875;
+    color: #a47e8d;
     text-decoration: none;
     font-size: 13px;
 }
 
 h1 {
-    font-size: 38px;
-    margin: 45px 0 10px;
+    font-size: 36px;
+    margin-top: 45px;
 }
 
 .subtitle {
@@ -50,37 +49,32 @@ h1 {
 }
 
 .description {
-    color: #766e72;
-    line-height: 1.7;
-    margin: 20px 0 40px;
-}
-
-.file-section {
-    border-top: 1px solid #eadfe3;
-    padding: 25px 0;
-}
-
-.file-section h2 {
-    font-size: 18px;
-    margin-bottom: 8px;
-}
-
-.file-section p {
     color: #82797c;
-    font-size: 13px;
+    margin: 20px 0 30px;
+    line-height: 1.7;
 }
 
-.file-link {
-    display: inline-block;
-    margin-top: 12px;
+.file-actions {
+    margin-bottom: 15px;
+    text-align: right;
+}
+
+.file-actions a {
     color: #a47e8d;
     text-decoration: none;
     font-size: 12px;
     letter-spacing: 1px;
 }
 
+iframe {
+    width: 100%;
+    height: 650px;
+    border: 1px solid #eadfe3;
+    background: white;
+}
+
 footer {
-    margin-top: 70px;
+    margin-top: 50px;
     padding-top: 20px;
     border-top: 1px solid #eee4e7;
     color: #9b9094;
@@ -101,17 +95,20 @@ footer {
 <div class="subtitle">PORTFOLIO / WORK SAMPLE</div>
 
 <p class="description">
-    A collection of my data entry and spreadsheet work.
+    Explore my spreadsheet sample below. You can view the workbook
+    directly or open it in Microsoft Excel.
 </p>
 
-<div class="file-section">
-    <h2>Data Entry Sample</h2>
-    <p>Microsoft Excel Workbook</p>
-
-    <a class="file-link" href="files/data-entry-sample.xlsx" target="_blank">
-        VIEW FILE ↗
+<div class="file-actions">
+    <a href="files/data-entry-sample.xlsx" download>
+        DOWNLOAD EXCEL FILE ↗
     </a>
 </div>
+
+<iframe
+    src="PASTE_YOUR_EXCEL_EMBED_LINK_HERE"
+    title="Excel Spreadsheet Preview">
+</iframe>
 
 <footer>
     © 2026 DAINTY DE GUZMAN
