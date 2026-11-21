@@ -496,203 +496,95 @@ nav {
     color: #a76d80;
 }
 
+/* RESPONSIVE DESIGN */
 
-/* RESPONSIVE DESIGN — CONSISTENT LAYOUT */
-
-html {
-    overflow-x: hidden;
-}
-
-body {
-    min-width: 320px;
-    overflow-x: hidden;
-}
-
-.container {
-    width: 100%;
-    max-width: 1120px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-/* Navigation */
-.nav-inner {
-    flex-direction: row;
-    gap: 15px;
-}
-
-.nav-links {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: flex-end;
-    gap: clamp(8px, 1.5vw, 23px);
-}
-
-.nav-links a {
-    white-space: nowrap;
-    font-size: clamp(8px, 0.8vw, 10px);
-}
-
-/* Hero */
-.hero {
-    grid-template-columns: minmax(0, 1.3fr) minmax(0, .7fr);
-    gap: clamp(12px, 3vw, 35px);
-    min-height: auto;
-    padding-top: clamp(35px, 7vw, 90px);
-    padding-bottom: clamp(35px, 7vw, 85px);
-}
-
-.hero h1 {
-    font-size: clamp(32px, 8vw, 112px);
-    letter-spacing: clamp(-3px, -.25vw, -1px);
-    overflow-wrap: anywhere;
-}
-
-.hero-photo img {
-    width: 100%;
-    max-width: 330px;
-    height: clamp(180px, 38vw, 420px);
-    object-fit: cover;
-}
-
-.hero-subtitle {
-    font-size: clamp(12px, 1.5vw, 19px);
-}
-
-.hero-content {
-    min-width: 0;
-}
-
-.specialties {
-    font-size: clamp(7px, .8vw, 10px);
-    letter-spacing: 1px;
-}
-
-/* Keep the same grid structure */
-.principles {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: clamp(6px, 1.5vw, 18px);
-}
-
-.experience-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: clamp(15px, 4vw, 50px);
-}
-
-.services-grid,
-.tools-grid,
-.samples-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: clamp(8px, 1.5vw, 18px);
-}
-
-.workflow-grid {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: clamp(8px, 2vw, 25px);
-}
-
-/* Scale cards and sections */
-.principle,
-.service,
-.tool,
-.sample-card {
-    min-width: 0;
-    padding: clamp(10px, 2.5vw, 30px);
-}
-
-.section {
-    padding: clamp(40px, 8vw, 100px) 0;
-}
-
-.section-title {
-    font-size: clamp(25px, 4.5vw, 52px);
-}
-
-.intro,
-.service p,
-.tool p,
-.sample-card p,
-.experience li,
-.step p {
-    overflow-wrap: anywhere;
-}
-
-/* Contact and footer */
-.contact {
-    padding: clamp(45px, 9vw, 110px) 0;
-}
-
-.contact-info {
-    gap: clamp(12px, 3vw, 35px);
-}
-
-.footer-inner {
-    flex-direction: row;
-    justify-content: space-between;
-    gap: 12px;
-}
-
-/* Smaller phones */
-@media (max-width: 480px) {
-    .container,
-    .nav-inner {
-        padding-left: 12px;
-        padding-right: 12px;
-    }
-
-    .brand {
-        font-size: 13px;
-        letter-spacing: .5px;
-    }
-
-    .nav-inner {
-        gap: 8px;
-    }
-
-    .nav-links {
-        gap: 6px;
-    }
-
-    .nav-links a {
-        font-size: 7px;
-        letter-spacing: .3px;
-    }
-
+@media(max-width: 900px) {
     .hero {
-        gap: 8px;
+        grid-template-columns: 1fr .7fr;
+        gap: 25px;
     }
 
     .hero h1 {
-        margin: 15px 0;
+        font-size: 70px;
     }
 
-    .hero-bottom {
-        flex-direction: column;
-        align-items: flex-start;
-        margin-top: 25px;
-    }
-
-    .principle h3 {
-        font-size: 9px;
-    }
-
-    .principle p,
-    .sample-card p,
-    .service p,
-    .tool p {
-        font-size: 10px;
-    }
-
-    .service h3,
-    .sample-card h3 {
-        font-size: 16px;
-    }
-
-    .workflow-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
+    .hero-photo img {
+        height: 360px;
     }
 }
 
+@media(max-width: 700px) {
+    .container, .nav-inner {
+        padding-left: 23px;
+        padding-right: 23px;
+    }
+
+    .nav-inner {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .nav-links {
+        gap: 12px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .nav-links a {
+        font-size: 9px;
+    }
+
+    .hero {
+        min-height: 580px;
+        grid-template-columns: 1fr;
+        padding-top: 65px;
+        gap: 35px;
+    }
+
+    .hero-photo {
+        grid-row: 1;
+    }
+
+    .hero-photo img {
+        max-width: 250px;
+        height: 320px;
+    }
+
+    .hero h1 {
+        font-size: 70px;
+    }
+
+    .principles,
+    .experience-grid,
+    .services-grid,
+    .tools-grid,
+    .samples-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .workflow-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .section {
+        padding: 75px 0;
+    }
+
+    .hero-bottom {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+}
+
+@media(max-width: 400px) {
+    .hero h1 {
+        font-size: 57px;
+    }
+
+    .workflow-grid {
+        grid-template-columns: 1fr;
+    }
+}
 </style>
 </head>
 
