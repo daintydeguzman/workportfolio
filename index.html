@@ -4,11 +4,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Dainty De Guzman | Virtual Assistant</title>
 
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
+
 :root {
     --bg: #faf8f6;
     --white: #ffffff;
@@ -22,7 +24,11 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+}
+
+html {
     scroll-behavior: smooth;
+    scroll-padding-top: 100px;
 }
 
 body {
@@ -81,6 +87,7 @@ nav {
     letter-spacing: 1px;
     text-transform: uppercase;
     color: var(--muted);
+    transition: .25s;
 }
 
 .nav-links a:hover {
@@ -146,6 +153,19 @@ nav {
     margin-bottom: 32px;
 }
 
+.hero-quote {
+    font-size: 18px;
+    color: var(--muted);
+    margin-bottom: 25px;
+}
+
+.hero-description {
+    font-size: 14px;
+    color: var(--muted);
+    max-width: 690px;
+    margin-bottom: 25px;
+}
+
 .specialties {
     font-size: 10px;
     font-weight: 700;
@@ -173,6 +193,7 @@ nav {
     color: #a76d80;
     font-size: 12px;
     border-bottom: 1px solid var(--pink);
+    overflow-wrap: anywhere;
 }
 
 /* GENERAL SECTIONS */
@@ -392,6 +413,7 @@ nav {
 }
 
 .sample-link {
+    display: inline-block;
     margin-top: auto;
     padding-top: 22px;
     font-size: 10px;
@@ -537,7 +559,8 @@ nav {
 
 /* RESPONSIVE DESIGN */
 
-@media(max-width: 900px) {
+@media (max-width: 900px) {
+
     .hero {
         grid-template-columns: 1fr .7fr;
         gap: 25px;
@@ -552,8 +575,10 @@ nav {
     }
 }
 
-@media(max-width: 700px) {
-    .container, .nav-inner {
+@media (max-width: 700px) {
+
+    .container,
+    .nav-inner {
         padding-left: 23px;
         padding-right: 23px;
     }
@@ -565,7 +590,6 @@ nav {
 
     .nav-links {
         gap: 12px;
-        flex-wrap: wrap;
         justify-content: center;
     }
 
@@ -613,9 +637,14 @@ nav {
         align-items: flex-start;
         flex-direction: column;
     }
+
+    .resume-section {
+        padding: 75px 0;
+    }
 }
 
-@media(max-width: 400px) {
+@media (max-width: 400px) {
+
     .hero h1 {
         font-size: 57px;
     }
@@ -624,6 +653,7 @@ nav {
         grid-template-columns: 1fr;
     }
 }
+
 </style>
 </head>
 
@@ -634,7 +664,9 @@ nav {
 <nav>
 <div class="nav-inner">
 
-    <a href="#home" class="brand">DAINTY DE GUZMAN</a>
+    <a href="#home" class="brand">
+        DAINTY DE GUZMAN
+    </a>
 
     <div class="nav-links">
         <a href="#profile">Profile</a>
@@ -655,17 +687,24 @@ nav {
 
     <div class="hero-content">
 
-        <p class="eyebrow">Virtual Assistant Portfolio</p>
+        <p class="eyebrow">
+            Virtual Assistant Portfolio
+        </p>
 
-        <h1>DAINTY<br><span>DE GUZMAN</span></h1>
+        <h1>
+            DAINTY<br>
+            <span>DE GUZMAN</span>
+        </h1>
 
-        <p class="hero-subtitle">VIRTUAL ASSISTANT</p>
+        <p class="hero-subtitle">
+            VIRTUAL ASSISTANT
+        </p>
 
-        <p style="font-size:18px;color:var(--muted);margin-bottom:25px;">
+        <p class="hero-quote">
             The difference is often in the details.
         </p>
 
-        <p style="font-size:14px;color:var(--muted);max-width:690px;margin-bottom:25px;">
+        <p class="hero-description">
             A reliable, resourceful, and detail-driven VA who brings initiative, professionalism, and a thoughtful approach to every task. I make things happen, keep details in check, and bring structure to the everyday—always with purpose, precision, and a commitment to doing things exceptionally well.
         </p>
 
@@ -677,10 +716,13 @@ nav {
 
         <div class="hero-bottom">
 
-            <p>Based in the Philippines | Open to remote opportunities</p>
+            <p>
+                Based in the Philippines |
+                Open to remote opportunities
+            </p>
 
             <a class="email-link"
-               href="https://mail.google.com/mail/?view=cm&fs=1&to=daintydeguzman.work@gmail.com"
+               href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=daintydeguzman.work@gmail.com"
                target="_blank"
                rel="noopener noreferrer">
                 daintydeguzman.work@gmail.com
@@ -691,7 +733,8 @@ nav {
     </div>
 
     <div class="hero-photo">
-        <img src="dainty-profile.jpg" alt="Dainty De Guzman">
+        <img src="dainty-profile.jpg"
+             alt="Dainty De Guzman">
     </div>
 
 </header>
@@ -701,7 +744,9 @@ nav {
 <section class="section" id="profile">
 <div class="container">
 
-    <p class="section-label">01 / PROFILE</p>
+    <p class="section-label">
+        01 / PROFILE
+    </p>
 
     <h2 class="section-title">
         Making Every Detail Work in Your Favor.
@@ -759,33 +804,66 @@ nav {
 
     </div>
 
-    <h3 class="subheading">Relevant Experience</h3>
+    <h3 class="subheading">
+        Relevant Experience
+    </h3>
 
     <div class="experience-grid">
 
         <div class="experience">
 
-            <h3>Small-Business Operations & Customer Support</h3>
+            <h3>
+                Small-Business Operations &amp;
+                Customer Support
+            </h3>
 
             <ul>
-                <li>Managed customer inquiries and communicated order information with clarity and professionalism.</li>
-                <li>Assisted with order processing, payment recording, and transaction documentation.</li>
-                <li>Maintained organized business records and monitored inventory information.</li>
-                <li>Supported social media activities and customer engagement.</li>
-                <li>Coordinated order details to help ensure smooth day-to-day operations.</li>
+                <li>
+                    Managed customer inquiries and communicated order information with clarity and professionalism.
+                </li>
+
+                <li>
+                    Assisted with order processing, payment recording, and transaction documentation.
+                </li>
+
+                <li>
+                    Maintained organized business records and monitored inventory information.
+                </li>
+
+                <li>
+                    Supported social media activities and customer engagement.
+                </li>
+
+                <li>
+                    Coordinated order details to help ensure smooth day-to-day operations.
+                </li>
             </ul>
 
         </div>
 
         <div class="experience">
 
-            <h3>Academic Research & Administrative Work</h3>
+            <h3>
+                Academic Research &amp;
+                Administrative Work
+            </h3>
 
             <ul>
-                <li>Conducted research, gathered information, and organized findings into structured documents.</li>
-                <li>Prepared, formatted, and reviewed academic reports and written materials.</li>
-                <li>Worked with spreadsheets, numerical information, and organized records.</li>
-                <li>Applied analytical thinking, accuracy, and attention to detail when completing project requirements.</li>
+                <li>
+                    Conducted research, gathered information, and organized findings into structured documents.
+                </li>
+
+                <li>
+                    Prepared, formatted, and reviewed academic reports and written materials.
+                </li>
+
+                <li>
+                    Worked with spreadsheets, numerical information, and organized records.
+                </li>
+
+                <li>
+                    Applied analytical thinking, accuracy, and attention to detail when completing project requirements.
+                </li>
             </ul>
 
         </div>
@@ -800,7 +878,9 @@ nav {
 <section class="section" id="services">
 <div class="container">
 
-    <p class="section-label">02 / SERVICES</p>
+    <p class="section-label">
+        02 / SERVICES
+    </p>
 
     <h2 class="section-title">
         How I can support your day-to-day work.
@@ -809,35 +889,59 @@ nav {
     <div class="services-grid">
 
         <div class="service">
-            <span class="service-number">01 / ADMINISTRATION</span>
+
+            <span class="service-number">
+                01 / ADMINISTRATION
+            </span>
+
             <h3>Administrative Support</h3>
+
             <p>
                 Keeping everyday operations organized and manageable. Document preparation and formatting · File management · Task coordination · Calendar organization · Administrative assistance
             </p>
+
         </div>
 
         <div class="service">
-            <span class="service-number">02 / INFORMATION</span>
-            <h3>Data Management & Research</h3>
+
+            <span class="service-number">
+                02 / INFORMATION
+            </span>
+
+            <h3>Data Management &amp; Research</h3>
+
             <p>
                 Turning information into accurate, organized, and usable records. Data entry · Spreadsheet management · Data organization · Online research · Information gathering
             </p>
+
         </div>
 
         <div class="service">
-            <span class="service-number">03 / COMMUNICATION</span>
+
+            <span class="service-number">
+                03 / COMMUNICATION
+            </span>
+
             <h3>Customer Communication</h3>
+
             <p>
                 Supporting positive customer experiences through clear and professional communication. Email management · Customer inquiries · Message handling · Order updates · Follow-ups
             </p>
+
         </div>
 
         <div class="service">
-            <span class="service-number">04 / OPERATIONS</span>
+
+            <span class="service-number">
+                04 / OPERATIONS
+            </span>
+
             <h3>E-commerce Support</h3>
+
             <p>
                 Helping maintain organized order processes and business records. Order processing · Order tracking · Inventory monitoring · Product information updates · Customer order coordination
             </p>
+
         </div>
 
     </div>
@@ -850,7 +954,9 @@ nav {
 <section class="section" id="tools">
 <div class="container">
 
-    <p class="section-label">03 / TOOLS</p>
+    <p class="section-label">
+        03 / TOOLS
+    </p>
 
     <h2 class="section-title">
         Tools I'm familiar with.
@@ -863,31 +969,43 @@ nav {
     <div class="tools-grid">
 
         <div class="tool">
-            <h3>DOCUMENTS & SPREADSHEETS</h3>
+
+            <h3>DOCUMENTS &amp; SPREADSHEETS</h3>
+
             <p>
                 Google Docs, Google Sheets, Google Drive, Microsoft Word, Microsoft Excel
             </p>
+
         </div>
 
         <div class="tool">
+
             <h3>COMMUNICATION</h3>
+
             <p>
                 Gmail, Google Meet, Microsoft Teams, Zoom, Messenger
             </p>
+
         </div>
 
         <div class="tool">
-            <h3>PLANNING & PRODUCTIVITY</h3>
+
+            <h3>PLANNING &amp; PRODUCTIVITY</h3>
+
             <p>
                 Google Calendar
             </p>
+
         </div>
 
         <div class="tool">
-            <h3>DESIGN & SOCIAL MEDIA</h3>
+
+            <h3>DESIGN &amp; SOCIAL MEDIA</h3>
+
             <p>
                 Canva, Facebook
             </p>
+
         </div>
 
     </div>
@@ -904,10 +1022,12 @@ nav {
 <section class="section samples-section" id="works">
 <div class="container">
 
-    <p class="section-label">04 / PORTFOLIO</p>
+    <p class="section-label">
+        04 / PORTFOLIO
+    </p>
 
     <h2 class="section-title">
-        Selected Work & Projects.
+        Selected Work &amp; Projects.
     </h2>
 
     <p class="samples-intro">
@@ -917,58 +1037,98 @@ nav {
     <div class="samples-grid">
 
         <div class="sample-card">
-            <span class="sample-number">SAMPLE 01</span>
+
+            <span class="sample-number">
+                SAMPLE 01
+            </span>
+
             <h3>Email Management</h3>
+
             <p>
                 Professional email scenarios, client communication, and inbox organization.
             </p>
-            <a class="sample-link" href="email-management.html">
+
+            <a class="sample-link"
+               href="email-management.html">
                 VIEW PROJECT ↗
             </a>
+
         </div>
 
         <div class="sample-card">
-            <span class="sample-number">SAMPLE 02</span>
-            <h3>Data Entry & Spreadsheets</h3>
+
+            <span class="sample-number">
+                SAMPLE 02
+            </span>
+
+            <h3>Data Entry &amp; Spreadsheets</h3>
+
             <p>
                 Organized spreadsheet records, data encoding, and information management.
             </p>
-            <a class="sample-link" href="data-entry.html">
+
+            <a class="sample-link"
+               href="data-entry.html">
                 VIEW PROJECT ↗
             </a>
+
         </div>
 
         <div class="sample-card">
-            <span class="sample-number">SAMPLE 03</span>
+
+            <span class="sample-number">
+                SAMPLE 03
+            </span>
+
             <h3>Administrative Support</h3>
+
             <p>
                 Task trackers, to-do lists, scheduling, and workflow organization.
             </p>
-            <a class="sample-link" href="administrative-support.html">
+
+            <a class="sample-link"
+               href="administrative-support.html">
                 VIEW PROJECT ↗
             </a>
+
         </div>
 
         <div class="sample-card">
-            <span class="sample-number">SAMPLE 04</span>
+
+            <span class="sample-number">
+                SAMPLE 04
+            </span>
+
             <h3>Customer Support</h3>
+
             <p>
                 Sample customer inquiries, order updates, and professional support responses.
             </p>
-            <a class="sample-link" href="customer-support.html">
+
+            <a class="sample-link"
+               href="customer-support.html">
                 VIEW PROJECT ↗
             </a>
+
         </div>
 
         <div class="sample-card">
-            <span class="sample-number">SAMPLE 05</span>
+
+            <span class="sample-number">
+                SAMPLE 05
+            </span>
+
             <h3>E-commerce Assistance</h3>
+
             <p>
                 Order tracking, inventory monitoring, and product information records.
             </p>
-            <a class="sample-link" href="ecommerce-support.html">
+
+            <a class="sample-link"
+               href="ecommerce-support.html">
                 VIEW PROJECT ↗
             </a>
+
         </div>
 
     </div>
@@ -985,7 +1145,9 @@ nav {
 <section class="resume-section" id="resume">
 <div class="container">
 
-    <p class="section-label">05 / MY RESUME</p>
+    <p class="section-label">
+        05 / MY RESUME
+    </p>
 
     <h2 class="section-title">
         A closer look at my qualifications.
@@ -996,7 +1158,7 @@ nav {
     </p>
 
     <a class="resume-button"
-       href="dainty-de-guzman-resume.pdf"
+       href="https://1drv.ms/w/c/f3b39090713468d1/IQRK41n4sV6NTZG-sL1KPV9_AZPDVcZ8ZatgSfwd9lONWXM?em=2"
        target="_blank"
        rel="noopener noreferrer">
         VIEW MY RESUME ↗
@@ -1010,7 +1172,9 @@ nav {
 <section class="section workflow" id="workflow">
 <div class="container">
 
-    <p class="section-label">06 / WORKING STYLE</p>
+    <p class="section-label">
+        06 / WORKING STYLE
+    </p>
 
     <h2 class="section-title">
         A simple, reliable workflow.
@@ -1019,35 +1183,51 @@ nav {
     <div class="workflow-grid">
 
         <div class="step">
+
             <span class="step-number">01</span>
+
             <h3>Understand</h3>
+
             <p>
                 Establish clear expectations by identifying task requirements, priorities, instructions, and the desired outcome.
             </p>
+
         </div>
 
         <div class="step">
+
             <span class="step-number">02</span>
+
             <h3>Organize</h3>
+
             <p>
                 Structure information, plan the necessary steps, and establish an efficient approach to completing the work.
             </p>
+
         </div>
 
         <div class="step">
+
             <span class="step-number">03</span>
+
             <h3>Complete</h3>
+
             <p>
                 Handle responsibilities with accuracy, attention to detail, and accountability while maintaining quality standards.
             </p>
+
         </div>
 
         <div class="step">
+
             <span class="step-number">04</span>
+
             <h3>Update</h3>
+
             <p>
                 Provide timely updates, communicate important details, and deliver completed work in the agreed format.
             </p>
+
         </div>
 
     </div>
@@ -1060,7 +1240,9 @@ nav {
 <section class="contact" id="contact">
 <div class="container">
 
-    <p class="section-label">LET'S WORK TOGETHER</p>
+    <p class="section-label">
+        LET'S WORK TOGETHER
+    </p>
 
     <h2 class="section-title">
         Reliable support makes a difference.
@@ -1072,7 +1254,7 @@ nav {
 
     <div class="contact-info">
 
-        <a href="https://mail.google.com/mail/?view=cm&fs=1&to=daintydeguzman.work@gmail.com"
+        <a href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=daintydeguzman.work@gmail.com"
            target="_blank"
            rel="noopener noreferrer">
             Email Me
@@ -1088,7 +1270,9 @@ nav {
 
     <br><br>
 
-    <p class="eyebrow">DAINTY DE GUZMAN</p>
+    <p class="eyebrow">
+        DAINTY DE GUZMAN
+    </p>
 
     <p style="font-size:11px;color:var(--muted);margin-top:10px;">
         Virtual Assistant · Philippines
@@ -1102,9 +1286,13 @@ nav {
 <footer class="footer">
 <div class="container footer-inner">
 
-    <p>© 2026 DAINTY DE GUZMAN. ALL RIGHTS RESERVED.</p>
+    <p>
+        © 2026 DAINTY DE GUZMAN. ALL RIGHTS RESERVED.
+    </p>
 
-    <a href="#home">BACK TO TOP ↑</a>
+    <a href="#home">
+        BACK TO TOP ↑
+    </a>
 
 </div>
 </footer>
