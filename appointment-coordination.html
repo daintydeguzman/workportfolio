@@ -4,23 +4,22 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Calendar | Dainty De Guzman</title>
+<title>Google Calendar</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined&display=swap" rel="stylesheet">
 
 <style>
-:root {
-    --pink: #a65f7d;
-    --light: #f8edf3;
-    --selected: #efd2e1;
-    --background: #fcf7fa;
-    --border: #e9dfe5;
-    --text: #332c30;
-    --muted: #82747c;
+* {
+    box-sizing: border-box;
 }
 
-* { box-sizing: border-box; }
+:root {
+    --pink: #a65f7d;
+    --background: #faf2f6;
+    --border: #e6dce2;
+    --text: #3c4043;
+}
 
 body {
     margin: 0;
@@ -31,177 +30,141 @@ body {
 
 button, input, select, textarea {
     font: inherit;
+    color: inherit;
 }
 
 button {
     border: none;
     background: transparent;
-    color: inherit;
     cursor: pointer;
 }
 
-button:hover { background: #f1e4eb; }
+button:hover {
+    background: #f0e2ea;
+}
 
 .material-symbols-outlined {
-    font-size: 21px;
+    font-size: 22px;
     vertical-align: middle;
 }
 
-.hidden { display: none !important; }
-
 .icon {
-    width: 38px;
-    height: 38px;
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
     display: inline-grid;
     place-items: center;
     flex-shrink: 0;
 }
 
+.hidden {
+    display: none !important;
+}
+
 header {
-    height: 75px;
+    height: 72px;
     display: flex;
     align-items: center;
-    gap: 16px;
-    padding: 10px 22px;
+    gap: 10px;
+    padding: 8px 18px;
 }
 
 .brand {
     display: flex;
     align-items: center;
     gap: 12px;
-    width: 220px;
+    width: 235px;
     flex-shrink: 0;
 }
 
-.calendar-logo {
+.logo {
     width: 38px;
     height: 38px;
-    border-radius: 8px;
-    border: 2px solid var(--pink);
-    border-top: 10px solid var(--pink);
-    background: white;
-    display: grid;
-    place-items: center;
-    color: var(--pink);
-    font-size: 18px;
-    font-weight: 700;
 }
 
 .brand-name {
-    font-size: 23px;
-    color: #62525b;
+    font-size: 22px;
 }
 
 .today {
-    border: 1px solid #dacbd4;
-    border-radius: 22px;
-    padding: 10px 20px;
+    border: 1px solid #c9bec5;
+    border-radius: 24px;
+    padding: 10px 23px;
+    margin-right: 10px;
 }
 
-.month-title {
-    font-size: 23px;
+#monthTitle {
+    font-size: 22px;
     font-weight: 400;
-    white-space: nowrap;
+    margin-left: 8px;
 }
 
 .header-right {
-    margin-left: auto;
     display: flex;
     align-items: center;
     gap: 12px;
+    margin-left: auto;
 }
 
 .view-select {
-    border: 1px solid #dacbd4;
-    border-radius: 22px;
-    padding: 10px 15px;
     background: transparent;
-    color: var(--text);
+    border: 1px solid #c9bec5;
+    border-radius: 24px;
+    padding: 10px 18px;
 }
 
 .avatar {
-    width: 39px;
-    height: 39px;
+    width: 36px;
+    height: 36px;
     border-radius: 50%;
     object-fit: cover;
-    display: block;
 }
 
 .account {
-    border-radius: 50%;
     padding: 4px;
-}
-
-.profile {
-    position: fixed;
-    right: 20px;
-    top: 70px;
-    width: 330px;
-    max-width: 90vw;
-    background: #f8eaf1;
-    border-radius: 25px;
-    padding: 25px;
-    text-align: center;
-    box-shadow: 0 5px 25px #0002;
-    z-index: 100;
-}
-
-.profile img {
-    width: 85px;
-    height: 85px;
     border-radius: 50%;
-    object-fit: cover;
-    margin-top: 15px;
-}
-
-.profile p {
-    font-size: 13px;
-    overflow-wrap: anywhere;
-}
-
-.profile h2 {
-    font-weight: 400;
-    font-size: 22px;
 }
 
 .layout {
     display: flex;
-    height: calc(100dvh - 75px);
+    height: calc(100dvh - 72px);
     padding-bottom: 15px;
 }
 
 .sidebar {
-    width: 250px;
-    padding: 12px 20px;
-    overflow-y: auto;
+    width: 255px;
     flex-shrink: 0;
+    padding: 12px 20px;
+    overflow: auto;
 }
 
-.sidebar.collapsed { display: none; }
+.sidebar.collapsed {
+    display: none;
+}
 
 .create {
     display: flex;
     align-items: center;
-    gap: 15px;
-    padding: 17px 23px;
-    background: #ebc9db;
+    gap: 12px;
+    padding: 16px 20px;
     border-radius: 17px;
+    background: white;
+    box-shadow: 0 2px 6px #0002;
+    margin-bottom: 25px;
     font-weight: 500;
-    margin-bottom: 30px;
-    box-shadow: 0 2px 5px #0001;
 }
 
 .create:hover {
-    background: #e5b9d0;
+    background: #fff9fc;
+    box-shadow: 0 3px 9px #0003;
 }
 
 .mini-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-bottom: 12px;
     font-weight: 500;
+    margin-bottom: 10px;
 }
 
 .mini-header .icon {
@@ -209,73 +172,55 @@ header {
     height: 27px;
 }
 
-.mini-grid {
+.mini-calendar {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
-    gap: 3px;
+    gap: 2px;
     text-align: center;
-    font-size: 12px;
+    font-size: 11px;
 }
 
 .mini-day {
     width: 27px;
     height: 27px;
-    border-radius: 50%;
-    display: grid;
-    place-items: center;
     padding: 0;
+    border-radius: 50%;
 }
 
-.mini-day.active {
+.mini-day.selected {
     background: var(--pink);
     color: white;
 }
 
 .mini-day.outside {
-    color: #b9aeb5;
+    color: #a89da4;
 }
 
-.week-letter {
-    color: var(--muted);
-    padding: 5px 0;
+.mini-weekday {
+    color: #777;
+    padding: 8px 0;
 }
 
-.sidebar-title {
+.sidebar-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     font-weight: 500;
-    margin: 30px 0 15px;
+    margin: 28px 0 10px;
 }
 
-.calendar-filter {
+.calendar-option {
     display: flex;
     align-items: center;
     gap: 10px;
-    padding: 9px 0;
+    padding: 8px 0;
     font-size: 13px;
     cursor: pointer;
 }
 
-.calendar-filter input {
+.calendar-option input {
     width: 16px;
     height: 16px;
-    cursor: pointer;
-}
-
-.search-box {
-    display: flex;
-    align-items: center;
-    background: #f0e3ea;
-    border-radius: 22px;
-    padding: 9px 12px;
-    margin-top: 25px;
-}
-
-.search-box input {
-    background: transparent;
-    border: none;
-    outline: none;
-    width: 100%;
-    min-width: 0;
-    padding: 4px 7px;
 }
 
 .main {
@@ -283,437 +228,420 @@ header {
     min-width: 0;
     margin-right: 15px;
     background: white;
-    border-radius: 20px;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-}
-
-.calendar-content {
-    flex: 1;
+    border-radius: 22px;
     overflow: auto;
 }
 
 .month-grid {
     display: grid;
-    grid-template-columns: repeat(7, minmax(110px, 1fr));
+    grid-template-columns: repeat(7, minmax(100px, 1fr));
+    grid-template-rows: 30px repeat(var(--weeks), minmax(110px, 1fr));
+    min-width: 700px;
     min-height: 100%;
-    min-width: 770px;
 }
 
 .weekday {
-    padding: 13px 8px;
     text-align: center;
     font-size: 11px;
-    color: var(--muted);
-    border-bottom: 1px solid var(--border);
-    text-transform: uppercase;
+    color: #70757a;
+    padding: 10px 0;
 }
 
 .day-cell {
-    min-height: 125px;
     border-right: 1px solid var(--border);
     border-bottom: 1px solid var(--border);
-    padding: 7px 5px;
+    padding: 5px 3px;
     cursor: pointer;
-    overflow: hidden;
+    min-width: 0;
 }
 
 .day-cell:hover {
-    background: #fffafd;
-}
-
-.day-cell.outside {
-    background: #fcfafb;
-    color: #b6aab1;
+    background: #fffbfd;
 }
 
 .day-number {
-    width: 29px;
-    height: 29px;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
     display: grid;
     place-items: center;
-    margin: 0 auto 7px;
-    border-radius: 50%;
+    margin: 0 auto 6px;
     font-size: 12px;
 }
 
-.day-number.active {
+.day-number.selected {
     background: var(--pink);
     color: white;
 }
 
+.outside .day-number {
+    color: #a7a0a4;
+}
+
 .event {
-    display: block;
+    display: flex;
+    align-items: center;
+    gap: 5px;
     width: 100%;
     text-align: left;
-    border-radius: 5px;
-    padding: 7px 8px;
-    margin-bottom: 4px;
+    padding: 5px 6px;
+    margin-bottom: 2px;
+    border-radius: 4px;
     font-size: 11px;
-    line-height: 1.5;
-    border-left: 3px solid var(--event-color);
-    background: var(--event-bg);
-    color: #45363e;
     overflow: hidden;
-    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .event:hover {
-    filter: brightness(.96);
-    background: var(--event-bg);
+    background: #f3e4ec;
 }
 
-.event-time {
-    font-weight: 500;
-    margin-right: 3px;
+.event-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
 }
 
 .event-title {
-    overflow-wrap: anywhere;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
-.schedule {
-    min-width: 550px;
+.time-grid {
+    min-width: 700px;
 }
 
-.schedule-header {
+.time-header {
     display: grid;
     position: sticky;
     top: 0;
-    z-index: 3;
+    z-index: 5;
     background: white;
     border-bottom: 1px solid var(--border);
 }
 
-.schedule-heading {
+.time-heading {
     text-align: center;
-    padding: 14px 5px;
+    padding: 12px 0;
     border-right: 1px solid var(--border);
 }
 
-.schedule-heading small {
+.time-heading small {
     display: block;
+    color: #777;
     font-size: 11px;
-    color: var(--muted);
-    text-transform: uppercase;
 }
 
-.schedule-heading strong {
+.time-heading strong {
+    font-size: 26px;
+    font-weight: 400;
     display: inline-grid;
     place-items: center;
-    width: 36px;
-    height: 36px;
-    margin-top: 6px;
-    font-size: 23px;
-    font-weight: 400;
+    width: 42px;
+    height: 42px;
     border-radius: 50%;
 }
 
-.schedule-heading strong.active {
+.time-heading strong.selected {
     background: var(--pink);
     color: white;
 }
 
-.timezone {
+.time-body {
     display: grid;
-    place-items: end center;
-    padding-bottom: 12px;
-    font-size: 10px;
-    color: var(--muted);
-}
-
-.schedule-body {
-    display: grid;
-}
-
-.time-column {
-    position: relative;
-    border-right: 1px solid var(--border);
 }
 
 .time-label {
-    height: 65px;
+    height: 64px;
+    font-size: 10px;
     text-align: center;
-    font-size: 11px;
-    color: var(--muted);
-    padding-top: 5px;
+    color: #777;
 }
 
-.schedule-day {
+.time-day {
     position: relative;
     border-right: 1px solid var(--border);
 }
 
 .hour-cell {
-    height: 65px;
+    height: 64px;
     border-bottom: 1px solid var(--border);
     cursor: pointer;
 }
 
 .hour-cell:hover {
-    background: #fcf1f7;
+    background: #faf1f6;
 }
 
-.schedule-event {
+.time-event {
     position: absolute;
     left: 3px;
     right: 5px;
-    border-left: 4px solid var(--event-color);
-    border-radius: 5px;
-    background: var(--event-bg);
-    padding: 6px 8px;
+    border-radius: 4px;
+    color: white;
+    padding: 7px;
     text-align: left;
-    overflow: hidden;
     font-size: 11px;
-    line-height: 1.5;
-    z-index: 2;
+    overflow: hidden;
 }
 
-.schedule-event:hover {
-    background: var(--event-bg);
-    filter: brightness(.96);
-}
-
-.schedule-event strong {
+.time-event strong {
     display: block;
-    font-size: 12px;
+    margin-bottom: 4px;
 }
 
 .agenda {
-    padding: 20px 30px;
+    padding: 20px 35px;
 }
 
 .agenda-row {
     display: flex;
+    align-items: center;
     gap: 20px;
-    align-items: flex-start;
-    padding: 20px 5px;
+    padding: 20px 10px;
     border-bottom: 1px solid var(--border);
+    cursor: pointer;
+}
+
+.agenda-row:hover {
+    background: #fcf4f8;
 }
 
 .agenda-date {
-    width: 90px;
+    width: 110px;
     flex-shrink: 0;
-    color: var(--muted);
 }
 
-.agenda-event {
+.agenda-time {
+    width: 150px;
+    flex-shrink: 0;
+}
+
+.agenda-title {
     flex: 1;
-    text-align: left;
-    border-left: 4px solid var(--event-color);
-    background: var(--event-bg);
-    border-radius: 5px;
-    padding: 15px;
-    line-height: 1.7;
-}
-
-.agenda-event:hover {
-    background: var(--event-bg);
-    filter: brightness(.96);
-}
-
-.empty {
-    text-align: center;
-    padding: 70px 20px;
-    color: var(--muted);
 }
 
 .overlay {
     position: fixed;
     inset: 0;
-    background: #39283240;
+    background: #0002;
     display: grid;
     place-items: center;
     padding: 20px;
-    z-index: 150;
+    z-index: 100;
 }
 
 .dialog {
-    background: white;
-    width: 580px;
+    background: #fff;
+    width: 500px;
     max-width: 100%;
     max-height: 90dvh;
     overflow: auto;
-    border-radius: 20px;
-    box-shadow: 0 10px 50px #0002;
+    border-radius: 26px;
+    box-shadow: 0 8px 30px #0003;
 }
 
 .dialog-toolbar {
     display: flex;
     justify-content: flex-end;
-    gap: 4px;
-    padding: 12px;
+    padding: 10px 14px;
 }
 
 .dialog-content {
-    padding: 0 30px 30px;
+    padding: 5px 25px 30px;
 }
 
-.event-heading {
+.detail-title {
     display: flex;
     align-items: flex-start;
-    gap: 15px;
-    margin-bottom: 20px;
+    gap: 18px;
+    margin-bottom: 25px;
 }
 
-.event-dot {
-    width: 17px;
-    height: 17px;
-    border-radius: 4px;
-    margin-top: 7px;
-    flex-shrink: 0;
-}
-
-.event-heading h1 {
-    margin: 0 0 8px;
-    font-size: 24px;
+.detail-title h2 {
+    font-size: 23px;
     font-weight: 400;
-    line-height: 1.4;
+    margin: 0 0 8px;
 }
 
-.detail-row {
+.color-square {
+    width: 16px;
+    height: 16px;
+    border-radius: 4px;
+    flex-shrink: 0;
+    margin-top: 6px;
+}
+
+.detail-date {
+    line-height: 1.6;
+    font-size: 13px;
+}
+
+.detail {
     display: flex;
+    gap: 18px;
     align-items: flex-start;
-    gap: 15px;
-    padding: 12px 0;
+    margin: 20px 0;
     line-height: 1.7;
 }
 
-.detail-row > .material-symbols-outlined {
-    color: var(--muted);
-    margin-top: 2px;
+.detail .material-symbols-outlined {
+    color: #70757a;
+    flex-shrink: 0;
 }
 
-.detail-row > div {
-    flex: 1;
-    min-width: 0;
-    overflow-wrap: anywhere;
-}
-
-.detail-label {
-    font-size: 11px;
-    color: var(--muted);
-    margin-bottom: 4px;
-}
-
-.status {
-    display: inline-block;
-    border-radius: 5px;
-    padding: 5px 10px;
-    background: var(--event-bg);
-    font-size: 12px;
-}
-
-.confirmation {
-    background: #fcf6f9;
-    border: 1px solid var(--border);
-    padding: 18px;
-    border-radius: 10px;
-    line-height: 1.8;
+.detail-text {
     white-space: pre-wrap;
     overflow-wrap: anywhere;
-    margin-top: 10px;
+    min-width: 0;
 }
 
-.actions {
+.event-form input,
+.event-form textarea,
+.event-form select {
+    width: 100%;
+    border: none;
+    border-radius: 5px;
+    padding: 12px;
+    background: #f7f1f5;
+    outline: none;
+}
+
+.event-form input:focus,
+.event-form textarea:focus {
+    box-shadow: 0 0 0 1px var(--pink);
+}
+
+.event-form textarea {
+    min-height: 190px;
+    resize: vertical;
+    line-height: 1.7;
+}
+
+.event-form .title-input {
+    font-size: 23px;
+    background: transparent;
+    border-bottom: 2px solid var(--pink);
+    border-radius: 0;
+    margin-bottom: 15px;
+}
+
+.form-row {
     display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    margin-top: 20px;
+    align-items: flex-start;
+    gap: 15px;
+    margin: 15px 0;
 }
 
-.primary {
+.form-row .material-symbols-outlined {
+    margin-top: 12px;
+    color: #70757a;
+}
+
+.form-fields {
+    flex: 1;
+    min-width: 0;
+}
+
+.time-fields {
+    display: flex;
+    gap: 8px;
+    margin-top: 8px;
+}
+
+.save {
     background: var(--pink);
     color: white;
-    padding: 11px 20px;
     border-radius: 22px;
+    padding: 11px 25px;
     font-weight: 500;
 }
 
-.primary:hover {
-    background: #8e4e6a;
+.save:hover {
+    background: #8f4d69;
 }
 
-.secondary {
-    border: 1px solid #ddcbd5;
-    padding: 10px 17px;
-    border-radius: 22px;
-}
-
-.form-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 17px;
-}
-
-.field {
-    display: flex;
-    flex-direction: column;
-    gap: 7px;
-}
-
-.field label {
-    color: var(--muted);
-    font-size: 12px;
-}
-
-.field input,
-.field select,
-.field textarea {
-    width: 100%;
-    min-width: 0;
-    border: 1px solid #e2d3dc;
-    border-radius: 7px;
-    padding: 11px;
-    outline: none;
-    background: white;
-    color: var(--text);
-}
-
-.field input:focus,
-.field textarea:focus,
-.field select:focus {
-    border-color: var(--pink);
-}
-
-.field textarea {
-    resize: vertical;
-    min-height: 85px;
-    line-height: 1.6;
-}
-
-.full { grid-column: 1 / -1; }
-
-.notice {
-    border-top: 1px solid var(--border);
-    padding: 10px 17px;
-    font-size: 10px;
-    color: var(--muted);
-}
-
-.toast {
+.profile {
     position: fixed;
-    bottom: 20px;
-    left: 20px;
-    background: #503743;
-    color: white;
-    border-radius: 7px;
-    padding: 15px 22px;
+    top: 65px;
+    right: 18px;
+    width: 320px;
+    max-width: 90vw;
+    background: #f8eaf1;
+    border-radius: 25px;
+    padding: 25px;
+    text-align: center;
+    box-shadow: 0 5px 25px #0002;
     z-index: 200;
 }
 
-@media(max-width: 1000px) {
-    .brand { width: auto; }
-    .brand-name { display: none; }
-    .sidebar { width: 215px; }
-    header { gap: 7px; }
+.profile img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
 }
 
-@media(max-width: 700px) {
-    header { padding: 8px; flex-wrap: wrap; height: 110px; }
-    .layout { height: calc(100dvh - 110px); }
-    .sidebar { display: none; }
+.profile h2 {
+    font-weight: 400;
+}
+
+.profile p {
+    font-size: 13px;
+    overflow-wrap: anywhere;
+}
+
+.search-input {
+    border: none;
+    background: #f0e1e9;
+    padding: 12px 18px;
+    border-radius: 24px;
+    outline: none;
+    width: 240px;
+}
+
+.empty {
+    padding: 60px;
+    text-align: center;
+    color: #777;
+}
+
+@media(max-width: 950px) {
+    .brand {
+        width: auto;
+    }
+
+    .brand-name {
+        display: none;
+    }
+
+    .sidebar {
+        width: 220px;
+    }
+
+    #monthTitle {
+        font-size: 18px;
+    }
+}
+
+@media(max-width: 650px) {
+    header {
+        flex-wrap: wrap;
+        height: 110px;
+        padding: 8px;
+        gap: 4px;
+    }
+
+    .layout {
+        height: calc(100dvh - 110px);
+    }
+
+    .sidebar {
+        display: none;
+    }
+
     .sidebar.mobile-open {
         display: block;
         position: fixed;
@@ -721,18 +649,35 @@ header {
         bottom: 0;
         left: 0;
         background: var(--background);
-        z-index: 20;
-        box-shadow: 5px 0 15px #0002;
+        z-index: 50;
+        box-shadow: 4px 0 15px #0002;
     }
-    .month-title { font-size: 17px; }
-    .calendar-logo { display: none; }
-    .main { margin: 0 7px; }
-    .today { padding: 8px 12px; }
-    .header-right { gap: 5px; }
-    .form-grid { grid-template-columns: 1fr; }
-    .dialog-content { padding: 0 20px 25px; }
-    .agenda { padding: 15px; }
-    .agenda-date { width: 60px; }
+
+    .logo {
+        display: none;
+    }
+
+    .main {
+        margin: 0 7px;
+    }
+
+    .today {
+        padding: 8px 12px;
+        margin: 0;
+    }
+
+    .header-right {
+        gap: 3px;
+    }
+
+    .search-input {
+        width: 150px;
+    }
+
+    .agenda {
+        padding: 10px;
+        min-width: 500px;
+    }
 }
 </style>
 </head>
@@ -747,7 +692,13 @@ header {
             <span class="material-symbols-outlined">menu</span>
         </button>
 
-        <div class="calendar-logo" id="logoDate">25</div>
+        <svg class="logo" viewBox="0 0 40 40">
+            <rect x="2" y="2" width="36" height="36" rx="4" fill="#a65f7d"/>
+            <rect x="8" y="8" width="24" height="24" fill="white"/>
+            <text x="20" y="25" font-size="16" font-weight="500"
+                text-anchor="middle" fill="#a65f7d">31</text>
+            <path d="M26 38L38 26H26Z" fill="#e5b6ce"/>
+        </svg>
 
         <span class="brand-name">Calendar</span>
 
@@ -755,31 +706,35 @@ header {
 
     <button class="today" onclick="goToday()">Today</button>
 
-    <button class="icon" title="Previous" onclick="moveDate(-1)">
+    <button class="icon" title="Previous" onclick="move(-1)">
         <span class="material-symbols-outlined">chevron_left</span>
     </button>
 
-    <button class="icon" title="Next" onclick="moveDate(1)">
+    <button class="icon" title="Next" onclick="move(1)">
         <span class="material-symbols-outlined">chevron_right</span>
     </button>
 
-    <div class="month-title" id="monthTitle"></div>
+    <div id="monthTitle"></div>
 
     <div class="header-right">
 
-        <button class="icon" title="Search appointments" onclick="focusSearch()">
+        <input class="search-input hidden" id="search"
+            placeholder="Search calendar" oninput="render()">
+
+        <button class="icon" title="Search" onclick="toggleSearch()">
             <span class="material-symbols-outlined">search</span>
         </button>
 
-        <select class="view-select" id="viewSelect" onchange="changeView(this.value)">
-            <option value="month">Month</option>
-            <option value="week">Week</option>
+        <select class="view-select" id="view" onchange="render()">
             <option value="day">Day</option>
+            <option value="week">Week</option>
+            <option value="month" selected>Month</option>
             <option value="schedule">Schedule</option>
         </select>
 
-        <button class="account" title="Account" onclick="toggleProfile()">
-            <img class="avatar" src="dainty-profile.jpeg" alt="Dainty De Guzman">
+        <button class="account" onclick="toggleProfile()">
+            <img class="avatar" src="dainty-profile.jpeg"
+                alt="Dainty De Guzman">
         </button>
 
     </div>
@@ -787,97 +742,68 @@ header {
 </header>
 
 <div class="profile hidden" id="profile">
-
     <p>daintydeguzman.work@gmail.com</p>
-
     <img src="dainty-profile.jpeg" alt="Dainty De Guzman">
-
     <h2>Hi, Dainty!</h2>
-
-    <button class="secondary" onclick="toggleProfile()">Close</button>
-
+    <button onclick="toggleProfile()">Close</button>
 </div>
 
 <div class="layout">
 
-<aside class="sidebar" id="sidebar">
+    <aside class="sidebar" id="sidebar">
 
-    <button class="create" onclick="openForm()">
+        <button class="create" onclick="openForm()">
+            <span class="material-symbols-outlined">add</span>
+            Create
+            <span class="material-symbols-outlined">arrow_drop_down</span>
+        </button>
 
-        <span class="material-symbols-outlined">add</span>
+        <div class="mini-header">
 
-        Create
+            <span id="miniTitle"></span>
 
-    </button>
+            <div>
+                <button class="icon" onclick="moveMini(-1)">
+                    <span class="material-symbols-outlined">chevron_left</span>
+                </button>
 
-    <div class="mini-header">
-
-        <span id="miniTitle"></span>
-
-        <div>
-
-            <button class="icon" title="Previous month" onclick="moveMini(-1)">
-                <span class="material-symbols-outlined">chevron_left</span>
-            </button>
-
-            <button class="icon" title="Next month" onclick="moveMini(1)">
-                <span class="material-symbols-outlined">chevron_right</span>
-            </button>
+                <button class="icon" onclick="moveMini(1)">
+                    <span class="material-symbols-outlined">chevron_right</span>
+                </button>
+            </div>
 
         </div>
 
-    </div>
+        <div class="mini-calendar" id="miniCalendar"></div>
 
-    <div class="mini-grid" id="miniCalendar"></div>
+        <div class="sidebar-heading">
+            My calendars
+            <span class="material-symbols-outlined">expand_more</span>
+        </div>
 
-    <div class="sidebar-title">My calendars</div>
+        <div id="calendarOptions"></div>
 
-    <div id="filters"></div>
+    </aside>
 
-    <div class="search-box">
-
-        <span class="material-symbols-outlined">search</span>
-
-        <input id="search" placeholder="Search appointments" oninput="render()">
-
-    </div>
-
-    <div class="sidebar-title">Time zone</div>
-
-    <p style="font-size:12px;color:#82747c;line-height:1.7">
-        Eastern Time (ET)<br>
-        New York, United States
-    </p>
-
-</aside>
-
-<main class="main">
-
-    <div class="calendar-content" id="calendar"></div>
-
-    <div class="notice">
-        Fictional appointment calendar. No actual bookings or notifications are made.
-    </div>
-
-</main>
+    <main class="main" id="calendar"></main>
 
 </div>
 
-<div class="overlay hidden" id="eventOverlay">
+<div class="overlay hidden" id="detailOverlay">
 
     <div class="dialog">
 
         <div class="dialog-toolbar">
 
-            <button class="icon" title="Edit appointment" onclick="editCurrent()">
+            <button class="icon" title="Edit event" onclick="editEvent()">
                 <span class="material-symbols-outlined">edit</span>
             </button>
 
-            <button class="icon" title="Delete appointment" onclick="deleteCurrent()">
+            <button class="icon" title="Delete event" onclick="deleteEvent()">
                 <span class="material-symbols-outlined">delete</span>
             </button>
 
-            <button class="icon" title="Close" onclick="closeEvent()">
+            <button class="icon" title="Close" onclick="closeDialogs()">
                 <span class="material-symbols-outlined">close</span>
             </button>
 
@@ -894,162 +820,102 @@ header {
     <div class="dialog">
 
         <div class="dialog-toolbar">
-
-            <button class="icon" title="Close" onclick="closeForm()">
+            <button class="icon" onclick="closeDialogs()">
                 <span class="material-symbols-outlined">close</span>
             </button>
-
         </div>
 
         <div class="dialog-content">
 
-            <h2 id="formTitle" style="font-weight:400;margin-top:0">
-                New appointment
-            </h2>
+            <form class="event-form" id="eventForm" onsubmit="saveEvent(event)">
 
-            <form id="eventForm" onsubmit="saveEvent(event)">
+                <input class="title-input" name="title"
+                    placeholder="Add title" required>
 
-                <div class="form-grid">
+                <div class="form-row">
 
-                    <div class="field full">
+                    <span class="material-symbols-outlined">schedule</span>
 
-                        <label>Appointment title</label>
-
-                        <input name="title" required placeholder="Add title">
-
-                    </div>
-
-                    <div class="field">
-
-                        <label>Appointment type</label>
-
-                        <select name="type">
-                            <option>Property Showing</option>
-                            <option>Buyer Consultation</option>
-                            <option>Seller Consultation</option>
-                            <option>Follow-up Reminder</option>
-                        </select>
-
-                    </div>
-
-                    <div class="field">
-
-                        <label>Status</label>
-
-                        <select name="status">
-                            <option>Pending</option>
-                            <option>Confirmed</option>
-                            <option>Rescheduled</option>
-                            <option>Completed</option>
-                            <option>Cancelled</option>
-                        </select>
-
-                    </div>
-
-                    <div class="field">
-
-                        <label>Date</label>
+                    <div class="form-fields">
 
                         <input type="date" name="date" required>
 
-                    </div>
+                        <div class="time-fields">
+                            <input type="time" name="start" required>
+                            <input type="time" name="end" required>
+                        </div>
 
-                    <div class="field">
-
-                        <label>Reminder</label>
-
-                        <select name="reminder">
-                            <option>10 minutes before</option>
-                            <option>30 minutes before</option>
-                            <option>1 hour before</option>
-                            <option>1 day before</option>
-                            <option>No reminder</option>
-                        </select>
-
-                    </div>
-
-                    <div class="field">
-
-                        <label>Start time (ET)</label>
-
-                        <input type="time" name="start" min="07:00" max="19:30" required>
-
-                    </div>
-
-                    <div class="field">
-
-                        <label>End time (ET)</label>
-
-                        <input type="time" name="end" min="07:30" max="20:00" required>
-
-                    </div>
-
-                    <div class="field">
-
-                        <label>Client name</label>
-
-                        <input name="client" required>
-
-                    </div>
-
-                    <div class="field">
-
-                        <label>Client email</label>
-
-                        <input type="email" name="email" required>
-
-                    </div>
-
-                    <div class="field">
-
-                        <label>Assigned agent</label>
-
-                        <input name="agent" required>
-
-                    </div>
-
-                    <div class="field">
-
-                        <label>Client availability</label>
-
-                        <input name="availability" required>
-
-                    </div>
-
-                    <div class="field full">
-
-                        <label>Property or meeting location</label>
-
-                        <input name="location" required>
-
-                    </div>
-
-                    <div class="field full">
-
-                        <label>Appointment notes</label>
-
-                        <textarea name="notes"></textarea>
-
-                    </div>
-
-                    <div class="field">
-
-                        <label>Follow-up date</label>
-
-                        <input type="date" name="followup">
+                        <p style="font-size:12px;color:#777">
+                            Eastern Time — New York
+                        </p>
 
                     </div>
 
                 </div>
 
-                <div class="actions">
+                <div class="form-row">
 
-                    <button class="primary" type="submit">Save</button>
+                    <span class="material-symbols-outlined">group_add</span>
 
-                    <button class="secondary" type="button" onclick="closeForm()">
-                        Cancel
-                    </button>
+                    <div class="form-fields">
+                        <input name="guest" placeholder="Add guests" type="email">
+                    </div>
 
+                </div>
+
+                <div class="form-row">
+
+                    <span class="material-symbols-outlined">location_on</span>
+
+                    <div class="form-fields">
+                        <input name="location" placeholder="Add location">
+                    </div>
+
+                </div>
+
+                <div class="form-row">
+
+                    <span class="material-symbols-outlined">notifications</span>
+
+                    <div class="form-fields">
+                        <select name="reminder">
+                            <option>10 minutes before</option>
+                            <option>30 minutes before</option>
+                            <option>1 hour before</option>
+                            <option>1 day before</option>
+                            <option>No notification</option>
+                        </select>
+                    </div>
+
+                </div>
+
+                <div class="form-row">
+
+                    <span class="material-symbols-outlined">calendar_today</span>
+
+                    <div class="form-fields">
+                        <select name="category">
+                            <option>Property Showings</option>
+                            <option>Consultations</option>
+                            <option>Follow-ups</option>
+                        </select>
+                    </div>
+
+                </div>
+
+                <div class="form-row">
+
+                    <span class="material-symbols-outlined">notes</span>
+
+                    <div class="form-fields">
+                        <textarea name="description"
+                            placeholder="Add description"></textarea>
+                    </div>
+
+                </div>
+
+                <div style="text-align:right">
+                    <button class="save" type="submit">Save</button>
                 </div>
 
             </form>
@@ -1060,291 +926,348 @@ header {
 
 </div>
 
-<div class="toast hidden" id="toast"></div>
-
 <script>
 
-/* APPOINTMENT DATABASE */
-
 const ACCOUNT = "daintydeguzman.work@gmail.com";
+
+const categories = {
+    "Property Showings": "#b86c91",
+    "Consultations": "#9a80b5",
+    "Follow-ups": "#789d90"
+};
 
 const originalEvents = [
 
 {
     id: 1,
-    title: "Townhouse showing — Natalie",
-    type: "Property Showing",
-    status: "Completed",
+    title: "Property showing — Olivia Mitchell",
     date: "2026-11-03",
     start: "10:00",
     end: "11:00",
-    client: "Natalie Brooks",
-    email: "natalie.brooks@example.com",
-    agent: "Rebecca Miles",
-    location: "101 Example Lane, Brooklyn, NY",
-    availability: "Tuesday, 9 AM–12 PM ET",
+    category: "Property Showings",
+    guest: "olivia.mitchell@example.com",
+    location: "120 Example Lane, Brooklyn, NY",
     reminder: "1 day before",
-    followup: "2026-11-04",
-    notes: "Three-bedroom townhouse. Client attended the showing. Follow-up completed."
+    description: `Client: Olivia Mitchell
+Assigned agent: Hannah Reed
+Property: 3-bedroom townhouse
+Budget: $650,000
+Availability: Tuesday, 9 AM–12 PM ET
+Status: Completed
+
+The client attended the scheduled property showing. Follow-up feedback requested on November 4.`
 },
 
 {
     id: 2,
-    title: "First-time buyer consultation",
-    type: "Buyer Consultation",
-    status: "Completed",
+    title: "Buyer consultation — Ethan Walker",
     date: "2026-11-05",
     start: "14:00",
     end: "15:00",
-    client: "Aaron Whitmore",
-    email: "aaron.whitmore@example.com",
-    agent: "Rebecca Miles",
+    category: "Consultations",
+    guest: "ethan.walker@example.com",
     location: "Virtual meeting",
-    availability: "Weekdays after 1 PM ET",
     reminder: "30 minutes before",
-    followup: "2026-11-06",
-    notes: "Discuss initial property requirements and purchase timeline with assigned agent."
+    description: `Client: Ethan Walker
+Assigned agent: Hannah Reed
+Availability: Weekdays after 1 PM ET
+Status: Completed
+
+Initial consultation regarding preferred property features, purchase timeline, and budget. Property recommendations to be reviewed by the assigned agent.`
 },
 
 {
     id: 3,
-    title: "Condominium viewing — Chloe",
-    type: "Property Showing",
-    status: "Completed",
+    title: "Condominium viewing — Sophia Turner",
     date: "2026-11-07",
     start: "11:00",
     end: "12:00",
-    client: "Chloe Richardson",
-    email: "chloe.richardson@example.com",
-    agent: "Michael Ellis",
-    location: "202 Sample Avenue, Manhattan, NY",
-    availability: "Saturday, 10 AM–2 PM ET",
+    category: "Property Showings",
+    guest: "sophia.turner@example.com",
+    location: "245 Sample Avenue, Manhattan, NY",
     reminder: "1 day before",
-    followup: "2026-11-09",
-    notes: "Two-bedroom condominium. Agent conducted the viewing."
+    description: `Client: Sophia Turner
+Assigned agent: James Carter
+Property: 2-bedroom condominium
+Budget: $780,000
+Availability: Saturday, 10 AM–2 PM ET
+Status: Completed
+
+Showing completed with the assigned agent. Client feedback requested.`
 },
 
 {
     id: 4,
-    title: "Seller listing consultation",
-    type: "Seller Consultation",
-    status: "Completed",
+    title: "Seller consultation — Noah Bennett",
     date: "2026-11-10",
     start: "13:00",
     end: "14:00",
-    client: "Victor Lawson",
-    email: "victor.lawson@example.com",
-    agent: "Rachel Monroe",
+    category: "Consultations",
+    guest: "noah.bennett@example.com",
     location: "Virtual meeting",
-    availability: "Tuesday or Thursday afternoons",
     reminder: "1 hour before",
-    followup: "2026-11-12",
-    notes: "Initial listing discussion. Pricing and listing terms handled by the assigned agent."
+    description: `Client: Noah Bennett
+Assigned agent: Emily Wilson
+Availability: Tuesday or Thursday afternoons
+Status: Completed
+
+Initial consultation regarding the client's intention to sell a residential property. Pricing and listing terms discussed by the licensed agent.`
 },
 
 {
     id: 5,
-    title: "Single-family home showing",
-    type: "Property Showing",
-    status: "Completed",
+    title: "Residential showing — Ava Collins",
     date: "2026-11-13",
     start: "10:30",
     end: "11:30",
-    client: "Samantha Wells",
-    email: "samantha.wells@example.com",
-    agent: "Michael Ellis",
-    location: "303 Demo Court, Queens, NY",
-    availability: "Friday, 10 AM–1 PM ET",
+    category: "Property Showings",
+    guest: "ava.collins@example.com",
+    location: "310 Demo Court, Queens, NY",
     reminder: "1 day before",
-    followup: "2026-11-14",
-    notes: "Client requested a home with three bedrooms, parking, and outdoor space."
+    description: `Client: Ava Collins
+Assigned agent: James Carter
+Property: 3-bedroom single-family home
+Budget: $720,000
+Availability: Friday, 10 AM–1 PM ET
+Status: Completed
+
+Client requested a property with parking and outdoor space. Showing completed as scheduled.`
 },
 
 {
     id: 6,
-    title: "Buyer requirements consultation",
-    type: "Buyer Consultation",
-    status: "Completed",
-    date: "2026-11-17",
-    start: "15:00",
-    end: "16:00",
-    client: "Dylan Hayes",
-    email: "dylan.hayes@example.com",
-    agent: "Rebecca Miles",
-    location: "Virtual meeting",
-    availability: "Weekdays, 3 PM–5 PM ET",
-    reminder: "30 minutes before",
-    followup: "2026-11-19",
-    notes: "Review preferred neighborhoods, property features, and purchase timeline."
+    title: "Follow-up — Ava Collins",
+    date: "2026-11-14",
+    start: "11:00",
+    end: "11:30",
+    category: "Follow-ups",
+    guest: "ava.collins@example.com",
+    location: "",
+    reminder: "10 minutes before",
+    description: `Status: Completed
+
+Hi Ava,
+
+Thank you for attending yesterday's property showing. We'd appreciate your feedback on the home and whether it meets your current requirements.
+
+Please let me know if you have any questions for James or would like to arrange another viewing.
+
+Best regards,
+Dainty De Guzman`
 },
 
 {
     id: 7,
-    title: "Property showing — Isabelle",
-    type: "Property Showing",
-    status: "Cancelled",
-    date: "2026-11-20",
-    start: "11:00",
-    end: "12:00",
-    client: "Isabelle Reed",
-    email: "isabelle.reed@example.com",
-    agent: "Michael Ellis",
-    location: "404 Example Street, Brooklyn, NY",
-    availability: "Friday mornings",
-    reminder: "1 day before",
-    followup: "2026-11-26",
-    notes: "Client cancelled due to a scheduling conflict. Follow up to request alternative availability."
+    title: "Buyer consultation — Liam Brooks",
+    date: "2026-11-17",
+    start: "15:00",
+    end: "16:00",
+    category: "Consultations",
+    guest: "liam.brooks@example.com",
+    location: "Virtual meeting",
+    reminder: "30 minutes before",
+    description: `Client: Liam Brooks
+Assigned agent: Hannah Reed
+Availability: Weekdays, 3 PM–5 PM ET
+Status: Completed
+
+Review the client's preferred neighborhoods, property requirements, and intended purchase timeline.`
 },
 
 {
     id: 8,
-    title: "Seller property consultation",
-    type: "Seller Consultation",
-    status: "Completed",
+    title: "Seller appointment — Mia Anderson",
     date: "2026-11-23",
     start: "14:00",
     end: "15:00",
-    client: "Adrian Cole",
-    email: "adrian.cole@example.com",
-    agent: "Rachel Monroe",
-    location: "505 Sample Drive, Queens, NY",
-    availability: "Monday, 1 PM–4 PM ET",
+    category: "Consultations",
+    guest: "mia.anderson@example.com",
+    location: "420 Example Drive, Queens, NY",
     reminder: "1 day before",
-    followup: "2026-11-27",
-    notes: "Initial property assessment appointment. Agent to review listing requirements."
+    description: `Client: Mia Anderson
+Assigned agent: Emily Wilson
+Availability: Monday, 1 PM–4 PM ET
+Status: Completed
+
+Initial property assessment appointment. Agent to review property information and listing requirements.`
 },
 
 {
     id: 9,
-    title: "Apartment showing — Evelyn",
-    type: "Property Showing",
-    status: "Confirmed",
+    title: "Apartment showing — Isabella Hayes",
     date: "2026-11-26",
     start: "10:00",
     end: "11:00",
-    client: "Evelyn Hart",
-    email: "evelyn.hart@example.com",
-    agent: "Rebecca Miles",
-    location: "606 Demo Avenue, Manhattan, NY",
-    availability: "Thursday, 9 AM–12 PM ET",
+    category: "Property Showings",
+    guest: "isabella.hayes@example.com",
+    location: "510 Sample Avenue, Manhattan, NY",
     reminder: "1 day before",
-    followup: "2026-11-27",
-    notes: "Two-bedroom apartment. Agent and client availability confirmed in this fictional scenario. Property access coordinated."
+    description: `Client: Isabella Hayes
+Assigned agent: Hannah Reed
+Property: 2-bedroom apartment
+Budget: $850,000
+Availability: Thursday, 9 AM–12 PM ET
+Status: Confirmed
+
+Confirmation draft:
+
+Hi Isabella,
+
+Your property showing has been scheduled for November 26, from 10:00 to 11:00 AM Eastern Time, at 510 Sample Avenue, Manhattan.
+
+Hannah Reed will be assisting you during the viewing.
+
+Please let us know if your availability changes.
+
+Best regards,
+Dainty De Guzman`
 },
 
 {
     id: 10,
-    title: "Townhouse showing — Mason",
-    type: "Property Showing",
-    status: "Pending",
+    title: "Townhouse showing — Oliver Scott",
     date: "2026-11-27",
     start: "14:00",
     end: "15:00",
-    client: "Mason Bennett",
-    email: "mason.bennett@example.com",
-    agent: "Michael Ellis",
-    location: "707 Example Lane, Brooklyn, NY",
-    availability: "Friday, 2 PM–5 PM ET",
+    category: "Property Showings",
+    guest: "oliver.scott@example.com",
+    location: "620 Demo Lane, Brooklyn, NY",
     reminder: "1 hour before",
-    followup: "2026-11-26",
-    notes: "Showing requested by client. Awaiting agent approval and property access confirmation. Do not send a final confirmation yet."
+    description: `Client: Oliver Scott
+Assigned agent: James Carter
+Property: 3-bedroom townhouse
+Budget: $690,000
+Availability: Friday, 2 PM–5 PM ET
+Status: Pending confirmation
+
+Showing request received. Awaiting agent availability and property access approval.
+
+Client response draft:
+
+Hi Oliver,
+
+Thank you for sharing your availability. I've noted your preferred showing time for November 27 at 2 PM Eastern Time.
+
+The appointment is currently tentative. I'll provide confirmation once the agent and property access arrangements have been verified.
+
+Best regards,
+Dainty De Guzman`
 },
 
 {
     id: 11,
-    title: "Rescheduled condominium showing",
-    type: "Property Showing",
-    status: "Rescheduled",
+    title: "Rescheduled showing — Emma Morgan",
     date: "2026-11-28",
     start: "11:00",
     end: "12:00",
-    client: "Audrey Simmons",
-    email: "audrey.simmons@example.com",
-    agent: "Rebecca Miles",
-    location: "808 Sample Road, Manhattan, NY",
-    availability: "Saturday, 10 AM–1 PM ET",
+    category: "Property Showings",
+    guest: "emma.morgan@example.com",
+    location: "730 Example Road, Manhattan, NY",
     reminder: "1 day before",
-    followup: "2026-11-29",
-    notes: "Originally requested for November 25. Revised date proposed due to client availability. Awaiting final confirmation."
+    description: `Client: Emma Morgan
+Assigned agent: Hannah Reed
+Property: 2-bedroom condominium
+Availability: Saturday, 10 AM–1 PM ET
+Status: Rescheduled — pending confirmation
+
+Original appointment: November 25
+Proposed appointment: November 28, 11 AM ET
+
+Hi Emma,
+
+Thank you for letting us know about the change in your availability. I've noted your preferred appointment for Saturday at 11 AM.
+
+I'll confirm the revised schedule once the necessary arrangements have been finalized.
+
+Best regards,
+Dainty De Guzman`
 },
 
 {
     id: 12,
-    title: "Follow up — Isabelle Reed",
-    type: "Follow-up Reminder",
-    status: "Pending",
-    date: "2026-11-26",
-    start: "15:00",
-    end: "15:30",
-    client: "Isabelle Reed",
-    email: "isabelle.reed@example.com",
-    agent: "Michael Ellis",
-    location: "Email follow-up",
-    availability: "Friday mornings preferred",
+    title: "Follow-up — Isabella Hayes",
+    date: "2026-11-27",
+    start: "11:00",
+    end: "11:30",
+    category: "Follow-ups",
+    guest: "isabella.hayes@example.com",
+    location: "",
     reminder: "10 minutes before",
-    followup: "",
-    notes: "Request new availability following the cancelled November 20 showing."
+    description: `Status: Scheduled
+
+Request feedback if the November 26 showing has been completed.
+
+Hi Isabella,
+
+I hope your property viewing went well. We'd love to hear your thoughts about the apartment and whether it meets your expectations.
+
+Please feel free to share any questions or concerns so I can forward them to Hannah.
+
+Best regards,
+Dainty De Guzman`
 },
 
 {
     id: 13,
-    title: "Post-showing feedback — Evelyn",
-    type: "Follow-up Reminder",
-    status: "Pending",
-    date: "2026-11-27",
-    start: "11:00",
-    end: "11:30",
-    client: "Evelyn Hart",
-    email: "evelyn.hart@example.com",
-    agent: "Rebecca Miles",
-    location: "Email follow-up",
-    availability: "Weekday mornings",
-    reminder: "10 minutes before",
-    followup: "",
-    notes: "Request feedback if the November 26 showing takes place. Forward property-related questions to the assigned agent."
+    title: "Listing consultation — William Foster",
+    date: "2026-11-30",
+    start: "13:00",
+    end: "14:00",
+    category: "Consultations",
+    guest: "william.foster@example.com",
+    location: "Virtual meeting",
+    reminder: "30 minutes before",
+    description: `Client: William Foster
+Assigned agent: Emily Wilson
+Availability: Monday, 1 PM–3 PM ET
+Status: Confirmed
+
+Hi William,
+
+This is to confirm your virtual consultation with Emily Wilson on November 30, from 1 to 2 PM Eastern Time.
+
+Please have any relevant property information available for the discussion.
+
+Best regards,
+Dainty De Guzman`
 },
 
 {
     id: 14,
-    title: "Listing consultation — Julian",
-    type: "Seller Consultation",
-    status: "Confirmed",
-    date: "2026-11-30",
-    start: "13:00",
-    end: "14:00",
-    client: "Julian Spencer",
-    email: "julian.spencer@example.com",
-    agent: "Rachel Monroe",
-    location: "Virtual meeting",
-    availability: "Monday, 1 PM–3 PM ET",
-    reminder: "30 minutes before",
-    followup: "2026-12-01",
-    notes: "Initial seller consultation. Agent and client have agreed to the meeting time in this sample."
+    title: "Follow-up — William Foster",
+    date: "2026-12-01",
+    start: "10:00",
+    end: "10:30",
+    category: "Follow-ups",
+    guest: "william.foster@example.com",
+    location: "",
+    reminder: "10 minutes before",
+    description: `Status: Scheduled
+
+Follow up regarding the seller consultation, provided the meeting has taken place. Coordinate any requested documents or additional appointments with the assigned agent.`
 },
 
 {
     id: 15,
-    title: "Buyer consultation — Leah",
-    type: "Buyer Consultation",
-    status: "Confirmed",
+    title: "Buyer consultation — Harper Lewis",
     date: "2026-12-02",
     start: "10:00",
     end: "11:00",
-    client: "Leah Morrison",
-    email: "leah.morrison@example.com",
-    agent: "Michael Ellis",
+    category: "Consultations",
+    guest: "harper.lewis@example.com",
     location: "Virtual meeting",
-    availability: "Wednesday mornings",
     reminder: "1 day before",
-    followup: "2026-12-03",
-    notes: "Review home search requirements and coordinate next steps with the agent."
+    description: `Client: Harper Lewis
+Assigned agent: James Carter
+Availability: Wednesday mornings
+Status: Confirmed
+
+Review the client's home search requirements, preferred locations, and purchase timeline with the assigned agent.`
 }
 
 ];
 
-/* APPLICATION STATE */
-
-const STORAGE = "dainty-independent-calendar-v1";
+const STORAGE = "independent-property-calendar-v2";
 
 let events;
 
@@ -1359,40 +1282,14 @@ try {
 
 let selectedDate = new Date(2026, 10, 25);
 let miniDate = new Date(selectedDate);
-let view = "month";
 let currentId = null;
 let editingId = null;
 
-const types = {
-
-    "Property Showing": {
-        color: "#a65f7d",
-        bg: "#efd2e1"
-    },
-
-    "Buyer Consultation": {
-        color: "#8d77ac",
-        bg: "#e9e0f2"
-    },
-
-    "Seller Consultation": {
-        color: "#719185",
-        bg: "#e0eee8"
-    },
-
-    "Follow-up Reminder": {
-        color: "#bc945b",
-        bg: "#f7ead5"
-    }
-
-};
-
-const activeTypes = new Set(Object.keys(types));
+const activeCategories = new Set(Object.keys(categories));
 
 const weekdays = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
 
 function esc(value) {
-
     return String(value ?? "")
         .replace(/&/g,"&amp;")
         .replace(/</g,"&lt;")
@@ -1411,22 +1308,7 @@ function save() {
     } catch {}
 }
 
-function notify(message) {
-
-    const toast = document.getElementById("toast");
-
-    toast.textContent = message;
-    toast.classList.remove("hidden");
-
-    clearTimeout(notify.timer);
-
-    notify.timer = setTimeout(() => {
-        toast.classList.add("hidden");
-    }, 3000);
-}
-
-function key(date) {
-
+function dateKey(date) {
     return date.getFullYear() + "-" +
         String(date.getMonth()+1).padStart(2,"0") + "-" +
         String(date.getDate()).padStart(2,"0");
@@ -1436,153 +1318,139 @@ function parseDate(value) {
     return new Date(value + "T12:00:00");
 }
 
-function addDays(date, days) {
-
+function addDays(date, number) {
     const result = new Date(date);
-
-    result.setDate(result.getDate() + days);
-
+    result.setDate(result.getDate()+number);
     return result;
 }
 
-function addMonths(date, months) {
-
+function addMonths(date, number) {
     const result = new Date(
         date.getFullYear(),
-        date.getMonth() + months,
+        date.getMonth()+number,
         1
     );
 
     const last = new Date(
         result.getFullYear(),
-        result.getMonth() + 1,
+        result.getMonth()+1,
         0
     ).getDate();
 
-    result.setDate(Math.min(date.getDate(), last));
+    result.setDate(Math.min(date.getDate(),last));
 
     return result;
 }
 
 function monthName(date) {
-
-    return date.toLocaleDateString("en-US", {
-        month: "long",
-        year: "numeric"
-    });
-}
-
-function fullDate(value) {
-
-    return parseDate(value).toLocaleDateString("en-US", {
-        weekday: "long",
-        month: "long",
-        day: "numeric",
-        year: "numeric"
+    return date.toLocaleDateString("en-US",{
+        month:"long",
+        year:"numeric"
     });
 }
 
 function timeText(value) {
+    const [h,m] = value.split(":").map(Number);
 
-    const [hour, minute] = value.split(":").map(Number);
-
-    return `${hour % 12 || 12}:${String(minute).padStart(2,"0")} ${hour >= 12 ? "PM" : "AM"}`;
+    return `${h%12||12}${m?":"+String(m).padStart(2,"0"):""}${h>=12?"pm":"am"}`;
 }
 
 function minutes(value) {
-
     const [h,m] = value.split(":").map(Number);
-
-    return h * 60 + m;
+    return h*60+m;
 }
 
-function styleEvent(event) {
-
-    const palette = types[event.type] || types["Property Showing"];
-
-    if (event.status === "Cancelled") {
-        return "--event-color:#a49ba1;--event-bg:#efebee;";
-    }
-
-    return `--event-color:${palette.color};--event-bg:${palette.bg};`;
-}
-
-function visibleEvents() {
-
+function filteredEvents() {
     const query = document.getElementById("search")
         .value.trim().toLowerCase();
 
     return events.filter(event =>
-        activeTypes.has(event.type) &&
+        activeCategories.has(event.category) &&
         Object.values(event).join(" ").toLowerCase().includes(query)
-    ).sort((a,b) =>
+    ).sort((a,b)=>
         a.date.localeCompare(b.date) ||
         a.start.localeCompare(b.start)
     );
 }
 
 function eventsOn(date) {
-    return visibleEvents().filter(event => event.date === key(date));
+    return filteredEvents().filter(
+        event => event.date === dateKey(date)
+    );
 }
-
-/* SIDEBAR */
 
 function toggleSidebar() {
-
     const sidebar = document.getElementById("sidebar");
 
-    if (window.innerWidth <= 700) {
-        sidebar.classList.toggle("mobile-open");
-    } else {
-        sidebar.classList.toggle("collapsed");
-    }
-}
-
-function focusSearch() {
-
-    const sidebar = document.getElementById("sidebar");
-
-    sidebar.classList.remove("collapsed");
-
-    if (window.innerWidth <= 700) {
-        sidebar.classList.add("mobile-open");
-    }
-
-    document.getElementById("search").focus();
+    sidebar.classList.toggle(
+        window.innerWidth<=650 ? "mobile-open" : "collapsed"
+    );
 }
 
 function toggleProfile() {
     document.getElementById("profile").classList.toggle("hidden");
 }
 
-function renderFilters() {
+function toggleSearch() {
+    const input = document.getElementById("search");
 
-    document.getElementById("filters").innerHTML =
-        Object.entries(types).map(([name, palette]) => `
+    input.classList.toggle("hidden");
 
-            <label class="calendar-filter">
-
-                <input type="checkbox"
-                    style="accent-color:${palette.color}"
-                    ${activeTypes.has(name) ? "checked" : ""}
-                    onchange="toggleFilter('${name}',this.checked)">
-
-                ${name}
-
-            </label>
-
-        `).join("");
+    if (input.classList.contains("hidden")) {
+        input.value = "";
+        render();
+    } else {
+        input.focus();
+    }
 }
 
-function toggleFilter(type, checked) {
+function goToday() {
+    const today = new Intl.DateTimeFormat("en-CA",{
+        timeZone:"America/New_York",
+        year:"numeric",
+        month:"2-digit",
+        day:"2-digit"
+    }).formatToParts(new Date());
 
-    checked ? activeTypes.add(type) : activeTypes.delete(type);
+    const parts = Object.fromEntries(
+        today.map(item=>[item.type,item.value])
+    );
+
+    selectedDate = new Date(
+        Number(parts.year),
+        Number(parts.month)-1,
+        Number(parts.day)
+    );
+
+    miniDate = new Date(selectedDate);
 
     render();
 }
 
-function renderMini() {
+function move(direction) {
+    const view = document.getElementById("view").value;
 
+    selectedDate = view==="month" || view==="schedule"
+        ? addMonths(selectedDate,direction)
+        : addDays(selectedDate,direction*(view==="week"?7:1));
+
+    miniDate = new Date(selectedDate);
+
+    render();
+}
+
+function moveMini(direction) {
+    miniDate = addMonths(miniDate,direction);
+    renderMini();
+}
+
+function chooseDate(value) {
+    selectedDate = parseDate(value);
+    miniDate = new Date(selectedDate);
+    render();
+}
+
+function renderMini() {
     document.getElementById("miniTitle").textContent =
         monthName(miniDate);
 
@@ -1592,24 +1460,22 @@ function renderMini() {
         1
     );
 
-    const start = addDays(first, -first.getDay());
+    const start = addDays(first,-first.getDay());
 
-    let html = weekdays.map(day =>
-        `<div class="week-letter">${day[0]}</div>`
+    let html = weekdays.map(day=>
+        `<div class="mini-weekday">${day[0]}</div>`
     ).join("");
 
-    for (let i = 0; i < 42; i++) {
+    for(let i=0;i<42;i++) {
 
-        const date = addDays(start, i);
+        const date = addDays(start,i);
 
         html += `
             <button class="mini-day
-                ${date.getMonth() !== miniDate.getMonth() ? "outside" : ""}
-                ${key(date) === key(selectedDate) ? "active" : ""}"
-                onclick="selectDate('${key(date)}')">
-
+                ${date.getMonth()!==miniDate.getMonth()?"outside":""}
+                ${dateKey(date)===dateKey(selectedDate)?"selected":""}"
+                onclick="chooseDate('${dateKey(date)}')">
                 ${date.getDate()}
-
             </button>
         `;
     }
@@ -1617,230 +1483,182 @@ function renderMini() {
     document.getElementById("miniCalendar").innerHTML = html;
 }
 
-function moveMini(direction) {
-
-    miniDate = addMonths(miniDate, direction);
-
-    renderMini();
+function renderOptions() {
+    document.getElementById("calendarOptions").innerHTML =
+        Object.entries(categories).map(([name,color])=>`
+            <label class="calendar-option">
+                <input type="checkbox"
+                    style="accent-color:${color}"
+                    ${activeCategories.has(name)?"checked":""}
+                    onchange="toggleCategory('${name}',this.checked)">
+                ${name}
+            </label>
+        `).join("");
 }
 
-function selectDate(value) {
-
-    selectedDate = parseDate(value);
-
-    miniDate = new Date(selectedDate);
+function toggleCategory(name,checked) {
+    checked
+        ? activeCategories.add(name)
+        : activeCategories.delete(name);
 
     render();
 }
-
-/* CALENDAR NAVIGATION */
-
-function goToday() {
-
-    const parts = new Intl.DateTimeFormat("en-US", {
-        timeZone: "America/New_York",
-        year: "numeric",
-        month: "2-digit",
-        day: "2-digit"
-    }).formatToParts(new Date());
-
-    const values = Object.fromEntries(
-        parts.map(part => [part.type, part.value])
-    );
-
-    selectedDate = new Date(
-        Number(values.year),
-        Number(values.month)-1,
-        Number(values.day)
-    );
-
-    miniDate = new Date(selectedDate);
-
-    render();
-}
-
-function moveDate(direction) {
-
-    if (view === "month" || view === "schedule") {
-        selectedDate = addMonths(selectedDate, direction);
-    } else {
-        selectedDate = addDays(
-            selectedDate,
-            direction * (view === "week" ? 7 : 1)
-        );
-    }
-
-    miniDate = new Date(selectedDate);
-
-    render();
-}
-
-function changeView(value) {
-
-    view = value;
-
-    render();
-}
-
-/* MONTH VIEW */
 
 function renderMonth() {
-
     const first = new Date(
         selectedDate.getFullYear(),
         selectedDate.getMonth(),
         1
     );
 
-    const start = addDays(first, -first.getDay());
+    const days = new Date(
+        selectedDate.getFullYear(),
+        selectedDate.getMonth()+1,
+        0
+    ).getDate();
 
-    let html = '<div class="month-grid">';
+    const weeks = Math.ceil((first.getDay()+days)/7);
 
-    html += weekdays.map(day =>
-        `<div class="weekday">${day}</div>`
+    const start = addDays(first,-first.getDay());
+
+    let html = `<div class="month-grid" style="--weeks:${weeks}">`;
+
+    html += weekdays.map(day=>
+        `<div class="weekday">${day.toUpperCase()}</div>`
     ).join("");
 
-    for (let i = 0; i < 42; i++) {
+    for(let i=0;i<weeks*7;i++) {
 
-        const date = addDays(start, i);
+        const date = addDays(start,i);
 
         html += `
             <div class="day-cell
-                ${date.getMonth() !== selectedDate.getMonth() ? "outside" : ""}"
-                onclick="openForm('${key(date)}')">
+                ${date.getMonth()!==selectedDate.getMonth()?"outside":""}"
+                onclick="openForm('${dateKey(date)}')">
 
                 <div class="day-number
-                    ${key(date) === key(selectedDate) ? "active" : ""}">
-
+                    ${dateKey(date)===dateKey(selectedDate)?"selected":""}">
                     ${date.getDate()}
-
                 </div>
 
-                ${eventsOn(date).map(event => `
-
+                ${eventsOn(date).map(event=>`
                     <button class="event"
-                        style="${styleEvent(event)}"
+                        title="${esc(event.title)}"
                         onclick="event.stopPropagation();openEvent(${event.id})">
 
-                        <span class="event-time">
-                            ${timeText(event.start)}
+                        <span class="event-dot"
+                            style="background:${categories[event.category]}">
                         </span>
+
+                        <span>${timeText(event.start)}</span>
 
                         <span class="event-title">
                             ${esc(event.title)}
                         </span>
 
                     </button>
-
                 `).join("")}
 
             </div>
         `;
     }
 
-    html += "</div>";
-
-    document.getElementById("calendar").innerHTML = html;
+    document.getElementById("calendar").innerHTML =
+        html+"</div>";
 }
 
-/* WEEK AND DAY VIEWS */
+function renderTimeGrid(view) {
 
-function renderTimeGrid() {
+    const count = view==="week"?7:1;
 
-    const count = view === "week" ? 7 : 1;
-
-    const first = view === "week"
-        ? addDays(selectedDate, -selectedDate.getDay())
+    const first = view==="week"
+        ? addDays(selectedDate,-selectedDate.getDay())
         : selectedDate;
 
     const dates = Array.from(
         {length:count},
-        (_,i) => addDays(first,i)
+        (_,i)=>addDays(first,i)
     );
 
-    const columns = `65px repeat(${count},minmax(120px,1fr))`;
+    const columns = `65px repeat(${count},minmax(100px,1fr))`;
 
     let html = `
-        <div class="schedule">
+        <div class="time-grid">
 
-            <div class="schedule-header"
+            <div class="time-header"
                 style="grid-template-columns:${columns}">
 
-                <div class="timezone">ET</div>
+                <div style="align-self:end;text-align:center;
+                    font-size:10px;padding:10px">
+                    ET
+                </div>
 
-                ${dates.map(date => `
-
-                    <div class="schedule-heading">
-
-                        <small>${weekdays[date.getDay()]}</small>
-
-                        <strong class="${key(date) === key(selectedDate) ? "active" : ""}">
+                ${dates.map(date=>`
+                    <div class="time-heading">
+                        <small>${weekdays[date.getDay()].toUpperCase()}</small>
+                        <strong class="${dateKey(date)===dateKey(selectedDate)?"selected":""}">
                             ${date.getDate()}
                         </strong>
-
                     </div>
-
                 `).join("")}
 
             </div>
 
-            <div class="schedule-body"
+            <div class="time-body"
                 style="grid-template-columns:${columns}">
 
-                <div class="time-column">
+                <div>
     `;
 
-    for (let hour = 7; hour < 20; hour++) {
-
-        html += `
-            <div class="time-label">
-                ${timeText(String(hour).padStart(2,"0") + ":00")}
-            </div>
-        `;
+    for(let hour=0;hour<24;hour++) {
+        html += `<div class="time-label">
+            ${timeText(String(hour).padStart(2,"0")+":00")}
+        </div>`;
     }
 
     html += "</div>";
 
-    dates.forEach(date => {
+    dates.forEach(date=>{
 
-        html += '<div class="schedule-day">';
+        html += '<div class="time-day">';
 
-        for (let hour = 7; hour < 20; hour++) {
+        for(let hour=0;hour<24;hour++) {
 
             html += `
                 <div class="hour-cell"
-                    onclick="openForm('${key(date)}','${String(hour).padStart(2,"0")}:00')">
+                    onclick="openForm('${dateKey(date)}','${String(hour).padStart(2,"0")}:00')">
                 </div>
             `;
         }
 
         const daily = eventsOn(date);
 
-        daily.forEach(event => {
+        daily.forEach(event=>{
 
             const start = minutes(event.start);
             const end = minutes(event.end);
 
-            const top = (start - 420) / 60 * 65;
-            const height = Math.max(24,(end - start) / 60 * 65 - 3);
-
-            const overlaps = daily.filter(other =>
-                minutes(other.start) < end &&
-                minutes(other.end) > start
+            const overlapping = daily.filter(other=>
+                minutes(other.start)<end &&
+                minutes(other.end)>start
             );
 
-            const index = overlaps.findIndex(other => other.id === event.id);
+            const position = overlapping.findIndex(
+                other=>other.id===event.id
+            );
 
-            const width = 100 / overlaps.length;
+            const width = 100/overlapping.length;
 
             html += `
-                <button class="schedule-event"
-                    style="${styleEvent(event)}
-                        top:${top}px;
-                        height:${height}px;
-                        left:calc(${index * width}% + 3px);
-                        width:calc(${width}% - 7px);
-                        right:auto;"
+                <button class="time-event"
+                    style="
+                        background:${categories[event.category]};
+                        top:${start/60*64}px;
+                        height:${Math.max(24,(end-start)/60*64-3)}px;
+                        left:calc(${position*width}% + 3px);
+                        width:calc(${width}% - 6px);
+                        right:auto;
+                    "
                     onclick="openEvent(${event.id})">
 
                     <strong>${esc(event.title)}</strong>
@@ -1854,71 +1672,57 @@ function renderTimeGrid() {
         html += "</div>";
     });
 
-    html += "</div></div>";
+    document.getElementById("calendar").innerHTML =
+        html+"</div></div>";
 
-    document.getElementById("calendar").innerHTML = html;
+    document.getElementById("calendar").scrollTop = 7*64;
 }
 
-/* SCHEDULE VIEW */
-
-function renderAgenda() {
+function renderSchedule() {
 
     const query = document.getElementById("search").value.trim();
 
-    const prefix = key(selectedDate).slice(0,7);
-
-    const list = visibleEvents().filter(event =>
-        query || event.date.startsWith(prefix)
+    const list = filteredEvents().filter(event=>
+        query || event.date.startsWith(dateKey(selectedDate).slice(0,7))
     );
 
     document.getElementById("calendar").innerHTML = `
-
         <div class="agenda">
 
-            ${list.length ? list.map(event => `
+            ${list.length?list.map(event=>`
 
-                <div class="agenda-row">
+                <div class="agenda-row" onclick="openEvent(${event.id})">
 
                     <div class="agenda-date">
 
-                        <strong style="font-size:24px;font-weight:400">
+                        <strong style="font-size:23px;font-weight:400">
                             ${parseDate(event.date).getDate()}
                         </strong>
 
-                        <div>
+                        <div style="font-size:12px;color:#777">
                             ${parseDate(event.date).toLocaleDateString("en-US",{
-                                month:"short",
-                                weekday:"short"
+                                weekday:"short",
+                                month:"short"
                             })}
                         </div>
 
                     </div>
 
-                    <button class="agenda-event"
-                        style="${styleEvent(event)}"
-                        onclick="openEvent(${event.id})">
+                    <span class="event-dot"
+                        style="background:${categories[event.category]}">
+                    </span>
 
-                        <strong>${esc(event.title)}</strong>
+                    <div class="agenda-time">
+                        ${timeText(event.start)} – ${timeText(event.end)}
+                    </div>
 
-                        <div>
-                            ${timeText(event.start)} – ${timeText(event.end)} ET
-                        </div>
-
-                        <div>${esc(event.location)}</div>
-
-                        <div style="font-size:11px">
-                            ${esc(event.status)}
-                        </div>
-
-                    </button>
+                    <div class="agenda-title">
+                        ${esc(event.title)}
+                    </div>
 
                 </div>
 
-            `).join("") : `
-
-                <div class="empty">No appointments found.</div>
-
-            `}
+            `).join(""):'<div class="empty">No events</div>'}
 
         </div>
     `;
@@ -1926,351 +1730,136 @@ function renderAgenda() {
 
 function render() {
 
-    document.getElementById("monthTitle").textContent =
-        view === "day"
-            ? fullDate(key(selectedDate))
-            : monthName(selectedDate);
+    const view = document.getElementById("view").value;
 
-    document.getElementById("logoDate").textContent =
-        selectedDate.getDate();
+    document.getElementById("monthTitle").textContent =
+        view==="day"
+            ? selectedDate.toLocaleDateString("en-US",{
+                month:"long",
+                day:"numeric",
+                year:"numeric"
+            })
+            : monthName(selectedDate);
 
     renderMini();
 
-    const query = document.getElementById("search").value.trim();
+    if(document.getElementById("search").value.trim() ||
+        view==="schedule") {
 
-    if (query || view === "schedule") {
-        renderAgenda();
-    } else if (view === "month") {
+        renderSchedule();
+
+    } else if(view==="month") {
+
         renderMonth();
+
     } else {
-        renderTimeGrid();
+
+        renderTimeGrid(view);
     }
 }
 
-/* APPOINTMENT DETAILS */
+function detail(symbol,value) {
 
-function confirmationMessage(event) {
-
-    const date = fullDate(event.date);
-
-    const time = `${timeText(event.start)} – ${timeText(event.end)} Eastern Time`;
-
-    const firstName = event.client.split(" ")[0];
-
-    const signature = `
-
-Best regards,
-Dainty De Guzman
-Real Estate Administrative Support
-${ACCOUNT}`;
-
-    if (event.status === "Cancelled") {
-
-        return `Hi ${firstName},
-
-This is to acknowledge the cancellation of your appointment originally scheduled for ${date} at ${time}.
-
-Please let us know your updated availability if you would like to arrange another appointment.
-
-Thank you for keeping us informed.` + signature;
-    }
-
-    if (event.type === "Follow-up Reminder") {
-
-        return `Hi ${firstName},
-
-I wanted to follow up regarding your recent real estate inquiry or appointment.
-
-Please let us know if you have any updates, questions, or changes to your availability. I'll coordinate with ${event.agent} regarding the appropriate next steps.
-
-Thank you, and I look forward to hearing from you.` + signature;
-    }
-
-    if (event.status === "Completed") {
-
-        return `Hi ${firstName},
-
-Thank you for taking the time to attend your appointment with ${event.agent}.
-
-We would appreciate any feedback or questions you may have following your appointment.
-
-Please feel free to reply, and I'll forward your inquiries to the assigned agent for review.
-
-Thank you again for your time.` + signature;
-    }
-
-    if (event.status === "Pending" || event.status === "Rescheduled") {
-
-        return `Hi ${firstName},
-
-Thank you for sharing your availability.
-
-Your requested appointment details are as follows:
-
-Date: ${date}
-Time: ${time}
-Location: ${event.location}
-Assigned agent: ${event.agent}
-
-Please note that this appointment is tentative and remains subject to final confirmation from the assigned agent.
-
-I'll provide an update once the necessary arrangements have been confirmed.
-
-Thank you for your patience.` + signature;
-    }
-
-    return `Hi ${firstName},
-
-I'm writing to confirm your upcoming appointment.
-
-Appointment: ${event.type}
-Date: ${date}
-Time: ${time}
-Location: ${event.location}
-Assigned agent: ${event.agent}
-
-Please let us know in advance if you need to reschedule or if you have any questions regarding your appointment.
-
-We look forward to assisting you.` + signature;
-}
-
-function detail(symbol, label, value) {
+    if(!value) return "";
 
     return `
-        <div class="detail-row">
-
+        <div class="detail">
             ${icon(symbol)}
-
-            <div>
-
-                <div class="detail-label">${label}</div>
-
-                ${esc(value)}
-
-            </div>
-
+            <div class="detail-text">${esc(value)}</div>
         </div>
     `;
 }
 
 function openEvent(id) {
 
-    const event = events.find(item => item.id === id);
+    const event = events.find(item=>item.id===id);
 
-    if (!event) return;
+    if(!event) return;
 
     currentId = id;
 
+    const date = parseDate(event.date).toLocaleDateString("en-US",{
+        weekday:"long",
+        month:"long",
+        day:"numeric"
+    });
+
     document.getElementById("eventDetails").innerHTML = `
 
-        <div class="event-heading">
+        <div class="detail-title">
 
-            <div class="event-dot"
-                style="background:${types[event.type].color}">
+            <div class="color-square"
+                style="background:${categories[event.category]}">
             </div>
 
             <div>
 
-                <h1>${esc(event.title)}</h1>
+                <h2>${esc(event.title)}</h2>
 
-                <span class="status" style="${styleEvent(event)}">
-                    ${esc(event.status)}
-                </span>
-
-            </div>
-
-        </div>
-
-        ${detail(
-            "schedule",
-            "Date and time",
-            fullDate(event.date) + " · " +
-            timeText(event.start) + " – " +
-            timeText(event.end) + " ET"
-        )}
-
-        ${detail("location_on","Location",event.location)}
-
-        ${detail("person","Client",event.client)}
-
-        ${detail("mail","Client email",event.email)}
-
-        ${detail("groups","Assigned agent",event.agent)}
-
-        ${detail("event_available","Client availability",event.availability)}
-
-        ${detail("notifications","Reminder preference",event.reminder)}
-
-        ${detail(
-            "event_repeat",
-            "Follow-up",
-            event.followup ? fullDate(event.followup) : "Not scheduled"
-        )}
-
-        ${detail("notes","Appointment notes",event.notes || "No notes")}
-
-        <div class="detail-row">
-
-            ${icon("mail_outline")}
-
-            <div>
-
-                <div class="detail-label">
-
-                    ${event.status === "Confirmed"
-                        ? "Appointment confirmation draft"
-                        : "Client communication draft"}
-
-                </div>
-
-                <div class="confirmation" id="confirmationText">${esc(confirmationMessage(event))}</div>
-
-                <div class="actions">
-
-                    <button class="secondary" onclick="copyConfirmation()">
-
-                        ${icon("content_copy")}
-
-                        Copy message
-
-                    </button>
-
-                    ${event.followup && event.type !== "Follow-up Reminder" ? `
-
-                        <button class="secondary" onclick="createFollowup()">
-
-                            ${icon("add")}
-
-                            Add follow-up
-
-                        </button>
-
-                    ` : ""}
-
+                <div class="detail-date">
+                    ${date} ·
+                    ${timeText(event.start)} – ${timeText(event.end)}
+                    ET
                 </div>
 
             </div>
 
         </div>
+
+        ${detail("location_on",event.location)}
+
+        ${detail("group",event.guest
+            ? "Organizer: "+ACCOUNT+"\nGuest: "+event.guest
+            : ACCOUNT)}
+
+        ${detail("notes",event.description)}
+
+        ${detail("notifications",event.reminder)}
+
+        ${detail("calendar_today",event.category)}
+
     `;
 
-    document.getElementById("eventOverlay").classList.remove("hidden");
+    document.getElementById("detailOverlay").classList.remove("hidden");
 }
 
-function closeEvent() {
+function closeDialogs() {
 
-    document.getElementById("eventOverlay").classList.add("hidden");
+    document.getElementById("detailOverlay").classList.add("hidden");
+
+    document.getElementById("formOverlay").classList.add("hidden");
 
     currentId = null;
-}
-
-async function copyConfirmation() {
-
-    const text = document.getElementById("confirmationText").textContent;
-
-    try {
-
-        await navigator.clipboard.writeText(text);
-
-        notify("Message copied.");
-
-    } catch {
-
-        notify("Select the message and press Ctrl+C.");
-
-    }
-}
-
-function createFollowup() {
-
-    const event = events.find(item => item.id === currentId);
-
-    if (!event || !event.followup) return;
-
-    const exists = events.some(item =>
-        item.type === "Follow-up Reminder" &&
-        item.email === event.email &&
-        item.date === event.followup &&
-        item.status !== "Cancelled"
-    );
-
-    if (exists) {
-        notify("A follow-up is already scheduled.");
-        return;
-    }
-
-    closeEvent();
-
-    openForm(event.followup,"10:00");
-
-    const form = document.getElementById("eventForm");
-
-    form.elements.title.value = "Follow up — " + event.client;
-
-    form.elements.type.value = "Follow-up Reminder";
-
-    form.elements.client.value = event.client;
-
-    form.elements.email.value = event.email;
-
-    form.elements.agent.value = event.agent;
-
-    form.elements.availability.value = event.availability;
-
-    form.elements.location.value = "Email follow-up";
-
-    form.elements.end.value = "10:30";
-
-    form.elements.notes.value =
-        "Follow up regarding " + event.title + ".";
-
-}
-
-/* CREATE AND EDIT APPOINTMENTS */
-
-function openForm(date = key(selectedDate), start = "09:00") {
-
     editingId = null;
+}
+
+function openForm(date=dateKey(selectedDate),start="09:00") {
+
+    closeDialogs();
 
     const form = document.getElementById("eventForm");
 
     form.reset();
 
     form.elements.date.value = date;
-
     form.elements.start.value = start;
 
-    const endMinutes = Math.min(minutes(start)+60,1200);
+    const end = Math.min(minutes(start)+60,1439);
 
     form.elements.end.value =
-        String(Math.floor(endMinutes/60)).padStart(2,"0") +
-        ":" +
-        String(endMinutes%60).padStart(2,"0");
-
-    form.elements.status.value = "Pending";
-
-    form.elements.reminder.value = "1 day before";
-
-    document.getElementById("formTitle").textContent =
-        "New appointment";
+        String(Math.floor(end/60)).padStart(2,"0")+":"+
+        String(end%60).padStart(2,"0");
 
     document.getElementById("formOverlay").classList.remove("hidden");
+
+    form.elements.title.focus();
 }
 
-function closeForm() {
+function editEvent() {
 
-    document.getElementById("formOverlay").classList.add("hidden");
+    const event = events.find(item=>item.id===currentId);
 
-    editingId = null;
-}
-
-function editCurrent() {
-
-    const event = events.find(item => item.id === currentId);
-
-    if (!event) return;
-
-    closeEvent();
+    if(!event) return;
 
     openForm(event.date,event.start);
 
@@ -2278,18 +1867,12 @@ function editCurrent() {
 
     const form = document.getElementById("eventForm");
 
-    Object.entries(event).forEach(([name,value]) => {
+    Object.entries(event).forEach(([name,value])=>{
 
-        if (form.elements.namedItem(name)) {
-
+        if(form.elements.namedItem(name)) {
             form.elements.namedItem(name).value = value;
-
         }
-
     });
-
-    document.getElementById("formTitle").textContent =
-        "Edit appointment";
 }
 
 function saveEvent(submission) {
@@ -2300,148 +1883,80 @@ function saveEvent(submission) {
         new FormData(submission.target)
     );
 
-    if (minutes(data.end) <= minutes(data.start)) {
+    if(minutes(data.end)<=minutes(data.start)) {
 
-        notify("End time must be after the start time.");
-
-        return;
-    }
-
-    if (
-        minutes(data.start) < 420 ||
-        minutes(data.end) > 1200
-    ) {
-
-        notify("Choose a time between 7 AM and 8 PM ET.");
+        alert("End time must be after the start time.");
 
         return;
     }
 
-    const conflict = events.find(event =>
+    const appointment = {
+        id:editingId||Date.now(),
+        ...data
+    };
 
-        event.id !== editingId &&
+    if(editingId) {
 
-        event.date === data.date &&
-
-        !["Cancelled","Completed"].includes(event.status) &&
-
-        !["Cancelled","Completed"].includes(data.status) &&
-
-        (
-            event.agent.trim().toLowerCase() ===
-                data.agent.trim().toLowerCase() ||
-
-            event.email.trim().toLowerCase() ===
-                data.email.trim().toLowerCase()
-        ) &&
-
-        minutes(event.start) < minutes(data.end) &&
-
-        minutes(event.end) > minutes(data.start)
-
-    );
-
-    if (conflict) {
-
-        notify("Scheduling conflict: " + conflict.title);
-
-        return;
-    }
-
-    const id = editingId || Date.now();
-
-    const appointment = {id,...data};
-
-    if (editingId) {
-
-        events = events.map(event =>
-            event.id === editingId ? appointment : event
+        events = events.map(event=>
+            event.id===editingId?appointment:event
         );
 
     } else {
 
         events.push(appointment);
-
     }
 
     save();
 
-    closeForm();
+    closeDialogs();
 
     selectedDate = parseDate(data.date);
-
     miniDate = new Date(selectedDate);
 
     render();
-
-    notify("Appointment saved.");
-
-    openEvent(id);
 }
 
-function deleteCurrent() {
+function deleteEvent() {
 
-    if (!confirm("Delete this appointment?")) return;
+    if(!confirm("Delete this event?")) return;
 
-    events = events.filter(event => event.id !== currentId);
+    events = events.filter(event=>event.id!==currentId);
 
     save();
 
-    closeEvent();
+    closeDialogs();
 
     render();
-
-    notify("Appointment deleted.");
 }
 
-/* INITIALIZATION */
+document.querySelectorAll(".overlay").forEach(overlay=>{
 
-document.addEventListener("keydown",event => {
+    overlay.addEventListener("click",event=>{
 
-    if (event.key === "Escape") {
+        if(event.target===overlay) closeDialogs();
+    });
+});
 
-        closeForm();
+document.addEventListener("keydown",event=>{
 
-        closeEvent();
+    if(event.key==="Escape") {
+
+        closeDialogs();
 
         document.getElementById("profile").classList.add("hidden");
-
     }
 });
 
-document.addEventListener("click",event => {
+document.addEventListener("click",event=>{
 
-    const profile = document.getElementById("profile");
+    if(!event.target.closest(".profile") &&
+        !event.target.closest(".account")) {
 
-    if (
-        !profile.contains(event.target) &&
-        !event.target.closest(".account")
-    ) {
-        profile.classList.add("hidden");
+        document.getElementById("profile").classList.add("hidden");
     }
-
 });
 
-document.querySelectorAll(".overlay").forEach(overlay => {
-
-    overlay.addEventListener("click",event => {
-
-        if (event.target === overlay) {
-
-            if (overlay.id === "formOverlay") {
-                closeForm();
-            } else {
-                closeEvent();
-            }
-
-        }
-
-    });
-
-});
-
-renderFilters();
-
+renderOptions();
 render();
 
 </script>
