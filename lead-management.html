@@ -1,0 +1,1983 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lead Management & CRM | Dainty De Guzman</title>
+
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+    --primary: #a65f7d;
+    --dark: #503743;
+    --background: #fcf8fa;
+    --light: #f8edf2;
+    --border: #eadde4;
+    --text: #40363c;
+    --muted: #857780;
+    --white: #ffffff;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: 'DM Sans', Arial, sans-serif;
+    background: var(--background);
+    color: var(--text);
+    font-size: 13px;
+}
+
+button, input, select, textarea {
+    font: inherit;
+}
+
+button, a {
+    cursor: pointer;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+button {
+    transition: 0.2s;
+}
+
+button:hover {
+    opacity: 0.85;
+}
+
+.topbar {
+    height: 62px;
+    background: var(--dark);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 25px;
+    position: sticky;
+    top: 0;
+    z-index: 20;
+}
+
+.brand {
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.brand small {
+    display: block;
+    font-size: 10px;
+    font-weight: 400;
+    color: #e4cbd7;
+    letter-spacing: 1.5px;
+}
+
+.top-right {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+}
+
+.avatar {
+    width: 33px;
+    height: 33px;
+    border-radius: 50%;
+    background: #e5bdcf;
+    color: var(--dark);
+    display: grid;
+    place-items: center;
+    font-weight: 700;
+}
+
+.layout {
+    display: flex;
+    min-height: calc(100vh - 62px);
+}
+
+.sidebar {
+    width: 215px;
+    flex-shrink: 0;
+    background: white;
+    border-right: 1px solid var(--border);
+    padding: 25px 14px;
+}
+
+.sidebar-label {
+    color: var(--muted);
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    font-weight: 700;
+    margin: 20px 12px 12px;
+}
+
+.nav-item {
+    display: block;
+    width: 100%;
+    padding: 13px;
+    margin-bottom: 5px;
+    border: none;
+    background: transparent;
+    color: var(--text);
+    text-align: left;
+    border-radius: 5px;
+}
+
+.nav-item.active {
+    background: var(--light);
+    color: var(--primary);
+    font-weight: 700;
+    border-left: 3px solid var(--primary);
+}
+
+.sidebar-footer {
+    margin: 40px 12px;
+    color: var(--muted);
+    font-size: 11px;
+    line-height: 1.8;
+}
+
+.main {
+    flex: 1;
+    min-width: 0;
+    padding: 30px;
+}
+
+.breadcrumb {
+    color: var(--muted);
+    font-size: 11px;
+    margin-bottom: 22px;
+}
+
+.heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.heading h1 {
+    font-size: 30px;
+    margin: 0 0 6px;
+    letter-spacing: -1px;
+}
+
+.heading p {
+    color: var(--muted);
+    margin: 0;
+}
+
+.actions {
+    display: flex;
+    gap: 9px;
+    flex-wrap: wrap;
+}
+
+.btn {
+    border: 1px solid var(--border);
+    background: white;
+    color: var(--text);
+    padding: 10px 16px;
+    border-radius: 5px;
+    font-weight: 600;
+}
+
+.btn-primary {
+    background: var(--primary);
+    color: white;
+    border-color: var(--primary);
+}
+
+.stats {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 13px;
+    margin: 28px 0;
+}
+
+.stat {
+    background: white;
+    border: 1px solid var(--border);
+    padding: 19px;
+    border-radius: 7px;
+}
+
+.stat-label {
+    color: var(--muted);
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.stat-number {
+    font-size: 29px;
+    font-weight: 700;
+    margin: 7px 0 0;
+    color: var(--dark);
+}
+
+.panel {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 7px;
+    overflow: hidden;
+}
+
+.tabs {
+    display: flex;
+    border-bottom: 1px solid var(--border);
+    padding: 0 20px;
+    gap: 24px;
+    overflow-x: auto;
+}
+
+.tab {
+    padding: 16px 3px;
+    background: transparent;
+    border: none;
+    border-bottom: 3px solid transparent;
+    white-space: nowrap;
+    color: var(--muted);
+    font-weight: 600;
+}
+
+.tab.active {
+    color: var(--primary);
+    border-bottom-color: var(--primary);
+}
+
+.toolbar {
+    padding: 17px;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    align-items: center;
+    border-bottom: 1px solid var(--border);
+}
+
+.toolbar input,
+.toolbar select {
+    border: 1px solid var(--border);
+    padding: 10px 12px;
+    border-radius: 4px;
+    background: white;
+    color: var(--text);
+}
+
+.search {
+    width: 260px;
+    max-width: 100%;
+}
+
+.table-scroll {
+    width: 100%;
+    max-height: 570px;
+    overflow: auto;
+    scrollbar-color: #cda4b6 #f9eff4;
+    scrollbar-width: thin;
+}
+
+table {
+    border-collapse: separate;
+    border-spacing: 0;
+    width: 100%;
+    min-width: 2900px;
+}
+
+th, td {
+    text-align: left;
+    padding: 15px 17px;
+    border-bottom: 1px solid #f0e7ec;
+    white-space: nowrap;
+}
+
+th {
+    background: #f8f0f4;
+    color: #79616e;
+    font-size: 10px;
+    letter-spacing: 0.5px;
+    position: sticky;
+    top: 0;
+    z-index: 3;
+    cursor: pointer;
+}
+
+td {
+    font-size: 12px;
+    background: white;
+}
+
+tbody tr:hover td {
+    background: #fff7fa;
+}
+
+th:first-child,
+td:first-child {
+    position: sticky;
+    left: 0;
+    border-right: 1px solid var(--border);
+}
+
+th:first-child {
+    z-index: 5;
+}
+
+td:first-child {
+    z-index: 2;
+}
+
+.contact-name {
+    border: none;
+    background: transparent;
+    color: var(--primary);
+    font-weight: 700;
+    padding: 0;
+    text-align: left;
+}
+
+.contact-name:hover {
+    text-decoration: underline;
+}
+
+.contact-cell {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.contact-avatar {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: #f1dce6;
+    color: #9a5674;
+    display: grid;
+    place-items: center;
+    font-size: 10px;
+    font-weight: 700;
+}
+
+.badge {
+    display: inline-block;
+    padding: 5px 9px;
+    border-radius: 4px;
+    font-size: 10px;
+    font-weight: 600;
+}
+
+.stage-new {
+    background: #e8effa;
+    color: #4c6e9e;
+}
+
+.stage-contacted {
+    background: #eee8f9;
+    color: #74589c;
+}
+
+.stage-qualified {
+    background: #e4f1e9;
+    color: #47795c;
+}
+
+.stage-viewing {
+    background: #f9ecd8;
+    color: #986c2e;
+}
+
+.stage-nurturing {
+    background: #f5e5ef;
+    color: #a15c85;
+}
+
+.stage-closed {
+    background: #d9eee4;
+    color: #327553;
+}
+
+.stage-lost {
+    background: #eeeeee;
+    color: #777777;
+}
+
+.priority-high {
+    background: #f9e1e5;
+    color: #b34f62;
+}
+
+.priority-medium {
+    background: #faf0dd;
+    color: #987333;
+}
+
+.priority-low {
+    background: #e8f0ea;
+    color: #588065;
+}
+
+.table-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 20px;
+    color: var(--muted);
+    font-size: 11px;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.notice {
+    color: var(--muted);
+    font-size: 11px;
+    line-height: 1.8;
+    margin-top: 22px;
+}
+
+.overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: #30212b66;
+    z-index: 100;
+}
+
+.overlay.open {
+    display: block;
+}
+
+.drawer {
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 100%;
+    width: 550px;
+    max-width: 100%;
+    background: white;
+    overflow-y: auto;
+    box-shadow: -10px 0 40px #38233022;
+}
+
+.drawer-header {
+    background: var(--light);
+    padding: 24px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--border);
+}
+
+.drawer-header h2 {
+    margin: 0 0 5px;
+    font-size: 23px;
+}
+
+.drawer-header p {
+    margin: 0;
+    color: var(--muted);
+}
+
+.close {
+    background: transparent;
+    border: none;
+    font-size: 25px;
+    color: var(--dark);
+}
+
+.drawer-content {
+    padding: 25px;
+}
+
+.form-section {
+    margin-bottom: 28px;
+}
+
+.form-section h3 {
+    margin: 0 0 18px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border);
+    font-size: 13px;
+    color: var(--primary);
+}
+
+.fields {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 17px;
+}
+
+.field label {
+    display: block;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--muted);
+    margin-bottom: 6px;
+}
+
+.field input,
+.field select,
+.field textarea {
+    width: 100%;
+    border: 1px solid var(--border);
+    background: white;
+    border-radius: 4px;
+    padding: 10px;
+    color: var(--text);
+}
+
+.field textarea {
+    resize: vertical;
+    min-height: 95px;
+}
+
+.field.full {
+    grid-column: 1 / -1;
+}
+
+.drawer-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    padding: 20px 25px;
+    background: white;
+    border-top: 1px solid var(--border);
+    position: sticky;
+    bottom: 0;
+}
+
+.empty {
+    padding: 40px;
+    color: var(--muted);
+}
+
+.followup-card {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 5px;
+    padding: 18px;
+    margin-bottom: 12px;
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    align-items: center;
+}
+
+.followup-card h3 {
+    margin: 0 0 6px;
+    font-size: 14px;
+}
+
+.followup-card p {
+    margin: 4px 0;
+    color: var(--muted);
+    font-size: 12px;
+}
+
+.hidden {
+    display: none !important;
+}
+
+@media(max-width: 1050px) {
+    .stats {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media(max-width: 700px) {
+    .sidebar {
+        display: none;
+    }
+
+    .main {
+        padding: 18px;
+    }
+
+    .stats {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .topbar {
+        padding: 0 15px;
+    }
+
+    .top-right span {
+        display: none;
+    }
+
+    .fields {
+        grid-template-columns: 1fr;
+    }
+
+    .brand {
+        font-size: 13px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header class="topbar">
+    <div class="brand">
+        REAL ESTATE CRM
+        <small>DAINTY DE GUZMAN | PORTFOLIO</small>
+    </div>
+
+    <div class="top-right">
+        <a href="index.html">Back to Portfolio</a>
+        <span>CRM Workspace</span>
+        <div class="avatar">DD</div>
+    </div>
+</header>
+
+<div class="layout">
+
+<aside class="sidebar">
+
+    <div class="sidebar-label">WORKSPACE</div>
+
+    <button class="nav-item active" data-view="contacts"
+        onclick="switchView('contacts')">
+        Contacts
+    </button>
+
+    <button class="nav-item" data-view="followups"
+        onclick="switchView('followups')">
+        Follow-up Tasks
+    </button>
+
+    <button class="nav-item" data-view="pipeline"
+        onclick="switchView('pipeline')">
+        Lead Pipeline
+    </button>
+
+    <div class="sidebar-label">CONTACT VIEWS</div>
+
+    <button class="nav-item" onclick="setView('all')">
+        All Contacts
+    </button>
+
+    <button class="nav-item" onclick="setView('Buyer')">
+        Buyer Leads
+    </button>
+
+    <button class="nav-item" onclick="setView('Seller')">
+        Seller Leads
+    </button>
+
+    <button class="nav-item" onclick="setView('high')">
+        High Priority
+    </button>
+
+    <div class="sidebar-label">PORTFOLIO</div>
+
+    <a class="nav-item" href="index.html#work">
+        Selected Work
+    </a>
+
+    <div class="sidebar-footer">
+        REAL ESTATE ADMINISTRATION<br>
+        Independent CRM Demonstration<br>
+        Fictional US Contact Records
+    </div>
+
+</aside>
+
+<main class="main">
+
+    <div class="breadcrumb">
+        CRM / Real Estate / Contact Management
+    </div>
+
+    <div class="heading">
+        <div>
+            <h1 id="pageTitle">Contacts</h1>
+            <p id="recordCount">Real Estate Lead Database</p>
+        </div>
+
+        <div class="actions">
+            <button class="btn" onclick="resetData()">
+                Reset Demo
+            </button>
+
+            <button class="btn" onclick="exportCSV()">
+                Export CSV
+            </button>
+
+            <button class="btn btn-primary"
+                onclick="openContact()">
+                + Create Contact
+            </button>
+        </div>
+    </div>
+
+    <div class="stats">
+        <div class="stat">
+            <div class="stat-label">TOTAL CONTACTS</div>
+            <div class="stat-number" id="totalCount">0</div>
+        </div>
+
+        <div class="stat">
+            <div class="stat-label">BUYER LEADS</div>
+            <div class="stat-number" id="buyerCount">0</div>
+        </div>
+
+        <div class="stat">
+            <div class="stat-label">SELLER LEADS</div>
+            <div class="stat-number" id="sellerCount">0</div>
+        </div>
+
+        <div class="stat">
+            <div class="stat-label">HIGH PRIORITY</div>
+            <div class="stat-number" id="highCount">0</div>
+        </div>
+
+        <div class="stat">
+            <div class="stat-label">ACTIVE LEADS</div>
+            <div class="stat-number" id="activeCount">0</div>
+        </div>
+    </div>
+
+    <section id="contactsView" class="panel">
+
+        <div class="tabs">
+            <button class="tab active" data-tab="all"
+                onclick="setView('all')">
+                All Contacts
+            </button>
+
+            <button class="tab" data-tab="Buyer"
+                onclick="setView('Buyer')">
+                Buyers
+            </button>
+
+            <button class="tab" data-tab="Seller"
+                onclick="setView('Seller')">
+                Sellers
+            </button>
+
+            <button class="tab" data-tab="high"
+                onclick="setView('high')">
+                High Priority
+            </button>
+        </div>
+
+        <div class="toolbar">
+
+            <input class="search" id="search"
+                type="search"
+                placeholder="Search contact records..."
+                oninput="renderContacts()">
+
+            <select id="typeFilter"
+                onchange="renderContacts()">
+                <option value="">Lead Type: All</option>
+                <option>Buyer</option>
+                <option>Seller</option>
+            </select>
+
+            <select id="stageFilter"
+                onchange="renderContacts()">
+                <option value="">Lead Stage: All</option>
+                <option>New</option>
+                <option>Contacted</option>
+                <option>Qualified</option>
+                <option>Viewing</option>
+                <option>Nurturing</option>
+                <option>Closed</option>
+                <option>Lost</option>
+            </select>
+
+            <select id="priorityFilter"
+                onchange="renderContacts()">
+                <option value="">Priority: All</option>
+                <option>High</option>
+                <option>Medium</option>
+                <option>Low</option>
+            </select>
+
+            <button class="btn" onclick="clearFilters()">
+                Clear Filters
+            </button>
+
+        </div>
+
+        <div class="table-scroll">
+
+            <table>
+                <thead>
+                    <tr id="tableHeaders"></tr>
+                </thead>
+
+                <tbody id="contactRows"></tbody>
+            </table>
+
+        </div>
+
+        <div class="table-footer">
+            <span id="visibleCount"></span>
+            <span>Scroll horizontally to view all contact properties.</span>
+        </div>
+
+    </section>
+
+    <section id="followupsView" class="hidden">
+        <div id="followupList"></div>
+    </section>
+
+    <section id="pipelineView" class="hidden">
+        <div id="pipelineList"></div>
+    </section>
+
+    <p class="notice">
+        Independent portfolio demonstration by Dainty De Guzman.
+        All contacts and transaction information are fictional.
+        This CRM interface is inspired by professional contact
+        management systems and is not connected to HubSpot.
+        Changes are stored locally in your browser when supported.
+    </p>
+
+</main>
+</div>
+
+<div class="overlay" id="overlay"
+    onclick="if(event.target === this) closeContact()">
+
+    <div class="drawer">
+
+        <div class="drawer-header">
+            <div>
+                <h2 id="drawerName">Contact Record</h2>
+                <p id="drawerSubtitle">Contact Information</p>
+            </div>
+
+            <button class="close"
+                onclick="closeContact()"
+                aria-label="Close contact">
+                &times;
+            </button>
+        </div>
+
+        <form id="contactForm"
+            onsubmit="saveContact(event)">
+
+            <div class="drawer-content"
+                id="drawerFields">
+            </div>
+
+            <div class="drawer-actions">
+
+                <button type="button" class="btn"
+                    onclick="closeContact()">
+                    Cancel
+                </button>
+
+                <button type="submit"
+                    class="btn btn-primary">
+                    Save Contact
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+<script>
+
+/* ========================================
+   FICTIONAL REAL ESTATE CONTACT DATABASE
+======================================== */
+
+const originalContacts = [
+
+{
+    id: "RE-001",
+    first: "Olivia",
+    last: "Mitchell",
+    email: "olivia.mitchell@example.com",
+    phone: "+1 (202) 555-0100",
+    type: "Buyer",
+    stage: "Qualified",
+    interest: "Primary residence",
+    market: "Austin, TX",
+    property: "Single-Family Home",
+    budget: 450000,
+    bedrooms: 3,
+    bathrooms: 2,
+    timeline: "1–3 Months",
+    financing: "Conventional Loan",
+    preference: "Email",
+    priority: "High",
+    lastContact: "2026-11-23",
+    followup: "2026-11-27",
+    action: "Prepare matching property shortlist",
+    notes: "Pre-approved buyer seeking a home near schools and parks. Prefers a spacious backyard and updated kitchen. Agent to review matching properties before sending."
+},
+
+{
+    id: "RE-002",
+    first: "James",
+    last: "Carter",
+    email: "james.carter@example.com",
+    phone: "+1 (202) 555-0101",
+    type: "Seller",
+    stage: "Contacted",
+    interest: "Residential property sale",
+    market: "Dallas, TX",
+    property: "Single-Family Home",
+    budget: 580000,
+    bedrooms: 4,
+    bathrooms: 3,
+    timeline: "1–3 Months",
+    financing: "Not Applicable",
+    preference: "Phone",
+    priority: "High",
+    lastContact: "2026-11-24",
+    followup: "2026-11-27",
+    action: "Coordinate listing consultation",
+    notes: "Homeowner considering relocation. Requested information about the selling process. Property valuation and pricing require agent review."
+},
+
+{
+    id: "RE-003",
+    first: "Sophia",
+    last: "Bennett",
+    email: "sophia.bennett@example.com",
+    phone: "+1 (202) 555-0102",
+    type: "Buyer",
+    stage: "Viewing",
+    interest: "Downtown condominium",
+    market: "Miami, FL",
+    property: "Condo",
+    budget: 375000,
+    bedrooms: 2,
+    bathrooms: 2,
+    timeline: "Immediately",
+    financing: "Cash",
+    preference: "Text",
+    priority: "High",
+    lastContact: "2026-11-25",
+    followup: "2026-11-28",
+    action: "Confirm proposed showing schedule",
+    notes: "Prefers waterfront or downtown units with parking and building security. Showing arrangements subject to agent and property availability."
+},
+
+{
+    id: "RE-004",
+    first: "Ethan",
+    last: "Brooks",
+    email: "ethan.brooks@example.com",
+    phone: "+1 (202) 555-0103",
+    type: "Buyer",
+    stage: "New",
+    interest: "First-time home purchase",
+    market: "Phoenix, AZ",
+    property: "Townhouse",
+    budget: 320000,
+    bedrooms: 3,
+    bathrooms: 2,
+    timeline: "3–6 Months",
+    financing: "FHA Loan",
+    preference: "Email",
+    priority: "Medium",
+    lastContact: "",
+    followup: "2026-11-28",
+    action: "Draft introductory response",
+    notes: "New inquiry. Financing status and preferred neighborhoods still need confirmation. Prepare intake questions for agent approval."
+},
+
+{
+    id: "RE-005",
+    first: "Isabella",
+    last: "Morgan",
+    email: "isabella.morgan@example.com",
+    phone: "+1 (202) 555-0104",
+    type: "Seller",
+    stage: "Qualified",
+    interest: "Investment property sale",
+    market: "Orlando, FL",
+    property: "Multi-Family",
+    budget: 720000,
+    bedrooms: 6,
+    bathrooms: 4,
+    timeline: "1–3 Months",
+    financing: "Not Applicable",
+    preference: "Email",
+    priority: "High",
+    lastContact: "2026-11-22",
+    followup: "2026-11-29",
+    action: "Organize property documentation",
+    notes: "Owner intends to sell a duplex. Collect available property details, occupancy information, and documents for agent verification."
+},
+
+{
+    id: "RE-006",
+    first: "Noah",
+    last: "Reed",
+    email: "noah.reed@example.com",
+    phone: "+1 (202) 555-0105",
+    type: "Buyer",
+    stage: "Nurturing",
+    interest: "Future family residence",
+    market: "Denver, CO",
+    property: "Single-Family Home",
+    budget: 650000,
+    bedrooms: 4,
+    bathrooms: 3,
+    timeline: "6+ Months",
+    financing: "Conventional Loan",
+    preference: "Email",
+    priority: "Low",
+    lastContact: "2026-11-19",
+    followup: "2026-12-10",
+    action: "Prepare periodic market update",
+    notes: "Planning a future relocation. Not ready for showings. Maintain permission-based communication and confirm timeline during next follow-up."
+},
+
+{
+    id: "RE-007",
+    first: "Amelia",
+    last: "Hayes",
+    email: "amelia.hayes@example.com",
+    phone: "+1 (202) 555-0106",
+    type: "Buyer",
+    stage: "Contacted",
+    interest: "Rental investment",
+    market: "Tampa, FL",
+    property: "Condo",
+    budget: 290000,
+    bedrooms: 2,
+    bathrooms: 2,
+    timeline: "3–6 Months",
+    financing: "Cash",
+    preference: "Phone",
+    priority: "Medium",
+    lastContact: "2026-11-21",
+    followup: "2026-11-30",
+    action: "Collect investment property preferences",
+    notes: "Interested in rental investment opportunities. Rental restrictions, association fees, and financial assumptions require verification."
+},
+
+{
+    id: "RE-008",
+    first: "Lucas",
+    last: "Foster",
+    email: "lucas.foster@example.com",
+    phone: "+1 (202) 555-0107",
+    type: "Seller",
+    stage: "Nurturing",
+    interest: "Residential downsizing",
+    market: "Charlotte, NC",
+    property: "Single-Family Home",
+    budget: 495000,
+    bedrooms: 4,
+    bathrooms: 3,
+    timeline: "6+ Months",
+    financing: "Not Applicable",
+    preference: "Phone",
+    priority: "Low",
+    lastContact: "2026-11-18",
+    followup: "2026-12-15",
+    action: "Confirm future selling timeline",
+    notes: "Considering downsizing after retirement. No immediate listing plans. Maintain occasional contact with permission."
+},
+
+{
+    id: "RE-009",
+    first: "Mia",
+    last: "Parker",
+    email: "mia.parker@example.com",
+    phone: "+1 (202) 555-0108",
+    type: "Buyer",
+    stage: "Viewing",
+    interest: "Relocation purchase",
+    market: "Seattle, WA",
+    property: "Townhouse",
+    budget: 780000,
+    bedrooms: 3,
+    bathrooms: 3,
+    timeline: "Immediately",
+    financing: "Conventional Loan",
+    preference: "Text",
+    priority: "High",
+    lastContact: "2026-11-25",
+    followup: "2026-11-27",
+    action: "Coordinate available viewing slots",
+    notes: "Relocating for employment. Prefers properties with convenient transportation access. Confirm availability before proposing appointments."
+},
+
+{
+    id: "RE-010",
+    first: "Benjamin",
+    last: "Cole",
+    email: "benjamin.cole@example.com",
+    phone: "+1 (202) 555-0109",
+    type: "Buyer",
+    stage: "Closed",
+    interest: "Primary residence",
+    market: "Atlanta, GA",
+    property: "Single-Family Home",
+    budget: 410000,
+    bedrooms: 3,
+    bathrooms: 2,
+    timeline: "Immediately",
+    financing: "VA Loan",
+    preference: "Email",
+    priority: "Low",
+    lastContact: "2026-11-20",
+    followup: "",
+    action: "Archive completed lead record",
+    notes: "Simulated completed purchase. Organize final administrative records and prepare a post-closing communication draft for agent review."
+},
+
+{
+    id: "RE-011",
+    first: "Charlotte",
+    last: "Evans",
+    email: "charlotte.evans@example.com",
+    phone: "+1 (202) 555-0110",
+    type: "Seller",
+    stage: "New",
+    interest: "Vacant land sale",
+    market: "San Antonio, TX",
+    property: "Land",
+    budget: 185000,
+    bedrooms: 0,
+    bathrooms: 0,
+    timeline: "Undecided",
+    financing: "Not Applicable",
+    preference: "Email",
+    priority: "Medium",
+    lastContact: "",
+    followup: "2026-11-29",
+    action: "Request basic parcel information",
+    notes: "New landowner inquiry. Parcel identification, ownership, zoning, utilities, and other property details must be verified by appropriate professionals."
+},
+
+{
+    id: "RE-012",
+    first: "Henry",
+    last: "Sullivan",
+    email: "henry.sullivan@example.com",
+    phone: "+1 (202) 555-0111",
+    type: "Buyer",
+    stage: "Lost",
+    interest: "Second home purchase",
+    market: "Las Vegas, NV",
+    property: "Condo",
+    budget: 350000,
+    bedrooms: 2,
+    bathrooms: 2,
+    timeline: "Undecided",
+    financing: "Cash",
+    preference: "Email",
+    priority: "Low",
+    lastContact: "2026-11-17",
+    followup: "",
+    action: "Archive inactive inquiry",
+    notes: "Lead indicated that purchase plans are on hold and requested no further follow-up. Preserve record and respect communication preference."
+}
+
+];
+
+/* ========================================
+   APPLICATION STATE
+======================================== */
+
+const storageKey = "dainty-real-estate-crm-v1";
+
+let contacts;
+
+try {
+    const saved = localStorage.getItem(storageKey);
+
+    contacts = saved
+        ? JSON.parse(saved)
+        : JSON.parse(JSON.stringify(originalContacts));
+
+    if (!Array.isArray(contacts)) {
+        throw new Error("Invalid saved records");
+    }
+} catch {
+    contacts = JSON.parse(JSON.stringify(originalContacts));
+}
+
+let currentTab = "all";
+let editingId = null;
+let sortKey = "id";
+let sortAscending = true;
+
+const stages = [
+    "New",
+    "Contacted",
+    "Qualified",
+    "Viewing",
+    "Nurturing",
+    "Closed",
+    "Lost"
+];
+
+const columns = [
+    ["name", "CONTACT NAME"],
+    ["email", "EMAIL"],
+    ["phone", "PHONE NUMBER"],
+    ["id", "LEAD ID"],
+    ["type", "LEAD TYPE"],
+    ["stage", "LEAD STAGE"],
+    ["priority", "PRIORITY"],
+    ["interest", "PROPERTY INTEREST"],
+    ["market", "PREFERRED MARKET"],
+    ["property", "PROPERTY TYPE"],
+    ["budget", "BUDGET / TARGET PRICE"],
+    ["bedrooms", "BEDROOMS"],
+    ["bathrooms", "BATHROOMS"],
+    ["timeline", "TIMELINE"],
+    ["financing", "FINANCING TYPE"],
+    ["preference", "CONTACT PREFERENCE"],
+    ["lastContact", "LAST CONTACT"],
+    ["followup", "FOLLOW-UP DATE"],
+    ["action", "NEXT ACTION"],
+    ["notes", "NOTES"]
+];
+
+function escapeHTML(value) {
+    return String(value ?? "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#39;");
+}
+
+function fullName(contact) {
+    return contact.first + " " + contact.last;
+}
+
+function currency(value) {
+    return new Intl.NumberFormat("en-US", {
+        style: "currency",
+        currency: "USD",
+        maximumFractionDigits: 0
+    }).format(value || 0);
+}
+
+function formatDate(value) {
+    if (!value) return "—";
+
+    const date = new Date(value + "T12:00:00");
+
+    return date.toLocaleDateString("en-US", {
+        month: "short",
+        day: "numeric",
+        year: "numeric"
+    });
+}
+
+function persist() {
+    try {
+        localStorage.setItem(
+            storageKey,
+            JSON.stringify(contacts)
+        );
+        return true;
+    } catch {
+        return false;
+    }
+}
+
+function isActive(contact) {
+    return !["Closed", "Lost"].includes(contact.stage);
+}
+
+function updateStats() {
+    document.getElementById("totalCount").textContent =
+        contacts.length;
+
+    document.getElementById("buyerCount").textContent =
+        contacts.filter(c => c.type === "Buyer").length;
+
+    document.getElementById("sellerCount").textContent =
+        contacts.filter(c => c.type === "Seller").length;
+
+    document.getElementById("highCount").textContent =
+        contacts.filter(c => c.priority === "High").length;
+
+    document.getElementById("activeCount").textContent =
+        contacts.filter(isActive).length;
+
+    document.getElementById("recordCount").textContent =
+        contacts.length + " contact records";
+}
+
+function getFilteredContacts() {
+
+    const query = document.getElementById("search")
+        .value.toLowerCase().trim();
+
+    const type = document.getElementById("typeFilter").value;
+    const stage = document.getElementById("stageFilter").value;
+    const priority = document.getElementById("priorityFilter").value;
+
+    return contacts.filter(contact => {
+
+        const matchesSearch =
+            Object.values(contact)
+            .join(" ")
+            .toLowerCase()
+            .includes(query);
+
+        const matchesTab =
+            currentTab === "all" ||
+            contact.type === currentTab ||
+            (currentTab === "high" &&
+             contact.priority === "High");
+
+        return matchesSearch &&
+            matchesTab &&
+            (!type || contact.type === type) &&
+            (!stage || contact.stage === stage) &&
+            (!priority || contact.priority === priority);
+
+    }).sort((a, b) => {
+
+        let x = sortKey === "name" ? fullName(a) : a[sortKey];
+        let y = sortKey === "name" ? fullName(b) : b[sortKey];
+
+        let result;
+
+        if (typeof x === "number" &&
+            typeof y === "number") {
+            result = x - y;
+        } else {
+            result = String(x ?? "")
+                .localeCompare(String(y ?? ""));
+        }
+
+        return sortAscending ? result : -result;
+    });
+}
+
+function renderHeaders() {
+    document.getElementById("tableHeaders").innerHTML =
+        columns.map(([key, label]) => `
+            <th onclick="sortContacts('${key}')">
+                ${label}
+                ${sortKey === key
+                    ? (sortAscending ? " ↑" : " ↓")
+                    : ""}
+            </th>
+        `).join("");
+}
+
+function sortContacts(key) {
+
+    if (sortKey === key) {
+        sortAscending = !sortAscending;
+    } else {
+        sortKey = key;
+        sortAscending = true;
+    }
+
+    renderContacts();
+}
+
+function renderContacts() {
+
+    updateStats();
+    renderHeaders();
+
+    const filtered = getFilteredContacts();
+
+    const rows = document.getElementById("contactRows");
+
+    rows.innerHTML = filtered.map(contact => {
+
+        return `<tr>${columns.map(([key]) => {
+
+            const value = contact[key];
+
+            if (key === "name") {
+
+                const initials =
+                    contact.first.charAt(0) +
+                    contact.last.charAt(0);
+
+                return `
+                    <td>
+                        <div class="contact-cell">
+                            <div class="contact-avatar">
+                                ${escapeHTML(initials)}
+                            </div>
+                            <button class="contact-name"
+                                data-id="${escapeHTML(contact.id)}"
+                                onclick="openContact(this.dataset.id)">
+                                ${escapeHTML(fullName(contact))}
+                            </button>
+                        </div>
+                    </td>`;
+            }
+
+            if (key === "stage") {
+                return `<td>
+                    <span class="badge stage-${escapeHTML(value.toLowerCase())}">
+                        ${escapeHTML(value)}
+                    </span>
+                </td>`;
+            }
+
+            if (key === "priority") {
+                return `<td>
+                    <span class="badge priority-${escapeHTML(value.toLowerCase())}">
+                        ${escapeHTML(value)}
+                    </span>
+                </td>`;
+            }
+
+            if (key === "budget") {
+                return `<td>${currency(value)}</td>`;
+            }
+
+            if (key === "lastContact" ||
+                key === "followup") {
+                return `<td>${formatDate(value)}</td>`;
+            }
+
+            if (key === "notes") {
+                return `<td title="${escapeHTML(value)}">
+                    ${escapeHTML(value.slice(0, 65))}
+                    ${value.length > 65 ? "..." : ""}
+                </td>`;
+            }
+
+            return `<td>${escapeHTML(value ?? "—")}</td>`;
+
+        }).join("")}</tr>`;
+
+    }).join("");
+
+    if (!filtered.length) {
+        rows.innerHTML = `
+            <tr>
+                <td colspan="${columns.length}" class="empty">
+                    No matching contact records.
+                </td>
+            </tr>`;
+    }
+
+    document.getElementById("visibleCount").textContent =
+        "Showing " + filtered.length +
+        " of " + contacts.length + " contacts";
+}
+
+function clearFilters() {
+
+    document.getElementById("search").value = "";
+    document.getElementById("typeFilter").value = "";
+    document.getElementById("stageFilter").value = "";
+    document.getElementById("priorityFilter").value = "";
+
+    currentTab = "all";
+
+    updateTabs();
+    renderContacts();
+}
+
+function updateTabs() {
+    document.querySelectorAll(".tab").forEach(tab => {
+        tab.classList.toggle(
+            "active",
+            tab.dataset.tab === currentTab
+        );
+    });
+}
+
+function setView(view) {
+
+    switchView("contacts");
+    clearFilters();
+
+    currentTab = view;
+
+    updateTabs();
+    renderContacts();
+}
+
+/* ========================================
+   CONTACT RECORD DRAWER
+======================================== */
+
+const fieldGroups = [
+
+{
+    title: "Contact Information",
+    fields: [
+        ["id", "Lead ID", "readonly"],
+        ["first", "First Name", "text"],
+        ["last", "Last Name", "text"],
+        ["email", "Email Address", "email"],
+        ["phone", "Phone Number", "tel"],
+        ["preference", "Contact Preference",
+            ["Email", "Phone", "Text"]]
+    ]
+},
+
+{
+    title: "Lead Management",
+    fields: [
+        ["type", "Lead Type", ["Buyer", "Seller"]],
+        ["stage", "Lead Stage", stages],
+        ["priority", "Lead Priority",
+            ["High", "Medium", "Low"]],
+        ["timeline", "Purchase / Sale Timeline",
+            ["Immediately", "1–3 Months", "3–6 Months",
+             "6+ Months", "Undecided"]]
+    ]
+},
+
+{
+    title: "Property Requirements",
+    fields: [
+        ["interest", "Property Interest", "text"],
+        ["market", "Preferred US Market", "text"],
+        ["property", "Property Type",
+            ["Single-Family Home", "Condo", "Townhouse",
+             "Multi-Family", "Land"]],
+        ["budget", "Budget / Target Price (USD)", "number"],
+        ["bedrooms", "Bedrooms", "number"],
+        ["bathrooms", "Bathrooms", "number"],
+        ["financing", "Financing Type",
+            ["Cash", "Conventional Loan", "FHA Loan",
+             "VA Loan", "Other", "Undecided",
+             "Not Applicable"]]
+    ]
+},
+
+{
+    title: "Follow-up & Administrative Notes",
+    fields: [
+        ["lastContact", "Last Contact Date", "date"],
+        ["followup", "Next Follow-up Date", "date"],
+        ["action", "Next Action", "textarea"],
+        ["notes", "Contact Notes", "textarea"]
+    ]
+}
+
+];
+
+function createLeadId() {
+
+    const highest = contacts.reduce((max, contact) => {
+        const number = Number(contact.id.replace("RE-", ""));
+        return Math.max(max, number || 0);
+    }, 0);
+
+    return "RE-" + String(highest + 1).padStart(3, "0");
+}
+
+function openContact(id) {
+
+    editingId = id || null;
+
+    const contact = id
+        ? contacts.find(c => c.id === id)
+        : {
+            id: createLeadId(),
+            first: "",
+            last: "",
+            email: "",
+            phone: "",
+            type: "Buyer",
+            stage: "New",
+            priority: "Medium",
+            interest: "",
+            market: "",
+            property: "Single-Family Home",
+            budget: 0,
+            bedrooms: 0,
+            bathrooms: 0,
+            timeline: "Undecided",
+            financing: "Undecided",
+            preference: "Email",
+            lastContact: "",
+            followup: "",
+            action: "",
+            notes: ""
+        };
+
+    if (!contact) return;
+
+    document.getElementById("drawerName").textContent =
+        id ? fullName(contact) : "Create Contact";
+
+    document.getElementById("drawerSubtitle").textContent =
+        contact.id + " | " + contact.type + " Lead";
+
+    document.getElementById("drawerFields").innerHTML =
+        fieldGroups.map(group => `
+
+            <section class="form-section">
+
+                <h3>${group.title}</h3>
+
+                <div class="fields">
+
+                    ${group.fields.map(([key, label, type]) => {
+
+                        const value = contact[key] ?? "";
+
+                        let input;
+
+                        if (Array.isArray(type)) {
+
+                            input = `<select name="${key}">
+                                ${type.map(option => `
+                                    <option
+                                        value="${escapeHTML(option)}"
+                                        ${option === value ? "selected" : ""}>
+                                        ${escapeHTML(option)}
+                                    </option>
+                                `).join("")}
+                            </select>`;
+
+                        } else if (type === "textarea") {
+
+                            input = `<textarea name="${key}">${escapeHTML(value)}</textarea>`;
+
+                        } else {
+
+                            input = `<input
+                                name="${key}"
+                                type="${type === "readonly" ? "text" : type}"
+                                value="${escapeHTML(value)}"
+                                ${type === "readonly" ? "readonly" : ""}
+                                ${["first", "last", "email"].includes(key)
+                                    ? "required" : ""}
+                                ${type === "number" ? 'min="0"' : ""}
+                                ${key === "bathrooms" ? 'step="0.5"' : ""}
+                            >`;
+                        }
+
+                        return `
+                            <div class="field ${type === "textarea" ? "full" : ""}">
+                                <label>${label}</label>
+                                ${input}
+                            </div>`;
+                    }).join("")}
+
+                </div>
+
+            </section>
+
+        `).join("");
+
+    document.getElementById("overlay")
+        .classList.add("open");
+
+    document.body.style.overflow = "hidden";
+}
+
+function closeContact() {
+
+    document.getElementById("overlay")
+        .classList.remove("open");
+
+    document.body.style.overflow = "";
+
+    editingId = null;
+}
+
+function saveContact(event) {
+
+    event.preventDefault();
+
+    const form = new FormData(event.target);
+    const contact = Object.fromEntries(form.entries());
+
+    contact.budget = Number(contact.budget);
+    contact.bedrooms = Number(contact.bedrooms);
+    contact.bathrooms = Number(contact.bathrooms);
+
+    if (editingId) {
+
+        const index = contacts.findIndex(
+            c => c.id === editingId
+        );
+
+        if (index !== -1) {
+            contacts[index] = contact;
+        }
+
+    } else {
+
+        contact.id = createLeadId();
+        contacts.push(contact);
+    }
+
+    const saved = persist();
+
+    closeContact();
+    refreshAll();
+
+    if (!saved) {
+        alert("Contact updated for this session. Browser storage is unavailable.");
+    }
+}
+
+/* ========================================
+   FOLLOW-UP TASKS
+======================================== */
+
+function renderFollowups() {
+
+    const pending = contacts
+        .filter(c => c.followup && isActive(c))
+        .sort((a, b) =>
+            a.followup.localeCompare(b.followup)
+        );
+
+    document.getElementById("followupList").innerHTML =
+        pending.length ? pending.map(contact => `
+
+            <article class="followup-card">
+
+                <div>
+                    <h3>${escapeHTML(fullName(contact))}</h3>
+
+                    <p>${escapeHTML(contact.action)}</p>
+
+                    <p>
+                        ${escapeHTML(contact.market)}
+                        · ${escapeHTML(contact.type)}
+                        · ${formatDate(contact.followup)}
+                    </p>
+
+                    <span class="badge priority-${escapeHTML(contact.priority.toLowerCase())}">
+                        ${escapeHTML(contact.priority)} Priority
+                    </span>
+                </div>
+
+                <button class="btn"
+                    data-id="${escapeHTML(contact.id)}"
+                    onclick="openContact(this.dataset.id)">
+                    View Contact
+                </button>
+
+            </article>
+
+        `).join("") :
+        '<div class="empty">No scheduled follow-ups.</div>';
+}
+
+/* ========================================
+   LEAD PIPELINE
+======================================== */
+
+function renderPipeline() {
+
+    document.getElementById("pipelineList").innerHTML =
+        stages.map(stage => {
+
+            const matching = contacts.filter(
+                c => c.stage === stage
+            );
+
+            return `
+
+                <div class="panel" style="margin-bottom:15px">
+
+                    <div style="padding:18px;background:#f8edf2">
+
+                        <strong>${stage}</strong>
+
+                        <span style="float:right;color:#a65f7d">
+                            ${matching.length} leads
+                        </span>
+
+                    </div>
+
+                    ${matching.length
+                        ? matching.map(contact => `
+
+                            <div style="padding:16px;border-bottom:1px solid #eadde4">
+
+                                <button class="contact-name"
+                                    data-id="${escapeHTML(contact.id)}"
+                                    onclick="openContact(this.dataset.id)">
+                                    ${escapeHTML(fullName(contact))}
+                                </button>
+
+                                <p style="color:#857780;margin:6px 0">
+
+                                    ${escapeHTML(contact.type)}
+                                    · ${escapeHTML(contact.market)}
+                                    · ${currency(contact.budget)}
+
+                                </p>
+
+                                <small>
+                                    ${escapeHTML(contact.action)}
+                                </small>
+
+                            </div>
+
+                        `).join("")
+                        : '<div style="padding:16px;color:#857780">No contacts in this stage.</div>'
+                    }
+
+                </div>
+
+            `;
+        }).join("");
+}
+
+function switchView(view) {
+
+    const views = {
+        contacts: "Contacts",
+        followups: "Follow-up Tasks",
+        pipeline: "Lead Pipeline"
+    };
+
+    Object.keys(views).forEach(key => {
+
+        document.getElementById(key + "View")
+            .classList.toggle("hidden", key !== view);
+    });
+
+    document.querySelectorAll("[data-view]")
+        .forEach(button => {
+
+            button.classList.toggle(
+                "active",
+                button.dataset.view === view
+            );
+        });
+
+    document.getElementById("pageTitle").textContent =
+        views[view];
+
+    refreshAll();
+}
+
+/* ========================================
+   CSV EXPORT
+======================================== */
+
+function exportCSV() {
+
+    const exportColumns = [
+        ["id", "Lead ID"],
+        ["first", "First Name"],
+        ["last", "Last Name"],
+        ["email", "Email"],
+        ["phone", "Phone Number"],
+        ["type", "Lead Type"],
+        ["stage", "Lead Stage"],
+        ["priority", "Lead Priority"],
+        ["interest", "Property Interest"],
+        ["market", "Preferred Market"],
+        ["property", "Property Type"],
+        ["budget", "Budget USD"],
+        ["bedrooms", "Bedrooms"],
+        ["bathrooms", "Bathrooms"],
+        ["timeline", "Timeline"],
+        ["financing", "Financing Type"],
+        ["preference", "Contact Preference"],
+        ["lastContact", "Last Contact Date"],
+        ["followup", "Follow-up Date"],
+        ["action", "Next Action"],
+        ["notes", "Notes"]
+    ];
+
+    function csvValue(value) {
+
+        let text = String(value ?? "");
+
+        if (/^[=+\-@\t\r]/.test(text)) {
+            text = "'" + text;
+        }
+
+        return '"' + text.replace(/"/g, '""') + '"';
+    }
+
+    const header = exportColumns
+        .map(([, label]) => csvValue(label))
+        .join(",");
+
+    const records = getFilteredContacts()
+        .map(contact => exportColumns
+            .map(([key]) => csvValue(contact[key]))
+            .join(","));
+
+    const csv = [header, ...records].join("\r\n");
+
+    const blob = new Blob(
+        ["\uFEFF", csv],
+        { type: "text/csv;charset=utf-8;" }
+    );
+
+    const url = URL.createObjectURL(blob);
+
+    const link = document.createElement("a");
+
+    link.href = url;
+    link.download = "real-estate-crm-contacts.csv";
+
+    document.body.appendChild(link);
+
+    link.click();
+    link.remove();
+
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
+}
+
+/* ========================================
+   RESET & INITIALIZATION
+======================================== */
+
+function resetData() {
+
+    const confirmed = confirm(
+        "Reset all contacts to the original fictional dataset? Your local changes will be removed."
+    );
+
+    if (!confirmed) return;
+
+    contacts = JSON.parse(
+        JSON.stringify(originalContacts)
+    );
+
+    persist();
+    clearFilters();
+    refreshAll();
+}
+
+function refreshAll() {
+
+    renderContacts();
+    renderFollowups();
+    renderPipeline();
+}
+
+document.addEventListener("keydown", event => {
+
+    if (event.key === "Escape") {
+        closeContact();
+    }
+});
+
+refreshAll();
+
+</script>
+
+</body>
+</html>
