@@ -3,1720 +3,241 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Calendar | Dainty De Guzman</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined&display=swap" rel="stylesheet">
-
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gmail</title>
 <style>
-* { box-sizing: border-box; }
-
-:root {
-    --pink: #a65f7d;
-    --background: #faf2f6;
-    --border: #e7dfe4;
-    --text: #3c4043;
-}
-
-body {
-    margin: 0;
-    background: var(--background);
-    color: var(--text);
-    font: 14px Roboto, Arial, sans-serif;
-}
-
-button, input, select {
-    font: inherit;
-    color: inherit;
-}
-
-button {
-    border: none;
-    background: transparent;
-    cursor: pointer;
-}
-
-button:hover { background: #f0e2ea; }
-
-.material-symbols-outlined {
-    font-size: 22px;
-    vertical-align: middle;
-}
-
-.hidden { display: none !important; }
-
-.icon {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    display: inline-grid;
-    place-items: center;
-    flex-shrink: 0;
-}
-
-header {
-    height: 72px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 8px 18px;
-}
-
-.brand {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    width: 235px;
-    flex-shrink: 0;
-}
-
-.logo {
-    width: 38px;
-    height: 38px;
-}
-
-.brand-name {
-    font-size: 22px;
-}
-
-.today {
-    border: 1px solid #c9bec5;
-    border-radius: 24px;
-    padding: 10px 23px;
-    margin-right: 10px;
-}
-
-#monthTitle {
-    font-size: 22px;
-    font-weight: 400;
-    margin-left: 8px;
-}
-
-.header-right {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin-left: auto;
-}
-
-.view-select {
-    background: transparent;
-    border: 1px solid #c9bec5;
-    border-radius: 24px;
-    padding: 10px 18px;
-}
-
-.avatar {
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
-    object-fit: cover;
-}
-
-.account {
-    padding: 4px;
-    border-radius: 50%;
-}
-
-.layout {
-    display: flex;
-    height: calc(100dvh - 72px);
-    padding-bottom: 15px;
-}
-
-.sidebar {
-    width: 255px;
-    flex-shrink: 0;
-    padding: 22px 20px;
-    overflow: auto;
-}
-
-.sidebar.collapsed { display: none; }
-
-.mini-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    font-weight: 500;
-    margin-bottom: 10px;
-}
-
-.mini-header .icon {
-    width: 27px;
-    height: 27px;
-}
-
-.mini-calendar {
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    gap: 2px;
-    text-align: center;
-    font-size: 11px;
-}
-
-.mini-day {
-    width: 27px;
-    height: 27px;
-    padding: 0;
-    border-radius: 50%;
-}
-
-.mini-day.selected {
-    background: var(--pink);
-    color: white;
-}
-
-.mini-day.outside {
-    color: #a89da4;
-}
-
-.mini-weekday {
-    color: #777;
-    padding: 8px 0;
-}
-
-.sidebar-heading {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    font-weight: 500;
-    margin: 28px 0 10px;
-    width: 100%;
-    text-align: left;
-    padding: 5px 0;
-}
-
-.calendar-option {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 8px 0;
-    font-size: 13px;
-    cursor: pointer;
-}
-
-.calendar-option input {
-    width: 16px;
-    height: 16px;
-}
-
-.main {
-    flex: 1;
-    min-width: 0;
-    margin-right: 15px;
-    background: white;
-    border-radius: 22px;
-    overflow: auto;
-}
-
-.month-grid {
-    display: grid;
-    grid-template-columns: repeat(7, minmax(100px, 1fr));
-    grid-template-rows: 30px repeat(var(--weeks), minmax(110px, 1fr));
-    min-width: 700px;
-    min-height: 100%;
-}
-
-.weekday {
-    text-align: center;
-    font-size: 11px;
-    color: #70757a;
-    padding: 10px 0;
-}
-
-.day-cell {
-    border-right: 1px solid var(--border);
-    border-bottom: 1px solid var(--border);
-    padding: 5px 3px;
-    min-width: 0;
-}
-
-.day-number {
-    width: 26px;
-    height: 26px;
-    border-radius: 50%;
-    display: grid;
-    place-items: center;
-    margin: 0 auto 6px;
-    font-size: 12px;
-}
-
-.day-number.selected {
-    background: var(--pink);
-    color: white;
-}
-
-.outside .day-number {
-    color: #a7a0a4;
-}
-
-.event {
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    width: 100%;
-    text-align: left;
-    padding: 5px 6px;
-    margin-bottom: 2px;
-    border-radius: 4px;
-    font-size: 11px;
-    overflow: hidden;
-    white-space: nowrap;
-}
-
-.event:hover {
-    background: #f3e4ec;
-}
-
-.event-dot {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    flex-shrink: 0;
-}
-
-.event-title {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-}
-
-.time-grid {
-    min-width: 700px;
-}
-
-.time-header {
-    display: grid;
-    position: sticky;
-    top: 0;
-    z-index: 5;
-    background: white;
-    border-bottom: 1px solid var(--border);
-}
-
-.time-heading {
-    text-align: center;
-    padding: 12px 0;
-    border-right: 1px solid var(--border);
-}
-
-.time-heading small {
-    display: block;
-    color: #777;
-    font-size: 11px;
-}
-
-.time-heading strong {
-    font-size: 26px;
-    font-weight: 400;
-    display: inline-grid;
-    place-items: center;
-    width: 42px;
-    height: 42px;
-    border-radius: 50%;
-}
-
-.time-heading strong.selected {
-    background: var(--pink);
-    color: white;
-}
-
-.time-body {
-    display: grid;
-}
-
-.time-label {
-    height: 64px;
-    font-size: 10px;
-    text-align: center;
-    color: #777;
-}
-
-.time-day {
-    position: relative;
-    border-right: 1px solid var(--border);
-}
-
-.hour-cell {
-    height: 64px;
-    border-bottom: 1px solid var(--border);
-}
-
-.time-event {
-    position: absolute;
-    left: 3px;
-    right: 5px;
-    border-radius: 4px;
-    color: white;
-    padding: 7px;
-    text-align: left;
-    font-size: 11px;
-    overflow: hidden;
-}
-
-.time-event:hover {
-    filter: brightness(.94);
-}
-
-.time-event strong {
-    display: block;
-    margin-bottom: 4px;
-}
-
-.agenda {
-    padding: 20px 35px;
-}
-
-.agenda-row {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    padding: 20px 10px;
-    border-bottom: 1px solid var(--border);
-    cursor: pointer;
-}
-
-.agenda-row:hover {
-    background: #fcf4f8;
-}
-
-.agenda-date {
-    width: 110px;
-    flex-shrink: 0;
-}
-
-.agenda-time {
-    width: 150px;
-    flex-shrink: 0;
-}
-
-.agenda-title {
-    flex: 1;
-}
-
-.overlay {
-    position: fixed;
-    inset: 0;
-    background: #0002;
-    display: grid;
-    place-items: center;
-    padding: 20px;
-    z-index: 100;
-}
-
-.dialog {
-    background: white;
-    width: 500px;
-    max-width: 100%;
-    max-height: 90dvh;
-    overflow: auto;
-    border-radius: 26px;
-    box-shadow: 0 8px 30px #0003;
-}
-
-.dialog-toolbar {
-    display: flex;
-    justify-content: flex-end;
-    padding: 10px 14px;
-}
-
-.dialog-content {
-    padding: 5px 25px 30px;
-}
-
-.detail-title {
-    display: flex;
-    align-items: flex-start;
-    gap: 18px;
-    margin-bottom: 25px;
-}
-
-.detail-title h2 {
-    font-size: 23px;
-    font-weight: 400;
-    margin: 0 0 8px;
-}
-
-.color-square {
-    width: 16px;
-    height: 16px;
-    border-radius: 4px;
-    flex-shrink: 0;
-    margin-top: 6px;
-}
-
-.detail-date {
-    line-height: 1.6;
-    font-size: 13px;
-}
-
-.detail {
-    display: flex;
-    gap: 18px;
-    align-items: flex-start;
-    margin: 20px 0;
-    line-height: 1.7;
-}
-
-.detail .material-symbols-outlined {
-    color: #70757a;
-    flex-shrink: 0;
-}
-
-.detail-text {
-    white-space: pre-wrap;
-    overflow-wrap: anywhere;
-    min-width: 0;
-}
-
-.profile {
-    position: fixed;
-    top: 65px;
-    right: 18px;
-    width: 320px;
-    max-width: 90vw;
-    background: #f8eaf1;
-    border-radius: 25px;
-    padding: 25px;
-    text-align: center;
-    box-shadow: 0 5px 25px #0002;
-    z-index: 200;
-}
-
-.profile img {
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    object-fit: cover;
-}
-
-.profile h2 {
-    font-weight: 400;
-}
-
-.profile p {
-    font-size: 13px;
-    overflow-wrap: anywhere;
-}
-
-.search-input {
-    border: none;
-    background: #f0e1e9;
-    padding: 12px 18px;
-    border-radius: 24px;
-    outline: none;
-    width: 240px;
-}
-
-.empty {
-    padding: 60px;
-    text-align: center;
-    color: #777;
-}
-
-@media(max-width: 950px) {
-    .brand { width: auto; }
-    .brand-name { display: none; }
-    .sidebar { width: 220px; }
-    #monthTitle { font-size: 18px; }
-}
-
-@media(max-width: 650px) {
-    header {
-        flex-wrap: wrap;
-        height: 110px;
-        padding: 8px;
-        gap: 4px;
-    }
-
-    .layout {
-        height: calc(100dvh - 110px);
-    }
-
-    .sidebar { display: none; }
-
-    .sidebar.mobile-open {
-        display: block;
-        position: fixed;
-        top: 110px;
-        bottom: 0;
-        left: 0;
-        background: var(--background);
-        z-index: 50;
-        box-shadow: 4px 0 15px #0002;
-    }
-
-    .logo { display: none; }
-    .main { margin: 0 7px; }
-
-    .today {
-        padding: 8px 12px;
-        margin: 0;
-    }
-
-    .header-right { gap: 3px; }
-    .search-input { width: 150px; }
-
-    .agenda {
-        padding: 10px;
-        min-width: 500px;
-    }
-}
+*{box-sizing:border-box}
+body{margin:0;font:14px Arial,sans-serif;background:#faf1f6;color:#3c3439}
+header{height:72px;display:flex;align-items:center;gap:22px;padding:12px 25px}
+.logo{font-size:23px;display:flex;align-items:center;gap:12px;width:210px}
+header input{border:0;background:#f0e0e9;border-radius:28px;padding:15px 24px;width:600px;max-width:50%;font:inherit;outline:none}
+.avatar{width:36px;height:36px;border-radius:50%;object-fit:cover;margin-left:auto}
+.layout{display:flex;height:calc(100dvh - 72px)}
+aside{width:235px;flex-shrink:0;padding:20px 15px}
+.nav{border:0;background:transparent;width:100%;padding:12px 22px;text-align:left;border-radius:24px;font:inherit;cursor:pointer}
+.nav.active{background:#eacbdb;font-weight:bold}
+main{background:white;border-radius:20px;flex:1;margin:0 16px 16px 0;overflow:auto;min-width:0}
+.toolbar{padding:18px 25px;border-bottom:1px solid #eee4e9;display:flex;justify-content:space-between}
+.mail{display:grid;grid-template-columns:180px 1fr 65px;gap:15px;padding:16px 24px;border-bottom:1px solid #eee4e9;background:#fdf8fb;cursor:pointer}
+.mail:hover{background:#f5e6ee}
+.sender,.subject{font-weight:600}
+.preview{color:#8c7e85;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.date{text-align:right;font-size:12px}
+.reader{padding:25px 40px}
+.reader h2{font-size:23px;font-weight:400;margin:20px 0 35px}
+.message{border-bottom:1px solid #eee4e9;padding:20px 0}
+.message-header{display:flex;gap:15px;align-items:center}
+.initial{border-radius:50%;width:40px;height:40px;background:#bd85a1;color:white;display:grid;place-items:center;font-size:19px}
+.message-body{white-space:pre-wrap;line-height:1.8;margin:25px 0 20px 55px}
+.small{font-size:12px;color:#8b7c84}
+.back{border:0;background:transparent;font-size:24px;cursor:pointer}
+@media(max-width:700px){aside{width:105px;padding:10px 4px}.nav{padding:12px}.logo{width:auto}.mail{grid-template-columns:1fr;gap:5px}.date{text-align:left}.reader{padding:20px}.message-body{margin-left:0}}
 </style>
 </head>
-
 <body>
-
 <header>
-
-    <div class="brand">
-
-        <button class="icon" title="Main menu"
-            onclick="toggleSidebar()">
-            <span class="material-symbols-outlined">menu</span>
-        </button>
-
-        <svg class="logo" viewBox="0 0 40 40">
-            <rect x="2" y="2" width="36" height="36"
-                rx="4" fill="#a65f7d"/>
-            <rect x="8" y="8" width="24" height="24"
-                fill="white"/>
-            <text x="20" y="25" font-size="16"
-                font-weight="500" text-anchor="middle"
-                fill="#a65f7d">31</text>
-            <path d="M26 38L38 26H26Z" fill="#e5b6ce"/>
-        </svg>
-
-        <span class="brand-name">Calendar</span>
-
-    </div>
-
-    <button class="today" onclick="goToday()">Today</button>
-
-    <button class="icon" title="Previous" onclick="move(-1)">
-        <span class="material-symbols-outlined">chevron_left</span>
-    </button>
-
-    <button class="icon" title="Next" onclick="move(1)">
-        <span class="material-symbols-outlined">chevron_right</span>
-    </button>
-
-    <div id="monthTitle"></div>
-
-    <div class="header-right">
-
-        <input class="search-input hidden" id="search"
-            placeholder="Search calendar" oninput="render()">
-
-        <button class="icon" title="Search"
-            onclick="toggleSearch()">
-            <span class="material-symbols-outlined">search</span>
-        </button>
-
-        <select class="view-select" id="view" onchange="render()">
-            <option value="day">Day</option>
-            <option value="week">Week</option>
-            <option value="month" selected>Month</option>
-            <option value="schedule">Schedule</option>
-        </select>
-
-        <button class="account" onclick="toggleProfile()">
-            <img class="avatar" src="dainty-profile.jpeg"
-                alt="Dainty De Guzman">
-        </button>
-
-    </div>
-
+<div class="logo">
+<svg width="34" height="26" viewBox="0 0 34 26">
+<path d="M3 24V3L17 14L31 3V24" fill="none" stroke="#a65f7d" stroke-width="6" stroke-linejoin="round"/>
+</svg>
+Gmail
+</div>
+<input id="search" placeholder="Search mail" oninput="showList()">
+<img class="avatar" src="dainty-profile.jpeg" alt="Profile">
 </header>
-
-<div class="profile hidden" id="profile">
-
-    <p>daintydeguzman.work@gmail.com</p>
-
-    <img src="dainty-profile.jpeg" alt="Dainty De Guzman">
-
-    <h2>Hi, Dainty!</h2>
-
-    <button onclick="toggleProfile()">Close</button>
-
-</div>
-
 <div class="layout">
-
-    <aside class="sidebar" id="sidebar">
-
-        <div class="mini-header">
-
-            <span id="miniTitle"></span>
-
-            <div>
-
-                <button class="icon" onclick="moveMini(-1)">
-                    <span class="material-symbols-outlined">chevron_left</span>
-                </button>
-
-                <button class="icon" onclick="moveMini(1)">
-                    <span class="material-symbols-outlined">chevron_right</span>
-                </button>
-
-            </div>
-
-        </div>
-
-        <div class="mini-calendar" id="miniCalendar"></div>
-
-        <button class="sidebar-heading" onclick="toggleCalendars()">
-
-            My calendars
-
-            <span class="material-symbols-outlined"
-                id="calendarArrow">expand_more</span>
-
-        </button>
-
-        <div id="calendarOptions"></div>
-
-    </aside>
-
-    <main class="main" id="calendar"></main>
-
+<aside id="navigation"></aside>
+<main id="mailbox"></main>
 </div>
-
-<div class="overlay hidden" id="detailOverlay">
-
-    <div class="dialog">
-
-        <div class="dialog-toolbar">
-
-            <button class="icon" title="Close"
-                onclick="closeDetails()">
-                <span class="material-symbols-outlined">close</span>
-            </button>
-
-        </div>
-
-        <div class="dialog-content" id="eventDetails"></div>
-
-    </div>
-
-</div>
-
 <script>
-
-const ACCOUNT = "daintydeguzman.work@gmail.com";
-
-const categories = {
-    "Property Showings": "#b86c91",
-    "Consultations": "#9a80b5",
-    "Follow-ups": "#789d90"
-};
-
-/* EXISTING APPOINTMENTS ONLY */
-
-const events = [
-
+const account="daintydeguzman.work@gmail.com";
+const mails=[
 {
-    id: 1,
-    title: "Property showing — Olivia Mitchell",
-    date: "2026-11-03",
-    start: "10:00",
-    end: "11:00",
-    category: "Property Showings",
-    guest: "olivia.mitchell@example.com",
-    location: "120 Example Lane, Brooklyn, NY",
-    reminder: "1 day before",
-    description: `Client: Olivia Mitchell
-Assigned agent: Hannah Reed
-Property: 3-bedroom townhouse
-Budget: $650,000
-Availability: Tuesday, 9 AM–12 PM ET
-Status: Completed
+name:"Charlotte Hayes",date:"Nov 25",subject:"Inquiry about homes in Raleigh",star:true,folder:"Sent",
+body:`Hello,
 
-The client attended the scheduled property showing. Follow-up feedback requested on November 4.`
-},
+I'm looking for a three-bedroom, two-bathroom home in Raleigh with a garage and backyard. My budget is around $420,000.
 
-{
-    id: 2,
-    title: "Buyer consultation — Ethan Walker",
-    date: "2026-11-05",
-    start: "14:00",
-    end: "15:00",
-    category: "Consultations",
-    guest: "ethan.walker@example.com",
-    location: "Virtual meeting",
-    reminder: "30 minutes before",
-    description: `Client: Ethan Walker
-Assigned agent: Hannah Reed
-Availability: Weekdays after 1 PM ET
-Status: Completed
+Could you let me know what the next steps are?
 
-Initial consultation regarding preferred property features, purchase timeline, and budget. Property recommendations to be reviewed by the assigned agent.`
-},
+Thank you,
+Charlotte`,
+reply:`Hi Charlotte,
 
-{
-    id: 3,
-    title: "Condominium viewing — Sophia Turner",
-    date: "2026-11-07",
-    start: "11:00",
-    end: "12:00",
-    category: "Property Showings",
-    guest: "sophia.turner@example.com",
-    location: "245 Sample Avenue, Manhattan, NY",
-    reminder: "1 day before",
-    description: `Client: Sophia Turner
-Assigned agent: James Carter
-Property: 2-bedroom condominium
-Budget: $780,000
-Availability: Saturday, 10 AM–2 PM ET
-Status: Completed
+Thank you for reaching out. I've noted your preferred location, property features, and budget.
 
-Showing completed with the assigned agent. Client feedback requested.`
-},
-
-{
-    id: 4,
-    title: "Seller consultation — Noah Bennett",
-    date: "2026-11-10",
-    start: "13:00",
-    end: "14:00",
-    category: "Consultations",
-    guest: "noah.bennett@example.com",
-    location: "Virtual meeting",
-    reminder: "1 hour before",
-    description: `Client: Noah Bennett
-Assigned agent: Emily Wilson
-Availability: Tuesday or Thursday afternoons
-Status: Completed
-
-Initial consultation regarding the client's intention to sell a residential property. Pricing and listing terms discussed by the licensed agent.`
-},
-
-{
-    id: 5,
-    title: "Residential showing — Ava Collins",
-    date: "2026-11-13",
-    start: "10:30",
-    end: "11:30",
-    category: "Property Showings",
-    guest: "ava.collins@example.com",
-    location: "310 Demo Court, Queens, NY",
-    reminder: "1 day before",
-    description: `Client: Ava Collins
-Assigned agent: James Carter
-Property: 3-bedroom single-family home
-Budget: $720,000
-Availability: Friday, 10 AM–1 PM ET
-Status: Completed
-
-Client requested a property with parking and outdoor space. Showing completed as scheduled.`
-},
-
-{
-    id: 6,
-    title: "Follow-up — Ava Collins",
-    date: "2026-11-14",
-    start: "11:00",
-    end: "11:30",
-    category: "Follow-ups",
-    guest: "ava.collins@example.com",
-    location: "",
-    reminder: "10 minutes before",
-    description: `Status: Completed
-
-Hi Ava,
-
-Thank you for attending yesterday's property showing. We'd appreciate your feedback on the home and whether it meets your current requirements.
-
-Please let me know if you have any questions for James or would like to arrange another viewing.
+I'll forward your requirements to the assigned agent for a review of suitable properties. Could you also share your preferred move-in timeline and availability for an initial consultation?
 
 Best regards,
 Dainty De Guzman`
 },
-
 {
-    id: 7,
-    title: "Buyer consultation — Liam Brooks",
-    date: "2026-11-17",
-    start: "15:00",
-    end: "16:00",
-    category: "Consultations",
-    guest: "liam.brooks@example.com",
-    location: "Virtual meeting",
-    reminder: "30 minutes before",
-    description: `Client: Liam Brooks
-Assigned agent: Hannah Reed
-Availability: Weekdays, 3 PM–5 PM ET
-Status: Completed
+name:"Daniel Foster",date:"Nov 24",subject:"Request to reschedule property showing",star:false,folder:"Sent",
+body:`Hi,
 
-Review the client's preferred neighborhoods, property requirements, and intended purchase timeline.`
-},
+I won't be available for Saturday's showing. Would Monday after 2 PM work instead?
 
-{
-    id: 8,
-    title: "Seller appointment — Mia Anderson",
-    date: "2026-11-23",
-    start: "14:00",
-    end: "15:00",
-    category: "Consultations",
-    guest: "mia.anderson@example.com",
-    location: "420 Example Drive, Queens, NY",
-    reminder: "1 day before",
-    description: `Client: Mia Anderson
-Assigned agent: Emily Wilson
-Availability: Monday, 1 PM–4 PM ET
-Status: Completed
+Thanks,
+Daniel`,
+reply:`Hi Daniel,
 
-Initial property assessment appointment. Agent to review property information and listing requirements.`
-},
+Thank you for letting us know. I've noted your availability for Monday after 2 PM.
 
-{
-    id: 9,
-    title: "Apartment showing — Isabella Hayes",
-    date: "2026-11-26",
-    start: "10:00",
-    end: "11:00",
-    category: "Property Showings",
-    guest: "isabella.hayes@example.com",
-    location: "510 Sample Avenue, Manhattan, NY",
-    reminder: "1 day before",
-    description: `Client: Isabella Hayes
-Assigned agent: Hannah Reed
-Property: 2-bedroom apartment
-Budget: $850,000
-Availability: Thursday, 9 AM–12 PM ET
-Status: Confirmed
-
-Confirmation draft:
-
-Hi Isabella,
-
-Your property showing has been scheduled for November 26, from 10:00 to 11:00 AM Eastern Time, at 510 Sample Avenue, Manhattan.
-
-Hannah Reed will be assisting you during the viewing.
-
-Please let us know if your availability changes.
+I'll coordinate with the assigned agent and verify property access before confirming the revised appointment.
 
 Best regards,
 Dainty De Guzman`
 },
-
 {
-    id: 10,
-    title: "Townhouse showing — Oliver Scott",
-    date: "2026-11-27",
-    start: "14:00",
-    end: "15:00",
-    category: "Property Showings",
-    guest: "oliver.scott@example.com",
-    location: "620 Demo Lane, Brooklyn, NY",
-    reminder: "1 hour before",
-    description: `Client: Oliver Scott
-Assigned agent: James Carter
-Property: 3-bedroom townhouse
-Budget: $690,000
-Availability: Friday, 2 PM–5 PM ET
-Status: Pending confirmation
+name:"Madison Clarke",date:"Nov 23",subject:"Selling my property in Tampa",star:true,folder:"Drafts",
+body:`Hello,
 
-Showing request received. Awaiting agent availability and property access approval.
+I'm considering selling my four-bedroom, three-bathroom home in Tampa. The kitchen was recently renovated, and I'm hoping to list it around $560,000.
 
-Client response draft:
+Could you provide information about pricing, commission, and the selling timeline?
 
-Hi Oliver,
+Madison`,
+reply:`Hi Madison,
 
-Thank you for sharing your availability. I've noted your preferred showing time for November 27 at 2 PM Eastern Time.
+Thank you for providing these details about your property.
 
-The appointment is currently tentative. I'll provide confirmation once the agent and property access arrangements have been verified.
+I've recorded your proposed listing price and property features. Our licensed agent can discuss market pricing, commission arrangements, and the appropriate selling strategy during a consultation.
+
+Please let me know your availability so I can coordinate an appointment.
 
 Best regards,
 Dainty De Guzman`
 },
-
 {
-    id: 11,
-    title: "Rescheduled showing — Emma Morgan",
-    date: "2026-11-28",
-    start: "11:00",
-    end: "12:00",
-    category: "Property Showings",
-    guest: "emma.morgan@example.com",
-    location: "730 Example Road, Manhattan, NY",
-    reminder: "1 day before",
-    description: `Client: Emma Morgan
-Assigned agent: Hannah Reed
-Property: 2-bedroom condominium
-Availability: Saturday, 10 AM–1 PM ET
-Status: Rescheduled — pending confirmation
+name:"Benjamin Scott",date:"Nov 22",subject:"Document submission instructions",star:false,folder:"Sent",
+body:`Hi,
 
-Original appointment: November 25
-Proposed appointment: November 28, 11 AM ET
+Could you confirm how I should submit the documents requested by the agent?
 
-Hi Emma,
+Benjamin`,
+reply:`Hi Benjamin,
 
-Thank you for letting us know about the change in your availability. I've noted your preferred appointment for Saturday at 11 AM.
+Thank you for checking. For your privacy, please use the secure document submission method provided by the agent rather than sending sensitive documents through ordinary email.
 
-I'll confirm the revised schedule once the necessary arrangements have been finalized.
+I'll coordinate with the agent to verify the appropriate submission instructions.
 
 Best regards,
 Dainty De Guzman`
 },
-
 {
-    id: 12,
-    title: "Follow-up — Isabella Hayes",
-    date: "2026-11-27",
-    start: "11:00",
-    end: "11:30",
-    category: "Follow-ups",
-    guest: "isabella.hayes@example.com",
-    location: "",
-    reminder: "10 minutes before",
-    description: `Status: Scheduled
+name:"Amelia Parker",date:"Nov 21",subject:"Scottsdale condominium inquiry",star:true,folder:"Drafts",
+body:`Hello,
 
-Request feedback if the November 26 showing has been completed.
+Is the condominium in Scottsdale still available? I'd also like to know whether pets are permitted, the HOA fees, and when I could arrange a viewing.
 
-Hi Isabella,
+Amelia`,
+reply:`Hi Amelia,
 
-I hope your property viewing went well. We'd love to hear your thoughts about the apartment and whether it meets your expectations.
+Thank you for your interest. I'll coordinate with the listing agent to verify current availability, applicable pet restrictions, and HOA information.
 
-Please feel free to share any questions or concerns so I can forward them to Hannah.
+Could you share your preferred viewing dates and times?
 
 Best regards,
 Dainty De Guzman`
 },
-
 {
-    id: 13,
-    title: "Listing consultation — William Foster",
-    date: "2026-11-30",
-    start: "13:00",
-    end: "14:00",
-    category: "Consultations",
-    guest: "william.foster@example.com",
-    location: "Virtual meeting",
-    reminder: "30 minutes before",
-    description: `Client: William Foster
-Assigned agent: Emily Wilson
-Availability: Monday, 1 PM–3 PM ET
-Status: Confirmed
+name:"Lucas Morgan",date:"Nov 20",subject:"Property photos and listing information",star:false,folder:"Sent",
+body:`Hi,
 
-Hi William,
+I've prepared the property photographs and information requested for the listing. Please let me know if anything else is needed.
 
-This is to confirm your virtual consultation with Emily Wilson on November 30, from 1 to 2 PM Eastern Time.
+Lucas`,
+reply:`Hi Lucas,
 
-Please have any relevant property information available for the discussion.
+Thank you for preparing the materials. I'll organize the photographs and property information for the agent's review and check whether any required listing details are missing.
+
+I'll follow up if further clarification is needed.
 
 Best regards,
 Dainty De Guzman`
 },
-
 {
-    id: 14,
-    title: "Follow-up — William Foster",
-    date: "2026-12-01",
-    start: "10:00",
-    end: "10:30",
-    category: "Follow-ups",
-    guest: "william.foster@example.com",
-    location: "",
-    reminder: "10 minutes before",
-    description: `Status: Scheduled
+name:"Grace Sullivan",date:"Nov 19",subject:"Update on my property search",star:false,folder:"Sent",
+body:`Hello,
 
-Follow up regarding the seller consultation, provided the meeting has taken place. Coordinate any requested documents or additional appointments with the assigned agent.`
+I've decided to postpone my home search until spring. Thank you for your assistance so far.
+
+Grace`,
+reply:`Hi Grace,
+
+Thank you for the update. I've noted that your property search is on hold until spring.
+
+With your permission, we can reconnect closer to your intended timeline. Please feel free to reach out whenever you're ready.
+
+Best regards,
+Dainty De Guzman`
 },
-
 {
-    id: 15,
-    title: "Buyer consultation — Harper Lewis",
-    date: "2026-12-02",
-    start: "10:00",
-    end: "11:00",
-    category: "Consultations",
-    guest: "harper.lewis@example.com",
-    location: "Virtual meeting",
-    reminder: "1 day before",
-    description: `Client: Harper Lewis
-Assigned agent: James Carter
-Availability: Wednesday mornings
-Status: Confirmed
+name:"Henry Collins",date:"Nov 19",subject:"Question about submitting an offer",star:true,folder:"Drafts",
+body:`Hi,
 
-Review the client's home search requirements, preferred locations, and purchase timeline with the assigned agent.`
+I'm interested in the property listed at $395,000 and would like to discuss a possible offer of $380,000.
+
+What should I do next?
+
+Henry`,
+reply:`Hi Henry,
+
+Thank you for sharing your proposed offer amount.
+
+I'll forward your inquiry to the licensed agent, who can advise you on the offer process and discuss the relevant terms.
+
+Please let me know when you're available for a consultation.
+
+Best regards,
+Dainty De Guzman`
 }
-
 ];
-
-/* CALENDAR */
-
-let selectedDate = new Date(2026, 10, 25);
-let miniDate = new Date(selectedDate);
-
-const activeCategories = new Set(Object.keys(categories));
-
-const weekdays = [
-    "Sun","Mon","Tue","Wed","Thu","Fri","Sat"
-];
-
-function esc(value) {
-    return String(value ?? "")
-        .replace(/&/g,"&amp;")
-        .replace(/</g,"&lt;")
-        .replace(/>/g,"&gt;")
-        .replace(/"/g,"&quot;")
-        .replace(/'/g,"&#39;");
+let folder="Inbox";
+const folders=["Inbox","Starred","Sent","Drafts","All Mail"];
+function navigation(){
+document.getElementById("navigation").innerHTML=folders.map(f=>`<button class="nav ${folder===f?"active":""}" onclick="changeFolder('${f}')">${f}</button>`).join("");
 }
-
-function icon(name) {
-    return `<span class="material-symbols-outlined">${name}</span>`;
+function changeFolder(f){folder=f;showList()}
+function showList(){
+navigation();
+const q=document.getElementById("search").value.toLowerCase();
+const list=mails.map((m,i)=>({m,i})).filter(({m})=>
+(folder==="Inbox"||folder==="All Mail"||(folder==="Starred"&&m.star)||m.folder===folder)&&
+Object.values(m).join(" ").toLowerCase().includes(q));
+document.getElementById("mailbox").innerHTML=`
+<div class="toolbar"><strong>${folder}</strong><span>${list.length} conversations</span></div>
+${list.map(({m,i})=>`
+<div class="mail" tabindex="0" onclick="openMail(${i})" onkeydown="if(event.key==='Enter')openMail(${i})">
+<div class="sender">${folder==="Drafts"?"Draft: ":folder==="Sent"?"To: ":""}${m.name}</div>
+<div class="preview"><span class="subject">${m.subject}</span> — ${folder==="Sent"||folder==="Drafts"?m.reply:m.body}</div>
+<div class="date">${m.date}</div>
+</div>`).join("")}`;
 }
-
-function dateKey(date) {
-    return date.getFullYear() + "-" +
-        String(date.getMonth()+1).padStart(2,"0") + "-" +
-        String(date.getDate()).padStart(2,"0");
+function openMail(i){
+const m=mails[i];
+const email=m.name.toLowerCase().replace(" ",".")+"@example.com";
+document.getElementById("mailbox").innerHTML=`
+<div class="toolbar"><button class="back" onclick="showList()" aria-label="Back">←</button></div>
+<div class="reader">
+<h2>${m.subject}</h2>
+<div class="message">
+<div class="message-header">
+<div class="initial">${m.name[0]}</div>
+<div><strong>${m.name}</strong> <span class="small">&lt;${email}&gt;</span><br><span class="small">to me · ${m.date}, 2026</span></div>
+</div>
+<div class="message-body">${m.body}</div>
+</div>
+<div class="message">
+<div class="message-header">
+<img class="avatar" style="margin:0;width:40px;height:40px" src="dainty-profile.jpeg" alt="Profile">
+<div><strong>Dainty De Guzman</strong> <span class="small">&lt;${account}&gt;</span><br><span class="small">${m.folder==="Drafts"?"Draft · Not sent":"to "+m.name}</span></div>
+</div>
+<div class="message-body">${m.reply}</div>
+</div>
+</div>`;
 }
-
-function parseDate(value) {
-    return new Date(value + "T12:00:00");
-}
-
-function addDays(date, number) {
-    const result = new Date(date);
-    result.setDate(result.getDate()+number);
-    return result;
-}
-
-function addMonths(date, number) {
-    const result = new Date(
-        date.getFullYear(),
-        date.getMonth()+number,
-        1
-    );
-
-    const last = new Date(
-        result.getFullYear(),
-        result.getMonth()+1,
-        0
-    ).getDate();
-
-    result.setDate(Math.min(date.getDate(),last));
-
-    return result;
-}
-
-function monthName(date) {
-    return date.toLocaleDateString("en-US",{
-        month:"long",
-        year:"numeric"
-    });
-}
-
-function timeText(value) {
-    const [h,m] = value.split(":").map(Number);
-
-    return `${h%12||12}${m?":"+String(m).padStart(2,"0"):""}${h>=12?"pm":"am"}`;
-}
-
-function minutes(value) {
-    const [h,m] = value.split(":").map(Number);
-    return h*60+m;
-}
-
-function filteredEvents() {
-
-    const query = document.getElementById("search")
-        .value.trim().toLowerCase();
-
-    return events.filter(event =>
-        activeCategories.has(event.category) &&
-        Object.values(event).join(" ").toLowerCase().includes(query)
-    ).sort((a,b)=>
-        a.date.localeCompare(b.date) ||
-        a.start.localeCompare(b.start)
-    );
-}
-
-function eventsOn(date) {
-    return filteredEvents().filter(
-        event => event.date === dateKey(date)
-    );
-}
-
-function toggleSidebar() {
-
-    document.getElementById("sidebar").classList.toggle(
-        window.innerWidth<=650 ? "mobile-open" : "collapsed"
-    );
-}
-
-function toggleProfile() {
-    document.getElementById("profile").classList.toggle("hidden");
-}
-
-function toggleCalendars() {
-
-    const options = document.getElementById("calendarOptions");
-
-    options.classList.toggle("hidden");
-
-    document.getElementById("calendarArrow").textContent =
-        options.classList.contains("hidden")
-            ? "expand_less"
-            : "expand_more";
-}
-
-function toggleSearch() {
-
-    const input = document.getElementById("search");
-
-    input.classList.toggle("hidden");
-
-    if(input.classList.contains("hidden")) {
-
-        input.value = "";
-        render();
-
-    } else {
-
-        input.focus();
-    }
-}
-
-function goToday() {
-
-    const today = new Intl.DateTimeFormat("en-CA",{
-        timeZone:"America/New_York",
-        year:"numeric",
-        month:"2-digit",
-        day:"2-digit"
-    }).formatToParts(new Date());
-
-    const parts = Object.fromEntries(
-        today.map(item=>[item.type,item.value])
-    );
-
-    selectedDate = new Date(
-        Number(parts.year),
-        Number(parts.month)-1,
-        Number(parts.day)
-    );
-
-    miniDate = new Date(selectedDate);
-
-    render();
-}
-
-function move(direction) {
-
-    const view = document.getElementById("view").value;
-
-    selectedDate = view==="month" || view==="schedule"
-        ? addMonths(selectedDate,direction)
-        : addDays(selectedDate,direction*(view==="week"?7:1));
-
-    miniDate = new Date(selectedDate);
-
-    render();
-}
-
-function moveMini(direction) {
-    miniDate = addMonths(miniDate,direction);
-    renderMini();
-}
-
-function chooseDate(value) {
-    selectedDate = parseDate(value);
-    miniDate = new Date(selectedDate);
-    render();
-}
-
-function openDay(value) {
-
-    selectedDate = parseDate(value);
-
-    miniDate = new Date(selectedDate);
-
-    document.getElementById("view").value = "day";
-
-    render();
-}
-
-/* MINI CALENDAR */
-
-function renderMini() {
-
-    document.getElementById("miniTitle").textContent =
-        monthName(miniDate);
-
-    const first = new Date(
-        miniDate.getFullYear(),
-        miniDate.getMonth(),
-        1
-    );
-
-    const start = addDays(first,-first.getDay());
-
-    let html = weekdays.map(day=>
-        `<div class="mini-weekday">${day[0]}</div>`
-    ).join("");
-
-    for(let i=0;i<42;i++) {
-
-        const date = addDays(start,i);
-
-        html += `
-            <button class="mini-day
-                ${date.getMonth()!==miniDate.getMonth()?"outside":""}
-                ${dateKey(date)===dateKey(selectedDate)?"selected":""}"
-                onclick="chooseDate('${dateKey(date)}')">
-
-                ${date.getDate()}
-
-            </button>
-        `;
-    }
-
-    document.getElementById("miniCalendar").innerHTML = html;
-}
-
-function renderOptions() {
-
-    document.getElementById("calendarOptions").innerHTML =
-        Object.entries(categories).map(([name,color])=>`
-
-            <label class="calendar-option">
-
-                <input type="checkbox"
-                    style="accent-color:${color}"
-                    ${activeCategories.has(name)?"checked":""}
-                    onchange="toggleCategory('${name}',this.checked)">
-
-                ${name}
-
-            </label>
-
-        `).join("");
-}
-
-function toggleCategory(name,checked) {
-
-    checked
-        ? activeCategories.add(name)
-        : activeCategories.delete(name);
-
-    render();
-}
-
-/* MONTH VIEW */
-
-function renderMonth() {
-
-    const first = new Date(
-        selectedDate.getFullYear(),
-        selectedDate.getMonth(),
-        1
-    );
-
-    const days = new Date(
-        selectedDate.getFullYear(),
-        selectedDate.getMonth()+1,
-        0
-    ).getDate();
-
-    const weeks = Math.ceil((first.getDay()+days)/7);
-
-    const start = addDays(first,-first.getDay());
-
-    let html = `<div class="month-grid" style="--weeks:${weeks}">`;
-
-    html += weekdays.map(day=>
-        `<div class="weekday">${day.toUpperCase()}</div>`
-    ).join("");
-
-    for(let i=0;i<weeks*7;i++) {
-
-        const date = addDays(start,i);
-
-        html += `
-
-            <div class="day-cell
-                ${date.getMonth()!==selectedDate.getMonth()?"outside":""}">
-
-                <button class="day-number
-                    ${dateKey(date)===dateKey(selectedDate)?"selected":""}"
-                    onclick="openDay('${dateKey(date)}')">
-
-                    ${date.getDate()}
-
-                </button>
-
-                ${eventsOn(date).map(event=>`
-
-                    <button class="event"
-                        title="${esc(event.title)}"
-                        onclick="openEvent(${event.id})">
-
-                        <span class="event-dot"
-                            style="background:${categories[event.category]}">
-                        </span>
-
-                        <span>${timeText(event.start)}</span>
-
-                        <span class="event-title">
-                            ${esc(event.title)}
-                        </span>
-
-                    </button>
-
-                `).join("")}
-
-            </div>
-        `;
-    }
-
-    document.getElementById("calendar").innerHTML =
-        html+"</div>";
-
-    document.getElementById("calendar").scrollTop = 0;
-}
-
-/* WEEK AND DAY VIEWS */
-
-function renderTimeGrid(view) {
-
-    const count = view==="week"?7:1;
-
-    const first = view==="week"
-        ? addDays(selectedDate,-selectedDate.getDay())
-        : selectedDate;
-
-    const dates = Array.from(
-        {length:count},
-        (_,i)=>addDays(first,i)
-    );
-
-    const columns =
-        `65px repeat(${count},minmax(100px,1fr))`;
-
-    let html = `
-
-        <div class="time-grid">
-
-            <div class="time-header"
-                style="grid-template-columns:${columns}">
-
-                <div style="align-self:end;text-align:center;
-                    font-size:10px;padding:10px">
-                    ET
-                </div>
-
-                ${dates.map(date=>`
-
-                    <div class="time-heading">
-
-                        <small>
-                            ${weekdays[date.getDay()].toUpperCase()}
-                        </small>
-
-                        <strong class="${dateKey(date)===dateKey(selectedDate)?"selected":""}">
-
-                            ${date.getDate()}
-
-                        </strong>
-
-                    </div>
-
-                `).join("")}
-
-            </div>
-
-            <div class="time-body"
-                style="grid-template-columns:${columns}">
-
-                <div>
-    `;
-
-    for(let hour=0;hour<24;hour++) {
-
-        html += `
-            <div class="time-label">
-
-                ${timeText(String(hour).padStart(2,"0")+":00")}
-
-            </div>
-        `;
-    }
-
-    html += "</div>";
-
-    dates.forEach(date=>{
-
-        html += '<div class="time-day">';
-
-        for(let hour=0;hour<24;hour++) {
-
-            html += '<div class="hour-cell"></div>';
-        }
-
-        const daily = eventsOn(date);
-
-        daily.forEach(event=>{
-
-            const start = minutes(event.start);
-            const end = minutes(event.end);
-
-            const overlapping = daily.filter(other=>
-                minutes(other.start)<end &&
-                minutes(other.end)>start
-            );
-
-            const position = overlapping.findIndex(
-                other=>other.id===event.id
-            );
-
-            const width = 100/overlapping.length;
-
-            html += `
-
-                <button class="time-event"
-                    style="
-                        background:${categories[event.category]};
-                        top:${start/60*64}px;
-                        height:${Math.max(24,(end-start)/60*64-3)}px;
-                        left:calc(${position*width}% + 3px);
-                        width:calc(${width}% - 6px);
-                        right:auto;
-                    "
-                    onclick="openEvent(${event.id})">
-
-                    <strong>${esc(event.title)}</strong>
-
-                    ${timeText(event.start)} – ${timeText(event.end)}
-
-                </button>
-            `;
-        });
-
-        html += "</div>";
-    });
-
-    document.getElementById("calendar").innerHTML =
-        html+"</div></div>";
-
-    document.getElementById("calendar").scrollTop = 7*64;
-}
-
-/* SCHEDULE VIEW */
-
-function renderSchedule() {
-
-    const query = document.getElementById("search").value.trim();
-
-    const list = filteredEvents().filter(event=>
-        query ||
-        event.date.startsWith(dateKey(selectedDate).slice(0,7))
-    );
-
-    document.getElementById("calendar").innerHTML = `
-
-        <div class="agenda">
-
-            ${list.length?list.map(event=>`
-
-                <div class="agenda-row"
-                    role="button" tabindex="0"
-                    onclick="openEvent(${event.id})"
-                    onkeydown="if(event.key==='Enter')openEvent(${event.id})">
-
-                    <div class="agenda-date">
-
-                        <strong style="font-size:23px;font-weight:400">
-
-                            ${parseDate(event.date).getDate()}
-
-                        </strong>
-
-                        <div style="font-size:12px;color:#777">
-
-                            ${parseDate(event.date).toLocaleDateString("en-US",{
-                                weekday:"short",
-                                month:"short"
-                            })}
-
-                        </div>
-
-                    </div>
-
-                    <span class="event-dot"
-                        style="background:${categories[event.category]}">
-                    </span>
-
-                    <div class="agenda-time">
-
-                        ${timeText(event.start)} – ${timeText(event.end)}
-
-                    </div>
-
-                    <div class="agenda-title">
-
-                        ${esc(event.title)}
-
-                    </div>
-
-                </div>
-
-            `).join(""):'<div class="empty">No events</div>'}
-
-        </div>
-    `;
-
-    document.getElementById("calendar").scrollTop = 0;
-}
-
-function render() {
-
-    const view = document.getElementById("view").value;
-
-    document.getElementById("monthTitle").textContent =
-        view==="day"
-            ? selectedDate.toLocaleDateString("en-US",{
-                month:"long",
-                day:"numeric",
-                year:"numeric"
-            })
-            : monthName(selectedDate);
-
-    renderMini();
-
-    if(document.getElementById("search").value.trim() ||
-        view==="schedule") {
-
-        renderSchedule();
-
-    } else if(view==="month") {
-
-        renderMonth();
-
-    } else {
-
-        renderTimeGrid(view);
-    }
-}
-
-/* VIEW EXISTING EVENT DETAILS */
-
-function detail(symbol,value) {
-
-    if(!value) return "";
-
-    return `
-
-        <div class="detail">
-
-            ${icon(symbol)}
-
-            <div class="detail-text">${esc(value)}</div>
-
-        </div>
-    `;
-}
-
-function openEvent(id) {
-
-    const event = events.find(item=>item.id===id);
-
-    if(!event) return;
-
-    const date = parseDate(event.date).toLocaleDateString("en-US",{
-        weekday:"long",
-        month:"long",
-        day:"numeric",
-        year:"numeric"
-    });
-
-    document.getElementById("eventDetails").innerHTML = `
-
-        <div class="detail-title">
-
-            <div class="color-square"
-                style="background:${categories[event.category]}">
-            </div>
-
-            <div>
-
-                <h2>${esc(event.title)}</h2>
-
-                <div class="detail-date">
-
-                    ${date} ·
-
-                    ${timeText(event.start)} – ${timeText(event.end)}
-
-                    ET
-
-                </div>
-
-            </div>
-
-        </div>
-
-        ${detail("location_on",event.location)}
-
-        ${detail("group",event.guest
-            ? "Organizer: "+ACCOUNT+"\nGuest: "+event.guest
-            : ACCOUNT)}
-
-        ${detail("notes",event.description)}
-
-        ${detail("notifications",event.reminder)}
-
-        ${detail("calendar_today",event.category)}
-
-    `;
-
-    document.getElementById("detailOverlay")
-        .classList.remove("hidden");
-}
-
-function closeDetails() {
-
-    document.getElementById("detailOverlay")
-        .classList.add("hidden");
-}
-
-document.getElementById("detailOverlay")
-    .addEventListener("click",event=>{
-
-        if(event.target===event.currentTarget) {
-
-            closeDetails();
-        }
-    });
-
-document.addEventListener("keydown",event=>{
-
-    if(event.key==="Escape") {
-
-        closeDetails();
-
-        document.getElementById("profile")
-            .classList.add("hidden");
-    }
-});
-
-document.addEventListener("click",event=>{
-
-    if(!event.target.closest(".profile") &&
-        !event.target.closest(".account")) {
-
-        document.getElementById("profile")
-            .classList.add("hidden");
-    }
-});
-
-renderOptions();
-render();
-
+showList();
 </script>
-
 </body>
 </html>
