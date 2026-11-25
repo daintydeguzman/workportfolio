@@ -4,22 +4,21 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Real Estate Email Management | Dainty De Guzman</title>
 
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined&display=swap" rel="stylesheet">
 
 <style>
-
 :root {
-    --primary: #a65f7d;
+    --background: #faf3f7;
+    --pink: #a65f7d;
     --dark: #503743;
-    --background: #fcf8fa;
-    --light: #f8edf2;
-    --border: #eadde4;
-    --text: #40363c;
-    --muted: #857780;
-    --white: #ffffff;
+    --selected: #efd5e2;
+    --light: #f6e8ef;
+    --text: #29252a;
+    --muted: #746970;
+    --border: #eee3e9;
 }
 
 * {
@@ -28,128 +27,217 @@
 
 body {
     margin: 0;
-    font-family: 'DM Sans', Arial, sans-serif;
     background: var(--background);
+    font-family: Roboto, Arial, sans-serif;
     color: var(--text);
-    font-size: 13px;
+    font-size: 14px;
 }
 
-button, input, textarea, select {
+button, input, select, textarea {
     font: inherit;
 }
 
 button {
     cursor: pointer;
-}
-
-a {
-    text-decoration: none;
+    border: none;
+    background: transparent;
     color: inherit;
 }
 
-.topbar {
-    height: 65px;
-    background: var(--dark);
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 25px;
-    position: sticky;
-    top: 0;
-    z-index: 20;
+a {
+    color: inherit;
+    text-decoration: none;
 }
 
-.brand {
-    font-size: 16px;
-    font-weight: 700;
-    letter-spacing: 1px;
+.material-symbols-outlined {
+    font-size: 21px;
+    vertical-align: middle;
+    font-weight: normal;
 }
 
-.brand small {
-    display: block;
-    font-size: 10px;
-    font-weight: 400;
-    color: #e4cbd7;
-    letter-spacing: 1.5px;
+.icon-button {
+    width: 40px;
+    height: 40px;
+    display: inline-grid;
+    place-items: center;
+    border-radius: 50%;
+    flex-shrink: 0;
 }
 
-.top-right {
+.icon-button:hover {
+    background: #eadce5;
+}
+
+header {
+    height: 76px;
     display: flex;
     align-items: center;
     gap: 20px;
+    padding: 10px 22px;
 }
 
-.avatar {
-    height: 34px;
-    width: 34px;
-    background: #e5bdcf;
+.brand {
+    width: 220px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-shrink: 0;
+}
+
+.mail-logo {
+    color: var(--pink);
+    font-size: 35px;
+}
+
+.brand-name {
+    font-size: 23px;
     color: var(--dark);
+}
+
+.search-bar {
+    display: flex;
+    align-items: center;
+    background: #f0e2ea;
+    border-radius: 30px;
+    max-width: 720px;
+    flex: 1;
+    padding: 4px 12px;
+}
+
+.search-bar input {
+    width: 100%;
+    border: none;
+    outline: none;
+    background: transparent;
+    padding: 12px 5px;
+}
+
+.header-right {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.profile-picture {
+    width: 38px;
+    height: 38px;
+    object-fit: cover;
     border-radius: 50%;
-    display: grid;
-    place-items: center;
-    font-weight: 700;
+    border: 2px solid white;
+}
+
+.profile-button {
+    padding: 3px;
+    border-radius: 50%;
+}
+
+.profile-button:hover {
+    background: var(--selected);
+}
+
+.profile-menu {
+    position: fixed;
+    right: 20px;
+    top: 70px;
+    width: 330px;
+    max-width: calc(100vw - 40px);
+    padding: 25px;
+    border-radius: 25px;
+    background: #f9edf3;
+    border: 1px solid var(--border);
+    box-shadow: 0 8px 30px #50374322;
+    text-align: center;
+    z-index: 100;
+}
+
+.profile-menu img {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin: 20px 0 5px;
+}
+
+.profile-menu h2 {
+    font-size: 21px;
+    font-weight: 400;
+}
+
+.profile-menu p {
+    font-size: 12px;
+    overflow-wrap: anywhere;
 }
 
 .layout {
     display: flex;
-    min-height: calc(100vh - 65px);
+    height: calc(100dvh - 76px);
+    padding-bottom: 15px;
 }
 
 .sidebar {
-    width: 230px;
+    width: 255px;
     flex-shrink: 0;
-    background: white;
-    border-right: 1px solid var(--border);
-    padding: 25px 15px;
+    padding: 10px 12px 20px 0;
+    overflow-y: auto;
 }
 
-.compose {
-    background: var(--primary);
-    color: white;
-    border: none;
-    padding: 15px;
+.compose-button {
+    background: #eac5d8;
+    border-radius: 17px;
+    padding: 18px 23px;
+    margin: 0 0 22px 15px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    font-weight: 500;
+    box-shadow: 0 2px 5px #5037430d;
+}
+
+.compose-button:hover {
+    box-shadow: 0 3px 8px #50374326;
+}
+
+.nav-item {
+    display: flex;
+    align-items: center;
+    gap: 17px;
+    padding: 10px 20px 10px 27px;
+    border-radius: 0 25px 25px 0;
     width: 100%;
-    border-radius: 7px;
-    font-weight: 600;
-    margin-bottom: 25px;
+    text-align: left;
+    min-height: 40px;
 }
 
-.sidebar-label {
-    font-size: 10px;
-    letter-spacing: 1.5px;
-    color: var(--muted);
+.nav-item:hover {
+    background: #f1e4eb;
+}
+
+.nav-item.active {
+    background: var(--selected);
     font-weight: 700;
-    margin: 24px 12px 12px;
 }
 
-.nav {
-    width: 100%;
+.nav-item .count {
+    margin-left: auto;
+    font-size: 12px;
+}
+
+.label-heading {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background: transparent;
-    border: none;
-    color: var(--text);
-    padding: 12px 15px;
-    border-radius: 5px;
-    text-align: left;
-    margin-bottom: 4px;
+    padding: 24px 15px 12px 25px;
+    font-size: 16px;
+    font-weight: 500;
 }
 
-.nav:hover {
-    background: var(--background);
+.label-icon {
+    font-size: 18px;
 }
 
-.nav.active {
-    background: var(--light);
-    color: var(--primary);
-    font-weight: 700;
-    border-left: 3px solid var(--primary);
-}
-
-.sidebar-footer {
-    margin: 40px 12px;
+.sidebar-note {
+    padding: 25px;
     color: var(--muted);
     font-size: 11px;
     line-height: 1.8;
@@ -158,913 +246,968 @@ a {
 .main {
     flex: 1;
     min-width: 0;
-    padding: 30px;
-}
-
-.breadcrumb {
-    color: var(--muted);
-    font-size: 11px;
-    margin-bottom: 22px;
-}
-
-.heading {
+    background: white;
+    border-radius: 20px;
+    margin-right: 18px;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 15px;
-}
-
-.heading h1 {
-    font-size: 30px;
-    letter-spacing: -1px;
-    margin: 0 0 6px;
-}
-
-.heading p {
-    margin: 0;
-    color: var(--muted);
-}
-
-.btn {
-    background: white;
-    border: 1px solid var(--border);
-    color: var(--text);
-    padding: 10px 15px;
-    border-radius: 5px;
-    font-weight: 600;
-}
-
-.btn:hover {
-    background: var(--light);
-}
-
-.btn-primary {
-    background: var(--primary);
-    color: white;
-    border-color: var(--primary);
-}
-
-.btn-primary:hover {
-    background: #92516d;
-}
-
-.stats {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 13px;
-    margin: 25px 0;
-}
-
-.stat {
-    background: white;
-    border: 1px solid var(--border);
-    padding: 20px;
-    border-radius: 7px;
-}
-
-.stat-label {
-    font-size: 10px;
-    color: var(--muted);
-    font-weight: 600;
-    letter-spacing: .5px;
-}
-
-.stat-number {
-    font-size: 28px;
-    color: var(--dark);
-    font-weight: 700;
-    margin-top: 7px;
-}
-
-.panel {
-    background: white;
-    border: 1px solid var(--border);
-    border-radius: 7px;
+    flex-direction: column;
     overflow: hidden;
 }
 
 .toolbar {
-    padding: 16px;
-    border-bottom: 1px solid var(--border);
     display: flex;
-    gap: 10px;
-    flex-wrap: wrap;
+    align-items: center;
+    gap: 5px;
+    padding: 9px 15px;
+    min-height: 58px;
+    border-bottom: 1px solid var(--border);
 }
 
-.toolbar input,
-.toolbar select {
-    padding: 10px 13px;
-    background: white;
-    color: var(--text);
-    border: 1px solid var(--border);
-    border-radius: 5px;
-}
-
-.search {
-    width: 320px;
-    max-width: 100%;
-}
-
-.table-scroll {
-    overflow: auto;
-    max-height: 600px;
-    scrollbar-color: #cda4b6 #f9eff4;
-    scrollbar-width: thin;
-}
-
-table {
-    width: 100%;
-    min-width: 1100px;
-    border-collapse: separate;
-    border-spacing: 0;
-}
-
-th, td {
-    padding: 17px 14px;
-    text-align: left;
-    border-bottom: 1px solid #f0e7ec;
-}
-
-th {
-    font-size: 10px;
-    letter-spacing: .5px;
-    background: #f8f0f4;
-    color: #79616e;
-    position: sticky;
-    top: 0;
-    z-index: 2;
-    white-space: nowrap;
-}
-
-td {
-    background: white;
+.toolbar-right {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    color: var(--muted);
     font-size: 12px;
 }
 
-tbody tr {
-    cursor: pointer;
+.tabs {
+    display: flex;
+    border-bottom: 1px solid var(--border);
+    overflow-x: auto;
 }
 
-tbody tr:hover td {
-    background: #fff7fa;
+.tab {
+    min-width: 170px;
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    padding: 19px 20px;
+    border-bottom: 3px solid transparent;
+    text-align: left;
 }
 
-.sender {
+.tab.active {
+    color: var(--pink);
+    border-bottom-color: var(--pink);
+    font-weight: 500;
+}
+
+.tab:hover {
+    background: #fcf6f9;
+}
+
+.mail-list {
+    overflow: auto;
+    flex: 1;
+}
+
+.mail-row {
     display: flex;
     align-items: center;
     gap: 10px;
-    white-space: nowrap;
+    min-height: 53px;
+    padding: 8px 18px;
+    border-bottom: 1px solid var(--border);
+    background: #fdf9fb;
+    cursor: pointer;
 }
 
-.sender-avatar {
-    height: 34px;
-    width: 34px;
+.mail-row.unread {
+    background: white;
+    font-weight: 600;
+}
+
+.mail-row:hover {
+    box-shadow: inset 0 1px 0 #ded0d8,
+                inset 0 -1px 0 #ded0d8,
+                0 2px 5px #50374312;
+    position: relative;
+}
+
+.mail-row.selected {
+    background: #f0dce7;
+}
+
+input[type="checkbox"] {
+    width: 15px;
+    height: 15px;
+    accent-color: var(--pink);
+    cursor: pointer;
+}
+
+.star {
+    padding: 4px;
+    color: #a69ba2;
+    font-size: 22px;
     flex-shrink: 0;
-    display: grid;
-    place-items: center;
-    background: #f1dce6;
-    color: var(--primary);
-    font-weight: 700;
-    border-radius: 50%;
 }
 
-.sender-name {
-    font-weight: 700;
+.star.on {
+    color: #d6a443;
 }
 
-.sender-email {
-    color: var(--muted);
-    font-size: 10px;
-    margin-top: 4px;
+.important {
+    color: #b8aab3;
+    padding: 4px;
 }
 
-.subject {
-    font-weight: 700;
-    color: var(--text);
-    margin-bottom: 5px;
+.important.on {
+    color: var(--pink);
 }
 
-.preview {
-    font-size: 11px;
-    color: var(--muted);
-    max-width: 300px;
+.sender {
+    width: 155px;
+    flex-shrink: 0;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
 }
 
-.badge {
-    display: inline-block;
-    padding: 5px 9px;
-    border-radius: 4px;
-    font-size: 10px;
-    font-weight: 600;
+.mail-summary {
+    flex: 1;
+    min-width: 0;
+    overflow: hidden;
     white-space: nowrap;
+    text-overflow: ellipsis;
 }
 
-.high {
-    background: #f9e1e5;
-    color: #ad4d60;
-}
-
-.medium {
-    background: #faf0dd;
-    color: #987333;
-}
-
-.low {
-    background: #e8f0ea;
-    color: #588065;
-}
-
-.approval {
-    background: #f9ecd8;
-    color: #986c2e;
-}
-
-.review {
-    background: #e8effa;
-    color: #4c6e9e;
-}
-
-.draft {
-    background: #eee8f9;
-    color: #74589c;
-}
-
-.scheduled {
-    background: #e4f1e9;
-    color: #47795c;
-}
-
-.completed {
-    background: #d9eee4;
-    color: #327553;
-}
-
-.star {
-    border: none;
-    background: transparent;
-    font-size: 20px;
-    color: #c8bbc2;
-}
-
-.star.selected {
-    color: #c69a45;
-}
-
-.table-footer {
-    padding: 15px 20px;
+.snippet {
     color: var(--muted);
-    font-size: 11px;
-    display: flex;
-    justify-content: space-between;
-    gap: 15px;
+    font-weight: 400;
 }
 
-.notice {
-    font-size: 11px;
+.mail-date {
+    width: 62px;
+    flex-shrink: 0;
+    text-align: right;
+    font-size: 12px;
+}
+
+.tag {
+    display: inline-block;
+    font-size: 10px;
+    padding: 4px 7px;
+    border-radius: 4px;
+    font-weight: 500;
+    white-space: nowrap;
+    background: #f0e4ec;
+    color: #82536b;
+}
+
+.tag.approval {
+    background: #f8e8d1;
+    color: #88602b;
+}
+
+.tag.high {
+    background: #f7dce4;
+    color: #9d425a;
+}
+
+.tag.reviewed {
+    background: #e3eee7;
+    color: #48735a;
+}
+
+.empty {
+    padding: 70px 20px;
+    text-align: center;
     color: var(--muted);
-    line-height: 1.8;
-    margin-top: 22px;
 }
 
 .reader {
-    background: white;
-    border: 1px solid var(--border);
-    border-radius: 7px;
-    overflow: hidden;
+    flex: 1;
+    overflow: auto;
 }
 
-.reader-toolbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 10px;
-    padding: 16px 22px;
-    border-bottom: 1px solid var(--border);
-}
-
-.reader-body {
-    max-width: 950px;
-    padding: 30px;
+.reader-content {
+    max-width: 1000px;
+    padding: 30px 45px 50px;
     margin: auto;
 }
 
-.reader-body h2 {
+.subject-title {
     font-size: 24px;
-    line-height: 1.4;
-    margin: 0 0 18px;
+    font-weight: 400;
+    line-height: 1.5;
+    margin: 0 0 15px;
 }
 
-.labels {
+.thread-labels {
     display: flex;
-    gap: 7px;
     flex-wrap: wrap;
-    margin-bottom: 25px;
-}
-
-.message {
-    border: 1px solid var(--border);
-    border-radius: 6px;
-    margin-bottom: 20px;
+    gap: 7px;
+    margin-bottom: 30px;
 }
 
 .message-header {
-    background: #fcf8fa;
-    padding: 18px;
-    border-bottom: 1px solid var(--border);
     display: flex;
     align-items: flex-start;
-    gap: 12px;
+    gap: 14px;
+}
+
+.sender-avatar {
+    width: 42px;
+    height: 42px;
+    flex-shrink: 0;
+    background: #eac5d8;
+    color: var(--dark);
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    font-size: 16px;
 }
 
 .message-meta {
     flex: 1;
     min-width: 0;
+    line-height: 1.7;
 }
 
-.message-meta strong {
-    font-size: 13px;
-}
-
-.message-meta p {
+.email-address {
     color: var(--muted);
-    font-size: 11px;
-    margin: 4px 0;
+    font-size: 12px;
     overflow-wrap: anywhere;
 }
 
-.message-date {
-    font-size: 10px;
+.message-time {
     color: var(--muted);
+    font-size: 12px;
 }
 
 .message-body {
-    padding: 24px;
-    line-height: 1.9;
-    font-size: 14px;
+    padding: 20px 0 25px 56px;
+    line-height: 1.85;
     white-space: pre-wrap;
     overflow-wrap: anywhere;
 }
 
+.thread-divider {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 20px 0 30px;
+}
+
 .draft-box {
-    border: 1px solid #d9b8c8;
-    border-radius: 6px;
+    margin: 22px 0 25px 56px;
+    border: 1px solid #e3d2dc;
+    border-radius: 12px;
+    box-shadow: 0 2px 7px #5037430b;
     overflow: hidden;
-    margin: 25px 0;
 }
 
 .draft-heading {
-    background: var(--light);
-    padding: 16px 20px;
+    padding: 15px 20px;
+    color: var(--muted);
+    border-bottom: 1px solid var(--border);
     display: flex;
     justify-content: space-between;
-    align-items: center;
     gap: 10px;
-    color: var(--primary);
-    font-weight: 700;
-}
-
-.draft-details {
-    padding: 17px 20px;
-    border-bottom: 1px solid var(--border);
-    font-size: 12px;
-    line-height: 1.9;
+    flex-wrap: wrap;
 }
 
 .draft-box textarea {
+    display: block;
     width: 100%;
-    min-height: 340px;
     border: none;
-    padding: 24px;
-    font-size: 14px;
-    line-height: 1.9;
-    color: var(--text);
+    padding: 20px;
+    min-height: 400px;
     resize: vertical;
     outline: none;
+    line-height: 1.8;
+    color: var(--text);
 }
 
 .draft-actions {
-    padding: 15px 20px;
     display: flex;
+    align-items: center;
+    gap: 8px;
     flex-wrap: wrap;
-    gap: 9px;
-    border-top: 1px solid var(--border);
+    padding: 15px;
 }
 
-.internal {
+.primary-button {
+    background: var(--pink);
+    color: white;
+    border-radius: 22px;
+    padding: 11px 20px;
+    font-weight: 500;
+}
+
+.primary-button:hover {
+    background: #90506b;
+}
+
+.secondary-button {
+    border: 1px solid #d9c6d1;
+    border-radius: 22px;
+    padding: 10px 17px;
+    background: white;
+}
+
+.secondary-button:hover {
+    background: var(--light);
+}
+
+.internal-record {
+    margin: 30px 0 0 56px;
+    padding: 23px;
+    background: #fcf6f9;
     border: 1px solid var(--border);
-    background: #fcf8fa;
-    border-radius: 6px;
-    padding: 22px;
+    border-radius: 12px;
 }
 
-.internal h3 {
-    margin: 0 0 17px;
-    font-size: 13px;
-    color: var(--primary);
+.internal-record h3 {
+    margin: 0 0 20px;
+    color: var(--pink);
+    font-size: 14px;
+    font-weight: 500;
 }
 
-.details-grid {
+.record-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 20px;
 }
 
-.detail label {
+.record-field label {
     display: block;
-    font-size: 10px;
+    font-size: 11px;
     color: var(--muted);
-    font-weight: 700;
-    margin-bottom: 6px;
+    margin-bottom: 7px;
     text-transform: uppercase;
     letter-spacing: .5px;
 }
 
-.detail p {
+.record-field p {
     margin: 0;
     line-height: 1.7;
+    font-size: 13px;
 }
 
-.detail.full {
+.record-field select,
+.record-field input {
+    width: 100%;
+    border: 1px solid #dfced8;
+    background: white;
+    border-radius: 6px;
+    padding: 10px;
+}
+
+.full {
     grid-column: 1 / -1;
 }
 
-.detail select {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid var(--border);
-    border-radius: 4px;
+.compose-window {
+    position: fixed;
+    bottom: 0;
+    right: 30px;
+    width: 570px;
+    max-width: calc(100vw - 30px);
+    max-height: 90dvh;
+    overflow-y: auto;
     background: white;
-    color: var(--text);
-}
-
-.empty {
-    padding: 45px;
-    text-align: center;
-    color: var(--muted);
-}
-
-.hidden {
-    display: none !important;
-}
-
-dialog {
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 0;
-    width: 650px;
-    max-width: calc(100% - 30px);
-    color: var(--text);
-    box-shadow: 0 20px 60px #50374333;
-}
-
-dialog::backdrop {
-    background: #50374366;
+    border-radius: 12px 12px 0 0;
+    box-shadow: 0 0 30px #50374330;
+    z-index: 110;
 }
 
 .compose-header {
-    background: var(--dark);
-    color: white;
-    padding: 18px 22px;
+    background: #efdae5;
+    padding: 12px 17px;
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    justify-content: space-between;
+    font-weight: 500;
 }
 
-.compose-header button {
+.compose-field {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 17px;
+    border-bottom: 1px solid var(--border);
+}
+
+.compose-field input,
+.compose-field select {
+    flex: 1;
+    min-width: 0;
+    outline: none;
     border: none;
-    background: transparent;
-    color: white;
-    font-size: 22px;
-}
-
-.compose-body {
-    padding: 22px;
-}
-
-.compose-body label {
-    display: block;
-    color: var(--muted);
-    font-size: 11px;
-    margin: 14px 0 6px;
-}
-
-.compose-body input,
-.compose-body select,
-.compose-body textarea {
-    width: 100%;
-    border: 1px solid var(--border);
-    border-radius: 4px;
-    padding: 11px;
-    color: var(--text);
     background: white;
 }
 
-.compose-body textarea {
-    min-height: 200px;
+.compose-window textarea {
+    width: 100%;
+    min-height: 250px;
+    padding: 20px;
+    border: none;
+    outline: none;
     resize: vertical;
+    line-height: 1.7;
 }
 
 .compose-footer {
-    padding: 18px 22px;
-    border-top: 1px solid var(--border);
+    padding: 15px;
     display: flex;
-    justify-content: flex-end;
+    align-items: center;
     gap: 10px;
 }
 
 .toast {
     position: fixed;
     bottom: 25px;
-    right: 25px;
+    left: 25px;
+    max-width: calc(100vw - 50px);
     background: var(--dark);
     color: white;
-    padding: 15px 20px;
-    border-radius: 5px;
-    z-index: 100;
+    padding: 16px 22px;
+    border-radius: 6px;
+    z-index: 200;
+    box-shadow: 0 4px 12px #50374322;
+}
+
+.demo-notice {
+    font-size: 11px;
+    color: var(--muted);
+    padding: 13px 20px;
+    border-top: 1px solid var(--border);
+    line-height: 1.6;
+}
+
+.hidden {
+    display: none !important;
+}
+
+.sidebar.collapsed {
+    width: 75px;
+}
+
+.sidebar.collapsed .nav-item {
+    justify-content: center;
+    padding: 12px;
+}
+
+.sidebar.collapsed .nav-text,
+.sidebar.collapsed .count,
+.sidebar.collapsed .label-heading,
+.sidebar.collapsed .sidebar-note,
+.sidebar.collapsed .compose-text {
     display: none;
 }
 
+.sidebar.collapsed .compose-button {
+    padding: 15px;
+    margin-left: 10px;
+}
+
 @media(max-width: 1000px) {
-    .stats {
-        grid-template-columns: repeat(2, 1fr);
+    .sender {
+        width: 120px;
+    }
+
+    .row-label {
+        display: none;
+    }
+
+    .brand {
+        width: auto;
+    }
+
+    .brand-name {
+        display: none;
+    }
+
+    .sidebar {
+        width: 220px;
     }
 }
 
 @media(max-width: 700px) {
-    .sidebar {
-        width: 100%;
-        border-right: none;
-        border-bottom: 1px solid var(--border);
-        padding: 15px;
-    }
-
-    .sidebar-label,
-    .sidebar-footer {
-        display: none;
-    }
-
-    .sidebar .nav {
-        display: inline-flex;
-        width: auto;
-        gap: 8px;
-    }
-
-    .compose {
-        margin-bottom: 12px;
+    header {
+        padding: 8px;
+        gap: 7px;
+        height: 65px;
     }
 
     .layout {
-        flex-direction: column;
+        height: calc(100dvh - 65px);
+    }
+
+    .sidebar {
+        width: 65px;
+    }
+
+    .sidebar .nav-text,
+    .sidebar .count,
+    .sidebar .label-heading,
+    .sidebar .sidebar-note,
+    .sidebar .compose-text {
+        display: none;
+    }
+
+    .sidebar .nav-item {
+        justify-content: center;
+        padding: 12px;
+    }
+
+    .compose-button {
+        padding: 13px;
+        margin-left: 7px;
     }
 
     .main {
-        padding: 16px;
+        margin-right: 7px;
     }
 
-    .reader-body {
-        padding: 18px;
+    .header-right .extra {
+        display: none;
     }
 
-    .details-grid {
+    .mail-logo {
+        display: none;
+    }
+
+    .sender {
+        width: 100%;
+    }
+
+    .mail-row {
+        flex-wrap: wrap;
+        gap: 7px;
+        padding: 12px;
+    }
+
+    .mail-summary {
+        flex-basis: 100%;
+        white-space: normal;
+    }
+
+    .mail-date {
+        margin-left: auto;
+    }
+
+    .reader-content {
+        padding: 20px;
+    }
+
+    .message-body {
+        padding-left: 0;
+    }
+
+    .draft-box,
+    .internal-record {
+        margin-left: 0;
+    }
+
+    .record-grid {
         grid-template-columns: 1fr;
-    }
-
-    .topbar {
-        padding: 0 15px;
-    }
-
-    .brand {
-        font-size: 12px;
-    }
-
-    .brand small {
-        font-size: 8px;
-    }
-
-    .top-right {
-        gap: 10px;
-        font-size: 11px;
     }
 
     .message-header {
         flex-wrap: wrap;
     }
 
-    .table-footer {
-        flex-direction: column;
+    .compose-window {
+        right: 8px;
+    }
+
+    .tab {
+        min-width: 135px;
+        padding: 16px;
     }
 }
-
 </style>
 </head>
 
 <body>
 
-<header class="topbar">
+<header>
 
     <div class="brand">
-        REAL ESTATE MAIL
-        <small>DAINTY DE GUZMAN | PORTFOLIO</small>
+
+        <button class="icon-button"
+            title="Toggle sidebar"
+            onclick="toggleSidebar()">
+            <span class="material-symbols-outlined">menu</span>
+        </button>
+
+        <span class="material-symbols-outlined mail-logo">mail</span>
+
+        <span class="brand-name">Mail</span>
+
     </div>
 
-    <div class="top-right">
-        <a href="index.html#work">Back to Portfolio</a>
-        <div class="avatar">DD</div>
+    <div class="search-bar">
+
+        <span class="material-symbols-outlined">search</span>
+
+        <input id="search"
+            placeholder="Search mail"
+            oninput="searchMail()">
+
+        <button class="icon-button"
+            title="Clear search"
+            onclick="clearSearch()">
+            <span class="material-symbols-outlined">close</span>
+        </button>
+
+    </div>
+
+    <div class="header-right">
+
+        <a class="icon-button extra"
+            href="lead-management.html"
+            title="Open CRM">
+            <span class="material-symbols-outlined">contacts</span>
+        </a>
+
+        <a class="icon-button extra"
+            href="index.html#work"
+            title="Back to portfolio">
+            <span class="material-symbols-outlined">home</span>
+        </a>
+
+        <button class="profile-button"
+            title="Account information"
+            onclick="toggleProfile()">
+
+            <img class="profile-picture"
+                src="dainty-profile.jpeg"
+                alt="Dainty De Guzman">
+
+        </button>
+
     </div>
 
 </header>
 
-<div class="layout">
+<div id="profileMenu" class="profile-menu hidden">
 
-<aside class="sidebar">
+    <p>daintydeguzman.work@gmail.com</p>
 
-    <button class="compose" onclick="openCompose()">
-        + Compose Draft
-    </button>
+    <img src="dainty-profile.jpeg"
+        alt="Dainty De Guzman">
 
-    <div class="sidebar-label">MAILBOX</div>
+    <h2>Hi, Dainty!</h2>
 
-    <button class="nav active" data-folder="all"
-        onclick="setFolder('all')">
-        Inbox <span id="inboxCount">5</span>
-    </button>
+    <p>Real Estate Virtual Assistant</p>
 
-    <button class="nav" data-folder="starred"
-        onclick="setFolder('starred')">
-        Starred <span id="starCount">0</span>
-    </button>
+    <p>Portfolio demonstration account</p>
 
-    <button class="nav" data-folder="drafts"
-        onclick="setFolder('drafts')">
-        Drafts <span id="draftCount">0</span>
-    </button>
-
-    <button class="nav" data-folder="approval"
-        onclick="setFolder('approval')">
-        Awaiting Approval <span id="approvalCount">0</span>
-    </button>
-
-    <button class="nav" data-folder="scheduled"
-        onclick="setFolder('scheduled')">
-        Scheduled Follow-ups <span id="scheduledCount">0</span>
-    </button>
-
-    <button class="nav" data-folder="completed"
-        onclick="setFolder('completed')">
-        Reviewed <span id="completedCount">0</span>
-    </button>
-
-    <div class="sidebar-label">CATEGORIES</div>
-
-    <button class="nav" data-folder="Buyer"
-        onclick="setFolder('Buyer')">
-        Buyer Communication
-    </button>
-
-    <button class="nav" data-folder="Seller"
-        onclick="setFolder('Seller')">
-        Seller Communication
-    </button>
-
-    <button class="nav" data-folder="high"
-        onclick="setFolder('high')">
-        High Priority
-    </button>
-
-    <div class="sidebar-label">WORKSPACE</div>
-
-    <a class="nav" href="lead-management.html">
-        Lead Management CRM
+    <a class="secondary-button"
+        href="index.html">
+        Back to Portfolio
     </a>
 
-    <div class="sidebar-footer">
-        REAL ESTATE ADMINISTRATION<br>
-        Email Management Workspace<br>
-        Independent Portfolio Project
+</div>
+
+<div class="layout">
+
+<aside class="sidebar" id="sidebar">
+
+    <button class="compose-button"
+        onclick="openCompose()">
+
+        <span class="material-symbols-outlined">edit</span>
+
+        <span class="compose-text">Compose</span>
+
+    </button>
+
+    <div id="folderNavigation"></div>
+
+    <div class="label-heading">
+        Labels
+        <span class="material-symbols-outlined">label</span>
+    </div>
+
+    <div id="labelNavigation"></div>
+
+    <div class="label-heading">Workspace</div>
+
+    <a class="nav-item" href="lead-management.html">
+
+        <span class="material-symbols-outlined">contacts</span>
+
+        <span class="nav-text">Lead Management CRM</span>
+
+    </a>
+
+    <a class="nav-item" href="index.html#work">
+
+        <span class="material-symbols-outlined">arrow_back</span>
+
+        <span class="nav-text">Back to Portfolio</span>
+
+    </a>
+
+    <button class="nav-item" onclick="resetDemo()">
+
+        <span class="material-symbols-outlined">restart_alt</span>
+
+        <span class="nav-text">Reset Demo</span>
+
+    </button>
+
+    <div class="sidebar-note">
+        REAL ESTATE EMAIL MANAGEMENT<br>
+        Independent portfolio project<br>
+        Fictional communication records
     </div>
 
 </aside>
 
 <main class="main">
 
-    <div class="breadcrumb">
-        Workspace / Real Estate / Email Management
-    </div>
+    <div id="inboxToolbar" class="toolbar">
 
-    <div class="heading">
+        <input type="checkbox"
+            id="selectAll"
+            title="Select all visible messages"
+            onchange="selectAllMessages(this.checked)">
 
-        <div>
-            <h1 id="pageTitle">Inbox</h1>
-            <p>Real Estate Client Communication</p>
+        <button class="icon-button"
+            title="Refresh"
+            onclick="renderInbox()">
+            <span class="material-symbols-outlined">refresh</span>
+        </button>
+
+        <button class="icon-button"
+            title="Archive selected"
+            onclick="bulkAction('archive')">
+            <span class="material-symbols-outlined">archive</span>
+        </button>
+
+        <button class="icon-button"
+            title="Delete selected"
+            onclick="bulkAction('trash')">
+            <span class="material-symbols-outlined">delete</span>
+        </button>
+
+        <button class="icon-button"
+            title="Mark selected as read"
+            onclick="bulkAction('read')">
+            <span class="material-symbols-outlined">drafts</span>
+        </button>
+
+        <div class="toolbar-right">
+
+            <span id="recordCount"></span>
+
+            <button class="icon-button"
+                title="Previous page"
+                onclick="changePage(-1)">
+                <span class="material-symbols-outlined">chevron_left</span>
+            </button>
+
+            <button class="icon-button"
+                title="Next page"
+                onclick="changePage(1)">
+                <span class="material-symbols-outlined">chevron_right</span>
+            </button>
+
         </div>
 
-        <button class="btn" onclick="resetDemo()">
-            Reset Demo
+    </div>
+
+    <div class="tabs" id="inboxTabs">
+
+        <button class="tab active"
+            data-tab="inbox"
+            onclick="setFolder('inbox')">
+
+            <span class="material-symbols-outlined">inbox</span>
+            Primary
+
+        </button>
+
+        <button class="tab"
+            data-tab="approval"
+            onclick="setFolder('approval')">
+
+            <span class="material-symbols-outlined">flag</span>
+            Agent Approval
+
+        </button>
+
+        <button class="tab"
+            data-tab="followup"
+            onclick="setFolder('followup')">
+
+            <span class="material-symbols-outlined">schedule</span>
+            Follow-ups
+
         </button>
 
     </div>
 
-    <div class="stats">
+    <div id="mailList" class="mail-list"></div>
 
-        <div class="stat">
-            <div class="stat-label">COMMUNICATION RECORDS</div>
-            <div class="stat-number" id="totalStat">5</div>
-        </div>
+    <div id="readerToolbar" class="toolbar hidden">
 
-        <div class="stat">
-            <div class="stat-label">HIGH PRIORITY</div>
-            <div class="stat-number" id="highStat">0</div>
-        </div>
+        <button class="icon-button"
+            title="Back to inbox"
+            onclick="closeEmail()">
+            <span class="material-symbols-outlined">arrow_back</span>
+        </button>
 
-        <div class="stat">
-            <div class="stat-label">AWAITING APPROVAL</div>
-            <div class="stat-number" id="approvalStat">0</div>
-        </div>
+        <button class="icon-button"
+            title="Archive message"
+            onclick="singleAction('archive')">
+            <span class="material-symbols-outlined">archive</span>
+        </button>
 
-        <div class="stat">
-            <div class="stat-label">RESPONSE DRAFTS</div>
-            <div class="stat-number" id="draftStat">0</div>
+        <button class="icon-button"
+            title="Delete message"
+            onclick="singleAction('trash')">
+            <span class="material-symbols-outlined">delete</span>
+        </button>
+
+        <button class="icon-button"
+            title="Mark as unread"
+            onclick="singleAction('unread')">
+            <span class="material-symbols-outlined">mark_email_unread</span>
+        </button>
+
+        <button class="icon-button"
+            title="Restore to inbox"
+            onclick="singleAction('restore')">
+            <span class="material-symbols-outlined">move_to_inbox</span>
+        </button>
+
+        <div class="toolbar-right">
+
+            <button class="icon-button"
+                title="Previous message"
+                onclick="navigateEmail(-1)">
+                <span class="material-symbols-outlined">chevron_left</span>
+            </button>
+
+            <button class="icon-button"
+                title="Next message"
+                onclick="navigateEmail(1)">
+                <span class="material-symbols-outlined">chevron_right</span>
+            </button>
+
         </div>
 
     </div>
 
-    <section class="panel" id="inboxView">
+    <div id="reader" class="reader hidden">
 
-        <div class="toolbar">
+        <div id="readerContent"
+            class="reader-content"></div>
 
-            <input class="search"
-                id="search"
-                type="search"
-                placeholder="Search emails..."
-                oninput="renderInbox()">
+    </div>
 
-            <select id="typeFilter"
-                onchange="renderInbox()">
-                <option value="">Client Type: All</option>
-                <option>Buyer</option>
-                <option>Seller</option>
-            </select>
-
-            <select id="priorityFilter"
-                onchange="renderInbox()">
-                <option value="">Priority: All</option>
-                <option>High</option>
-                <option>Medium</option>
-                <option>Low</option>
-            </select>
-
-            <select id="statusFilter"
-                onchange="renderInbox()">
-                <option value="">Status: All</option>
-                <option>Draft Prepared</option>
-                <option>Awaiting Approval</option>
-                <option>Ready for Review</option>
-                <option>Scheduled Follow-up</option>
-                <option>Reviewed</option>
-            </select>
-
-            <button class="btn" onclick="clearFilters()">
-                Clear Filters
-            </button>
-
-        </div>
-
-        <div class="table-scroll">
-
-            <table>
-
-                <thead>
-                    <tr>
-                        <th>STAR</th>
-                        <th>SENDER / CONTACT</th>
-                        <th>SUBJECT</th>
-                        <th>CLIENT TYPE</th>
-                        <th>PRIORITY</th>
-                        <th>STATUS</th>
-                        <th>DATE</th>
-                    </tr>
-                </thead>
-
-                <tbody id="emailRows"></tbody>
-
-            </table>
-
-        </div>
-
-        <div class="table-footer">
-            <span id="visibleCount"></span>
-            <span>Click any email to view the conversation and response draft.</span>
-        </div>
-
-    </section>
-
-    <section class="reader hidden" id="readerView">
-
-        <div class="reader-toolbar">
-
-            <button class="btn" onclick="closeEmail()">
-                &larr; Back to Inbox
-            </button>
-
-            <div>
-                <button class="btn" onclick="navigateEmail(-1)">
-                    Previous
-                </button>
-
-                <button class="btn" onclick="navigateEmail(1)">
-                    Next
-                </button>
-            </div>
-
-        </div>
-
-        <div class="reader-body" id="readerContent"></div>
-
-    </section>
-
-    <p class="notice">
-        Independent portfolio demonstration by Dainty De Guzman.
-        All client identities, email conversations, property details,
-        and communication records are fictional. This workspace
-        demonstrates administrative email management and is not
-        connected to a live email account. No emails are actually sent.
-    </p>
+    <div class="demo-notice">
+        Portfolio simulation by Dainty De Guzman.
+        All client conversations are fictional.
+        No actual emails are sent or received.
+    </div>
 
 </main>
 
 </div>
 
-<dialog id="composeDialog">
+<div class="compose-window hidden" id="composeWindow">
 
-    <form onsubmit="createDraft(event)">
+    <div class="compose-header">
 
-        <div class="compose-header">
-            <strong>New Response Draft</strong>
+        <span>New Message</span>
 
-            <button type="button"
-                onclick="document.getElementById('composeDialog').close()">
-                &times;
-            </button>
+        <button onclick="closeCompose()"
+            title="Close compose">
+            <span class="material-symbols-outlined">close</span>
+        </button>
+
+    </div>
+
+    <form id="composeForm" onsubmit="saveNewDraft(event)">
+
+        <div class="compose-field">
+            <span>From</span>
+            <span>daintydeguzman.work@gmail.com</span>
         </div>
 
-        <div class="compose-body">
+        <div class="compose-field">
+            <span>To</span>
+            <input type="email"
+                name="email"
+                placeholder="Recipient"
+                required>
+        </div>
 
-            <label>Contact Name</label>
-            <input name="name" required>
+        <div class="compose-field">
+            <input name="name"
+                placeholder="Contact name"
+                required>
+        </div>
 
-            <label>Recipient Email</label>
-            <input name="email" type="email" required>
+        <div class="compose-field">
+            <input name="subject"
+                placeholder="Subject"
+                required>
+        </div>
 
-            <label>Client Type</label>
+        <div class="compose-field">
+
+            <span>Client type</span>
+
             <select name="type">
                 <option>Buyer</option>
                 <option>Seller</option>
             </select>
 
-            <label>Subject</label>
-            <input name="subject" required>
-
-            <label>Priority</label>
-            <select name="priority">
-                <option>Medium</option>
-                <option>High</option>
-                <option>Low</option>
-            </select>
-
-            <label>Response Draft</label>
-            <textarea name="draft" required></textarea>
-
         </div>
+
+        <textarea name="draft"
+            placeholder="Write your response..."
+            required></textarea>
 
         <div class="compose-footer">
 
-            <button type="button" class="btn"
-                onclick="document.getElementById('composeDialog').close()">
-                Cancel
+            <button class="primary-button" type="submit">
+                Save Draft
             </button>
 
-            <button type="submit" class="btn btn-primary">
-                Save Draft
+            <button class="icon-button"
+                type="button"
+                title="Discard draft"
+                onclick="discardCompose()">
+
+                <span class="material-symbols-outlined">delete</span>
+
             </button>
 
         </div>
 
     </form>
 
-</dialog>
+</div>
 
-<div class="toast" id="toast"></div>
+<div id="toast" class="toast hidden"></div>
 
 <script>
 
-/* ==========================================
-   REAL ESTATE EMAIL COMMUNICATION RECORDS
-========================================== */
+const ACCOUNT = "daintydeguzman.work@gmail.com";
+const ACCOUNT_NAME = "Dainty De Guzman";
+const PROFILE = "dainty-profile.jpeg";
+
+const signature = `
+
+Best regards,
+Dainty De Guzman
+Real Estate Administrative Support
+daintydeguzman.work@gmail.com`;
+
+/* =====================================
+   COMPLETE EMAIL COMMUNICATION DATABASE
+===================================== */
 
 const originalEmails = [
 
@@ -1074,21 +1217,26 @@ const originalEmails = [
     name: "Ethan Brooks",
     email: "ethan.brooks@example.com",
     type: "Buyer",
-    category: "New Buyer Inquiry",
     market: "Phoenix, AZ",
+    category: "New Buyer Inquiry",
     subject: "First-time homebuyer inquiry",
-    priority: "Medium",
-    status: "Draft Prepared",
     date: "2026-11-25",
     time: "9:15 AM MST",
+    priority: "Medium",
+    status: "Draft Prepared",
     followup: "2026-11-28",
+    unread: true,
     starred: false,
+    archived: false,
+    trashed: false,
 
     incoming: `Hi,
 
 I came across your real estate services while looking for townhouses in Phoenix. I'm planning to purchase my first home within the next few months.
 
-My budget is around $320,000, and I'm hoping to find something with at least three bedrooms and two bathrooms. I'm still looking into financing options and would appreciate some guidance on getting started.
+My budget is around $320,000, and I'm hoping to find something with at least three bedrooms and two bathrooms.
+
+I'm still exploring financing options and would appreciate some guidance on getting started.
 
 Could you let me know what information you need from me?
 
@@ -1103,27 +1251,22 @@ I've noted your preference for a three-bedroom, two-bathroom townhouse within yo
 
 To help our agent better understand your requirements, could you please share a few additional details?
 
-• Your preferred neighborhoods or areas in Phoenix
+• Your preferred neighborhoods in Phoenix
 • Your estimated purchase timeline
 • Any essential property features
 • Whether you have already spoken with a mortgage lender
 
 Once we have this information, our agent can review your requirements and discuss the appropriate next steps with you.
 
-Please feel free to reply whenever convenient. We look forward to assisting you throughout your home search.
-
-Best regards,
-Dainty De Guzman
-Real Estate Administrative Support
-On behalf of the Real Estate Team`,
+Please feel free to reply whenever convenient. We look forward to assisting you throughout your home search.` + signature,
 
     action: "Collect buyer requirements and update the CRM record.",
 
-    approval: "Agent review required before providing financing guidance or recommending specific properties.",
+    approval: "Agent review required before providing financing guidance or specific property recommendations.",
 
-    notes: "New buyer inquiry. Initial requirements recorded in CRM. Financing and preferred neighborhoods remain unconfirmed.",
+    notes: "New buyer inquiry. Initial property requirements recorded. Financing and preferred neighborhoods remain unconfirmed.",
 
-    owner: "Administrative Support / Assigned Agent"
+    owner: "Administrative Support / Assigned Buyer Agent"
 },
 
 {
@@ -1132,15 +1275,18 @@ On behalf of the Real Estate Team`,
     name: "Sophia Bennett",
     email: "sophia.bennett@example.com",
     type: "Buyer",
-    category: "Property Showing",
     market: "Miami, FL",
+    category: "Property Showing",
     subject: "Availability for a condominium showing",
-    priority: "High",
-    status: "Awaiting Approval",
     date: "2026-11-25",
     time: "11:40 AM EST",
+    priority: "High",
+    status: "Awaiting Approval",
     followup: "2026-11-28",
+    unread: true,
     starred: true,
+    archived: false,
+    trashed: false,
 
     incoming: `Hello,
 
@@ -1166,18 +1312,13 @@ Once the arrangements have been confirmed, we'll provide the appointment details
 
 For now, please consider the showing request tentative.
 
-Thank you for your patience, and we'll be in touch with an update as soon as possible.
+Thank you for your patience. We'll be in touch with an update once the necessary details have been confirmed.` + signature,
 
-Best regards,
-Dainty De Guzman
-Real Estate Administrative Support
-On behalf of the Real Estate Team`,
+    action: "Verify agent availability, property access, and parking information.",
 
-    action: "Verify agent availability, property access, and parking information before confirming the showing.",
+    approval: "Required before confirming the appointment or communicating unverified property information.",
 
-    approval: "Required. The appointment must not be confirmed until the agent and property representative approve the schedule.",
-
-    notes: "Buyer is currently in the Viewing stage. Tentative appointment requested. Parking information has not been verified.",
+    notes: "Buyer is in the Viewing stage. Appointment is tentative. Parking details have not been verified.",
 
     owner: "Assigned Showing Agent"
 },
@@ -1188,15 +1329,18 @@ On behalf of the Real Estate Team`,
     name: "James Carter",
     email: "james.carter@example.com",
     type: "Seller",
-    category: "Listing Consultation",
     market: "Dallas, TX",
+    category: "Listing Consultation",
     subject: "Interested in selling my home in Dallas",
-    priority: "High",
-    status: "Awaiting Approval",
     date: "2026-11-24",
     time: "2:20 PM CST",
+    priority: "High",
+    status: "Awaiting Approval",
     followup: "2026-11-27",
+    unread: true,
     starred: true,
+    archived: false,
+    trashed: false,
 
     incoming: `Good afternoon,
 
@@ -1221,7 +1365,7 @@ To help prepare for your listing consultation, it would be useful to have the fo
 
 • The property's complete address
 • Approximate floor area and lot size
-• Details of any recent renovations or improvements
+• Details of recent renovations or improvements
 • Your preferred selling timeline
 • Your availability for an initial consultation
 
@@ -1229,18 +1373,13 @@ Our agent will be able to discuss the listing process, review relevant market in
 
 Could you please share two or three convenient times for a meeting?
 
-We'll coordinate with the agent and confirm the arrangements once availability has been established.
-
-Best regards,
-Dainty De Guzman
-Real Estate Administrative Support
-On behalf of the Real Estate Team`,
+We'll coordinate with the agent and confirm the arrangements once availability has been established.` + signature,
 
     action: "Collect preliminary property information and coordinate a listing consultation.",
 
-    approval: "Agent approval required for pricing discussions, market analysis, listing terms, and commission-related questions.",
+    approval: "Agent approval required for pricing, market analysis, listing terms, and commission discussions.",
 
-    notes: "The $580,000 amount is the seller's stated target price, not a verified property valuation. No listing agreement has been established.",
+    notes: "The $580,000 amount is the seller's stated target price, not a verified valuation. No listing agreement has been established.",
 
     owner: "Assigned Listing Agent"
 },
@@ -1251,15 +1390,18 @@ On behalf of the Real Estate Team`,
     name: "Olivia Mitchell",
     email: "olivia.mitchell@example.com",
     type: "Buyer",
-    category: "Qualified Lead Follow-up",
     market: "Austin, TX",
+    category: "Qualified Lead Follow-up",
     subject: "Following up on available homes in Austin",
-    priority: "High",
-    status: "Ready for Review",
     date: "2026-11-23",
     time: "10:30 AM CST",
+    priority: "High",
+    status: "Ready for Review",
     followup: "2026-11-27",
+    unread: false,
     starred: true,
+    archived: false,
+    trashed: false,
 
     incoming: `Hi,
 
@@ -1290,18 +1432,13 @@ Before we finalize the next steps, could you let us know whether your preferred 
 
 Once our agent has reviewed the potential matches and verified their availability, we'll be able to share the appropriate property information and discuss possible viewing arrangements.
 
-We appreciate your patience and look forward to helping you move forward with your search.
+We appreciate your patience and look forward to helping you move forward with your search.` + signature,
 
-Best regards,
-Dainty De Guzman
-Real Estate Administrative Support
-On behalf of the Real Estate Team`,
+    action: "Prepare a property shortlist for agent review and reconfirm buyer preferences.",
 
-    action: "Prepare property shortlist for agent review and confirm whether buyer preferences have changed.",
+    approval: "Specific property recommendations and listing availability must be verified before release.",
 
-    approval: "Property recommendations, listing availability, and any attached shortlist must be reviewed by the assigned agent before release.",
-
-    notes: "Qualified buyer. CRM records indicate conventional financing and a purchase timeline of one to three months. No specific properties have been promised.",
+    notes: "Qualified buyer with conventional financing and a one-to-three-month purchase timeline. No specific properties have been promised.",
 
     owner: "Administrative Support / Assigned Buyer Agent"
 },
@@ -1312,15 +1449,18 @@ On behalf of the Real Estate Team`,
     name: "Noah Reed",
     email: "noah.reed@example.com",
     type: "Buyer",
-    category: "Lead Nurturing",
     market: "Denver, CO",
+    category: "Lead Nurturing",
     subject: "Update regarding our relocation plans",
-    priority: "Low",
-    status: "Scheduled Follow-up",
     date: "2026-11-19",
     time: "4:10 PM MST",
+    priority: "Low",
+    status: "Scheduled Follow-up",
     followup: "2026-12-10",
+    unread: false,
     starred: false,
+    archived: false,
+    trashed: false,
 
     incoming: `Hello,
 
@@ -1346,52 +1486,68 @@ With your permission, we'll keep your preferences on record and share occasional
 
 If your timeline, budget, or property requirements change in the meantime, please feel free to let us know.
 
-We appreciate the opportunity to stay in touch and look forward to assisting you when the time is right.
+We appreciate the opportunity to stay in touch and look forward to assisting you when the time is right.` + signature,
 
-Best regards,
-Dainty De Guzman
-Real Estate Administrative Support
-On behalf of the Real Estate Team`,
-
-    action: "Maintain permission-based follow-up and prepare a future check-in for December 10.",
+    action: "Prepare a permission-based check-in for December 10.",
 
     approval: "Agent review required before sending market updates or specific property recommendations.",
 
-    notes: "Lead moved to nurturing workflow. Client has expressed interest in occasional updates. No immediate showing request. Follow-up date is an internal reminder, not an automated email send.",
+    notes: "Lead is in the nurturing stage. Client has expressed interest in occasional updates. Follow-up date is an internal reminder, not an automated email send.",
 
     owner: "Administrative Support"
 }
 
 ];
 
-/* ==========================================
+/* =====================================
    APPLICATION STATE
-========================================== */
+===================================== */
 
-const storageKey = "dainty-real-estate-email-v1";
+const STORAGE = "dainty-gmail-portfolio-v2";
 
 let emails;
 
 try {
-
-    const saved = localStorage.getItem(storageKey);
+    const saved = localStorage.getItem(STORAGE);
 
     emails = saved
         ? JSON.parse(saved)
-        : JSON.parse(JSON.stringify(originalEmails));
+        : structuredClone(originalEmails);
 
     if (!Array.isArray(emails)) {
-        throw new Error("Invalid records");
+        throw new Error("Invalid data");
     }
-
 } catch {
-
-    emails = JSON.parse(JSON.stringify(originalEmails));
-
+    emails = structuredClone(originalEmails);
 }
 
-let currentFolder = "all";
-let selectedId = null;
+let folder = "inbox";
+let currentId = null;
+let page = 0;
+let selected = new Set();
+
+const PAGE_SIZE = 20;
+
+const folders = [
+    ["inbox", "inbox", "Inbox"],
+    ["starred", "star", "Starred"],
+    ["followup", "schedule", "Follow-ups"],
+    ["important", "label_important", "Important"],
+    ["drafts", "description", "Drafts"],
+    ["approval", "flag", "Awaiting Approval"],
+    ["reviewed", "task_alt", "Reviewed"],
+    ["all", "mail", "All Mail"],
+    ["trash", "delete", "Trash"]
+];
+
+const labels = [
+    ["Buyer", "label", "Buyer Inquiries", "#a65f7d"],
+    ["Seller", "label", "Seller Inquiries", "#8872a3"],
+    ["showing", "label", "Property Showings", "#c18c51"],
+    ["listing", "label", "Listing Consultations", "#718d80"],
+    ["nurturing", "label", "Lead Nurturing", "#7995ad"],
+    ["high", "label", "High Priority", "#b75d73"]
+];
 
 const statuses = [
     "Draft Prepared",
@@ -1401,342 +1557,372 @@ const statuses = [
     "Reviewed"
 ];
 
-const folderNames = {
-    all: "Inbox",
-    starred: "Starred",
-    drafts: "Drafts",
-    approval: "Awaiting Approval",
-    scheduled: "Scheduled Follow-ups",
-    completed: "Reviewed Communications",
-    Buyer: "Buyer Communication",
-    Seller: "Seller Communication",
-    high: "High Priority"
-};
-
-function escapeHTML(value) {
-
+function esc(value) {
     return String(value ?? "")
         .replace(/&/g, "&amp;")
         .replace(/</g, "&lt;")
         .replace(/>/g, "&gt;")
         .replace(/"/g, "&quot;")
         .replace(/'/g, "&#39;");
-
 }
 
 function persist() {
-
     try {
-
         localStorage.setItem(
-            storageKey,
+            STORAGE,
             JSON.stringify(emails)
         );
-
         return true;
-
     } catch {
-
         return false;
-
     }
-
 }
 
 function notify(message) {
-
     const toast = document.getElementById("toast");
 
     toast.textContent = message;
-    toast.style.display = "block";
+    toast.classList.remove("hidden");
 
     clearTimeout(notify.timer);
 
     notify.timer = setTimeout(() => {
-
-        toast.style.display = "none";
-
+        toast.classList.add("hidden");
     }, 3000);
-
 }
 
-function formatDate(date) {
+function dateText(value, full = false) {
+    if (!value) return "Not scheduled";
 
-    if (!date) return "Not scheduled";
-
-    return new Date(date + "T12:00:00")
+    return new Date(value + "T12:00:00")
         .toLocaleDateString("en-US", {
             month: "short",
             day: "numeric",
-            year: "numeric"
+            ...(full ? {year: "numeric"} : {})
         });
-
 }
 
 function initials(name) {
-
     return name.split(" ")
         .filter(Boolean)
         .slice(0, 2)
         .map(word => word[0])
         .join("")
         .toUpperCase();
-
 }
 
 function statusClass(status) {
-
-    const classes = {
-        "Draft Prepared": "draft",
-        "Awaiting Approval": "approval",
-        "Ready for Review": "review",
-        "Scheduled Follow-up": "scheduled",
-        "Reviewed": "completed"
-    };
-
-    return classes[status] || "draft";
-
+    if (status === "Awaiting Approval") return "approval";
+    if (status === "Reviewed") return "reviewed";
+    return "";
 }
 
-function hasPendingDraft(email) {
-
-    return Boolean(email.draft) &&
-        email.status !== "Reviewed";
-
+function toggleSidebar() {
+    document.getElementById("sidebar")
+        .classList.toggle("collapsed");
 }
 
-function updateStats() {
+function toggleProfile() {
+    document.getElementById("profileMenu")
+        .classList.toggle("hidden");
+}
 
-    const high = emails.filter(
-        e => e.priority === "High"
-    ).length;
+/* =====================================
+   MAILBOX FOLDERS
+===================================== */
 
-    const approvals = emails.filter(
-        e => e.status === "Awaiting Approval"
-    ).length;
+function matchesFolder(email, key) {
 
-    const drafts = emails.filter(
-        hasPendingDraft
-    ).length;
+    if (key === "trash") return email.trashed;
 
-    const counts = {
-        totalStat: emails.length,
-        highStat: high,
-        approvalStat: approvals,
-        draftStat: drafts,
-        inboxCount: emails.length,
-        starCount: emails.filter(e => e.starred).length,
-        draftCount: drafts,
-        approvalCount: approvals,
-        scheduledCount: emails.filter(
-            e => e.status === "Scheduled Follow-up"
-        ).length,
-        completedCount: emails.filter(
-            e => e.status === "Reviewed"
-        ).length
-    };
+    if (email.trashed) return false;
 
-    Object.entries(counts).forEach(([id, value]) => {
+    switch(key) {
 
-        document.getElementById(id).textContent = value;
+        case "inbox":
+            return !email.archived && Boolean(email.incoming);
+
+        case "starred":
+            return email.starred;
+
+        case "important":
+        case "high":
+            return email.priority === "High";
+
+        case "drafts":
+            return Boolean(email.draft) &&
+                email.status !== "Reviewed";
+
+        case "approval":
+            return email.status === "Awaiting Approval";
+
+        case "followup":
+            return Boolean(email.followup) &&
+                email.status !== "Reviewed";
+
+        case "reviewed":
+            return email.status === "Reviewed";
+
+        case "Buyer":
+        case "Seller":
+            return email.type === key;
+
+        case "showing":
+            return email.category === "Property Showing";
+
+        case "listing":
+            return email.category === "Listing Consultation";
+
+        case "nurturing":
+            return email.category === "Lead Nurturing";
+
+        case "all":
+            return true;
+
+        default:
+            return true;
+    }
+}
+
+function renderNavigation() {
+
+    document.getElementById("folderNavigation").innerHTML =
+        folders.map(([key, icon, name]) => {
+
+            const count = emails.filter(email =>
+                matchesFolder(email, key) &&
+                (key !== "inbox" || email.unread)
+            ).length;
+
+            return `
+                <button class="nav-item ${folder === key ? "active" : ""}"
+                    onclick="setFolder('${key}')">
+
+                    <span class="material-symbols-outlined">${icon}</span>
+
+                    <span class="nav-text">${name}</span>
+
+                    <span class="count">${count || ""}</span>
+
+                </button>`;
+        }).join("");
+
+    document.getElementById("labelNavigation").innerHTML =
+        labels.map(([key, icon, name, color]) => `
+
+            <button class="nav-item ${folder === key ? "active" : ""}"
+                onclick="setFolder('${key}')">
+
+                <span class="material-symbols-outlined label-icon"
+                    style="color:${color}">${icon}</span>
+
+                <span class="nav-text">${name}</span>
+
+            </button>
+
+        `).join("");
+
+    document.querySelectorAll(".tab").forEach(tab => {
+
+        tab.classList.toggle(
+            "active",
+            tab.dataset.tab === folder
+        );
 
     });
-
 }
 
-/* ==========================================
-   SEARCH, FILTERS AND FOLDERS
-========================================== */
+function setFolder(key) {
+    folder = key;
+    page = 0;
+    selected.clear();
 
-function filteredEmails() {
+    document.getElementById("search").value = "";
+
+    closeEmail();
+}
+
+function getFilteredEmails() {
 
     const query = document.getElementById("search")
-        .value.toLowerCase().trim();
-
-    const type = document.getElementById("typeFilter").value;
-
-    const priority =
-        document.getElementById("priorityFilter").value;
-
-    const status =
-        document.getElementById("statusFilter").value;
+        .value.trim().toLowerCase();
 
     return emails.filter(email => {
 
-        const matchesSearch = Object.values(email)
+        const searchMatch = Object.values(email)
             .join(" ")
             .toLowerCase()
             .includes(query);
 
-        const matchesFolder =
+        const folderMatch = query
+            ? !email.trashed
+            : matchesFolder(email, folder);
 
-            currentFolder === "all" ||
-
-            (currentFolder === "starred" &&
-                email.starred) ||
-
-            (currentFolder === "drafts" &&
-                hasPendingDraft(email)) ||
-
-            (currentFolder === "approval" &&
-                email.status === "Awaiting Approval") ||
-
-            (currentFolder === "scheduled" &&
-                email.status === "Scheduled Follow-up") ||
-
-            (currentFolder === "completed" &&
-                email.status === "Reviewed") ||
-
-            (currentFolder === "high" &&
-                email.priority === "High") ||
-
-            email.type === currentFolder;
-
-        return matchesSearch &&
-            matchesFolder &&
-            (!type || email.type === type) &&
-            (!priority || email.priority === priority) &&
-            (!status || email.status === status);
+        return searchMatch && folderMatch;
 
     }).sort((a, b) => b.date.localeCompare(a.date));
-
 }
+
+function searchMail() {
+    page = 0;
+    selected.clear();
+    closeEmail();
+}
+
+function clearSearch() {
+    document.getElementById("search").value = "";
+    page = 0;
+    closeEmail();
+}
+
+/* =====================================
+   INBOX RENDERING
+===================================== */
 
 function renderInbox() {
 
-    updateStats();
+    renderNavigation();
 
-    const records = filteredEmails();
+    const filtered = getFilteredEmails();
 
-    document.getElementById("emailRows").innerHTML =
-        records.map(email => `
+    const maxPage = Math.max(
+        0,
+        Math.ceil(filtered.length / PAGE_SIZE) - 1
+    );
 
-            <tr data-id="${escapeHTML(email.id)}"
+    page = Math.min(page, maxPage);
+
+    const start = page * PAGE_SIZE;
+
+    const visible = filtered.slice(
+        start,
+        start + PAGE_SIZE
+    );
+
+    document.getElementById("recordCount").textContent =
+        filtered.length
+        ? `${start + 1}–${start + visible.length} of ${filtered.length}`
+        : "0 messages";
+
+    document.getElementById("selectAll").checked =
+        visible.length > 0 &&
+        visible.every(email => selected.has(email.id));
+
+    document.getElementById("mailList").innerHTML =
+        visible.length ? visible.map(email => `
+
+            <div class="mail-row
+                ${email.unread ? "unread" : ""}
+                ${selected.has(email.id) ? "selected" : ""}"
+
+                data-id="${esc(email.id)}"
                 onclick="openEmail(this.dataset.id)">
 
-                <td>
+                <input type="checkbox"
+                    aria-label="Select ${esc(email.name)}"
+                    data-id="${esc(email.id)}"
+                    ${selected.has(email.id) ? "checked" : ""}
+                    onclick="event.stopPropagation()"
+                    onchange="toggleSelected(this.dataset.id,this.checked)">
 
-                    <button
-                        class="star ${email.starred ? "selected" : ""}"
-                        data-id="${escapeHTML(email.id)}"
-                        aria-label="Toggle starred email"
-                        onclick="event.stopPropagation(); toggleStar(this.dataset.id)">
+                <button class="star ${email.starred ? "on" : ""}"
+                    title="Toggle star"
+                    data-id="${esc(email.id)}"
+                    onclick="event.stopPropagation();toggleStar(this.dataset.id)">
 
-                        ${email.starred ? "★" : "☆"}
+                    ${email.starred ? "★" : "☆"}
 
-                    </button>
+                </button>
 
-                </td>
+                <button class="important ${email.priority === "High" ? "on" : ""}"
+                    title="Toggle importance"
+                    data-id="${esc(email.id)}"
+                    onclick="event.stopPropagation();toggleImportant(this.dataset.id)">
 
-                <td>
+                    <span class="material-symbols-outlined">label_important</span>
 
-                    <div class="sender">
+                </button>
 
-                        <div class="sender-avatar">
-                            ${escapeHTML(initials(email.name))}
-                        </div>
+                <div class="sender">
+                    ${esc(email.incoming ? email.name : "Draft")}
+                </div>
 
-                        <div>
+                <div class="row-label">
+                    <span class="tag">${esc(email.type)}</span>
+                </div>
 
-                            <div class="sender-name">
-                                ${escapeHTML(email.name)}
-                            </div>
+                <div class="row-label">
+                    <span class="tag ${statusClass(email.status)}">
+                        ${esc(email.status)}
+                    </span>
+                </div>
 
-                            <div class="sender-email">
-                                ${escapeHTML(email.email)}
-                            </div>
+                <div class="mail-summary">
 
-                        </div>
+                    ${esc(email.subject)}
 
-                    </div>
-
-                </td>
-
-                <td>
-
-                    <div class="subject">
-                        ${escapeHTML(email.subject)}
-                    </div>
-
-                    <div class="preview">
-                        ${escapeHTML(email.incoming || email.draft)}
-                    </div>
-
-                </td>
-
-                <td>${escapeHTML(email.type)}</td>
-
-                <td>
-
-                    <span class="badge ${email.priority.toLowerCase()}">
-                        ${escapeHTML(email.priority)}
+                    <span class="snippet">
+                        — ${esc((email.incoming || email.draft).replace(/\n/g, " "))}
                     </span>
 
-                </td>
+                </div>
 
-                <td>
+                <div class="mail-date">
+                    ${dateText(email.date)}
+                </div>
 
-                    <span class="badge ${statusClass(email.status)}">
-                        ${escapeHTML(email.status)}
-                    </span>
+            </div>
 
-                </td>
+        `).join("") :
 
-                <td>${formatDate(email.date)}</td>
-
-            </tr>
-
-        `).join("");
-
-    if (!records.length) {
-
-        document.getElementById("emailRows").innerHTML = `
-            <tr>
-                <td colspan="7" class="empty">
-                    No matching communication records.
-                </td>
-            </tr>
-        `;
-
-    }
-
-    document.getElementById("visibleCount").textContent =
-        "Showing " + records.length +
-        " of " + emails.length + " records";
-
+        `<div class="empty">
+            <span class="material-symbols-outlined"
+                style="font-size:45px;color:#cba5ba">mail</span>
+            <p>No messages in this view.</p>
+        </div>`;
 }
 
-function clearFilters() {
+function changePage(direction) {
 
-    document.getElementById("search").value = "";
-    document.getElementById("typeFilter").value = "";
-    document.getElementById("priorityFilter").value = "";
-    document.getElementById("statusFilter").value = "";
+    const maxPage = Math.max(
+        0,
+        Math.ceil(getFilteredEmails().length / PAGE_SIZE) - 1
+    );
+
+    page = Math.max(
+        0,
+        Math.min(maxPage, page + direction)
+    );
 
     renderInbox();
-
 }
 
-function setFolder(folder) {
+function toggleSelected(id, checked) {
 
-    currentFolder = folder;
+    if (checked) {
+        selected.add(id);
+    } else {
+        selected.delete(id);
+    }
 
-    document.querySelectorAll("[data-folder]")
-        .forEach(button => {
+    renderInbox();
+}
 
-            button.classList.toggle(
-                "active",
-                button.dataset.folder === folder
-            );
+function selectAllMessages(checked) {
+
+    getFilteredEmails()
+        .slice(page * PAGE_SIZE, (page + 1) * PAGE_SIZE)
+        .forEach(email => {
+
+            if (checked) {
+                selected.add(email.id);
+            } else {
+                selected.delete(email.id);
+            }
 
         });
 
-    document.getElementById("pageTitle").textContent =
-        folderNames[folder] || "Inbox";
-
-    closeEmail();
-    clearFilters();
-
+    renderInbox();
 }
 
 function toggleStar(id) {
@@ -1749,12 +1935,84 @@ function toggleStar(id) {
 
     persist();
     renderInbox();
-
 }
 
-/* ==========================================
-   EMAIL CONVERSATION READER
-========================================== */
+function toggleImportant(id) {
+
+    const email = emails.find(e => e.id === id);
+
+    if (!email) return;
+
+    email.priority =
+        email.priority === "High" ? "Medium" : "High";
+
+    persist();
+    renderInbox();
+}
+
+function applyAction(email, action) {
+
+    if (action === "archive") {
+        email.archived = true;
+    }
+
+    if (action === "trash") {
+        email.trashed = true;
+    }
+
+    if (action === "read") {
+        email.unread = false;
+    }
+
+    if (action === "unread") {
+        email.unread = true;
+    }
+
+    if (action === "restore") {
+        email.archived = false;
+        email.trashed = false;
+    }
+}
+
+function bulkAction(action) {
+
+    if (!selected.size) {
+        notify("Select at least one message.");
+        return;
+    }
+
+    emails.forEach(email => {
+
+        if (selected.has(email.id)) {
+            applyAction(email, action);
+        }
+
+    });
+
+    selected.clear();
+    persist();
+    renderInbox();
+
+    notify("Selected messages updated.");
+}
+
+function singleAction(action) {
+
+    const email = emails.find(e => e.id === currentId);
+
+    if (!email) return;
+
+    applyAction(email, action);
+
+    persist();
+    closeEmail();
+
+    notify("Message updated.");
+}
+
+/* =====================================
+   EMAIL THREAD
+===================================== */
 
 function openEmail(id) {
 
@@ -1762,182 +2020,188 @@ function openEmail(id) {
 
     if (!email) return;
 
-    selectedId = id;
+    currentId = id;
+    email.unread = false;
 
-    document.getElementById("inboxView")
+    persist();
+    renderNavigation();
+
+    document.getElementById("inboxToolbar")
         .classList.add("hidden");
 
-    document.getElementById("readerView")
+    document.getElementById("inboxTabs")
+        .classList.add("hidden");
+
+    document.getElementById("mailList")
+        .classList.add("hidden");
+
+    document.getElementById("readerToolbar")
+        .classList.remove("hidden");
+
+    document.getElementById("reader")
         .classList.remove("hidden");
 
     document.getElementById("readerContent").innerHTML = `
 
-        <h2>${escapeHTML(email.subject)}</h2>
+        <h1 class="subject-title">
+            ${esc(email.subject)}
+        </h1>
 
-        <div class="labels">
+        <div class="thread-labels">
 
-            <span class="badge ${email.priority.toLowerCase()}">
-                ${escapeHTML(email.priority)} Priority
+            <span class="tag">${esc(email.type)}</span>
+
+            <span class="tag">${esc(email.category)}</span>
+
+            <span class="tag ${statusClass(email.status)}">
+                ${esc(email.status)}
             </span>
 
-            <span class="badge ${statusClass(email.status)}">
-                ${escapeHTML(email.status)}
-            </span>
-
-            <span class="badge review">
-                ${escapeHTML(email.category)}
+            <span class="tag ${email.priority === "High" ? "high" : ""}">
+                ${esc(email.priority)} Priority
             </span>
 
         </div>
 
         ${email.incoming ? `
 
-            <article class="message">
+            <div class="message-header">
 
-                <div class="message-header">
+                <div class="sender-avatar">
+                    ${esc(initials(email.name))}
+                </div>
 
-                    <div class="sender-avatar">
-                        ${escapeHTML(initials(email.name))}
-                    </div>
+                <div class="message-meta">
 
-                    <div class="message-meta">
+                    <strong>${esc(email.name)}</strong>
 
-                        <strong>${escapeHTML(email.name)}</strong>
+                    <span class="email-address">
+                        &lt;${esc(email.email)}&gt;
+                    </span>
 
-                        <p>&lt;${escapeHTML(email.email)}&gt;</p>
-
-                        <p>To: Real Estate Team</p>
-
-                    </div>
-
-                    <div class="message-date">
-                        ${formatDate(email.date)}
-                        · ${escapeHTML(email.time)}
+                    <div class="email-address">
+                        to ${ACCOUNT}
                     </div>
 
                 </div>
 
-                <div class="message-body">${escapeHTML(email.incoming)}</div>
+                <div class="message-time">
 
-            </article>
+                    ${dateText(email.date, true)}
+                    · ${esc(email.time)}
+
+                </div>
+
+            </div>
+
+            <div class="message-body">${esc(email.incoming)}</div>
+
+            <hr class="thread-divider">
 
         ` : ""}
+
+        <div class="message-header">
+
+            <img class="profile-picture"
+                src="${PROFILE}"
+                alt="${ACCOUNT_NAME}">
+
+            <div class="message-meta">
+
+                <strong>${ACCOUNT_NAME}</strong>
+
+                <span class="email-address">
+                    &lt;${ACCOUNT}&gt;
+                </span>
+
+                <div class="email-address">
+                    to ${esc(email.name)}
+                    &lt;${esc(email.email)}&gt;
+                </div>
+
+            </div>
+
+            <span class="tag">Draft · Not sent</span>
+
+        </div>
 
         <div class="draft-box">
 
             <div class="draft-heading">
 
-                <span>Prepared Response Draft</span>
+                <span>
+                    ${email.incoming ? "Re: " : ""}
+                    ${esc(email.subject)}
+                </span>
 
-                <span class="badge draft">NOT SENT</span>
-
-            </div>
-
-            <div class="draft-details">
-
-                <strong>Prepared by:</strong>
-                Dainty De Guzman<br>
-
-                <strong>To:</strong>
-                ${escapeHTML(email.name)}
-                &lt;${escapeHTML(email.email)}&gt;<br>
-
-                <strong>Subject:</strong>
-                ${escapeHTML(
-                    email.subject.startsWith("Re:")
-                        ? email.subject
-                        : "Re: " + email.subject
-                )}
+                <span>Response draft</span>
 
             </div>
 
             <textarea id="responseDraft"
-                aria-label="Editable response draft">${escapeHTML(email.draft)}</textarea>
+                aria-label="Response draft">${esc(email.draft)}</textarea>
 
             <div class="draft-actions">
 
-                <button class="btn btn-primary"
+                <button class="primary-button"
                     onclick="saveResponse()">
                     Save Draft
                 </button>
 
-                <button class="btn"
-                    onclick="copyResponse()">
-                    Copy Response
+                <button class="secondary-button"
+                    onclick="flagApproval()">
+
+                    <span class="material-symbols-outlined">flag</span>
+                    Request Approval
+
                 </button>
 
-                <button class="btn"
-                    onclick="requestApproval()">
-                    Flag for Agent Approval
+                <button class="icon-button"
+                    title="Copy response"
+                    onclick="copyResponse()">
+
+                    <span class="material-symbols-outlined">content_copy</span>
+
                 </button>
 
             </div>
 
         </div>
 
-        <div class="internal">
+        <div class="internal-record">
 
-            <h3>INTERNAL COMMUNICATION RECORD</h3>
+            <h3>Internal Communication Record</h3>
 
-            <div class="details-grid">
+            <div class="record-grid">
 
-                <div class="detail">
-
+                <div class="record-field">
                     <label>Communication ID</label>
-
-                    <p>${escapeHTML(email.id)}</p>
-
+                    <p>${esc(email.id)}</p>
                 </div>
 
-                <div class="detail">
-
+                <div class="record-field">
                     <label>CRM Lead ID</label>
-
-                    <p>${escapeHTML(email.leadId)}</p>
-
+                    <p>${esc(email.leadId)}</p>
                 </div>
 
-                <div class="detail">
-
+                <div class="record-field">
                     <label>Client Type</label>
-
-                    <p>${escapeHTML(email.type)}</p>
-
+                    <p>${esc(email.type)}</p>
                 </div>
 
-                <div class="detail">
-
+                <div class="record-field">
                     <label>Preferred Market</label>
-
-                    <p>${escapeHTML(email.market)}</p>
-
+                    <p>${esc(email.market)}</p>
                 </div>
 
-                <div class="detail">
-
-                    <label>Follow-up Date</label>
-
-                    <p>${formatDate(email.followup)}</p>
-
-                </div>
-
-                <div class="detail">
-
-                    <label>Responsible Party</label>
-
-                    <p>${escapeHTML(email.owner)}</p>
-
-                </div>
-
-                <div class="detail">
-
+                <div class="record-field">
                     <label>Priority</label>
 
                     <select id="recordPriority">
 
-                        ${["High", "Medium", "Low"].map(p => `
-                            <option ${p === email.priority ? "selected" : ""}>
-                                ${p}
+                        ${["High","Medium","Low"].map(value => `
+                            <option ${value === email.priority ? "selected" : ""}>
+                                ${value}
                             </option>
                         `).join("")}
 
@@ -1945,15 +2209,14 @@ function openEmail(id) {
 
                 </div>
 
-                <div class="detail">
-
+                <div class="record-field">
                     <label>Communication Status</label>
 
                     <select id="recordStatus">
 
-                        ${statuses.map(s => `
-                            <option ${s === email.status ? "selected" : ""}>
-                                ${s}
+                        ${statuses.map(value => `
+                            <option ${value === email.status ? "selected" : ""}>
+                                ${value}
                             </option>
                         `).join("")}
 
@@ -1961,35 +2224,55 @@ function openEmail(id) {
 
                 </div>
 
-                <div class="detail full">
+                <div class="record-field">
+
+                    <label>Follow-up Date</label>
+
+                    <input id="followupDate"
+                        type="date"
+                        value="${esc(email.followup)}">
+
+                </div>
+
+                <div class="record-field">
+
+                    <label>Responsible Party</label>
+
+                    <p>${esc(email.owner)}</p>
+
+                </div>
+
+                <div class="record-field full">
 
                     <label>Next Action</label>
 
-                    <p>${escapeHTML(email.action)}</p>
+                    <p>${esc(email.action)}</p>
 
                 </div>
 
-                <div class="detail full">
+                <div class="record-field full">
 
-                    <label>Approval Requirements</label>
+                    <label>Agent Approval Requirements</label>
 
-                    <p>${escapeHTML(email.approval)}</p>
-
-                </div>
-
-                <div class="detail full">
-
-                    <label>Internal Notes</label>
-
-                    <p>${escapeHTML(email.notes)}</p>
+                    <p>${esc(email.approval)}</p>
 
                 </div>
 
-                <div class="detail full">
+                <div class="record-field full">
 
-                    <button class="btn"
+                    <label>Administrative Notes</label>
+
+                    <p>${esc(email.notes)}</p>
+
+                </div>
+
+                <div class="record-field full">
+
+                    <button class="secondary-button"
                         onclick="saveResponse()">
+
                         Update Communication Record
+
                     </button>
 
                 </div>
@@ -2000,52 +2283,51 @@ function openEmail(id) {
 
     `;
 
-    document.getElementById("readerView")
-        .scrollIntoView({behavior: "smooth", block: "start"});
-
+    document.getElementById("reader").scrollTop = 0;
 }
 
 function closeEmail() {
 
-    selectedId = null;
+    currentId = null;
 
-    document.getElementById("readerView")
+    document.getElementById("reader")
         .classList.add("hidden");
 
-    document.getElementById("inboxView")
+    document.getElementById("readerToolbar")
+        .classList.add("hidden");
+
+    document.getElementById("inboxToolbar")
+        .classList.remove("hidden");
+
+    document.getElementById("inboxTabs")
+        .classList.remove("hidden");
+
+    document.getElementById("mailList")
         .classList.remove("hidden");
 
     renderInbox();
-
 }
 
 function navigateEmail(direction) {
 
-    const records = filteredEmails();
+    const filtered = getFilteredEmails();
 
-    const index = records.findIndex(
-        e => e.id === selectedId
+    const index = filtered.findIndex(
+        email => email.id === currentId
     );
 
-    const next = index + direction;
+    const next = filtered[index + direction];
 
-    if (next >= 0 && next < records.length) {
-
-        openEmail(records[next].id);
-
+    if (next) {
+        openEmail(next.id);
     } else {
-
-        notify("No additional email in this direction.");
-
+        notify("No additional messages.");
     }
-
 }
 
 function saveResponse() {
 
-    const email = emails.find(
-        e => e.id === selectedId
-    );
+    const email = emails.find(e => e.id === currentId);
 
     if (!email) return;
 
@@ -2058,29 +2340,26 @@ function saveResponse() {
     email.status =
         document.getElementById("recordStatus").value;
 
+    email.followup =
+        document.getElementById("followupDate").value;
+
     const saved = persist();
 
-    updateStats();
     openEmail(email.id);
 
     notify(saved
-        ? "Communication record saved locally."
-        : "Record updated for this session only.");
-
+        ? "Draft and communication record saved."
+        : "Changes saved for this session only.");
 }
 
-function requestApproval() {
+function flagApproval() {
 
-    const status = document.getElementById("recordStatus");
-
-    if (!status) return;
-
-    status.value = "Awaiting Approval";
+    document.getElementById("recordStatus").value =
+        "Awaiting Approval";
 
     saveResponse();
 
     notify("Draft flagged for agent approval in this demo.");
-
 }
 
 async function copyResponse() {
@@ -2091,30 +2370,44 @@ async function copyResponse() {
 
         await navigator.clipboard.writeText(draft.value);
 
-        notify("Response copied to clipboard.");
+        notify("Response copied.");
 
     } catch {
 
         draft.focus();
         draft.select();
 
-        notify("Response selected. Press Ctrl+C to copy.");
+        notify("Press Ctrl+C to copy the selected response.");
 
     }
-
 }
 
-/* ==========================================
-   CREATE NEW RESPONSE DRAFT
-========================================== */
+/* =====================================
+   COMPOSE WINDOW
+===================================== */
 
 function openCompose() {
 
-    document.getElementById("composeDialog").showModal();
-
+    document.getElementById("composeWindow")
+        .classList.remove("hidden");
 }
 
-function createDraft(event) {
+function closeCompose() {
+
+    document.getElementById("composeWindow")
+        .classList.add("hidden");
+}
+
+function discardCompose() {
+
+    document.getElementById("composeForm").reset();
+
+    closeCompose();
+
+    notify("Unsaved draft discarded.");
+}
+
+function saveNewDraft(event) {
 
     event.preventDefault();
 
@@ -2122,98 +2415,123 @@ function createDraft(event) {
         new FormData(event.target).entries()
     );
 
-    const highest = emails.reduce((max, email) => {
-
-        const number = Number(email.id.replace("EM-", ""));
-
-        return Math.max(max, number || 0);
-
-    }, 0);
-
-    const today = new Date();
+    const now = new Date();
 
     const date =
-        today.getFullYear() + "-" +
-        String(today.getMonth() + 1).padStart(2, "0") + "-" +
-        String(today.getDate()).padStart(2, "0");
+        now.getFullYear() + "-" +
+        String(now.getMonth() + 1).padStart(2,"0") + "-" +
+        String(now.getDate()).padStart(2,"0");
 
-    const newEmail = {
+    const highest = emails.reduce((max,email) => {
 
-        id: "EM-" + String(highest + 1).padStart(3, "0"),
+        return Math.max(
+            max,
+            Number(email.id.replace("EM-","")) || 0
+        );
+
+    },0);
+
+    const email = {
+
+        id: "EM-" + String(highest + 1).padStart(3,"0"),
 
         leadId: "Not linked",
 
         name: data.name,
         email: data.email,
-        type: data.type,
         subject: data.subject,
-        priority: data.priority,
+        type: data.type,
         draft: data.draft,
 
-        category: "New Response Draft",
-        market: "Not specified",
-        status: "Draft Prepared",
         date: date,
         time: "",
+        market: "Not specified",
+        category: "New Response Draft",
+        priority: "Medium",
+        status: "Draft Prepared",
         followup: "",
-        starred: false,
         incoming: "",
+        unread: false,
+        starred: false,
+        archived: false,
+        trashed: false,
 
-        action: "Review draft and confirm client details.",
+        action: "Review the draft and confirm recipient information.",
 
-        approval: "Agent review required before any external communication.",
+        approval: "Agent review required before external communication.",
 
-        notes: "Locally created demonstration draft. No email has been sent.",
+        notes: "Created within the portfolio demonstration. No email has been sent.",
 
         owner: "Administrative Support"
 
     };
 
-    emails.push(newEmail);
+    emails.push(email);
 
-    const saved = persist();
+    persist();
 
     event.target.reset();
 
-    document.getElementById("composeDialog").close();
+    closeCompose();
 
-    setFolder("all");
-    openEmail(newEmail.id);
+    setFolder("drafts");
 
-    notify(saved
-        ? "New response draft saved."
-        : "New draft created for this session.");
+    openEmail(email.id);
 
+    notify("New response draft created.");
 }
 
-/* ==========================================
-   RESET DEMONSTRATION
-========================================== */
+/* =====================================
+   RESET AND INITIALIZATION
+===================================== */
 
 function resetDemo() {
 
     if (!confirm(
-        "Reset all email records to their original demonstration content?"
+        "Restore the original five fictional email conversations?"
     )) return;
 
-    emails = JSON.parse(JSON.stringify(originalEmails));
+    emails = structuredClone(originalEmails);
 
     persist();
-    setFolder("all");
 
-    notify("Original demonstration records restored.");
+    selected.clear();
 
+    setFolder("inbox");
+
+    notify("Original mailbox restored.");
 }
+
+document.addEventListener("click", event => {
+
+    const menu = document.getElementById("profileMenu");
+
+    if (
+        !menu.contains(event.target) &&
+        !event.target.closest(".profile-button")
+    ) {
+        menu.classList.add("hidden");
+    }
+
+});
 
 document.addEventListener("keydown", event => {
 
-    if (
-        event.key === "Escape" &&
-        !document.getElementById("composeDialog").open
-    ) {
+    if (event.key === "Escape") {
 
-        closeEmail();
+        document.getElementById("profileMenu")
+            .classList.add("hidden");
 
+        if (!document.getElementById("composeWindow")
+            .classList.contains("hidden")) {
+
+            closeCompose();
+
+        } else if (currentId) {
+
+            closeEmail();
+
+        }
     }
 
 });
