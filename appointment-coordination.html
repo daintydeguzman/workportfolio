@@ -1,0 +1,2450 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calendar | Dainty De Guzman</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined&display=swap" rel="stylesheet">
+
+<style>
+:root {
+    --pink: #a65f7d;
+    --light: #f8edf3;
+    --selected: #efd2e1;
+    --background: #fcf7fa;
+    --border: #e9dfe5;
+    --text: #332c30;
+    --muted: #82747c;
+}
+
+* { box-sizing: border-box; }
+
+body {
+    margin: 0;
+    font: 14px Roboto, Arial, sans-serif;
+    color: var(--text);
+    background: var(--background);
+}
+
+button, input, select, textarea {
+    font: inherit;
+}
+
+button {
+    border: none;
+    background: transparent;
+    color: inherit;
+    cursor: pointer;
+}
+
+button:hover { background: #f1e4eb; }
+
+.material-symbols-outlined {
+    font-size: 21px;
+    vertical-align: middle;
+}
+
+.hidden { display: none !important; }
+
+.icon {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    display: inline-grid;
+    place-items: center;
+    flex-shrink: 0;
+}
+
+header {
+    height: 75px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 10px 22px;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 220px;
+    flex-shrink: 0;
+}
+
+.calendar-logo {
+    width: 38px;
+    height: 38px;
+    border-radius: 8px;
+    border: 2px solid var(--pink);
+    border-top: 10px solid var(--pink);
+    background: white;
+    display: grid;
+    place-items: center;
+    color: var(--pink);
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.brand-name {
+    font-size: 23px;
+    color: #62525b;
+}
+
+.today {
+    border: 1px solid #dacbd4;
+    border-radius: 22px;
+    padding: 10px 20px;
+}
+
+.month-title {
+    font-size: 23px;
+    font-weight: 400;
+    white-space: nowrap;
+}
+
+.header-right {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.view-select {
+    border: 1px solid #dacbd4;
+    border-radius: 22px;
+    padding: 10px 15px;
+    background: transparent;
+    color: var(--text);
+}
+
+.avatar {
+    width: 39px;
+    height: 39px;
+    border-radius: 50%;
+    object-fit: cover;
+    display: block;
+}
+
+.account {
+    border-radius: 50%;
+    padding: 4px;
+}
+
+.profile {
+    position: fixed;
+    right: 20px;
+    top: 70px;
+    width: 330px;
+    max-width: 90vw;
+    background: #f8eaf1;
+    border-radius: 25px;
+    padding: 25px;
+    text-align: center;
+    box-shadow: 0 5px 25px #0002;
+    z-index: 100;
+}
+
+.profile img {
+    width: 85px;
+    height: 85px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-top: 15px;
+}
+
+.profile p {
+    font-size: 13px;
+    overflow-wrap: anywhere;
+}
+
+.profile h2 {
+    font-weight: 400;
+    font-size: 22px;
+}
+
+.layout {
+    display: flex;
+    height: calc(100dvh - 75px);
+    padding-bottom: 15px;
+}
+
+.sidebar {
+    width: 250px;
+    padding: 12px 20px;
+    overflow-y: auto;
+    flex-shrink: 0;
+}
+
+.sidebar.collapsed { display: none; }
+
+.create {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 17px 23px;
+    background: #ebc9db;
+    border-radius: 17px;
+    font-weight: 500;
+    margin-bottom: 30px;
+    box-shadow: 0 2px 5px #0001;
+}
+
+.create:hover {
+    background: #e5b9d0;
+}
+
+.mini-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+    font-weight: 500;
+}
+
+.mini-header .icon {
+    width: 27px;
+    height: 27px;
+}
+
+.mini-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 3px;
+    text-align: center;
+    font-size: 12px;
+}
+
+.mini-day {
+    width: 27px;
+    height: 27px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    padding: 0;
+}
+
+.mini-day.active {
+    background: var(--pink);
+    color: white;
+}
+
+.mini-day.outside {
+    color: #b9aeb5;
+}
+
+.week-letter {
+    color: var(--muted);
+    padding: 5px 0;
+}
+
+.sidebar-title {
+    font-weight: 500;
+    margin: 30px 0 15px;
+}
+
+.calendar-filter {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 9px 0;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+.calendar-filter input {
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+}
+
+.search-box {
+    display: flex;
+    align-items: center;
+    background: #f0e3ea;
+    border-radius: 22px;
+    padding: 9px 12px;
+    margin-top: 25px;
+}
+
+.search-box input {
+    background: transparent;
+    border: none;
+    outline: none;
+    width: 100%;
+    min-width: 0;
+    padding: 4px 7px;
+}
+
+.main {
+    flex: 1;
+    min-width: 0;
+    margin-right: 15px;
+    background: white;
+    border-radius: 20px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.calendar-content {
+    flex: 1;
+    overflow: auto;
+}
+
+.month-grid {
+    display: grid;
+    grid-template-columns: repeat(7, minmax(110px, 1fr));
+    min-height: 100%;
+    min-width: 770px;
+}
+
+.weekday {
+    padding: 13px 8px;
+    text-align: center;
+    font-size: 11px;
+    color: var(--muted);
+    border-bottom: 1px solid var(--border);
+    text-transform: uppercase;
+}
+
+.day-cell {
+    min-height: 125px;
+    border-right: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 7px 5px;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.day-cell:hover {
+    background: #fffafd;
+}
+
+.day-cell.outside {
+    background: #fcfafb;
+    color: #b6aab1;
+}
+
+.day-number {
+    width: 29px;
+    height: 29px;
+    display: grid;
+    place-items: center;
+    margin: 0 auto 7px;
+    border-radius: 50%;
+    font-size: 12px;
+}
+
+.day-number.active {
+    background: var(--pink);
+    color: white;
+}
+
+.event {
+    display: block;
+    width: 100%;
+    text-align: left;
+    border-radius: 5px;
+    padding: 7px 8px;
+    margin-bottom: 4px;
+    font-size: 11px;
+    line-height: 1.5;
+    border-left: 3px solid var(--event-color);
+    background: var(--event-bg);
+    color: #45363e;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.event:hover {
+    filter: brightness(.96);
+    background: var(--event-bg);
+}
+
+.event-time {
+    font-weight: 500;
+    margin-right: 3px;
+}
+
+.event-title {
+    overflow-wrap: anywhere;
+}
+
+.schedule {
+    min-width: 550px;
+}
+
+.schedule-header {
+    display: grid;
+    position: sticky;
+    top: 0;
+    z-index: 3;
+    background: white;
+    border-bottom: 1px solid var(--border);
+}
+
+.schedule-heading {
+    text-align: center;
+    padding: 14px 5px;
+    border-right: 1px solid var(--border);
+}
+
+.schedule-heading small {
+    display: block;
+    font-size: 11px;
+    color: var(--muted);
+    text-transform: uppercase;
+}
+
+.schedule-heading strong {
+    display: inline-grid;
+    place-items: center;
+    width: 36px;
+    height: 36px;
+    margin-top: 6px;
+    font-size: 23px;
+    font-weight: 400;
+    border-radius: 50%;
+}
+
+.schedule-heading strong.active {
+    background: var(--pink);
+    color: white;
+}
+
+.timezone {
+    display: grid;
+    place-items: end center;
+    padding-bottom: 12px;
+    font-size: 10px;
+    color: var(--muted);
+}
+
+.schedule-body {
+    display: grid;
+}
+
+.time-column {
+    position: relative;
+    border-right: 1px solid var(--border);
+}
+
+.time-label {
+    height: 65px;
+    text-align: center;
+    font-size: 11px;
+    color: var(--muted);
+    padding-top: 5px;
+}
+
+.schedule-day {
+    position: relative;
+    border-right: 1px solid var(--border);
+}
+
+.hour-cell {
+    height: 65px;
+    border-bottom: 1px solid var(--border);
+    cursor: pointer;
+}
+
+.hour-cell:hover {
+    background: #fcf1f7;
+}
+
+.schedule-event {
+    position: absolute;
+    left: 3px;
+    right: 5px;
+    border-left: 4px solid var(--event-color);
+    border-radius: 5px;
+    background: var(--event-bg);
+    padding: 6px 8px;
+    text-align: left;
+    overflow: hidden;
+    font-size: 11px;
+    line-height: 1.5;
+    z-index: 2;
+}
+
+.schedule-event:hover {
+    background: var(--event-bg);
+    filter: brightness(.96);
+}
+
+.schedule-event strong {
+    display: block;
+    font-size: 12px;
+}
+
+.agenda {
+    padding: 20px 30px;
+}
+
+.agenda-row {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+    padding: 20px 5px;
+    border-bottom: 1px solid var(--border);
+}
+
+.agenda-date {
+    width: 90px;
+    flex-shrink: 0;
+    color: var(--muted);
+}
+
+.agenda-event {
+    flex: 1;
+    text-align: left;
+    border-left: 4px solid var(--event-color);
+    background: var(--event-bg);
+    border-radius: 5px;
+    padding: 15px;
+    line-height: 1.7;
+}
+
+.agenda-event:hover {
+    background: var(--event-bg);
+    filter: brightness(.96);
+}
+
+.empty {
+    text-align: center;
+    padding: 70px 20px;
+    color: var(--muted);
+}
+
+.overlay {
+    position: fixed;
+    inset: 0;
+    background: #39283240;
+    display: grid;
+    place-items: center;
+    padding: 20px;
+    z-index: 150;
+}
+
+.dialog {
+    background: white;
+    width: 580px;
+    max-width: 100%;
+    max-height: 90dvh;
+    overflow: auto;
+    border-radius: 20px;
+    box-shadow: 0 10px 50px #0002;
+}
+
+.dialog-toolbar {
+    display: flex;
+    justify-content: flex-end;
+    gap: 4px;
+    padding: 12px;
+}
+
+.dialog-content {
+    padding: 0 30px 30px;
+}
+
+.event-heading {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.event-dot {
+    width: 17px;
+    height: 17px;
+    border-radius: 4px;
+    margin-top: 7px;
+    flex-shrink: 0;
+}
+
+.event-heading h1 {
+    margin: 0 0 8px;
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 1.4;
+}
+
+.detail-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+    padding: 12px 0;
+    line-height: 1.7;
+}
+
+.detail-row > .material-symbols-outlined {
+    color: var(--muted);
+    margin-top: 2px;
+}
+
+.detail-row > div {
+    flex: 1;
+    min-width: 0;
+    overflow-wrap: anywhere;
+}
+
+.detail-label {
+    font-size: 11px;
+    color: var(--muted);
+    margin-bottom: 4px;
+}
+
+.status {
+    display: inline-block;
+    border-radius: 5px;
+    padding: 5px 10px;
+    background: var(--event-bg);
+    font-size: 12px;
+}
+
+.confirmation {
+    background: #fcf6f9;
+    border: 1px solid var(--border);
+    padding: 18px;
+    border-radius: 10px;
+    line-height: 1.8;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+    margin-top: 10px;
+}
+
+.actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.primary {
+    background: var(--pink);
+    color: white;
+    padding: 11px 20px;
+    border-radius: 22px;
+    font-weight: 500;
+}
+
+.primary:hover {
+    background: #8e4e6a;
+}
+
+.secondary {
+    border: 1px solid #ddcbd5;
+    padding: 10px 17px;
+    border-radius: 22px;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 17px;
+}
+
+.field {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+
+.field label {
+    color: var(--muted);
+    font-size: 12px;
+}
+
+.field input,
+.field select,
+.field textarea {
+    width: 100%;
+    min-width: 0;
+    border: 1px solid #e2d3dc;
+    border-radius: 7px;
+    padding: 11px;
+    outline: none;
+    background: white;
+    color: var(--text);
+}
+
+.field input:focus,
+.field textarea:focus,
+.field select:focus {
+    border-color: var(--pink);
+}
+
+.field textarea {
+    resize: vertical;
+    min-height: 85px;
+    line-height: 1.6;
+}
+
+.full { grid-column: 1 / -1; }
+
+.notice {
+    border-top: 1px solid var(--border);
+    padding: 10px 17px;
+    font-size: 10px;
+    color: var(--muted);
+}
+
+.toast {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    background: #503743;
+    color: white;
+    border-radius: 7px;
+    padding: 15px 22px;
+    z-index: 200;
+}
+
+@media(max-width: 1000px) {
+    .brand { width: auto; }
+    .brand-name { display: none; }
+    .sidebar { width: 215px; }
+    header { gap: 7px; }
+}
+
+@media(max-width: 700px) {
+    header { padding: 8px; flex-wrap: wrap; height: 110px; }
+    .layout { height: calc(100dvh - 110px); }
+    .sidebar { display: none; }
+    .sidebar.mobile-open {
+        display: block;
+        position: fixed;
+        top: 110px;
+        bottom: 0;
+        left: 0;
+        background: var(--background);
+        z-index: 20;
+        box-shadow: 5px 0 15px #0002;
+    }
+    .month-title { font-size: 17px; }
+    .calendar-logo { display: none; }
+    .main { margin: 0 7px; }
+    .today { padding: 8px 12px; }
+    .header-right { gap: 5px; }
+    .form-grid { grid-template-columns: 1fr; }
+    .dialog-content { padding: 0 20px 25px; }
+    .agenda { padding: 15px; }
+    .agenda-date { width: 60px; }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+
+    <div class="brand">
+
+        <button class="icon" title="Main menu" onclick="toggleSidebar()">
+            <span class="material-symbols-outlined">menu</span>
+        </button>
+
+        <div class="calendar-logo" id="logoDate">25</div>
+
+        <span class="brand-name">Calendar</span>
+
+    </div>
+
+    <button class="today" onclick="goToday()">Today</button>
+
+    <button class="icon" title="Previous" onclick="moveDate(-1)">
+        <span class="material-symbols-outlined">chevron_left</span>
+    </button>
+
+    <button class="icon" title="Next" onclick="moveDate(1)">
+        <span class="material-symbols-outlined">chevron_right</span>
+    </button>
+
+    <div class="month-title" id="monthTitle"></div>
+
+    <div class="header-right">
+
+        <button class="icon" title="Search appointments" onclick="focusSearch()">
+            <span class="material-symbols-outlined">search</span>
+        </button>
+
+        <select class="view-select" id="viewSelect" onchange="changeView(this.value)">
+            <option value="month">Month</option>
+            <option value="week">Week</option>
+            <option value="day">Day</option>
+            <option value="schedule">Schedule</option>
+        </select>
+
+        <button class="account" title="Account" onclick="toggleProfile()">
+            <img class="avatar" src="dainty-profile.jpeg" alt="Dainty De Guzman">
+        </button>
+
+    </div>
+
+</header>
+
+<div class="profile hidden" id="profile">
+
+    <p>daintydeguzman.work@gmail.com</p>
+
+    <img src="dainty-profile.jpeg" alt="Dainty De Guzman">
+
+    <h2>Hi, Dainty!</h2>
+
+    <button class="secondary" onclick="toggleProfile()">Close</button>
+
+</div>
+
+<div class="layout">
+
+<aside class="sidebar" id="sidebar">
+
+    <button class="create" onclick="openForm()">
+
+        <span class="material-symbols-outlined">add</span>
+
+        Create
+
+    </button>
+
+    <div class="mini-header">
+
+        <span id="miniTitle"></span>
+
+        <div>
+
+            <button class="icon" title="Previous month" onclick="moveMini(-1)">
+                <span class="material-symbols-outlined">chevron_left</span>
+            </button>
+
+            <button class="icon" title="Next month" onclick="moveMini(1)">
+                <span class="material-symbols-outlined">chevron_right</span>
+            </button>
+
+        </div>
+
+    </div>
+
+    <div class="mini-grid" id="miniCalendar"></div>
+
+    <div class="sidebar-title">My calendars</div>
+
+    <div id="filters"></div>
+
+    <div class="search-box">
+
+        <span class="material-symbols-outlined">search</span>
+
+        <input id="search" placeholder="Search appointments" oninput="render()">
+
+    </div>
+
+    <div class="sidebar-title">Time zone</div>
+
+    <p style="font-size:12px;color:#82747c;line-height:1.7">
+        Eastern Time (ET)<br>
+        New York, United States
+    </p>
+
+</aside>
+
+<main class="main">
+
+    <div class="calendar-content" id="calendar"></div>
+
+    <div class="notice">
+        Fictional appointment calendar. No actual bookings or notifications are made.
+    </div>
+
+</main>
+
+</div>
+
+<div class="overlay hidden" id="eventOverlay">
+
+    <div class="dialog">
+
+        <div class="dialog-toolbar">
+
+            <button class="icon" title="Edit appointment" onclick="editCurrent()">
+                <span class="material-symbols-outlined">edit</span>
+            </button>
+
+            <button class="icon" title="Delete appointment" onclick="deleteCurrent()">
+                <span class="material-symbols-outlined">delete</span>
+            </button>
+
+            <button class="icon" title="Close" onclick="closeEvent()">
+                <span class="material-symbols-outlined">close</span>
+            </button>
+
+        </div>
+
+        <div class="dialog-content" id="eventDetails"></div>
+
+    </div>
+
+</div>
+
+<div class="overlay hidden" id="formOverlay">
+
+    <div class="dialog">
+
+        <div class="dialog-toolbar">
+
+            <button class="icon" title="Close" onclick="closeForm()">
+                <span class="material-symbols-outlined">close</span>
+            </button>
+
+        </div>
+
+        <div class="dialog-content">
+
+            <h2 id="formTitle" style="font-weight:400;margin-top:0">
+                New appointment
+            </h2>
+
+            <form id="eventForm" onsubmit="saveEvent(event)">
+
+                <div class="form-grid">
+
+                    <div class="field full">
+
+                        <label>Appointment title</label>
+
+                        <input name="title" required placeholder="Add title">
+
+                    </div>
+
+                    <div class="field">
+
+                        <label>Appointment type</label>
+
+                        <select name="type">
+                            <option>Property Showing</option>
+                            <option>Buyer Consultation</option>
+                            <option>Seller Consultation</option>
+                            <option>Follow-up Reminder</option>
+                        </select>
+
+                    </div>
+
+                    <div class="field">
+
+                        <label>Status</label>
+
+                        <select name="status">
+                            <option>Pending</option>
+                            <option>Confirmed</option>
+                            <option>Rescheduled</option>
+                            <option>Completed</option>
+                            <option>Cancelled</option>
+                        </select>
+
+                    </div>
+
+                    <div class="field">
+
+                        <label>Date</label>
+
+                        <input type="date" name="date" required>
+
+                    </div>
+
+                    <div class="field">
+
+                        <label>Reminder</label>
+
+                        <select name="reminder">
+                            <option>10 minutes before</option>
+                            <option>30 minutes before</option>
+                            <option>1 hour before</option>
+                            <option>1 day before</option>
+                            <option>No reminder</option>
+                        </select>
+
+                    </div>
+
+                    <div class="field">
+
+                        <label>Start time (ET)</label>
+
+                        <input type="time" name="start" min="07:00" max="19:30" required>
+
+                    </div>
+
+                    <div class="field">
+
+                        <label>End time (ET)</label>
+
+                        <input type="time" name="end" min="07:30" max="20:00" required>
+
+                    </div>
+
+                    <div class="field">
+
+                        <label>Client name</label>
+
+                        <input name="client" required>
+
+                    </div>
+
+                    <div class="field">
+
+                        <label>Client email</label>
+
+                        <input type="email" name="email" required>
+
+                    </div>
+
+                    <div class="field">
+
+                        <label>Assigned agent</label>
+
+                        <input name="agent" required>
+
+                    </div>
+
+                    <div class="field">
+
+                        <label>Client availability</label>
+
+                        <input name="availability" required>
+
+                    </div>
+
+                    <div class="field full">
+
+                        <label>Property or meeting location</label>
+
+                        <input name="location" required>
+
+                    </div>
+
+                    <div class="field full">
+
+                        <label>Appointment notes</label>
+
+                        <textarea name="notes"></textarea>
+
+                    </div>
+
+                    <div class="field">
+
+                        <label>Follow-up date</label>
+
+                        <input type="date" name="followup">
+
+                    </div>
+
+                </div>
+
+                <div class="actions">
+
+                    <button class="primary" type="submit">Save</button>
+
+                    <button class="secondary" type="button" onclick="closeForm()">
+                        Cancel
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
+
+<div class="toast hidden" id="toast"></div>
+
+<script>
+
+/* APPOINTMENT DATABASE */
+
+const ACCOUNT = "daintydeguzman.work@gmail.com";
+
+const originalEvents = [
+
+{
+    id: 1,
+    title: "Townhouse showing — Natalie",
+    type: "Property Showing",
+    status: "Completed",
+    date: "2026-11-03",
+    start: "10:00",
+    end: "11:00",
+    client: "Natalie Brooks",
+    email: "natalie.brooks@example.com",
+    agent: "Rebecca Miles",
+    location: "101 Example Lane, Brooklyn, NY",
+    availability: "Tuesday, 9 AM–12 PM ET",
+    reminder: "1 day before",
+    followup: "2026-11-04",
+    notes: "Three-bedroom townhouse. Client attended the showing. Follow-up completed."
+},
+
+{
+    id: 2,
+    title: "First-time buyer consultation",
+    type: "Buyer Consultation",
+    status: "Completed",
+    date: "2026-11-05",
+    start: "14:00",
+    end: "15:00",
+    client: "Aaron Whitmore",
+    email: "aaron.whitmore@example.com",
+    agent: "Rebecca Miles",
+    location: "Virtual meeting",
+    availability: "Weekdays after 1 PM ET",
+    reminder: "30 minutes before",
+    followup: "2026-11-06",
+    notes: "Discuss initial property requirements and purchase timeline with assigned agent."
+},
+
+{
+    id: 3,
+    title: "Condominium viewing — Chloe",
+    type: "Property Showing",
+    status: "Completed",
+    date: "2026-11-07",
+    start: "11:00",
+    end: "12:00",
+    client: "Chloe Richardson",
+    email: "chloe.richardson@example.com",
+    agent: "Michael Ellis",
+    location: "202 Sample Avenue, Manhattan, NY",
+    availability: "Saturday, 10 AM–2 PM ET",
+    reminder: "1 day before",
+    followup: "2026-11-09",
+    notes: "Two-bedroom condominium. Agent conducted the viewing."
+},
+
+{
+    id: 4,
+    title: "Seller listing consultation",
+    type: "Seller Consultation",
+    status: "Completed",
+    date: "2026-11-10",
+    start: "13:00",
+    end: "14:00",
+    client: "Victor Lawson",
+    email: "victor.lawson@example.com",
+    agent: "Rachel Monroe",
+    location: "Virtual meeting",
+    availability: "Tuesday or Thursday afternoons",
+    reminder: "1 hour before",
+    followup: "2026-11-12",
+    notes: "Initial listing discussion. Pricing and listing terms handled by the assigned agent."
+},
+
+{
+    id: 5,
+    title: "Single-family home showing",
+    type: "Property Showing",
+    status: "Completed",
+    date: "2026-11-13",
+    start: "10:30",
+    end: "11:30",
+    client: "Samantha Wells",
+    email: "samantha.wells@example.com",
+    agent: "Michael Ellis",
+    location: "303 Demo Court, Queens, NY",
+    availability: "Friday, 10 AM–1 PM ET",
+    reminder: "1 day before",
+    followup: "2026-11-14",
+    notes: "Client requested a home with three bedrooms, parking, and outdoor space."
+},
+
+{
+    id: 6,
+    title: "Buyer requirements consultation",
+    type: "Buyer Consultation",
+    status: "Completed",
+    date: "2026-11-17",
+    start: "15:00",
+    end: "16:00",
+    client: "Dylan Hayes",
+    email: "dylan.hayes@example.com",
+    agent: "Rebecca Miles",
+    location: "Virtual meeting",
+    availability: "Weekdays, 3 PM–5 PM ET",
+    reminder: "30 minutes before",
+    followup: "2026-11-19",
+    notes: "Review preferred neighborhoods, property features, and purchase timeline."
+},
+
+{
+    id: 7,
+    title: "Property showing — Isabelle",
+    type: "Property Showing",
+    status: "Cancelled",
+    date: "2026-11-20",
+    start: "11:00",
+    end: "12:00",
+    client: "Isabelle Reed",
+    email: "isabelle.reed@example.com",
+    agent: "Michael Ellis",
+    location: "404 Example Street, Brooklyn, NY",
+    availability: "Friday mornings",
+    reminder: "1 day before",
+    followup: "2026-11-26",
+    notes: "Client cancelled due to a scheduling conflict. Follow up to request alternative availability."
+},
+
+{
+    id: 8,
+    title: "Seller property consultation",
+    type: "Seller Consultation",
+    status: "Completed",
+    date: "2026-11-23",
+    start: "14:00",
+    end: "15:00",
+    client: "Adrian Cole",
+    email: "adrian.cole@example.com",
+    agent: "Rachel Monroe",
+    location: "505 Sample Drive, Queens, NY",
+    availability: "Monday, 1 PM–4 PM ET",
+    reminder: "1 day before",
+    followup: "2026-11-27",
+    notes: "Initial property assessment appointment. Agent to review listing requirements."
+},
+
+{
+    id: 9,
+    title: "Apartment showing — Evelyn",
+    type: "Property Showing",
+    status: "Confirmed",
+    date: "2026-11-26",
+    start: "10:00",
+    end: "11:00",
+    client: "Evelyn Hart",
+    email: "evelyn.hart@example.com",
+    agent: "Rebecca Miles",
+    location: "606 Demo Avenue, Manhattan, NY",
+    availability: "Thursday, 9 AM–12 PM ET",
+    reminder: "1 day before",
+    followup: "2026-11-27",
+    notes: "Two-bedroom apartment. Agent and client availability confirmed in this fictional scenario. Property access coordinated."
+},
+
+{
+    id: 10,
+    title: "Townhouse showing — Mason",
+    type: "Property Showing",
+    status: "Pending",
+    date: "2026-11-27",
+    start: "14:00",
+    end: "15:00",
+    client: "Mason Bennett",
+    email: "mason.bennett@example.com",
+    agent: "Michael Ellis",
+    location: "707 Example Lane, Brooklyn, NY",
+    availability: "Friday, 2 PM–5 PM ET",
+    reminder: "1 hour before",
+    followup: "2026-11-26",
+    notes: "Showing requested by client. Awaiting agent approval and property access confirmation. Do not send a final confirmation yet."
+},
+
+{
+    id: 11,
+    title: "Rescheduled condominium showing",
+    type: "Property Showing",
+    status: "Rescheduled",
+    date: "2026-11-28",
+    start: "11:00",
+    end: "12:00",
+    client: "Audrey Simmons",
+    email: "audrey.simmons@example.com",
+    agent: "Rebecca Miles",
+    location: "808 Sample Road, Manhattan, NY",
+    availability: "Saturday, 10 AM–1 PM ET",
+    reminder: "1 day before",
+    followup: "2026-11-29",
+    notes: "Originally requested for November 25. Revised date proposed due to client availability. Awaiting final confirmation."
+},
+
+{
+    id: 12,
+    title: "Follow up — Isabelle Reed",
+    type: "Follow-up Reminder",
+    status: "Pending",
+    date: "2026-11-26",
+    start: "15:00",
+    end: "15:30",
+    client: "Isabelle Reed",
+    email: "isabelle.reed@example.com",
+    agent: "Michael Ellis",
+    location: "Email follow-up",
+    availability: "Friday mornings preferred",
+    reminder: "10 minutes before",
+    followup: "",
+    notes: "Request new availability following the cancelled November 20 showing."
+},
+
+{
+    id: 13,
+    title: "Post-showing feedback — Evelyn",
+    type: "Follow-up Reminder",
+    status: "Pending",
+    date: "2026-11-27",
+    start: "11:00",
+    end: "11:30",
+    client: "Evelyn Hart",
+    email: "evelyn.hart@example.com",
+    agent: "Rebecca Miles",
+    location: "Email follow-up",
+    availability: "Weekday mornings",
+    reminder: "10 minutes before",
+    followup: "",
+    notes: "Request feedback if the November 26 showing takes place. Forward property-related questions to the assigned agent."
+},
+
+{
+    id: 14,
+    title: "Listing consultation — Julian",
+    type: "Seller Consultation",
+    status: "Confirmed",
+    date: "2026-11-30",
+    start: "13:00",
+    end: "14:00",
+    client: "Julian Spencer",
+    email: "julian.spencer@example.com",
+    agent: "Rachel Monroe",
+    location: "Virtual meeting",
+    availability: "Monday, 1 PM–3 PM ET",
+    reminder: "30 minutes before",
+    followup: "2026-12-01",
+    notes: "Initial seller consultation. Agent and client have agreed to the meeting time in this sample."
+},
+
+{
+    id: 15,
+    title: "Buyer consultation — Leah",
+    type: "Buyer Consultation",
+    status: "Confirmed",
+    date: "2026-12-02",
+    start: "10:00",
+    end: "11:00",
+    client: "Leah Morrison",
+    email: "leah.morrison@example.com",
+    agent: "Michael Ellis",
+    location: "Virtual meeting",
+    availability: "Wednesday mornings",
+    reminder: "1 day before",
+    followup: "2026-12-03",
+    notes: "Review home search requirements and coordinate next steps with the agent."
+}
+
+];
+
+/* APPLICATION STATE */
+
+const STORAGE = "dainty-independent-calendar-v1";
+
+let events;
+
+try {
+    events = JSON.parse(localStorage.getItem(STORAGE))
+        || structuredClone(originalEvents);
+
+    if (!Array.isArray(events)) throw new Error();
+} catch {
+    events = structuredClone(originalEvents);
+}
+
+let selectedDate = new Date(2026, 10, 25);
+let miniDate = new Date(selectedDate);
+let view = "month";
+let currentId = null;
+let editingId = null;
+
+const types = {
+
+    "Property Showing": {
+        color: "#a65f7d",
+        bg: "#efd2e1"
+    },
+
+    "Buyer Consultation": {
+        color: "#8d77ac",
+        bg: "#e9e0f2"
+    },
+
+    "Seller Consultation": {
+        color: "#719185",
+        bg: "#e0eee8"
+    },
+
+    "Follow-up Reminder": {
+        color: "#bc945b",
+        bg: "#f7ead5"
+    }
+
+};
+
+const activeTypes = new Set(Object.keys(types));
+
+const weekdays = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
+
+function esc(value) {
+
+    return String(value ?? "")
+        .replace(/&/g,"&amp;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;")
+        .replace(/"/g,"&quot;")
+        .replace(/'/g,"&#39;");
+}
+
+function icon(name) {
+    return `<span class="material-symbols-outlined">${name}</span>`;
+}
+
+function save() {
+    try {
+        localStorage.setItem(STORAGE, JSON.stringify(events));
+    } catch {}
+}
+
+function notify(message) {
+
+    const toast = document.getElementById("toast");
+
+    toast.textContent = message;
+    toast.classList.remove("hidden");
+
+    clearTimeout(notify.timer);
+
+    notify.timer = setTimeout(() => {
+        toast.classList.add("hidden");
+    }, 3000);
+}
+
+function key(date) {
+
+    return date.getFullYear() + "-" +
+        String(date.getMonth()+1).padStart(2,"0") + "-" +
+        String(date.getDate()).padStart(2,"0");
+}
+
+function parseDate(value) {
+    return new Date(value + "T12:00:00");
+}
+
+function addDays(date, days) {
+
+    const result = new Date(date);
+
+    result.setDate(result.getDate() + days);
+
+    return result;
+}
+
+function addMonths(date, months) {
+
+    const result = new Date(
+        date.getFullYear(),
+        date.getMonth() + months,
+        1
+    );
+
+    const last = new Date(
+        result.getFullYear(),
+        result.getMonth() + 1,
+        0
+    ).getDate();
+
+    result.setDate(Math.min(date.getDate(), last));
+
+    return result;
+}
+
+function monthName(date) {
+
+    return date.toLocaleDateString("en-US", {
+        month: "long",
+        year: "numeric"
+    });
+}
+
+function fullDate(value) {
+
+    return parseDate(value).toLocaleDateString("en-US", {
+        weekday: "long",
+        month: "long",
+        day: "numeric",
+        year: "numeric"
+    });
+}
+
+function timeText(value) {
+
+    const [hour, minute] = value.split(":").map(Number);
+
+    return `${hour % 12 || 12}:${String(minute).padStart(2,"0")} ${hour >= 12 ? "PM" : "AM"}`;
+}
+
+function minutes(value) {
+
+    const [h,m] = value.split(":").map(Number);
+
+    return h * 60 + m;
+}
+
+function styleEvent(event) {
+
+    const palette = types[event.type] || types["Property Showing"];
+
+    if (event.status === "Cancelled") {
+        return "--event-color:#a49ba1;--event-bg:#efebee;";
+    }
+
+    return `--event-color:${palette.color};--event-bg:${palette.bg};`;
+}
+
+function visibleEvents() {
+
+    const query = document.getElementById("search")
+        .value.trim().toLowerCase();
+
+    return events.filter(event =>
+        activeTypes.has(event.type) &&
+        Object.values(event).join(" ").toLowerCase().includes(query)
+    ).sort((a,b) =>
+        a.date.localeCompare(b.date) ||
+        a.start.localeCompare(b.start)
+    );
+}
+
+function eventsOn(date) {
+    return visibleEvents().filter(event => event.date === key(date));
+}
+
+/* SIDEBAR */
+
+function toggleSidebar() {
+
+    const sidebar = document.getElementById("sidebar");
+
+    if (window.innerWidth <= 700) {
+        sidebar.classList.toggle("mobile-open");
+    } else {
+        sidebar.classList.toggle("collapsed");
+    }
+}
+
+function focusSearch() {
+
+    const sidebar = document.getElementById("sidebar");
+
+    sidebar.classList.remove("collapsed");
+
+    if (window.innerWidth <= 700) {
+        sidebar.classList.add("mobile-open");
+    }
+
+    document.getElementById("search").focus();
+}
+
+function toggleProfile() {
+    document.getElementById("profile").classList.toggle("hidden");
+}
+
+function renderFilters() {
+
+    document.getElementById("filters").innerHTML =
+        Object.entries(types).map(([name, palette]) => `
+
+            <label class="calendar-filter">
+
+                <input type="checkbox"
+                    style="accent-color:${palette.color}"
+                    ${activeTypes.has(name) ? "checked" : ""}
+                    onchange="toggleFilter('${name}',this.checked)">
+
+                ${name}
+
+            </label>
+
+        `).join("");
+}
+
+function toggleFilter(type, checked) {
+
+    checked ? activeTypes.add(type) : activeTypes.delete(type);
+
+    render();
+}
+
+function renderMini() {
+
+    document.getElementById("miniTitle").textContent =
+        monthName(miniDate);
+
+    const first = new Date(
+        miniDate.getFullYear(),
+        miniDate.getMonth(),
+        1
+    );
+
+    const start = addDays(first, -first.getDay());
+
+    let html = weekdays.map(day =>
+        `<div class="week-letter">${day[0]}</div>`
+    ).join("");
+
+    for (let i = 0; i < 42; i++) {
+
+        const date = addDays(start, i);
+
+        html += `
+            <button class="mini-day
+                ${date.getMonth() !== miniDate.getMonth() ? "outside" : ""}
+                ${key(date) === key(selectedDate) ? "active" : ""}"
+                onclick="selectDate('${key(date)}')">
+
+                ${date.getDate()}
+
+            </button>
+        `;
+    }
+
+    document.getElementById("miniCalendar").innerHTML = html;
+}
+
+function moveMini(direction) {
+
+    miniDate = addMonths(miniDate, direction);
+
+    renderMini();
+}
+
+function selectDate(value) {
+
+    selectedDate = parseDate(value);
+
+    miniDate = new Date(selectedDate);
+
+    render();
+}
+
+/* CALENDAR NAVIGATION */
+
+function goToday() {
+
+    const parts = new Intl.DateTimeFormat("en-US", {
+        timeZone: "America/New_York",
+        year: "numeric",
+        month: "2-digit",
+        day: "2-digit"
+    }).formatToParts(new Date());
+
+    const values = Object.fromEntries(
+        parts.map(part => [part.type, part.value])
+    );
+
+    selectedDate = new Date(
+        Number(values.year),
+        Number(values.month)-1,
+        Number(values.day)
+    );
+
+    miniDate = new Date(selectedDate);
+
+    render();
+}
+
+function moveDate(direction) {
+
+    if (view === "month" || view === "schedule") {
+        selectedDate = addMonths(selectedDate, direction);
+    } else {
+        selectedDate = addDays(
+            selectedDate,
+            direction * (view === "week" ? 7 : 1)
+        );
+    }
+
+    miniDate = new Date(selectedDate);
+
+    render();
+}
+
+function changeView(value) {
+
+    view = value;
+
+    render();
+}
+
+/* MONTH VIEW */
+
+function renderMonth() {
+
+    const first = new Date(
+        selectedDate.getFullYear(),
+        selectedDate.getMonth(),
+        1
+    );
+
+    const start = addDays(first, -first.getDay());
+
+    let html = '<div class="month-grid">';
+
+    html += weekdays.map(day =>
+        `<div class="weekday">${day}</div>`
+    ).join("");
+
+    for (let i = 0; i < 42; i++) {
+
+        const date = addDays(start, i);
+
+        html += `
+            <div class="day-cell
+                ${date.getMonth() !== selectedDate.getMonth() ? "outside" : ""}"
+                onclick="openForm('${key(date)}')">
+
+                <div class="day-number
+                    ${key(date) === key(selectedDate) ? "active" : ""}">
+
+                    ${date.getDate()}
+
+                </div>
+
+                ${eventsOn(date).map(event => `
+
+                    <button class="event"
+                        style="${styleEvent(event)}"
+                        onclick="event.stopPropagation();openEvent(${event.id})">
+
+                        <span class="event-time">
+                            ${timeText(event.start)}
+                        </span>
+
+                        <span class="event-title">
+                            ${esc(event.title)}
+                        </span>
+
+                    </button>
+
+                `).join("")}
+
+            </div>
+        `;
+    }
+
+    html += "</div>";
+
+    document.getElementById("calendar").innerHTML = html;
+}
+
+/* WEEK AND DAY VIEWS */
+
+function renderTimeGrid() {
+
+    const count = view === "week" ? 7 : 1;
+
+    const first = view === "week"
+        ? addDays(selectedDate, -selectedDate.getDay())
+        : selectedDate;
+
+    const dates = Array.from(
+        {length:count},
+        (_,i) => addDays(first,i)
+    );
+
+    const columns = `65px repeat(${count},minmax(120px,1fr))`;
+
+    let html = `
+        <div class="schedule">
+
+            <div class="schedule-header"
+                style="grid-template-columns:${columns}">
+
+                <div class="timezone">ET</div>
+
+                ${dates.map(date => `
+
+                    <div class="schedule-heading">
+
+                        <small>${weekdays[date.getDay()]}</small>
+
+                        <strong class="${key(date) === key(selectedDate) ? "active" : ""}">
+                            ${date.getDate()}
+                        </strong>
+
+                    </div>
+
+                `).join("")}
+
+            </div>
+
+            <div class="schedule-body"
+                style="grid-template-columns:${columns}">
+
+                <div class="time-column">
+    `;
+
+    for (let hour = 7; hour < 20; hour++) {
+
+        html += `
+            <div class="time-label">
+                ${timeText(String(hour).padStart(2,"0") + ":00")}
+            </div>
+        `;
+    }
+
+    html += "</div>";
+
+    dates.forEach(date => {
+
+        html += '<div class="schedule-day">';
+
+        for (let hour = 7; hour < 20; hour++) {
+
+            html += `
+                <div class="hour-cell"
+                    onclick="openForm('${key(date)}','${String(hour).padStart(2,"0")}:00')">
+                </div>
+            `;
+        }
+
+        const daily = eventsOn(date);
+
+        daily.forEach(event => {
+
+            const start = minutes(event.start);
+            const end = minutes(event.end);
+
+            const top = (start - 420) / 60 * 65;
+            const height = Math.max(24,(end - start) / 60 * 65 - 3);
+
+            const overlaps = daily.filter(other =>
+                minutes(other.start) < end &&
+                minutes(other.end) > start
+            );
+
+            const index = overlaps.findIndex(other => other.id === event.id);
+
+            const width = 100 / overlaps.length;
+
+            html += `
+                <button class="schedule-event"
+                    style="${styleEvent(event)}
+                        top:${top}px;
+                        height:${height}px;
+                        left:calc(${index * width}% + 3px);
+                        width:calc(${width}% - 7px);
+                        right:auto;"
+                    onclick="openEvent(${event.id})">
+
+                    <strong>${esc(event.title)}</strong>
+
+                    ${timeText(event.start)} – ${timeText(event.end)}
+
+                </button>
+            `;
+        });
+
+        html += "</div>";
+    });
+
+    html += "</div></div>";
+
+    document.getElementById("calendar").innerHTML = html;
+}
+
+/* SCHEDULE VIEW */
+
+function renderAgenda() {
+
+    const query = document.getElementById("search").value.trim();
+
+    const prefix = key(selectedDate).slice(0,7);
+
+    const list = visibleEvents().filter(event =>
+        query || event.date.startsWith(prefix)
+    );
+
+    document.getElementById("calendar").innerHTML = `
+
+        <div class="agenda">
+
+            ${list.length ? list.map(event => `
+
+                <div class="agenda-row">
+
+                    <div class="agenda-date">
+
+                        <strong style="font-size:24px;font-weight:400">
+                            ${parseDate(event.date).getDate()}
+                        </strong>
+
+                        <div>
+                            ${parseDate(event.date).toLocaleDateString("en-US",{
+                                month:"short",
+                                weekday:"short"
+                            })}
+                        </div>
+
+                    </div>
+
+                    <button class="agenda-event"
+                        style="${styleEvent(event)}"
+                        onclick="openEvent(${event.id})">
+
+                        <strong>${esc(event.title)}</strong>
+
+                        <div>
+                            ${timeText(event.start)} – ${timeText(event.end)} ET
+                        </div>
+
+                        <div>${esc(event.location)}</div>
+
+                        <div style="font-size:11px">
+                            ${esc(event.status)}
+                        </div>
+
+                    </button>
+
+                </div>
+
+            `).join("") : `
+
+                <div class="empty">No appointments found.</div>
+
+            `}
+
+        </div>
+    `;
+}
+
+function render() {
+
+    document.getElementById("monthTitle").textContent =
+        view === "day"
+            ? fullDate(key(selectedDate))
+            : monthName(selectedDate);
+
+    document.getElementById("logoDate").textContent =
+        selectedDate.getDate();
+
+    renderMini();
+
+    const query = document.getElementById("search").value.trim();
+
+    if (query || view === "schedule") {
+        renderAgenda();
+    } else if (view === "month") {
+        renderMonth();
+    } else {
+        renderTimeGrid();
+    }
+}
+
+/* APPOINTMENT DETAILS */
+
+function confirmationMessage(event) {
+
+    const date = fullDate(event.date);
+
+    const time = `${timeText(event.start)} – ${timeText(event.end)} Eastern Time`;
+
+    const firstName = event.client.split(" ")[0];
+
+    const signature = `
+
+Best regards,
+Dainty De Guzman
+Real Estate Administrative Support
+${ACCOUNT}`;
+
+    if (event.status === "Cancelled") {
+
+        return `Hi ${firstName},
+
+This is to acknowledge the cancellation of your appointment originally scheduled for ${date} at ${time}.
+
+Please let us know your updated availability if you would like to arrange another appointment.
+
+Thank you for keeping us informed.` + signature;
+    }
+
+    if (event.type === "Follow-up Reminder") {
+
+        return `Hi ${firstName},
+
+I wanted to follow up regarding your recent real estate inquiry or appointment.
+
+Please let us know if you have any updates, questions, or changes to your availability. I'll coordinate with ${event.agent} regarding the appropriate next steps.
+
+Thank you, and I look forward to hearing from you.` + signature;
+    }
+
+    if (event.status === "Completed") {
+
+        return `Hi ${firstName},
+
+Thank you for taking the time to attend your appointment with ${event.agent}.
+
+We would appreciate any feedback or questions you may have following your appointment.
+
+Please feel free to reply, and I'll forward your inquiries to the assigned agent for review.
+
+Thank you again for your time.` + signature;
+    }
+
+    if (event.status === "Pending" || event.status === "Rescheduled") {
+
+        return `Hi ${firstName},
+
+Thank you for sharing your availability.
+
+Your requested appointment details are as follows:
+
+Date: ${date}
+Time: ${time}
+Location: ${event.location}
+Assigned agent: ${event.agent}
+
+Please note that this appointment is tentative and remains subject to final confirmation from the assigned agent.
+
+I'll provide an update once the necessary arrangements have been confirmed.
+
+Thank you for your patience.` + signature;
+    }
+
+    return `Hi ${firstName},
+
+I'm writing to confirm your upcoming appointment.
+
+Appointment: ${event.type}
+Date: ${date}
+Time: ${time}
+Location: ${event.location}
+Assigned agent: ${event.agent}
+
+Please let us know in advance if you need to reschedule or if you have any questions regarding your appointment.
+
+We look forward to assisting you.` + signature;
+}
+
+function detail(symbol, label, value) {
+
+    return `
+        <div class="detail-row">
+
+            ${icon(symbol)}
+
+            <div>
+
+                <div class="detail-label">${label}</div>
+
+                ${esc(value)}
+
+            </div>
+
+        </div>
+    `;
+}
+
+function openEvent(id) {
+
+    const event = events.find(item => item.id === id);
+
+    if (!event) return;
+
+    currentId = id;
+
+    document.getElementById("eventDetails").innerHTML = `
+
+        <div class="event-heading">
+
+            <div class="event-dot"
+                style="background:${types[event.type].color}">
+            </div>
+
+            <div>
+
+                <h1>${esc(event.title)}</h1>
+
+                <span class="status" style="${styleEvent(event)}">
+                    ${esc(event.status)}
+                </span>
+
+            </div>
+
+        </div>
+
+        ${detail(
+            "schedule",
+            "Date and time",
+            fullDate(event.date) + " · " +
+            timeText(event.start) + " – " +
+            timeText(event.end) + " ET"
+        )}
+
+        ${detail("location_on","Location",event.location)}
+
+        ${detail("person","Client",event.client)}
+
+        ${detail("mail","Client email",event.email)}
+
+        ${detail("groups","Assigned agent",event.agent)}
+
+        ${detail("event_available","Client availability",event.availability)}
+
+        ${detail("notifications","Reminder preference",event.reminder)}
+
+        ${detail(
+            "event_repeat",
+            "Follow-up",
+            event.followup ? fullDate(event.followup) : "Not scheduled"
+        )}
+
+        ${detail("notes","Appointment notes",event.notes || "No notes")}
+
+        <div class="detail-row">
+
+            ${icon("mail_outline")}
+
+            <div>
+
+                <div class="detail-label">
+
+                    ${event.status === "Confirmed"
+                        ? "Appointment confirmation draft"
+                        : "Client communication draft"}
+
+                </div>
+
+                <div class="confirmation" id="confirmationText">${esc(confirmationMessage(event))}</div>
+
+                <div class="actions">
+
+                    <button class="secondary" onclick="copyConfirmation()">
+
+                        ${icon("content_copy")}
+
+                        Copy message
+
+                    </button>
+
+                    ${event.followup && event.type !== "Follow-up Reminder" ? `
+
+                        <button class="secondary" onclick="createFollowup()">
+
+                            ${icon("add")}
+
+                            Add follow-up
+
+                        </button>
+
+                    ` : ""}
+
+                </div>
+
+            </div>
+
+        </div>
+    `;
+
+    document.getElementById("eventOverlay").classList.remove("hidden");
+}
+
+function closeEvent() {
+
+    document.getElementById("eventOverlay").classList.add("hidden");
+
+    currentId = null;
+}
+
+async function copyConfirmation() {
+
+    const text = document.getElementById("confirmationText").textContent;
+
+    try {
+
+        await navigator.clipboard.writeText(text);
+
+        notify("Message copied.");
+
+    } catch {
+
+        notify("Select the message and press Ctrl+C.");
+
+    }
+}
+
+function createFollowup() {
+
+    const event = events.find(item => item.id === currentId);
+
+    if (!event || !event.followup) return;
+
+    const exists = events.some(item =>
+        item.type === "Follow-up Reminder" &&
+        item.email === event.email &&
+        item.date === event.followup &&
+        item.status !== "Cancelled"
+    );
+
+    if (exists) {
+        notify("A follow-up is already scheduled.");
+        return;
+    }
+
+    closeEvent();
+
+    openForm(event.followup,"10:00");
+
+    const form = document.getElementById("eventForm");
+
+    form.elements.title.value = "Follow up — " + event.client;
+
+    form.elements.type.value = "Follow-up Reminder";
+
+    form.elements.client.value = event.client;
+
+    form.elements.email.value = event.email;
+
+    form.elements.agent.value = event.agent;
+
+    form.elements.availability.value = event.availability;
+
+    form.elements.location.value = "Email follow-up";
+
+    form.elements.end.value = "10:30";
+
+    form.elements.notes.value =
+        "Follow up regarding " + event.title + ".";
+
+}
+
+/* CREATE AND EDIT APPOINTMENTS */
+
+function openForm(date = key(selectedDate), start = "09:00") {
+
+    editingId = null;
+
+    const form = document.getElementById("eventForm");
+
+    form.reset();
+
+    form.elements.date.value = date;
+
+    form.elements.start.value = start;
+
+    const endMinutes = Math.min(minutes(start)+60,1200);
+
+    form.elements.end.value =
+        String(Math.floor(endMinutes/60)).padStart(2,"0") +
+        ":" +
+        String(endMinutes%60).padStart(2,"0");
+
+    form.elements.status.value = "Pending";
+
+    form.elements.reminder.value = "1 day before";
+
+    document.getElementById("formTitle").textContent =
+        "New appointment";
+
+    document.getElementById("formOverlay").classList.remove("hidden");
+}
+
+function closeForm() {
+
+    document.getElementById("formOverlay").classList.add("hidden");
+
+    editingId = null;
+}
+
+function editCurrent() {
+
+    const event = events.find(item => item.id === currentId);
+
+    if (!event) return;
+
+    closeEvent();
+
+    openForm(event.date,event.start);
+
+    editingId = event.id;
+
+    const form = document.getElementById("eventForm");
+
+    Object.entries(event).forEach(([name,value]) => {
+
+        if (form.elements.namedItem(name)) {
+
+            form.elements.namedItem(name).value = value;
+
+        }
+
+    });
+
+    document.getElementById("formTitle").textContent =
+        "Edit appointment";
+}
+
+function saveEvent(submission) {
+
+    submission.preventDefault();
+
+    const data = Object.fromEntries(
+        new FormData(submission.target)
+    );
+
+    if (minutes(data.end) <= minutes(data.start)) {
+
+        notify("End time must be after the start time.");
+
+        return;
+    }
+
+    if (
+        minutes(data.start) < 420 ||
+        minutes(data.end) > 1200
+    ) {
+
+        notify("Choose a time between 7 AM and 8 PM ET.");
+
+        return;
+    }
+
+    const conflict = events.find(event =>
+
+        event.id !== editingId &&
+
+        event.date === data.date &&
+
+        !["Cancelled","Completed"].includes(event.status) &&
+
+        !["Cancelled","Completed"].includes(data.status) &&
+
+        (
+            event.agent.trim().toLowerCase() ===
+                data.agent.trim().toLowerCase() ||
+
+            event.email.trim().toLowerCase() ===
+                data.email.trim().toLowerCase()
+        ) &&
+
+        minutes(event.start) < minutes(data.end) &&
+
+        minutes(event.end) > minutes(data.start)
+
+    );
+
+    if (conflict) {
+
+        notify("Scheduling conflict: " + conflict.title);
+
+        return;
+    }
+
+    const id = editingId || Date.now();
+
+    const appointment = {id,...data};
+
+    if (editingId) {
+
+        events = events.map(event =>
+            event.id === editingId ? appointment : event
+        );
+
+    } else {
+
+        events.push(appointment);
+
+    }
+
+    save();
+
+    closeForm();
+
+    selectedDate = parseDate(data.date);
+
+    miniDate = new Date(selectedDate);
+
+    render();
+
+    notify("Appointment saved.");
+
+    openEvent(id);
+}
+
+function deleteCurrent() {
+
+    if (!confirm("Delete this appointment?")) return;
+
+    events = events.filter(event => event.id !== currentId);
+
+    save();
+
+    closeEvent();
+
+    render();
+
+    notify("Appointment deleted.");
+}
+
+/* INITIALIZATION */
+
+document.addEventListener("keydown",event => {
+
+    if (event.key === "Escape") {
+
+        closeForm();
+
+        closeEvent();
+
+        document.getElementById("profile").classList.add("hidden");
+
+    }
+});
+
+document.addEventListener("click",event => {
+
+    const profile = document.getElementById("profile");
+
+    if (
+        !profile.contains(event.target) &&
+        !event.target.closest(".account")
+    ) {
+        profile.classList.add("hidden");
+    }
+
+});
+
+document.querySelectorAll(".overlay").forEach(overlay => {
+
+    overlay.addEventListener("click",event => {
+
+        if (event.target === overlay) {
+
+            if (overlay.id === "formOverlay") {
+                closeForm();
+            } else {
+                closeEvent();
+            }
+
+        }
+
+    });
+
+});
+
+renderFilters();
+
+render();
+
+</script>
+
+</body>
+</html>
