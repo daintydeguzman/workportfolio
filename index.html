@@ -5,21 +5,23 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<meta name="description" content="Dainty De Guzman — Real Estate Virtual Assistant specializing in lead management, CRM organization, property listing administration, and client coordination.">
+<meta name="description" content="Dainty De Guzman — Real Estate Virtual Assistant. Organized, reliable, and detail-oriented administrative support.">
 
 <title>Dainty De Guzman | Real Estate Virtual Assistant</title>
 
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
 
 <style>
 
 :root {
-    --bg: #fffafb;
-    --ink: #342d32;
+    --background: #fffafb;
+    --paper: #ffffff;
+    --text: #342d32;
     --muted: #82747d;
-    --rose: #a65f7d;
-    --line: #f0e3e9;
-    --pale: #f9f0f4;
+    --pink: #a65f7d;
+    --light-pink: #c994a5;
+    --blush: #f9f0f4;
+    --border: #ebdfe5;
 }
 
 * {
@@ -28,530 +30,559 @@
 
 html {
     scroll-behavior: smooth;
-    scroll-padding-top: 95px;
+    scroll-padding-top: 100px;
 }
 
 body {
     margin: 0;
-    background: var(--bg);
-    color: var(--ink);
-    font: 15px/1.8 'DM Sans', Arial, sans-serif;
+    background: var(--background);
+    color: var(--text);
+    font-family: 'DM Sans', Arial, sans-serif;
+    line-height: 1.8;
 }
 
 a {
-    text-decoration: none;
     color: inherit;
+    text-decoration: none;
+}
+
+h1, h2, h3, p {
+    margin-top: 0;
 }
 
 .wrap {
-    max-width: 1150px;
+    width: min(1120px, calc(100% - 48px));
     margin: auto;
-    padding: 0 30px;
 }
 
 /* NAVIGATION */
 
-.top {
-    border-bottom: 1px solid var(--line);
-    background: var(--bg);
+header {
     position: sticky;
     top: 0;
     z-index: 100;
+    background: #fffafbf2;
+    backdrop-filter: blur(15px);
+    border-bottom: 1px solid var(--border);
 }
 
-.top .wrap {
-    min-height: 76px;
+.nav-inner {
     display: flex;
-    align-items: center;
     justify-content: space-between;
-    gap: 20px;
+    align-items: center;
+    gap: 25px;
+    padding: 20px 0;
 }
 
 .logo {
-    font: 600 19px 'Playfair Display', serif;
-    letter-spacing: .04em;
-}
-
-.links {
-    display: flex;
-    gap: 27px;
-    align-items: center;
-}
-
-.links a {
-    font-size: 11px;
-    text-transform: uppercase;
-    letter-spacing: .1em;
-    font-weight: 700;
-    transition: .2s;
-}
-
-.links a:hover {
-    color: var(--rose);
-}
-
-/* HERO SECTION */
-
-.hero {
-    padding: 100px 0 110px;
-}
-
-.hero-grid {
-    display: grid;
-    grid-template-columns: 1.3fr .7fr;
-    gap: 65px;
-    align-items: center;
-}
-
-.overline {
-    font-size: 11px;
-    letter-spacing: .2em;
-    text-transform: uppercase;
-    color: var(--rose);
-    font-weight: 700;
-}
-
-.hero h1 {
-    font: 500 clamp(42px, 5.7vw, 82px)/1.05 'Playfair Display', serif;
-    letter-spacing: -.04em;
-    margin: 22px 0 25px;
-}
-
-.hero h1 span {
-    display: block;
-}
-
-.hero h1 .pink {
-    color: var(--rose);
-}
-
-.hero .desc {
+    font-family: 'Playfair Display', serif;
     font-size: 16px;
-    max-width: 560px;
-    color: #695e65;
+    font-weight: 600;
+    letter-spacing: 1px;
 }
 
-.specialties {
-    font-size: 11px;
-    letter-spacing: .11em;
-    font-weight: 700;
-    color: var(--rose);
-    margin: 25px 0;
+nav {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    flex-wrap: wrap;
+}
+
+nav a {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 1.3px;
     text-transform: uppercase;
+    color: var(--muted);
 }
 
-.location {
-    font-size: 12px;
+nav a:hover {
+    color: var(--pink);
+}
+
+.nav-contact {
+    color: var(--pink);
+}
+
+/* GENERAL STYLING */
+
+section {
+    padding: 85px 0;
+    border-top: 1px solid var(--border);
+}
+
+.eyebrow {
+    color: var(--pink);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2.3px;
+    text-transform: uppercase;
+    margin-bottom: 18px;
+}
+
+h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(34px, 4.5vw, 49px);
+    font-weight: 400;
+    line-height: 1.25;
+    letter-spacing: -1px;
+    margin-bottom: 28px;
+}
+
+p {
     color: var(--muted);
+    font-size: 14px;
 }
 
 .actions {
     display: flex;
-    gap: 12px;
     flex-wrap: wrap;
-    margin-top: 30px;
+    gap: 12px;
+    margin-top: 28px;
 }
 
-.button {
-    display: inline-block;
-    background: var(--rose);
-    border: 1px solid var(--rose);
-    color: white;
-    padding: 12px 22px;
-    font-size: 12px;
-    font-weight: 700;
-    letter-spacing: .05em;
-    transition: .2s;
-}
-
-.button:hover {
-    background: #8e4967;
-    border-color: #8e4967;
-    transform: translateY(-2px);
-}
-
-.button.ghost {
-    background: transparent;
-    color: var(--rose);
-}
-
-.button.ghost:hover {
-    background: var(--pale);
-}
-
-.photo {
-    padding: 13px;
-    border: 1px solid #ebdce3;
-    background: white;
-    box-shadow: 22px 22px 0 var(--pale);
-}
-
-.photo img {
-    display: block;
-    width: 100%;
-    height: 420px;
-    object-fit: cover;
-    object-position: top;
-    background: var(--pale);
-}
-
-.photo .placeholder {
-    display: none;
-    height: 420px;
+.btn {
+    display: inline-flex;
     align-items: center;
     justify-content: center;
-    background: var(--pale);
-    text-align: center;
-    color: var(--rose);
-    padding: 20px;
-}
-
-/* GENERAL SECTIONS */
-
-.section {
-    padding: 85px 0;
-    border-top: 1px solid var(--line);
-}
-
-.section.white {
-    background: #ffffff;
-}
-
-.section-title {
-    font-size: 11px;
-    letter-spacing: .17em;
-    color: var(--rose);
+    gap: 15px;
+    background: var(--pink);
+    color: white;
+    padding: 14px 24px;
+    font-size: 10px;
     font-weight: 700;
-    margin-bottom: 25px;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    border: 1px solid var(--pink);
+    transition: 0.25s;
 }
 
-.section h2 {
-    font: 500 clamp(33px, 4vw, 52px)/1.2 'Playfair Display', serif;
-    letter-spacing: -.025em;
-    margin: 0 0 22px;
+.btn:hover {
+    background: #8d4c68;
+    border-color: #8d4c68;
 }
 
-.intro {
-    max-width: 790px;
-    color: #62575e;
+.btn-outline {
+    background: transparent;
+    color: var(--pink);
 }
 
-/* ABOUT */
+.btn-outline:hover {
+    background: var(--pink);
+    color: white;
+}
 
-.about {
+/* HOMEPAGE HERO */
+
+.hero {
     display: grid;
-    grid-template-columns: 1.6fr 1fr;
-    gap: 70px;
+    grid-template-columns: 1.35fr 0.65fr;
+    gap: 65px;
+    align-items: center;
+    padding: 100px 0;
 }
 
-.about p {
-    color: #62575e;
-    margin: 0 0 18px;
+.hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(48px, 7.2vw, 95px);
+    font-weight: 400;
+    line-height: 1.03;
+    letter-spacing: -3px;
+    margin: 20px 0 25px;
 }
 
-.side-note {
-    border-left: 2px solid #e9cbd7;
-    padding-left: 26px;
+.hero h1 span {
+    color: var(--light-pink);
 }
 
-.side-note strong {
-    font-size: 11px;
-    letter-spacing: .12em;
-    color: var(--rose);
-}
-
-.side-note p {
-    font-size: 13px;
-    margin: 7px 0 26px;
-}
-
-/* SERVICES */
-
-.services {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 16px;
-    margin-top: 38px;
-}
-
-.service {
-    border: 1px solid var(--line);
-    background: white;
-    padding: 27px;
-    transition: .25s;
-}
-
-.service:hover {
-    border-color: #d9b6c7;
-    transform: translateY(-3px);
-}
-
-.num {
-    color: var(--rose);
-    font-size: 11px;
+.role {
+    font-size: 14px;
     font-weight: 700;
-    letter-spacing: .12em;
+    letter-spacing: 2.5px;
+    color: var(--text);
+    margin-bottom: 20px;
 }
 
-.service h3,
-.project h3 {
-    font: 500 23px/1.3 'Playfair Display', serif;
-    margin: 18px 0 10px;
+.hero-description {
+    font-family: 'Playfair Display', serif;
+    font-size: 25px;
+    line-height: 1.5;
+    color: var(--text);
+    max-width: 550px;
 }
 
-.service p,
-.project p {
-    font-size: 13px;
+.hero-specialties {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 1.1px;
+    line-height: 2.3;
+    color: var(--pink);
+    margin-top: 25px;
+}
+
+.hero-meta {
+    margin-top: 30px;
+    padding-top: 18px;
+    border-top: 1px solid var(--border);
+    font-size: 12px;
     color: var(--muted);
-    margin: 0;
+}
+
+.hero-meta a {
+    color: var(--pink);
+    overflow-wrap: anywhere;
+}
+
+.hero-photo {
+    position: relative;
+}
+
+.hero-photo img {
+    width: 100%;
+    max-width: 350px;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+    border: 8px solid white;
+    outline: 1px solid var(--border);
+}
+
+.photo-caption {
+    font-size: 9px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin: 15px 0 0;
+    text-align: center;
+}
+
+/* ABOUT ME */
+
+.about-layout {
+    display: grid;
+    grid-template-columns: 0.8fr 1.2fr;
+    gap: 65px;
+    align-items: start;
+}
+
+.about-text p {
+    font-size: 14px;
+    line-height: 1.95;
+    margin-bottom: 19px;
+}
+
+.about-text p:last-child {
+    margin-bottom: 0;
+}
+
+.values {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    margin-top: 45px;
+    padding-top: 28px;
+    border-top: 1px solid var(--border);
+}
+
+.value {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1.6px;
+    color: var(--pink);
+    text-transform: uppercase;
 }
 
 /* SELECTED WORK */
 
-.projects {
+.work {
+    background: var(--blush);
+}
+
+.section-intro {
+    max-width: 650px;
+    margin-bottom: 35px;
+}
+
+.samples {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
-    margin-top: 38px;
+    gap: 18px;
 }
 
-.project {
-    border: 1px solid var(--line);
+.sample {
     background: white;
+    border: 1px solid var(--border);
     padding: 30px;
-    min-height: 280px;
+    min-height: 245px;
     display: flex;
     flex-direction: column;
-    transition: .25s;
+    transition: 0.25s;
 }
 
-.project:hover {
-    border-color: #d9b6c7;
-    box-shadow: 0 8px 25px #a65f7d0d;
+.sample:hover {
+    border-color: var(--light-pink);
     transform: translateY(-3px);
+    box-shadow: 0 10px 30px #a65f7d0b;
 }
 
-.project p {
-    margin-bottom: 20px;
-}
-
-.project-tools {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
-    margin-bottom: 25px;
-}
-
-.project-tools span {
+.project-number {
+    color: var(--pink);
     font-size: 10px;
-    background: var(--pale);
-    color: var(--rose);
-    padding: 5px 9px;
+    font-weight: 600;
+    letter-spacing: 1.8px;
 }
 
-.project .work-button {
-    display: inline-flex;
-    align-items: center;
-    justify-content: space-between;
+.sample h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 25px;
+    font-weight: 400;
+    line-height: 1.4;
+    margin: 15px 0 10px;
+}
+
+.sample p {
+    font-size: 13px;
+    margin-bottom: 24px;
+    line-height: 1.8;
+}
+
+.sample .btn {
     align-self: flex-start;
-    gap: 25px;
     margin-top: auto;
-    background: var(--rose);
-    border: 1px solid var(--rose);
-    color: white;
     padding: 11px 18px;
-    font-size: 10px;
-    letter-spacing: .1em;
-    text-transform: uppercase;
-    font-weight: 700;
-    transition: .2s;
+    font-size: 9px;
 }
 
-.project .work-button:hover {
-    background: #8e4967;
-    border-color: #8e4967;
-}
-
-.notice {
-    font-size: 12px;
+.disclaimer {
+    font-size: 11px;
     color: var(--muted);
-    margin-top: 24px;
+    margin: 25px 0 0;
 }
 
 /* TOOLS */
 
-.tool-grid {
+.tools-layout {
+    display: grid;
+    grid-template-columns: 0.8fr 1.2fr;
+    gap: 65px;
+}
+
+.tools-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 30px;
+    gap: 25px;
 }
 
-.tool-grid h3 {
-    font: 500 23px 'Playfair Display', serif;
+.tool-group {
+    padding: 0 0 20px;
+    border-bottom: 1px solid var(--border);
 }
 
-.tool-grid p {
-    color: var(--muted);
-    font-size: 13px;
-}
-
-.tags {
-    display: flex;
-    gap: 8px;
-    flex-wrap: wrap;
-}
-
-.tags span {
-    border: 1px solid var(--line);
-    padding: 7px 11px;
-    background: white;
-    font-size: 11px;
-}
-
-/* BACKGROUND */
-
-.background {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 30px;
-}
-
-.background article {
-    border-top: 1px solid #e9cbd7;
-    padding-top: 18px;
-}
-
-.background h3 {
-    font: 500 22px 'Playfair Display', serif;
-    margin: 0;
-}
-
-.background small {
-    font-size: 11px;
-    color: var(--rose);
+.tool-group h3 {
+    font-size: 10px;
     font-weight: 700;
-    letter-spacing: .08em;
+    letter-spacing: 1.4px;
+    color: var(--pink);
+    text-transform: uppercase;
+    margin-bottom: 12px;
 }
 
-.background p {
+.tool-group p {
     font-size: 13px;
-    color: var(--muted);
+    line-height: 2;
+    margin-bottom: 0;
+}
+
+/* PROFESSIONAL BACKGROUND */
+
+.background-grid {
+    display: grid;
+    grid-template-columns: 0.8fr 1.2fr;
+    gap: 65px;
+}
+
+.background-item {
+    padding: 20px 0;
+    border-bottom: 1px solid var(--border);
+}
+
+.background-item:first-child {
+    padding-top: 0;
+}
+
+.background-item h3 {
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.background-item p {
+    font-size: 13px;
+    margin-bottom: 0;
+}
+
+.background-item small {
+    font-size: 11px;
+    color: var(--pink);
 }
 
 /* CONTACT */
 
 .contact {
     text-align: center;
-    background: var(--pale);
+    background: var(--blush);
+}
+
+.contact h2 {
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .contact p {
-    color: #756871;
-    max-width: 650px;
-    margin: 15px auto;
+    max-width: 530px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.contact .actions {
+    justify-content: center;
 }
 
 .contact-email {
     display: inline-block;
-    color: var(--rose);
-    font-size: 14px;
-    margin-top: 15px;
+    color: var(--pink);
+    font-size: 13px;
+    margin-top: 25px;
     overflow-wrap: anywhere;
-}
-
-.contact-email:hover {
-    text-decoration: underline;
 }
 
 /* FOOTER */
 
-.footer {
-    padding: 27px 0;
-    font-size: 12px;
-    color: var(--muted);
-    border-top: 1px solid var(--line);
+footer {
+    border-top: 1px solid var(--border);
 }
 
-.footer .wrap {
+.footer-inner {
+    padding: 25px 0;
     display: flex;
     justify-content: space-between;
-    gap: 16px;
+    align-items: center;
+    gap: 15px;
+    font-size: 9px;
+    letter-spacing: 1px;
+    color: var(--muted);
 }
 
-/* RESPONSIVE DESIGN */
+.footer-inner a {
+    color: var(--pink);
+}
 
-@media (max-width: 800px) {
+/* MOBILE RESPONSIVENESS */
 
-    .hero-grid,
-    .about {
-        grid-template-columns: 1fr;
+@media(max-width: 850px) {
+
+    .hero {
+        gap: 30px;
     }
 
-    .photo {
-        max-width: 380px;
+    .about-layout,
+    .tools-layout,
+    .background-grid {
+        gap: 30px;
     }
 
-    .services {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    .hero h1 {
-        font-size: clamp(42px, 9vw, 76px);
+    nav {
+        gap: 14px;
     }
 
 }
 
-@media (max-width: 580px) {
+@media(max-width: 650px) {
 
     .wrap {
-        padding: 0 20px;
+        width: calc(100% - 36px);
     }
 
-    .top .wrap {
-        min-height: 66px;
-    }
-
-    .logo {
-        font-size: 14px;
-    }
-
-    .links {
+    .nav-inner {
+        flex-direction: column;
         gap: 12px;
+        padding: 15px 0;
     }
 
-    .links a {
-        font-size: 10px;
+    nav {
+        justify-content: center;
+        gap: 14px;
     }
 
-    .links a:nth-child(2) {
-        display: none;
+    nav a {
+        font-size: 9px;
     }
 
     .hero {
-        padding: 65px 0 80px;
+        grid-template-columns: 1fr;
+        padding: 45px 0 60px;
+    }
+
+    .hero-photo {
+        grid-row: 1;
+        max-width: 240px;
+        margin: auto;
     }
 
     .hero h1 {
-        font-size: clamp(38px, 9.5vw, 55px);
+        font-size: clamp(48px, 12vw, 75px);
+        letter-spacing: -2px;
     }
 
-    .services,
-    .projects,
-    .tool-grid,
-    .background {
+    .hero-description {
+        font-size: 22px;
+    }
+
+    .role {
+        font-size: 11px;
+    }
+
+    section {
+        padding: 60px 0;
+    }
+
+    .about-layout,
+    .tools-layout,
+    .background-grid,
+    .samples {
         grid-template-columns: 1fr;
+        gap: 20px;
     }
 
-    .section {
-        padding: 65px 0;
+    .values {
+        grid-template-columns: 1fr 1fr;
     }
 
-    .footer .wrap {
-        flex-direction: column;
+    .sample {
+        min-height: 220px;
+        padding: 25px;
     }
 
-    .photo {
-        width: calc(100% - 22px);
+    .tools-grid {
+        gap: 18px;
+    }
+
+    .footer-inner {
+        flex-wrap: wrap;
+    }
+
+}
+
+@media(prefers-reduced-motion: reduce) {
+
+    html {
+        scroll-behavior: auto;
+    }
+
+    * {
+        transition: none !important;
     }
 
 }
@@ -563,23 +594,31 @@ a {
 
 <!-- NAVIGATION -->
 
-<header class="top">
+<header>
 
-    <div class="wrap">
+    <div class="wrap nav-inner">
 
         <a class="logo" href="#home">
             DAINTY DE GUZMAN
         </a>
 
-        <nav class="links">
+        <nav aria-label="Main navigation">
 
             <a href="#about">About</a>
 
-            <a href="#services">Expertise</a>
+            <a href="#work">Work Samples</a>
 
-            <a href="#work">Selected Work</a>
+            <a href="#tools">Tools</a>
 
-            <a href="#contact">Contact</a>
+            <a href="resume.pdf"
+                target="_blank"
+                rel="noopener noreferrer">
+                Résumé
+            </a>
+
+            <a class="nav-contact" href="#contact">
+                Contact
+            </a>
 
         </nav>
 
@@ -589,290 +628,141 @@ a {
 
 <main>
 
-<!-- HOMEPAGE -->
+<!-- HERO -->
 
-<section class="hero" id="home">
+<div class="wrap hero" id="home">
 
-    <div class="wrap hero-grid">
+    <div>
 
-        <div>
+        <p class="eyebrow">
+            Professional Portfolio
+        </p>
 
-            <div class="overline">
-                Portfolio / Real Estate Administrative Support
-            </div>
+        <h1>
+            DAINTY<br>
+            <span>DE GUZMAN</span>
+        </h1>
 
-            <h1>
-                <span>DAINTY</span>
-                <span>DE GUZMAN</span>
-                <span class="pink">REAL ESTATE</span>
-                <span>VIRTUAL ASSISTANT</span>
-            </h1>
+        <p class="role">
+            REAL ESTATE VIRTUAL ASSISTANT
+        </p>
 
-            <p class="desc">
-                Dependable behind-the-scenes support for real estate
-                professionals who value organized systems, accurate
-                records, consistent follow-ups, and exceptional
-                client communication.
-            </p>
+        <p class="hero-description">
+            Reliable support. Precise execution.
+            More room for your business to grow.
+        </p>
 
-            <div class="specialties">
-                LEAD MANAGEMENT &nbsp; | &nbsp;
-                CRM SUPPORT &nbsp; | &nbsp;
-                LISTING ADMINISTRATION &nbsp; | &nbsp;
-                CLIENT COORDINATION
-            </div>
+        <p class="hero-specialties">
 
-            <p class="location">
-                Based in the Philippines &nbsp; | &nbsp;
-                Open to remote opportunities
-            </p>
+            CRM MANAGEMENT &nbsp;·&nbsp;
+            PROPERTY LISTINGS<br>
 
-            <div class="actions">
+            CLIENT COMMUNICATION &nbsp;·&nbsp;
+            ADMINISTRATIVE SUPPORT
 
-                <a class="button" href="#work">
-                    VIEW MY WORK
-                </a>
+        </p>
 
-                <a class="button ghost"
-                    href="mailto:daintydeguzman.work@gmail.com">
-                    LET'S CONNECT
-                </a>
+        <div class="actions">
 
-            </div>
+            <a class="btn" href="#work">
+                Explore My Work ↗
+            </a>
+
+            <a class="btn btn-outline"
+                href="resume.pdf"
+                target="_blank"
+                rel="noopener noreferrer">
+
+                View Résumé ↗
+
+            </a>
 
         </div>
 
-        <div class="photo">
+        <div class="hero-meta">
 
-            <img
-                src="dainty-profile.jpg"
-                alt="Professional portrait of Dainty De Guzman"
-                onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+            Philippines · Open to remote opportunities
 
-            <div class="placeholder">
-                Professional Portrait
-            </div>
+            <br>
+
+            <a href="mailto:daintydeguzman.work@gmail.com">
+
+                daintydeguzman.work@gmail.com
+
+            </a>
 
         </div>
 
     </div>
 
-</section>
+    <div class="hero-photo">
+
+        <img src="dainty-profile.jpeg"
+            alt="Professional portrait of Dainty De Guzman">
+
+        <p class="photo-caption">
+
+            Organized · Proactive · Dependable
+
+        </p>
+
+    </div>
+
+</div>
 
 <!-- ABOUT ME -->
 
-<section class="section white" id="about">
+<section id="about">
 
     <div class="wrap">
 
-        <div class="section-title">
-            01 / PROFILE
-        </div>
-
-        <div class="about">
+        <div class="about-layout">
 
             <div>
 
+                <p class="eyebrow">
+                    01 / About Me
+                </p>
+
                 <h2>
-                    A dependable extra set of hands
-                    for your real estate business.
+                    Making every detail work in your favor.
                 </h2>
 
+            </div>
+
+            <div class="about-text">
+
                 <p>
-                    Hello! I'm Dainty De Guzman, a detail-oriented
-                    Real Estate Virtual Assistant focused on helping
-                    agents, brokers, and real estate professionals
-                    maintain organized, efficient, and reliable
-                    administrative operations.
+
+                    I am a Real Estate Virtual Assistant with practical experience supporting small-business operations and academic projects. My background in Civil Engineering and Architecture has strengthened my analytical thinking, organizational abilities, and attention to detail, complementing my skills in CRM management, lead organization, client communication, appointment coordination, property listing administration, and transaction tracking.
+
                 </p>
 
                 <p>
-                    I approach every responsibility with accuracy,
-                    initiative, and accountability. My focus is on
-                    keeping client information organized, maintaining
-                    clear communication, monitoring important
-                    follow-ups, and ensuring that administrative
-                    details receive the attention they deserve.
+
+                    I approach every responsibility with structure, initiative, and a strong sense of accountability. I value clear communication, consistent performance, and delivering accurate, high-quality results. I take pride in being resourceful, anticipating needs, and finding efficient ways to keep operations running smoothly.
+
                 </p>
 
                 <p>
-                    My academic background in Civil Engineering
-                    and Architecture, along with my work immersion
-                    at Arkibuilders, has strengthened my technical
-                    awareness, attention to detail, and structured
-                    approach to problem-solving.
-                </p>
 
-                <p>
-                    Through independent real estate projects,
-                    small-business experience, and continuous
-                    professional development, I have built practical
-                    skills in CRM organization, lead management,
-                    property listing administration, scheduling,
-                    and customer communication.
-                </p>
+                    My goal is to be more than someone who simply completes tasks. I aim to become a dependable extension of your team, bringing organization, precision, and professionalism to your daily operations so you can focus on building client relationships, closing deals, and growing your business.
 
-                <p>
-                    I understand that successful real estate
-                    operations depend on more than closing deals.
-                    They require consistent communication,
-                    reliable documentation, and organized systems.
-                    My goal is to provide the administrative
-                    support that allows real estate professionals
-                    to focus on their clients and business growth.
                 </p>
 
             </div>
 
-            <aside class="side-note">
-
-                <strong>PROFESSIONAL FOCUS</strong>
-
-                <p>
-                    Real Estate Virtual Assistance<br>
-                    CRM & Administrative Support<br>
-                    Property Listing Management
-                </p>
-
-                <strong>WORK STYLE</strong>
-
-                <p>
-                    Organized<br>
-                    Detail-oriented<br>
-                    Proactive<br>
-                    Accountable<br>
-                    Adaptable
-                </p>
-
-                <strong>LOCATION</strong>
-
-                <p>
-                    Philippines<br>
-                    Available for remote opportunities
-                </p>
-
-                <strong>COMMITMENT</strong>
-
-                <p>
-                    Accuracy, confidentiality, professional
-                    communication, and consistent follow-through.
-                </p>
-
-            </aside>
-
         </div>
 
-    </div>
+        <div class="values">
 
-</section>
+            <div class="value">01 / Precision</div>
 
-<!-- SERVICES -->
+            <div class="value">02 / Initiative</div>
 
-<section class="section" id="services">
+            <div class="value">03 / Accountability</div>
 
-    <div class="wrap">
-
-        <div class="section-title">
-            02 / AREAS OF EXPERTISE
-        </div>
-
-        <h2>
-            Administrative support built around
-            real estate workflows.
-        </h2>
-
-        <p class="intro">
-            Organized systems, reliable communication, and
-            consistent administrative support designed to
-            help real estate professionals manage their
-            daily responsibilities more efficiently.
-        </p>
-
-        <div class="services">
-
-            <article class="service">
-
-                <span class="num">01</span>
-
-                <h3>Lead & CRM Management</h3>
-
-                <p>
-                    Contact organization, lead categorization,
-                    database maintenance, pipeline monitoring,
-                    follow-up tracking, and accurate CRM records.
-                </p>
-
-            </article>
-
-            <article class="service">
-
-                <span class="num">02</span>
-
-                <h3>Email & Client Communication</h3>
-
-                <p>
-                    Inbox organization, buyer and seller inquiries,
-                    professional response drafting, communication
-                    records, and approval-based follow-ups.
-                </p>
-
-            </article>
-
-            <article class="service">
-
-                <span class="num">03</span>
-
-                <h3>Appointment Coordination</h3>
-
-                <p>
-                    Property showing requests, calendar
-                    management, appointment scheduling,
-                    confirmation drafts, and reminder tracking.
-                </p>
-
-            </article>
-
-            <article class="service">
-
-                <span class="num">04</span>
-
-                <h3>Property Listing Administration</h3>
-
-                <p>
-                    Property information organization, listing
-                    description drafts, document management,
-                    photo organization, and data verification.
-                </p>
-
-            </article>
-
-            <article class="service">
-
-                <span class="num">05</span>
-
-                <h3>Transaction Administration</h3>
-
-                <p>
-                    Transaction milestone tracking, document
-                    checklists, deadline monitoring, task
-                    coordination, and administrative updates.
-                </p>
-
-            </article>
-
-            <article class="service">
-
-                <span class="num">06</span>
-
-                <h3>Property Management Support</h3>
-
-                <p>
-                    Maintenance request organization, tenant
-                    communication drafts, service coordination,
-                    priority tracking, and follow-up records.
-                </p>
-
-            </article>
+            <div class="value">04 / Consistency</div>
 
         </div>
 
@@ -882,32 +772,31 @@ a {
 
 <!-- WORK SAMPLES -->
 
-<section class="section white" id="work">
+<section class="work" id="work">
 
     <div class="wrap">
 
-        <div class="section-title">
-            03 / SELECTED WORK & PROJECTS
-        </div>
-
-        <h2>
-            See how I organize the details.
-        </h2>
-
-        <p class="intro">
-            Explore my independent real estate administrative
-            projects, designed to demonstrate practical
-            workflows, professional communication, accurate
-            documentation, and organized business systems.
+        <p class="eyebrow">
+            02 / Selected Work & Projects
         </p>
 
-        <div class="projects">
+        <h2>
+            Capabilities in practice.
+        </h2>
+
+        <p class="section-intro">
+
+            Independent projects demonstrating my approach to real estate administration, organization, and professional client support.
+
+        </p>
+
+        <div class="samples">
 
             <!-- PROJECT 01 -->
 
-            <article class="project">
+            <article class="sample">
 
-                <span class="num">
+                <span class="project-number">
                     PROJECT 01 / CRM
                 </span>
 
@@ -916,33 +805,20 @@ a {
                 </h3>
 
                 <p>
-                    An interactive 12-contact US real estate
-                    database featuring lead stages, property
-                    requirements, contact information, priority
-                    levels, follow-up schedules, and searchable
-                    individual contact records.
+                    Structured contact records, lead qualification, pipeline organization, and follow-up tracking.
                 </p>
 
-                <div class="project-tools">
-                    <span>CRM Management</span>
-                    <span>Lead Tracking</span>
-                    <span>Data Entry</span>
-                </div>
-
-                <a class="work-button"
-                    href="lead-management.html">
-
-                    VIEW WORK SAMPLE <span>&#8599;</span>
-
+                <a class="btn" href="lead-management.html">
+                    View Work Sample ↗
                 </a>
 
             </article>
 
             <!-- PROJECT 02 -->
 
-            <article class="project">
+            <article class="sample">
 
-                <span class="num">
+                <span class="project-number">
                     PROJECT 02 / COMMUNICATION
                 </span>
 
@@ -951,33 +827,20 @@ a {
                 </h3>
 
                 <p>
-                    An interactive email management workspace
-                    containing buyer and seller inquiries,
-                    professionally prepared response drafts,
-                    approval flags, priority categorization,
-                    and organized communication records.
+                    Organized client correspondence, professional responses, inquiry categorization, and approval-ready drafts.
                 </p>
 
-                <div class="project-tools">
-                    <span>Email Management</span>
-                    <span>Client Communication</span>
-                    <span>Follow-ups</span>
-                </div>
-
-                <a class="work-button"
-                    href="email-management.html">
-
-                    VIEW WORK SAMPLE <span>&#8599;</span>
-
+                <a class="btn" href="email-management.html">
+                    View Work Sample ↗
                 </a>
 
             </article>
 
             <!-- PROJECT 03 -->
 
-            <article class="project">
+            <article class="sample">
 
-                <span class="num">
+                <span class="project-number">
                     PROJECT 03 / SCHEDULING
                 </span>
 
@@ -986,32 +849,20 @@ a {
                 </h3>
 
                 <p>
-                    A structured appointment management workflow
-                    featuring property showing requests, calendar
-                    schedules, client availability, appointment
-                    confirmations, and follow-up reminders.
+                    Calendar organization, property viewings, client consultations, confirmations, and scheduled follow-ups.
                 </p>
 
-                <div class="project-tools">
-                    <span>Calendar Management</span>
-                    <span>Scheduling</span>
-                    <span>Client Coordination</span>
-                </div>
-
-                <a class="work-button"
-                    href="appointment-coordination.html">
-
-                    VIEW WORK SAMPLE <span>&#8599;</span>
-
+                <a class="btn" href="appointment-coordination.html">
+                    View Work Sample ↗
                 </a>
 
             </article>
 
             <!-- PROJECT 04 -->
 
-            <article class="project">
+            <article class="sample">
 
-                <span class="num">
+                <span class="project-number">
                     PROJECT 04 / LISTINGS
                 </span>
 
@@ -1020,33 +871,20 @@ a {
                 </h3>
 
                 <p>
-                    A property listing management workspace
-                    featuring organized property information,
-                    listing description drafts, property
-                    specifications, documentation, and
-                    verification checklists.
+                    Property information management, listing descriptions, verification checklists, and discrepancy tracking.
                 </p>
 
-                <div class="project-tools">
-                    <span>Listing Management</span>
-                    <span>Data Organization</span>
-                    <span>Property Research</span>
-                </div>
-
-                <a class="work-button"
-                    href="property-listing.html">
-
-                    VIEW WORK SAMPLE <span>&#8599;</span>
-
+                <a class="btn" href="property-listing.html">
+                    View Work Sample ↗
                 </a>
 
             </article>
 
             <!-- PROJECT 05 -->
 
-            <article class="project">
+            <article class="sample">
 
-                <span class="num">
+                <span class="project-number">
                     PROJECT 05 / TRANSACTIONS
                 </span>
 
@@ -1055,70 +893,43 @@ a {
                 </h3>
 
                 <p>
-                    A transaction administration dashboard
-                    featuring milestone tracking, document
-                    requirements, responsible parties,
-                    important deadlines, task statuses,
-                    and administrative follow-through.
+                    Transaction milestones, deadline monitoring, document checklists, and closing preparation.
                 </p>
 
-                <div class="project-tools">
-                    <span>Transaction Tracking</span>
-                    <span>Task Management</span>
-                    <span>Documentation</span>
-                </div>
-
-                <a class="work-button"
-                    href="transaction-tracking.html">
-
-                    VIEW WORK SAMPLE <span>&#8599;</span>
-
+                <a class="btn" href="transaction-tracking.html">
+                    View Work Sample ↗
                 </a>
 
             </article>
 
             <!-- PROJECT 06 -->
 
-            <article class="project">
+            <article class="sample">
 
-                <span class="num">
+                <span class="project-number">
                     PROJECT 06 / PROPERTY MANAGEMENT
                 </span>
 
                 <h3>
-                    Maintenance & Tenant Coordination
+                    Property Management & Maintenance Coordination
                 </h3>
 
                 <p>
-                    A property management support workspace
-                    featuring maintenance request records,
-                    tenant communication drafts, service
-                    priorities, task assignments, and
-                    maintenance status tracking.
+                    Maintenance request organization, tenant communication, priority assessment, and vendor coordination.
                 </p>
 
-                <div class="project-tools">
-                    <span>Property Management</span>
-                    <span>Maintenance Tracking</span>
-                    <span>Tenant Support</span>
-                </div>
-
-                <a class="work-button"
-                    href="property-management.html">
-
-                    VIEW WORK SAMPLE <span>&#8599;</span>
-
+                <a class="btn" href="property-management.html">
+                    View Work Sample ↗
                 </a>
 
             </article>
 
         </div>
 
-        <p class="notice">
-            All portfolio projects are independent demonstrations
-            using fictional client and property information.
-            They are designed to showcase administrative
-            capabilities and real estate workflow knowledge.
+        <p class="disclaimer">
+
+            All work samples are independent portfolio simulations using fictional data.
+
         </p>
 
     </div>
@@ -1127,81 +938,111 @@ a {
 
 <!-- TOOLS -->
 
-<section class="section" id="tools">
+<section id="tools">
 
-    <div class="wrap">
+    <div class="wrap tools-layout">
 
-        <div class="section-title">
-            04 / TOOLS & WORKFLOW
+        <div>
+
+            <p class="eyebrow">
+                03 / Tools & Systems
+            </p>
+
+            <h2>
+                Equipped for efficient work.
+            </h2>
+
+            <p>
+                Adaptable to established systems and client-specific workflows.
+            </p>
+
         </div>
 
-        <h2>
-            Digital tools for organized and efficient work.
-        </h2>
+        <div class="tools-grid">
 
-        <p class="intro">
-            A practical combination of administrative,
-            productivity, communication, and real estate
-            systems, supported by continuous learning
-            and independent workflow development.
-        </p>
+            <div class="tool-group">
 
-        <div class="tool-grid">
-
-            <div>
-
-                <h3>
-                    Administrative & Productivity Tools
-                </h3>
+                <h3>Productivity</h3>
 
                 <p>
-                    Tools used for documentation, spreadsheets,
-                    communication, research, and digital
-                    organization.
+
+                    Google Workspace<br>
+                    Microsoft Office<br>
+                    Google Drive
+
                 </p>
-
-                <div class="tags">
-
-                    <span>Google Workspace</span>
-                    <span>Google Sheets</span>
-                    <span>Google Docs</span>
-                    <span>Google Drive</span>
-                    <span>Google Calendar</span>
-                    <span>Gmail</span>
-                    <span>Microsoft Excel</span>
-                    <span>Microsoft Word</span>
-                    <span>Canva</span>
-                    <span>Notion</span>
-
-                </div>
 
             </div>
 
-            <div>
+            <div class="tool-group">
 
-                <h3>
-                    Real Estate Systems & Training
-                </h3>
+                <h3>Communication</h3>
 
                 <p>
-                    Platforms and workflows explored through
-                    independent real estate administrative
-                    training and practice projects.
+
+                    Gmail<br>
+                    Microsoft Outlook<br>
+                    Google Meet<br>
+                    Zoom
+
                 </p>
 
-                <div class="tags">
+            </div>
 
-                    <span>HubSpot CRM</span>
-                    <span>Follow Up Boss</span>
-                    <span>kvCORE</span>
-                    <span>Trello</span>
-                    <span>ClickUp</span>
-                    <span>Asana</span>
-                    <span>DocuSign Workflows</span>
-                    <span>Zoom</span>
-                    <span>Google Meet</span>
+            <div class="tool-group">
 
-                </div>
+                <h3>Organization</h3>
+
+                <p>
+
+                    Google Calendar<br>
+                    Notion<br>
+                    Google Sheets<br>
+                    Microsoft Excel
+
+                </p>
+
+            </div>
+
+            <div class="tool-group">
+
+                <h3>Design & Presentation</h3>
+
+                <p>
+
+                    Canva<br>
+                    Google Slides<br>
+                    Microsoft PowerPoint
+
+                </p>
+
+            </div>
+
+            <div class="tool-group">
+
+                <h3>CRM Practice</h3>
+
+                <p>
+
+                    HubSpot workflows<br>
+                    Lead databases<br>
+                    Pipeline management
+
+                </p>
+
+            </div>
+
+            <div class="tool-group">
+
+                <h3>Project Management Practice</h3>
+
+                <p>
+
+                    Trello-style workflows<br>
+                    Asana-style task tracking<br>
+                    Administrative trackers
+
+                </p>
 
             </div>
 
@@ -1213,83 +1054,92 @@ a {
 
 <!-- PROFESSIONAL BACKGROUND -->
 
-<section class="section white" id="background">
+<section id="background">
 
-    <div class="wrap">
+    <div class="wrap background-grid">
 
-        <div class="section-title">
-            05 / PROFESSIONAL BACKGROUND
+        <div>
+
+            <p class="eyebrow">
+                04 / Background
+            </p>
+
+            <h2>
+                A foundation built on precision.
+            </h2>
+
+            <div class="actions">
+
+                <a class="btn btn-outline"
+                    href="resume.pdf"
+                    target="_blank"
+                    rel="noopener noreferrer">
+
+                    View Full Résumé ↗
+
+                </a>
+
+            </div>
+
         </div>
 
-        <h2>
-            Relevant experience. Transferable strengths.
-        </h2>
+        <div>
 
-        <div class="background">
+            <div class="background-item">
 
-            <article>
+                <small>EDUCATION</small>
 
-                <h3>Small-Business Support</h3>
-
-                <small>INDEPENDENT EXPERIENCE</small>
+                <h3>
+                    Bachelor of Science in Civil Engineering
+                </h3>
 
                 <p>
-                    Practical experience in small-business
-                    operations, customer communication,
-                    organization, and administrative
-                    responsibilities.
+                    National University – Fairview
                 </p>
 
-            </article>
+            </div>
 
-            <article>
+            <div class="background-item">
 
-                <h3>Arkibuilders</h3>
+                <small>PREVIOUS STUDIES</small>
 
-                <small>WORK IMMERSION</small>
+                <h3>
+                    Bachelor of Science in Architecture
+                </h3>
 
                 <p>
-                    Exposure to a professional architecture
-                    and construction environment, strengthening
-                    workplace awareness and familiarity
-                    with the built-environment industry.
+                    Saint Mary's University
                 </p>
 
-            </article>
+            </div>
 
-            <article>
+            <div class="background-item">
 
-                <h3>Bachelor of Science in Civil Engineering</h3>
+                <small>PROFESSIONAL EXPOSURE</small>
 
-                <small>
-                    NATIONAL UNIVERSITY – FAIRVIEW
-                    | 2026–PRESENT
-                </small>
+                <h3>
+                    Work Immersion
+                </h3>
 
                 <p>
-                    Developing technical accuracy, analytical
-                    thinking, structured problem-solving,
-                    and strong attention to detail.
+                    Arkibuilders
                 </p>
 
-            </article>
+            </div>
 
-            <article>
+            <div class="background-item">
 
-                <h3>Architecture Studies</h3>
+                <small>TRANSFERABLE EXPERIENCE</small>
 
-                <small>
-                    SAINT MARY'S UNIVERSITY
-                    | 2025–2026
-                </small>
+                <h3>
+                    Small-Business Operations
+                </h3>
 
                 <p>
-                    Previous academic experience in architectural
-                    design, spatial planning, technical
-                    documentation, and property-related concepts.
+                    Customer communication, recordkeeping, order coordination, and administrative organization.
                 </p>
 
-            </article>
+            </div>
 
         </div>
 
@@ -1299,25 +1149,43 @@ a {
 
 <!-- CONTACT -->
 
-<section class="section contact" id="contact">
+<section class="contact" id="contact">
 
     <div class="wrap">
 
-        <div class="section-title">
-            06 / LET'S CONNECT
-        </div>
+        <p class="eyebrow">
+            05 / Let's Connect
+        </p>
 
         <h2>
             Your business deserves dependable support.
         </h2>
 
         <p>
-            I am open to opportunities where I can contribute
-            my organizational skills, attention to detail,
-            and commitment to reliable administrative support.
-            Let's work together to create a more organized
-            and efficient real estate business.
+
+            Ready to bring structure, initiative, and attention to detail to your real estate operations.
+
         </p>
+
+        <div class="actions">
+
+            <a class="btn"
+                href="mailto:daintydeguzman.work@gmail.com">
+
+                Get in Touch ↗
+
+            </a>
+
+            <a class="btn btn-outline"
+                href="https://www.linkedin.com/in/dainty-trishel-de-guzman-117a583a8/"
+                target="_blank"
+                rel="noopener noreferrer">
+
+                LinkedIn ↗
+
+            </a>
+
+        </div>
 
         <a class="contact-email"
             href="mailto:daintydeguzman.work@gmail.com">
@@ -1325,27 +1193,6 @@ a {
             daintydeguzman.work@gmail.com
 
         </a>
-
-        <div class="actions"
-            style="justify-content:center">
-
-            <a class="button"
-                href="mailto:daintydeguzman.work@gmail.com">
-
-                EMAIL ME
-
-            </a>
-
-            <a class="button ghost"
-                href="https://www.linkedin.com/in/dainty-trishel-de-guzman-117a583a8/"
-                target="_blank"
-                rel="noopener noreferrer">
-
-                LINKEDIN
-
-            </a>
-
-        </div>
 
     </div>
 
@@ -1355,18 +1202,20 @@ a {
 
 <!-- FOOTER -->
 
-<footer class="footer">
+<footer>
 
-    <div class="wrap">
-
-        <span>
-            &copy; 2026 Dainty De Guzman.
-            All rights reserved.
-        </span>
+    <div class="wrap footer-inner">
 
         <span>
-            Real Estate Virtual Assistant · Philippines
+
+            © 2026 DAINTY DE GUZMAN.
+            ALL RIGHTS RESERVED.
+
         </span>
+
+        <a href="#home">
+            BACK TO TOP ↑
+        </a>
 
     </div>
 
