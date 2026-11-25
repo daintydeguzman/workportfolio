@@ -4,97 +4,2223 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Email Management | Dainty De Guzman</title>
+
+<title>Real Estate Email Management | Dainty De Guzman</title>
+
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
-* { box-sizing: border-box; }
+
+:root {
+    --primary: #a65f7d;
+    --dark: #503743;
+    --background: #fcf8fa;
+    --light: #f8edf2;
+    --border: #eadde4;
+    --text: #40363c;
+    --muted: #857780;
+    --white: #ffffff;
+}
+
+* {
+    box-sizing: border-box;
+}
 
 body {
     margin: 0;
-    font-family: Arial, sans-serif;
-    background: #fffafb;
-    color: #393239;
+    font-family: 'DM Sans', Arial, sans-serif;
+    background: var(--background);
+    color: var(--text);
+    font-size: 13px;
 }
 
-main {
-    max-width: 1000px;
-    margin: auto;
-    padding: 65px 25px;
+button, input, textarea, select {
+    font: inherit;
+}
+
+button {
+    cursor: pointer;
 }
 
 a {
-    color: #a65f7d;
     text-decoration: none;
+    color: inherit;
 }
 
-.back {
+.topbar {
+    height: 65px;
+    background: var(--dark);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 25px;
+    position: sticky;
+    top: 0;
+    z-index: 20;
+}
+
+.brand {
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.brand small {
+    display: block;
+    font-size: 10px;
+    font-weight: 400;
+    color: #e4cbd7;
+    letter-spacing: 1.5px;
+}
+
+.top-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.avatar {
+    height: 34px;
+    width: 34px;
+    background: #e5bdcf;
+    color: var(--dark);
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    font-weight: 700;
+}
+
+.layout {
+    display: flex;
+    min-height: calc(100vh - 65px);
+}
+
+.sidebar {
+    width: 230px;
+    flex-shrink: 0;
+    background: white;
+    border-right: 1px solid var(--border);
+    padding: 25px 15px;
+}
+
+.compose {
+    background: var(--primary);
+    color: white;
+    border: none;
+    padding: 15px;
+    width: 100%;
+    border-radius: 7px;
+    font-weight: 600;
+    margin-bottom: 25px;
+}
+
+.sidebar-label {
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    color: var(--muted);
+    font-weight: 700;
+    margin: 24px 12px 12px;
+}
+
+.nav {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: transparent;
+    border: none;
+    color: var(--text);
+    padding: 12px 15px;
+    border-radius: 5px;
+    text-align: left;
+    margin-bottom: 4px;
+}
+
+.nav:hover {
+    background: var(--background);
+}
+
+.nav.active {
+    background: var(--light);
+    color: var(--primary);
+    font-weight: 700;
+    border-left: 3px solid var(--primary);
+}
+
+.sidebar-footer {
+    margin: 40px 12px;
+    color: var(--muted);
+    font-size: 11px;
+    line-height: 1.8;
+}
+
+.main {
+    flex: 1;
+    min-width: 0;
+    padding: 30px;
+}
+
+.breadcrumb {
+    color: var(--muted);
+    font-size: 11px;
+    margin-bottom: 22px;
+}
+
+.heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.heading h1 {
+    font-size: 30px;
+    letter-spacing: -1px;
+    margin: 0 0 6px;
+}
+
+.heading p {
+    margin: 0;
+    color: var(--muted);
+}
+
+.btn {
+    background: white;
+    border: 1px solid var(--border);
+    color: var(--text);
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-weight: 600;
+}
+
+.btn:hover {
+    background: var(--light);
+}
+
+.btn-primary {
+    background: var(--primary);
+    color: white;
+    border-color: var(--primary);
+}
+
+.btn-primary:hover {
+    background: #92516d;
+}
+
+.stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 13px;
+    margin: 25px 0;
+}
+
+.stat {
+    background: white;
+    border: 1px solid var(--border);
+    padding: 20px;
+    border-radius: 7px;
+}
+
+.stat-label {
+    font-size: 10px;
+    color: var(--muted);
+    font-weight: 600;
+    letter-spacing: .5px;
+}
+
+.stat-number {
+    font-size: 28px;
+    color: var(--dark);
+    font-weight: 700;
+    margin-top: 7px;
+}
+
+.panel {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 7px;
+    overflow: hidden;
+}
+
+.toolbar {
+    padding: 16px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.toolbar input,
+.toolbar select {
+    padding: 10px 13px;
+    background: white;
+    color: var(--text);
+    border: 1px solid var(--border);
+    border-radius: 5px;
+}
+
+.search {
+    width: 320px;
+    max-width: 100%;
+}
+
+.table-scroll {
+    overflow: auto;
+    max-height: 600px;
+    scrollbar-color: #cda4b6 #f9eff4;
+    scrollbar-width: thin;
+}
+
+table {
+    width: 100%;
+    min-width: 1100px;
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+th, td {
+    padding: 17px 14px;
+    text-align: left;
+    border-bottom: 1px solid #f0e7ec;
+}
+
+th {
+    font-size: 10px;
+    letter-spacing: .5px;
+    background: #f8f0f4;
+    color: #79616e;
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    white-space: nowrap;
+}
+
+td {
+    background: white;
+    font-size: 12px;
+}
+
+tbody tr {
+    cursor: pointer;
+}
+
+tbody tr:hover td {
+    background: #fff7fa;
+}
+
+.sender {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    white-space: nowrap;
+}
+
+.sender-avatar {
+    height: 34px;
+    width: 34px;
+    flex-shrink: 0;
+    display: grid;
+    place-items: center;
+    background: #f1dce6;
+    color: var(--primary);
+    font-weight: 700;
+    border-radius: 50%;
+}
+
+.sender-name {
+    font-weight: 700;
+}
+
+.sender-email {
+    color: var(--muted);
+    font-size: 10px;
+    margin-top: 4px;
+}
+
+.subject {
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 5px;
+}
+
+.preview {
+    font-size: 11px;
+    color: var(--muted);
+    max-width: 300px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.badge {
+    display: inline-block;
+    padding: 5px 9px;
+    border-radius: 4px;
+    font-size: 10px;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.high {
+    background: #f9e1e5;
+    color: #ad4d60;
+}
+
+.medium {
+    background: #faf0dd;
+    color: #987333;
+}
+
+.low {
+    background: #e8f0ea;
+    color: #588065;
+}
+
+.approval {
+    background: #f9ecd8;
+    color: #986c2e;
+}
+
+.review {
+    background: #e8effa;
+    color: #4c6e9e;
+}
+
+.draft {
+    background: #eee8f9;
+    color: #74589c;
+}
+
+.scheduled {
+    background: #e4f1e9;
+    color: #47795c;
+}
+
+.completed {
+    background: #d9eee4;
+    color: #327553;
+}
+
+.star {
+    border: none;
+    background: transparent;
+    font-size: 20px;
+    color: #c8bbc2;
+}
+
+.star.selected {
+    color: #c69a45;
+}
+
+.table-footer {
+    padding: 15px 20px;
+    color: var(--muted);
+    font-size: 11px;
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+}
+
+.notice {
+    font-size: 11px;
+    color: var(--muted);
+    line-height: 1.8;
+    margin-top: 22px;
+}
+
+.reader {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 7px;
+    overflow: hidden;
+}
+
+.reader-toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 16px 22px;
+    border-bottom: 1px solid var(--border);
+}
+
+.reader-body {
+    max-width: 950px;
+    padding: 30px;
+    margin: auto;
+}
+
+.reader-body h2 {
+    font-size: 24px;
+    line-height: 1.4;
+    margin: 0 0 18px;
+}
+
+.labels {
+    display: flex;
+    gap: 7px;
+    flex-wrap: wrap;
+    margin-bottom: 25px;
+}
+
+.message {
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    margin-bottom: 20px;
+}
+
+.message-header {
+    background: #fcf8fa;
+    padding: 18px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+}
+
+.message-meta {
+    flex: 1;
+    min-width: 0;
+}
+
+.message-meta strong {
+    font-size: 13px;
+}
+
+.message-meta p {
+    color: var(--muted);
+    font-size: 11px;
+    margin: 4px 0;
+    overflow-wrap: anywhere;
+}
+
+.message-date {
+    font-size: 10px;
+    color: var(--muted);
+}
+
+.message-body {
+    padding: 24px;
+    line-height: 1.9;
     font-size: 14px;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
 }
 
-h1 {
-    font-size: 38px;
-    margin: 45px 0 10px;
+.draft-box {
+    border: 1px solid #d9b8c8;
+    border-radius: 6px;
+    overflow: hidden;
+    margin: 25px 0;
 }
 
-.subtitle {
-    color: #897d84;
+.draft-heading {
+    background: var(--light);
+    padding: 16px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    color: var(--primary);
+    font-weight: 700;
+}
+
+.draft-details {
+    padding: 17px 20px;
+    border-bottom: 1px solid var(--border);
+    font-size: 12px;
+    line-height: 1.9;
+}
+
+.draft-box textarea {
+    width: 100%;
+    min-height: 340px;
+    border: none;
+    padding: 24px;
+    font-size: 14px;
+    line-height: 1.9;
+    color: var(--text);
+    resize: vertical;
+    outline: none;
+}
+
+.draft-actions {
+    padding: 15px 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 9px;
+    border-top: 1px solid var(--border);
+}
+
+.internal {
+    border: 1px solid var(--border);
+    background: #fcf8fa;
+    border-radius: 6px;
+    padding: 22px;
+}
+
+.internal h3 {
+    margin: 0 0 17px;
+    font-size: 13px;
+    color: var(--primary);
+}
+
+.details-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.detail label {
+    display: block;
+    font-size: 10px;
+    color: var(--muted);
+    font-weight: 700;
+    margin-bottom: 6px;
+    text-transform: uppercase;
+    letter-spacing: .5px;
+}
+
+.detail p {
+    margin: 0;
     line-height: 1.7;
 }
 
-.sample {
-    margin-top: 45px;
-    padding: 25px;
-    background: white;
-    border: 1px solid #f0e3e9;
-    border-radius: 12px;
+.detail.full {
+    grid-column: 1 / -1;
 }
 
-.sample img {
+.detail select {
     width: 100%;
-    height: auto;
+    padding: 10px;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    background: white;
+    color: var(--text);
+}
+
+.empty {
+    padding: 45px;
+    text-align: center;
+    color: var(--muted);
+}
+
+.hidden {
+    display: none !important;
+}
+
+dialog {
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 0;
+    width: 650px;
+    max-width: calc(100% - 30px);
+    color: var(--text);
+    box-shadow: 0 20px 60px #50374333;
+}
+
+dialog::backdrop {
+    background: #50374366;
+}
+
+.compose-header {
+    background: var(--dark);
+    color: white;
+    padding: 18px 22px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.compose-header button {
+    border: none;
+    background: transparent;
+    color: white;
+    font-size: 22px;
+}
+
+.compose-body {
+    padding: 22px;
+}
+
+.compose-body label {
     display: block;
-    border-radius: 7px;
-    margin-top: 15px;
+    color: var(--muted);
+    font-size: 11px;
+    margin: 14px 0 6px;
 }
 
-h2 {
-    font-size: 18px;
+.compose-body input,
+.compose-body select,
+.compose-body textarea {
+    width: 100%;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 11px;
+    color: var(--text);
+    background: white;
 }
 
-footer {
-    margin-top: 60px;
-    color: #a18b95;
-    font-size: 12px;
+.compose-body textarea {
+    min-height: 200px;
+    resize: vertical;
 }
+
+.compose-footer {
+    padding: 18px 22px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.toast {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    background: var(--dark);
+    color: white;
+    padding: 15px 20px;
+    border-radius: 5px;
+    z-index: 100;
+    display: none;
+}
+
+@media(max-width: 1000px) {
+    .stats {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media(max-width: 700px) {
+    .sidebar {
+        width: 100%;
+        border-right: none;
+        border-bottom: 1px solid var(--border);
+        padding: 15px;
+    }
+
+    .sidebar-label,
+    .sidebar-footer {
+        display: none;
+    }
+
+    .sidebar .nav {
+        display: inline-flex;
+        width: auto;
+        gap: 8px;
+    }
+
+    .compose {
+        margin-bottom: 12px;
+    }
+
+    .layout {
+        flex-direction: column;
+    }
+
+    .main {
+        padding: 16px;
+    }
+
+    .reader-body {
+        padding: 18px;
+    }
+
+    .details-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .topbar {
+        padding: 0 15px;
+    }
+
+    .brand {
+        font-size: 12px;
+    }
+
+    .brand small {
+        font-size: 8px;
+    }
+
+    .top-right {
+        gap: 10px;
+        font-size: 11px;
+    }
+
+    .message-header {
+        flex-wrap: wrap;
+    }
+
+    .table-footer {
+        flex-direction: column;
+    }
+}
+
 </style>
 </head>
 
 <body>
 
-<main>
+<header class="topbar">
 
-<a class="back" href="index.html">← Back to Portfolio</a>
+    <div class="brand">
+        REAL ESTATE MAIL
+        <small>DAINTY DE GUZMAN | PORTFOLIO</small>
+    </div>
 
-<h1>Email Management</h1>
+    <div class="top-right">
+        <a href="index.html#work">Back to Portfolio</a>
+        <div class="avatar">DD</div>
+    </div>
 
+</header>
 
-<section class="sample">
+<div class="layout">
 
-<h2>Inbox Organization</h2>
+<aside class="sidebar">
 
-<p class="subtitle">
-Organized email categories, labels, and priorities.
-</p>
+    <button class="compose" onclick="openCompose()">
+        + Compose Draft
+    </button>
 
-<img src="email-2.png" alt="Inbox Organization">
+    <div class="sidebar-label">MAILBOX</div>
 
-</section>
+    <button class="nav active" data-folder="all"
+        onclick="setFolder('all')">
+        Inbox <span id="inboxCount">5</span>
+    </button>
 
-<footer>
-DAINTY DE GUZMAN · VIRTUAL ASSISTANT
-</footer>
+    <button class="nav" data-folder="starred"
+        onclick="setFolder('starred')">
+        Starred <span id="starCount">0</span>
+    </button>
+
+    <button class="nav" data-folder="drafts"
+        onclick="setFolder('drafts')">
+        Drafts <span id="draftCount">0</span>
+    </button>
+
+    <button class="nav" data-folder="approval"
+        onclick="setFolder('approval')">
+        Awaiting Approval <span id="approvalCount">0</span>
+    </button>
+
+    <button class="nav" data-folder="scheduled"
+        onclick="setFolder('scheduled')">
+        Scheduled Follow-ups <span id="scheduledCount">0</span>
+    </button>
+
+    <button class="nav" data-folder="completed"
+        onclick="setFolder('completed')">
+        Reviewed <span id="completedCount">0</span>
+    </button>
+
+    <div class="sidebar-label">CATEGORIES</div>
+
+    <button class="nav" data-folder="Buyer"
+        onclick="setFolder('Buyer')">
+        Buyer Communication
+    </button>
+
+    <button class="nav" data-folder="Seller"
+        onclick="setFolder('Seller')">
+        Seller Communication
+    </button>
+
+    <button class="nav" data-folder="high"
+        onclick="setFolder('high')">
+        High Priority
+    </button>
+
+    <div class="sidebar-label">WORKSPACE</div>
+
+    <a class="nav" href="lead-management.html">
+        Lead Management CRM
+    </a>
+
+    <div class="sidebar-footer">
+        REAL ESTATE ADMINISTRATION<br>
+        Email Management Workspace<br>
+        Independent Portfolio Project
+    </div>
+
+</aside>
+
+<main class="main">
+
+    <div class="breadcrumb">
+        Workspace / Real Estate / Email Management
+    </div>
+
+    <div class="heading">
+
+        <div>
+            <h1 id="pageTitle">Inbox</h1>
+            <p>Real Estate Client Communication</p>
+        </div>
+
+        <button class="btn" onclick="resetDemo()">
+            Reset Demo
+        </button>
+
+    </div>
+
+    <div class="stats">
+
+        <div class="stat">
+            <div class="stat-label">COMMUNICATION RECORDS</div>
+            <div class="stat-number" id="totalStat">5</div>
+        </div>
+
+        <div class="stat">
+            <div class="stat-label">HIGH PRIORITY</div>
+            <div class="stat-number" id="highStat">0</div>
+        </div>
+
+        <div class="stat">
+            <div class="stat-label">AWAITING APPROVAL</div>
+            <div class="stat-number" id="approvalStat">0</div>
+        </div>
+
+        <div class="stat">
+            <div class="stat-label">RESPONSE DRAFTS</div>
+            <div class="stat-number" id="draftStat">0</div>
+        </div>
+
+    </div>
+
+    <section class="panel" id="inboxView">
+
+        <div class="toolbar">
+
+            <input class="search"
+                id="search"
+                type="search"
+                placeholder="Search emails..."
+                oninput="renderInbox()">
+
+            <select id="typeFilter"
+                onchange="renderInbox()">
+                <option value="">Client Type: All</option>
+                <option>Buyer</option>
+                <option>Seller</option>
+            </select>
+
+            <select id="priorityFilter"
+                onchange="renderInbox()">
+                <option value="">Priority: All</option>
+                <option>High</option>
+                <option>Medium</option>
+                <option>Low</option>
+            </select>
+
+            <select id="statusFilter"
+                onchange="renderInbox()">
+                <option value="">Status: All</option>
+                <option>Draft Prepared</option>
+                <option>Awaiting Approval</option>
+                <option>Ready for Review</option>
+                <option>Scheduled Follow-up</option>
+                <option>Reviewed</option>
+            </select>
+
+            <button class="btn" onclick="clearFilters()">
+                Clear Filters
+            </button>
+
+        </div>
+
+        <div class="table-scroll">
+
+            <table>
+
+                <thead>
+                    <tr>
+                        <th>STAR</th>
+                        <th>SENDER / CONTACT</th>
+                        <th>SUBJECT</th>
+                        <th>CLIENT TYPE</th>
+                        <th>PRIORITY</th>
+                        <th>STATUS</th>
+                        <th>DATE</th>
+                    </tr>
+                </thead>
+
+                <tbody id="emailRows"></tbody>
+
+            </table>
+
+        </div>
+
+        <div class="table-footer">
+            <span id="visibleCount"></span>
+            <span>Click any email to view the conversation and response draft.</span>
+        </div>
+
+    </section>
+
+    <section class="reader hidden" id="readerView">
+
+        <div class="reader-toolbar">
+
+            <button class="btn" onclick="closeEmail()">
+                &larr; Back to Inbox
+            </button>
+
+            <div>
+                <button class="btn" onclick="navigateEmail(-1)">
+                    Previous
+                </button>
+
+                <button class="btn" onclick="navigateEmail(1)">
+                    Next
+                </button>
+            </div>
+
+        </div>
+
+        <div class="reader-body" id="readerContent"></div>
+
+    </section>
+
+    <p class="notice">
+        Independent portfolio demonstration by Dainty De Guzman.
+        All client identities, email conversations, property details,
+        and communication records are fictional. This workspace
+        demonstrates administrative email management and is not
+        connected to a live email account. No emails are actually sent.
+    </p>
 
 </main>
+
+</div>
+
+<dialog id="composeDialog">
+
+    <form onsubmit="createDraft(event)">
+
+        <div class="compose-header">
+            <strong>New Response Draft</strong>
+
+            <button type="button"
+                onclick="document.getElementById('composeDialog').close()">
+                &times;
+            </button>
+        </div>
+
+        <div class="compose-body">
+
+            <label>Contact Name</label>
+            <input name="name" required>
+
+            <label>Recipient Email</label>
+            <input name="email" type="email" required>
+
+            <label>Client Type</label>
+            <select name="type">
+                <option>Buyer</option>
+                <option>Seller</option>
+            </select>
+
+            <label>Subject</label>
+            <input name="subject" required>
+
+            <label>Priority</label>
+            <select name="priority">
+                <option>Medium</option>
+                <option>High</option>
+                <option>Low</option>
+            </select>
+
+            <label>Response Draft</label>
+            <textarea name="draft" required></textarea>
+
+        </div>
+
+        <div class="compose-footer">
+
+            <button type="button" class="btn"
+                onclick="document.getElementById('composeDialog').close()">
+                Cancel
+            </button>
+
+            <button type="submit" class="btn btn-primary">
+                Save Draft
+            </button>
+
+        </div>
+
+    </form>
+
+</dialog>
+
+<div class="toast" id="toast"></div>
+
+<script>
+
+/* ==========================================
+   REAL ESTATE EMAIL COMMUNICATION RECORDS
+========================================== */
+
+const originalEmails = [
+
+{
+    id: "EM-001",
+    leadId: "RE-004",
+    name: "Ethan Brooks",
+    email: "ethan.brooks@example.com",
+    type: "Buyer",
+    category: "New Buyer Inquiry",
+    market: "Phoenix, AZ",
+    subject: "First-time homebuyer inquiry",
+    priority: "Medium",
+    status: "Draft Prepared",
+    date: "2026-11-25",
+    time: "9:15 AM MST",
+    followup: "2026-11-28",
+    starred: false,
+
+    incoming: `Hi,
+
+I came across your real estate services while looking for townhouses in Phoenix. I'm planning to purchase my first home within the next few months.
+
+My budget is around $320,000, and I'm hoping to find something with at least three bedrooms and two bathrooms. I'm still looking into financing options and would appreciate some guidance on getting started.
+
+Could you let me know what information you need from me?
+
+Thank you,
+Ethan Brooks`,
+
+    draft: `Hi Ethan,
+
+Thank you for reaching out! We'd be happy to help you get started with your home search in Phoenix.
+
+I've noted your preference for a three-bedroom, two-bathroom townhouse within your approximate budget of $320,000.
+
+To help our agent better understand your requirements, could you please share a few additional details?
+
+• Your preferred neighborhoods or areas in Phoenix
+• Your estimated purchase timeline
+• Any essential property features
+• Whether you have already spoken with a mortgage lender
+
+Once we have this information, our agent can review your requirements and discuss the appropriate next steps with you.
+
+Please feel free to reply whenever convenient. We look forward to assisting you throughout your home search.
+
+Best regards,
+Dainty De Guzman
+Real Estate Administrative Support
+On behalf of the Real Estate Team`,
+
+    action: "Collect buyer requirements and update the CRM record.",
+
+    approval: "Agent review required before providing financing guidance or recommending specific properties.",
+
+    notes: "New buyer inquiry. Initial requirements recorded in CRM. Financing and preferred neighborhoods remain unconfirmed.",
+
+    owner: "Administrative Support / Assigned Agent"
+},
+
+{
+    id: "EM-002",
+    leadId: "RE-003",
+    name: "Sophia Bennett",
+    email: "sophia.bennett@example.com",
+    type: "Buyer",
+    category: "Property Showing",
+    market: "Miami, FL",
+    subject: "Availability for a condominium showing",
+    priority: "High",
+    status: "Awaiting Approval",
+    date: "2026-11-25",
+    time: "11:40 AM EST",
+    followup: "2026-11-28",
+    starred: true,
+
+    incoming: `Hello,
+
+I'm following up regarding the condominium we discussed in downtown Miami.
+
+I'm available this Saturday between 10:00 AM and 1:00 PM and would love to schedule a viewing if the property is still available.
+
+Could you also confirm whether the unit includes a parking space? That's an important consideration for me.
+
+Thanks for your help!
+
+Sophia`,
+
+    draft: `Hi Sophia,
+
+Thank you for sharing your availability.
+
+I've noted your preferred viewing window for Saturday, November 28, between 10:00 AM and 1:00 PM Eastern Time.
+
+I'm coordinating with our agent to confirm the property's availability and an appropriate showing time. I've also included your question about the parking space for verification.
+
+Once the arrangements have been confirmed, we'll provide the appointment details, property address, and any relevant access instructions.
+
+For now, please consider the showing request tentative.
+
+Thank you for your patience, and we'll be in touch with an update as soon as possible.
+
+Best regards,
+Dainty De Guzman
+Real Estate Administrative Support
+On behalf of the Real Estate Team`,
+
+    action: "Verify agent availability, property access, and parking information before confirming the showing.",
+
+    approval: "Required. The appointment must not be confirmed until the agent and property representative approve the schedule.",
+
+    notes: "Buyer is currently in the Viewing stage. Tentative appointment requested. Parking information has not been verified.",
+
+    owner: "Assigned Showing Agent"
+},
+
+{
+    id: "EM-003",
+    leadId: "RE-002",
+    name: "James Carter",
+    email: "james.carter@example.com",
+    type: "Seller",
+    category: "Listing Consultation",
+    market: "Dallas, TX",
+    subject: "Interested in selling my home in Dallas",
+    priority: "High",
+    status: "Awaiting Approval",
+    date: "2026-11-24",
+    time: "2:20 PM CST",
+    followup: "2026-11-27",
+    starred: true,
+
+    incoming: `Good afternoon,
+
+My family is considering relocating early next year, and we're exploring the possibility of selling our home in Dallas.
+
+It's a four-bedroom, three-bathroom property, and we were hoping to sell for approximately $580,000.
+
+I'd like to know what the listing process involves and whether we could arrange a consultation with an agent.
+
+Please let me know what documents or information I should prepare.
+
+Regards,
+James Carter`,
+
+    draft: `Hi James,
+
+Thank you for considering our team to assist with the potential sale of your home.
+
+I've recorded your initial property details and your target selling price of approximately $580,000 for our agent's review.
+
+To help prepare for your listing consultation, it would be useful to have the following information available:
+
+• The property's complete address
+• Approximate floor area and lot size
+• Details of any recent renovations or improvements
+• Your preferred selling timeline
+• Your availability for an initial consultation
+
+Our agent will be able to discuss the listing process, review relevant market information, and address your pricing questions during the consultation.
+
+Could you please share two or three convenient times for a meeting?
+
+We'll coordinate with the agent and confirm the arrangements once availability has been established.
+
+Best regards,
+Dainty De Guzman
+Real Estate Administrative Support
+On behalf of the Real Estate Team`,
+
+    action: "Collect preliminary property information and coordinate a listing consultation.",
+
+    approval: "Agent approval required for pricing discussions, market analysis, listing terms, and commission-related questions.",
+
+    notes: "The $580,000 amount is the seller's stated target price, not a verified property valuation. No listing agreement has been established.",
+
+    owner: "Assigned Listing Agent"
+},
+
+{
+    id: "EM-004",
+    leadId: "RE-001",
+    name: "Olivia Mitchell",
+    email: "olivia.mitchell@example.com",
+    type: "Buyer",
+    category: "Qualified Lead Follow-up",
+    market: "Austin, TX",
+    subject: "Following up on available homes in Austin",
+    priority: "High",
+    status: "Ready for Review",
+    date: "2026-11-23",
+    time: "10:30 AM CST",
+    followup: "2026-11-27",
+    starred: true,
+
+    incoming: `Hi,
+
+I wanted to check whether there are any updates on homes that match the requirements I sent earlier.
+
+We're still looking for a three-bedroom, two-bathroom home in Austin, preferably with a backyard and an updated kitchen. Our budget remains around $450,000.
+
+We're hoping to start viewing properties soon, so please let me know if there are any suitable options.
+
+Thank you,
+Olivia Mitchell`,
+
+    draft: `Hi Olivia,
+
+Thank you for checking in.
+
+I've reviewed your recorded preferences and confirmed that your search criteria currently include:
+
+• Austin, Texas
+• Single-family home
+• At least three bedrooms and two bathrooms
+• Approximate budget of $450,000
+• A backyard and an updated kitchen
+
+We're organizing a preliminary shortlist for our agent to review based on these requirements.
+
+Before we finalize the next steps, could you let us know whether your preferred areas or purchase timeline have changed?
+
+Once our agent has reviewed the potential matches and verified their availability, we'll be able to share the appropriate property information and discuss possible viewing arrangements.
+
+We appreciate your patience and look forward to helping you move forward with your search.
+
+Best regards,
+Dainty De Guzman
+Real Estate Administrative Support
+On behalf of the Real Estate Team`,
+
+    action: "Prepare property shortlist for agent review and confirm whether buyer preferences have changed.",
+
+    approval: "Property recommendations, listing availability, and any attached shortlist must be reviewed by the assigned agent before release.",
+
+    notes: "Qualified buyer. CRM records indicate conventional financing and a purchase timeline of one to three months. No specific properties have been promised.",
+
+    owner: "Administrative Support / Assigned Buyer Agent"
+},
+
+{
+    id: "EM-005",
+    leadId: "RE-006",
+    name: "Noah Reed",
+    email: "noah.reed@example.com",
+    type: "Buyer",
+    category: "Lead Nurturing",
+    market: "Denver, CO",
+    subject: "Update regarding our relocation plans",
+    priority: "Low",
+    status: "Scheduled Follow-up",
+    date: "2026-11-19",
+    time: "4:10 PM MST",
+    followup: "2026-12-10",
+    starred: false,
+
+    incoming: `Hello,
+
+I wanted to give you a quick update regarding our plans to move to Denver.
+
+We've decided to postpone our relocation until sometime next year, so we're not ready to schedule any property viewings yet.
+
+We're still interested in a four-bedroom home within our approximate budget of $650,000. We'd be happy to receive occasional updates while we're preparing for the move.
+
+Thanks for understanding.
+
+Noah Reed`,
+
+    draft: `Hi Noah,
+
+Thank you for keeping us updated.
+
+I've made a note of your revised relocation timeline and your continued interest in a four-bedroom home in Denver within your approximate budget of $650,000.
+
+We completely understand that your plans are still developing. There is no need to schedule viewings until you feel ready to move forward.
+
+With your permission, we'll keep your preferences on record and share occasional relevant updates after our agent's review.
+
+If your timeline, budget, or property requirements change in the meantime, please feel free to let us know.
+
+We appreciate the opportunity to stay in touch and look forward to assisting you when the time is right.
+
+Best regards,
+Dainty De Guzman
+Real Estate Administrative Support
+On behalf of the Real Estate Team`,
+
+    action: "Maintain permission-based follow-up and prepare a future check-in for December 10.",
+
+    approval: "Agent review required before sending market updates or specific property recommendations.",
+
+    notes: "Lead moved to nurturing workflow. Client has expressed interest in occasional updates. No immediate showing request. Follow-up date is an internal reminder, not an automated email send.",
+
+    owner: "Administrative Support"
+}
+
+];
+
+/* ==========================================
+   APPLICATION STATE
+========================================== */
+
+const storageKey = "dainty-real-estate-email-v1";
+
+let emails;
+
+try {
+
+    const saved = localStorage.getItem(storageKey);
+
+    emails = saved
+        ? JSON.parse(saved)
+        : JSON.parse(JSON.stringify(originalEmails));
+
+    if (!Array.isArray(emails)) {
+        throw new Error("Invalid records");
+    }
+
+} catch {
+
+    emails = JSON.parse(JSON.stringify(originalEmails));
+
+}
+
+let currentFolder = "all";
+let selectedId = null;
+
+const statuses = [
+    "Draft Prepared",
+    "Awaiting Approval",
+    "Ready for Review",
+    "Scheduled Follow-up",
+    "Reviewed"
+];
+
+const folderNames = {
+    all: "Inbox",
+    starred: "Starred",
+    drafts: "Drafts",
+    approval: "Awaiting Approval",
+    scheduled: "Scheduled Follow-ups",
+    completed: "Reviewed Communications",
+    Buyer: "Buyer Communication",
+    Seller: "Seller Communication",
+    high: "High Priority"
+};
+
+function escapeHTML(value) {
+
+    return String(value ?? "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#39;");
+
+}
+
+function persist() {
+
+    try {
+
+        localStorage.setItem(
+            storageKey,
+            JSON.stringify(emails)
+        );
+
+        return true;
+
+    } catch {
+
+        return false;
+
+    }
+
+}
+
+function notify(message) {
+
+    const toast = document.getElementById("toast");
+
+    toast.textContent = message;
+    toast.style.display = "block";
+
+    clearTimeout(notify.timer);
+
+    notify.timer = setTimeout(() => {
+
+        toast.style.display = "none";
+
+    }, 3000);
+
+}
+
+function formatDate(date) {
+
+    if (!date) return "Not scheduled";
+
+    return new Date(date + "T12:00:00")
+        .toLocaleDateString("en-US", {
+            month: "short",
+            day: "numeric",
+            year: "numeric"
+        });
+
+}
+
+function initials(name) {
+
+    return name.split(" ")
+        .filter(Boolean)
+        .slice(0, 2)
+        .map(word => word[0])
+        .join("")
+        .toUpperCase();
+
+}
+
+function statusClass(status) {
+
+    const classes = {
+        "Draft Prepared": "draft",
+        "Awaiting Approval": "approval",
+        "Ready for Review": "review",
+        "Scheduled Follow-up": "scheduled",
+        "Reviewed": "completed"
+    };
+
+    return classes[status] || "draft";
+
+}
+
+function hasPendingDraft(email) {
+
+    return Boolean(email.draft) &&
+        email.status !== "Reviewed";
+
+}
+
+function updateStats() {
+
+    const high = emails.filter(
+        e => e.priority === "High"
+    ).length;
+
+    const approvals = emails.filter(
+        e => e.status === "Awaiting Approval"
+    ).length;
+
+    const drafts = emails.filter(
+        hasPendingDraft
+    ).length;
+
+    const counts = {
+        totalStat: emails.length,
+        highStat: high,
+        approvalStat: approvals,
+        draftStat: drafts,
+        inboxCount: emails.length,
+        starCount: emails.filter(e => e.starred).length,
+        draftCount: drafts,
+        approvalCount: approvals,
+        scheduledCount: emails.filter(
+            e => e.status === "Scheduled Follow-up"
+        ).length,
+        completedCount: emails.filter(
+            e => e.status === "Reviewed"
+        ).length
+    };
+
+    Object.entries(counts).forEach(([id, value]) => {
+
+        document.getElementById(id).textContent = value;
+
+    });
+
+}
+
+/* ==========================================
+   SEARCH, FILTERS AND FOLDERS
+========================================== */
+
+function filteredEmails() {
+
+    const query = document.getElementById("search")
+        .value.toLowerCase().trim();
+
+    const type = document.getElementById("typeFilter").value;
+
+    const priority =
+        document.getElementById("priorityFilter").value;
+
+    const status =
+        document.getElementById("statusFilter").value;
+
+    return emails.filter(email => {
+
+        const matchesSearch = Object.values(email)
+            .join(" ")
+            .toLowerCase()
+            .includes(query);
+
+        const matchesFolder =
+
+            currentFolder === "all" ||
+
+            (currentFolder === "starred" &&
+                email.starred) ||
+
+            (currentFolder === "drafts" &&
+                hasPendingDraft(email)) ||
+
+            (currentFolder === "approval" &&
+                email.status === "Awaiting Approval") ||
+
+            (currentFolder === "scheduled" &&
+                email.status === "Scheduled Follow-up") ||
+
+            (currentFolder === "completed" &&
+                email.status === "Reviewed") ||
+
+            (currentFolder === "high" &&
+                email.priority === "High") ||
+
+            email.type === currentFolder;
+
+        return matchesSearch &&
+            matchesFolder &&
+            (!type || email.type === type) &&
+            (!priority || email.priority === priority) &&
+            (!status || email.status === status);
+
+    }).sort((a, b) => b.date.localeCompare(a.date));
+
+}
+
+function renderInbox() {
+
+    updateStats();
+
+    const records = filteredEmails();
+
+    document.getElementById("emailRows").innerHTML =
+        records.map(email => `
+
+            <tr data-id="${escapeHTML(email.id)}"
+                onclick="openEmail(this.dataset.id)">
+
+                <td>
+
+                    <button
+                        class="star ${email.starred ? "selected" : ""}"
+                        data-id="${escapeHTML(email.id)}"
+                        aria-label="Toggle starred email"
+                        onclick="event.stopPropagation(); toggleStar(this.dataset.id)">
+
+                        ${email.starred ? "★" : "☆"}
+
+                    </button>
+
+                </td>
+
+                <td>
+
+                    <div class="sender">
+
+                        <div class="sender-avatar">
+                            ${escapeHTML(initials(email.name))}
+                        </div>
+
+                        <div>
+
+                            <div class="sender-name">
+                                ${escapeHTML(email.name)}
+                            </div>
+
+                            <div class="sender-email">
+                                ${escapeHTML(email.email)}
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </td>
+
+                <td>
+
+                    <div class="subject">
+                        ${escapeHTML(email.subject)}
+                    </div>
+
+                    <div class="preview">
+                        ${escapeHTML(email.incoming || email.draft)}
+                    </div>
+
+                </td>
+
+                <td>${escapeHTML(email.type)}</td>
+
+                <td>
+
+                    <span class="badge ${email.priority.toLowerCase()}">
+                        ${escapeHTML(email.priority)}
+                    </span>
+
+                </td>
+
+                <td>
+
+                    <span class="badge ${statusClass(email.status)}">
+                        ${escapeHTML(email.status)}
+                    </span>
+
+                </td>
+
+                <td>${formatDate(email.date)}</td>
+
+            </tr>
+
+        `).join("");
+
+    if (!records.length) {
+
+        document.getElementById("emailRows").innerHTML = `
+            <tr>
+                <td colspan="7" class="empty">
+                    No matching communication records.
+                </td>
+            </tr>
+        `;
+
+    }
+
+    document.getElementById("visibleCount").textContent =
+        "Showing " + records.length +
+        " of " + emails.length + " records";
+
+}
+
+function clearFilters() {
+
+    document.getElementById("search").value = "";
+    document.getElementById("typeFilter").value = "";
+    document.getElementById("priorityFilter").value = "";
+    document.getElementById("statusFilter").value = "";
+
+    renderInbox();
+
+}
+
+function setFolder(folder) {
+
+    currentFolder = folder;
+
+    document.querySelectorAll("[data-folder]")
+        .forEach(button => {
+
+            button.classList.toggle(
+                "active",
+                button.dataset.folder === folder
+            );
+
+        });
+
+    document.getElementById("pageTitle").textContent =
+        folderNames[folder] || "Inbox";
+
+    closeEmail();
+    clearFilters();
+
+}
+
+function toggleStar(id) {
+
+    const email = emails.find(e => e.id === id);
+
+    if (!email) return;
+
+    email.starred = !email.starred;
+
+    persist();
+    renderInbox();
+
+}
+
+/* ==========================================
+   EMAIL CONVERSATION READER
+========================================== */
+
+function openEmail(id) {
+
+    const email = emails.find(e => e.id === id);
+
+    if (!email) return;
+
+    selectedId = id;
+
+    document.getElementById("inboxView")
+        .classList.add("hidden");
+
+    document.getElementById("readerView")
+        .classList.remove("hidden");
+
+    document.getElementById("readerContent").innerHTML = `
+
+        <h2>${escapeHTML(email.subject)}</h2>
+
+        <div class="labels">
+
+            <span class="badge ${email.priority.toLowerCase()}">
+                ${escapeHTML(email.priority)} Priority
+            </span>
+
+            <span class="badge ${statusClass(email.status)}">
+                ${escapeHTML(email.status)}
+            </span>
+
+            <span class="badge review">
+                ${escapeHTML(email.category)}
+            </span>
+
+        </div>
+
+        ${email.incoming ? `
+
+            <article class="message">
+
+                <div class="message-header">
+
+                    <div class="sender-avatar">
+                        ${escapeHTML(initials(email.name))}
+                    </div>
+
+                    <div class="message-meta">
+
+                        <strong>${escapeHTML(email.name)}</strong>
+
+                        <p>&lt;${escapeHTML(email.email)}&gt;</p>
+
+                        <p>To: Real Estate Team</p>
+
+                    </div>
+
+                    <div class="message-date">
+                        ${formatDate(email.date)}
+                        · ${escapeHTML(email.time)}
+                    </div>
+
+                </div>
+
+                <div class="message-body">${escapeHTML(email.incoming)}</div>
+
+            </article>
+
+        ` : ""}
+
+        <div class="draft-box">
+
+            <div class="draft-heading">
+
+                <span>Prepared Response Draft</span>
+
+                <span class="badge draft">NOT SENT</span>
+
+            </div>
+
+            <div class="draft-details">
+
+                <strong>Prepared by:</strong>
+                Dainty De Guzman<br>
+
+                <strong>To:</strong>
+                ${escapeHTML(email.name)}
+                &lt;${escapeHTML(email.email)}&gt;<br>
+
+                <strong>Subject:</strong>
+                ${escapeHTML(
+                    email.subject.startsWith("Re:")
+                        ? email.subject
+                        : "Re: " + email.subject
+                )}
+
+            </div>
+
+            <textarea id="responseDraft"
+                aria-label="Editable response draft">${escapeHTML(email.draft)}</textarea>
+
+            <div class="draft-actions">
+
+                <button class="btn btn-primary"
+                    onclick="saveResponse()">
+                    Save Draft
+                </button>
+
+                <button class="btn"
+                    onclick="copyResponse()">
+                    Copy Response
+                </button>
+
+                <button class="btn"
+                    onclick="requestApproval()">
+                    Flag for Agent Approval
+                </button>
+
+            </div>
+
+        </div>
+
+        <div class="internal">
+
+            <h3>INTERNAL COMMUNICATION RECORD</h3>
+
+            <div class="details-grid">
+
+                <div class="detail">
+
+                    <label>Communication ID</label>
+
+                    <p>${escapeHTML(email.id)}</p>
+
+                </div>
+
+                <div class="detail">
+
+                    <label>CRM Lead ID</label>
+
+                    <p>${escapeHTML(email.leadId)}</p>
+
+                </div>
+
+                <div class="detail">
+
+                    <label>Client Type</label>
+
+                    <p>${escapeHTML(email.type)}</p>
+
+                </div>
+
+                <div class="detail">
+
+                    <label>Preferred Market</label>
+
+                    <p>${escapeHTML(email.market)}</p>
+
+                </div>
+
+                <div class="detail">
+
+                    <label>Follow-up Date</label>
+
+                    <p>${formatDate(email.followup)}</p>
+
+                </div>
+
+                <div class="detail">
+
+                    <label>Responsible Party</label>
+
+                    <p>${escapeHTML(email.owner)}</p>
+
+                </div>
+
+                <div class="detail">
+
+                    <label>Priority</label>
+
+                    <select id="recordPriority">
+
+                        ${["High", "Medium", "Low"].map(p => `
+                            <option ${p === email.priority ? "selected" : ""}>
+                                ${p}
+                            </option>
+                        `).join("")}
+
+                    </select>
+
+                </div>
+
+                <div class="detail">
+
+                    <label>Communication Status</label>
+
+                    <select id="recordStatus">
+
+                        ${statuses.map(s => `
+                            <option ${s === email.status ? "selected" : ""}>
+                                ${s}
+                            </option>
+                        `).join("")}
+
+                    </select>
+
+                </div>
+
+                <div class="detail full">
+
+                    <label>Next Action</label>
+
+                    <p>${escapeHTML(email.action)}</p>
+
+                </div>
+
+                <div class="detail full">
+
+                    <label>Approval Requirements</label>
+
+                    <p>${escapeHTML(email.approval)}</p>
+
+                </div>
+
+                <div class="detail full">
+
+                    <label>Internal Notes</label>
+
+                    <p>${escapeHTML(email.notes)}</p>
+
+                </div>
+
+                <div class="detail full">
+
+                    <button class="btn"
+                        onclick="saveResponse()">
+                        Update Communication Record
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    `;
+
+    document.getElementById("readerView")
+        .scrollIntoView({behavior: "smooth", block: "start"});
+
+}
+
+function closeEmail() {
+
+    selectedId = null;
+
+    document.getElementById("readerView")
+        .classList.add("hidden");
+
+    document.getElementById("inboxView")
+        .classList.remove("hidden");
+
+    renderInbox();
+
+}
+
+function navigateEmail(direction) {
+
+    const records = filteredEmails();
+
+    const index = records.findIndex(
+        e => e.id === selectedId
+    );
+
+    const next = index + direction;
+
+    if (next >= 0 && next < records.length) {
+
+        openEmail(records[next].id);
+
+    } else {
+
+        notify("No additional email in this direction.");
+
+    }
+
+}
+
+function saveResponse() {
+
+    const email = emails.find(
+        e => e.id === selectedId
+    );
+
+    if (!email) return;
+
+    email.draft =
+        document.getElementById("responseDraft").value;
+
+    email.priority =
+        document.getElementById("recordPriority").value;
+
+    email.status =
+        document.getElementById("recordStatus").value;
+
+    const saved = persist();
+
+    updateStats();
+    openEmail(email.id);
+
+    notify(saved
+        ? "Communication record saved locally."
+        : "Record updated for this session only.");
+
+}
+
+function requestApproval() {
+
+    const status = document.getElementById("recordStatus");
+
+    if (!status) return;
+
+    status.value = "Awaiting Approval";
+
+    saveResponse();
+
+    notify("Draft flagged for agent approval in this demo.");
+
+}
+
+async function copyResponse() {
+
+    const draft = document.getElementById("responseDraft");
+
+    try {
+
+        await navigator.clipboard.writeText(draft.value);
+
+        notify("Response copied to clipboard.");
+
+    } catch {
+
+        draft.focus();
+        draft.select();
+
+        notify("Response selected. Press Ctrl+C to copy.");
+
+    }
+
+}
+
+/* ==========================================
+   CREATE NEW RESPONSE DRAFT
+========================================== */
+
+function openCompose() {
+
+    document.getElementById("composeDialog").showModal();
+
+}
+
+function createDraft(event) {
+
+    event.preventDefault();
+
+    const data = Object.fromEntries(
+        new FormData(event.target).entries()
+    );
+
+    const highest = emails.reduce((max, email) => {
+
+        const number = Number(email.id.replace("EM-", ""));
+
+        return Math.max(max, number || 0);
+
+    }, 0);
+
+    const today = new Date();
+
+    const date =
+        today.getFullYear() + "-" +
+        String(today.getMonth() + 1).padStart(2, "0") + "-" +
+        String(today.getDate()).padStart(2, "0");
+
+    const newEmail = {
+
+        id: "EM-" + String(highest + 1).padStart(3, "0"),
+
+        leadId: "Not linked",
+
+        name: data.name,
+        email: data.email,
+        type: data.type,
+        subject: data.subject,
+        priority: data.priority,
+        draft: data.draft,
+
+        category: "New Response Draft",
+        market: "Not specified",
+        status: "Draft Prepared",
+        date: date,
+        time: "",
+        followup: "",
+        starred: false,
+        incoming: "",
+
+        action: "Review draft and confirm client details.",
+
+        approval: "Agent review required before any external communication.",
+
+        notes: "Locally created demonstration draft. No email has been sent.",
+
+        owner: "Administrative Support"
+
+    };
+
+    emails.push(newEmail);
+
+    const saved = persist();
+
+    event.target.reset();
+
+    document.getElementById("composeDialog").close();
+
+    setFolder("all");
+    openEmail(newEmail.id);
+
+    notify(saved
+        ? "New response draft saved."
+        : "New draft created for this session.");
+
+}
+
+/* ==========================================
+   RESET DEMONSTRATION
+========================================== */
+
+function resetDemo() {
+
+    if (!confirm(
+        "Reset all email records to their original demonstration content?"
+    )) return;
+
+    emails = JSON.parse(JSON.stringify(originalEmails));
+
+    persist();
+    setFolder("all");
+
+    notify("Original demonstration records restored.");
+
+}
+
+document.addEventListener("keydown", event => {
+
+    if (
+        event.key === "Escape" &&
+        !document.getElementById("composeDialog").open
+    ) {
+
+        closeEmail();
+
+    }
+
+});
+
+renderInbox();
+
+</script>
 
 </body>
 </html>
