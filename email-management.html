@@ -4,251 +4,224 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Real Estate Email Management | Dainty De Guzman</title>
+<title>Inbox | Dainty De Guzman</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined&display=swap" rel="stylesheet">
 
 <style>
 :root {
-    --background: #faf3f7;
     --pink: #a65f7d;
-    --dark: #503743;
-    --selected: #efd5e2;
-    --light: #f6e8ef;
-    --text: #29252a;
-    --muted: #746970;
+    --background: #faf2f6;
+    --selected: #efd3e2;
     --border: #eee3e9;
+    --text: #302a2e;
+    --muted: #756b71;
 }
 
-* {
-    box-sizing: border-box;
-}
+* { box-sizing: border-box; }
 
 body {
     margin: 0;
+    font: 14px Roboto, Arial, sans-serif;
     background: var(--background);
-    font-family: Roboto, Arial, sans-serif;
     color: var(--text);
-    font-size: 14px;
 }
 
-button, input, select, textarea {
+button, input, textarea {
     font: inherit;
 }
 
 button {
-    cursor: pointer;
     border: none;
     background: transparent;
     color: inherit;
+    cursor: pointer;
 }
 
-a {
-    color: inherit;
-    text-decoration: none;
-}
+button:hover { background: #eee0e8; }
 
 .material-symbols-outlined {
     font-size: 21px;
     vertical-align: middle;
-    font-weight: normal;
 }
 
-.icon-button {
-    width: 40px;
-    height: 40px;
+.icon {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
     display: inline-grid;
     place-items: center;
-    border-radius: 50%;
     flex-shrink: 0;
 }
 
-.icon-button:hover {
-    background: #eadce5;
-}
+.hidden { display: none !important; }
 
 header {
-    height: 76px;
+    height: 72px;
     display: flex;
     align-items: center;
-    gap: 20px;
-    padding: 10px 22px;
+    padding: 10px 20px;
+    gap: 18px;
 }
 
 .brand {
-    width: 220px;
     display: flex;
     align-items: center;
     gap: 12px;
+    width: 220px;
     flex-shrink: 0;
-}
-
-.mail-logo {
-    color: var(--pink);
-    font-size: 35px;
 }
 
 .brand-name {
     font-size: 23px;
-    color: var(--dark);
+    color: #60535b;
 }
 
-.search-bar {
+.search {
     display: flex;
     align-items: center;
-    background: #f0e2ea;
-    border-radius: 30px;
-    max-width: 720px;
     flex: 1;
-    padding: 4px 12px;
+    max-width: 720px;
+    background: #f0e2ea;
+    padding: 5px 14px;
+    border-radius: 30px;
 }
 
-.search-bar input {
+.search input {
     width: 100%;
     border: none;
     outline: none;
     background: transparent;
-    padding: 12px 5px;
+    padding: 12px;
 }
 
-.header-right {
+.account {
     margin-left: auto;
-    display: flex;
-    align-items: center;
-    gap: 10px;
+    border-radius: 50%;
+    padding: 4px;
 }
 
-.profile-picture {
-    width: 38px;
-    height: 38px;
+.avatar {
+    width: 39px;
+    height: 39px;
+    border-radius: 50%;
     object-fit: cover;
-    border-radius: 50%;
-    border: 2px solid white;
+    display: block;
 }
 
-.profile-button {
-    padding: 3px;
-    border-radius: 50%;
-}
-
-.profile-button:hover {
-    background: var(--selected);
-}
-
-.profile-menu {
+.profile {
     position: fixed;
-    right: 20px;
-    top: 70px;
+    top: 68px;
+    right: 18px;
     width: 330px;
-    max-width: calc(100vw - 40px);
-    padding: 25px;
+    max-width: 90vw;
     border-radius: 25px;
-    background: #f9edf3;
-    border: 1px solid var(--border);
-    box-shadow: 0 8px 30px #50374322;
+    padding: 25px;
     text-align: center;
+    background: #f8eaf1;
+    box-shadow: 0 5px 25px #0002;
     z-index: 100;
 }
 
-.profile-menu img {
-    width: 90px;
-    height: 90px;
-    border-radius: 50%;
+.profile img {
+    width: 85px;
+    height: 85px;
     object-fit: cover;
-    margin: 20px 0 5px;
+    border-radius: 50%;
+    margin-top: 15px;
 }
 
-.profile-menu h2 {
-    font-size: 21px;
-    font-weight: 400;
-}
-
-.profile-menu p {
-    font-size: 12px;
+.profile p {
     overflow-wrap: anywhere;
+    font-size: 13px;
+}
+
+.profile h2 {
+    font-size: 22px;
+    font-weight: 400;
 }
 
 .layout {
     display: flex;
-    height: calc(100dvh - 76px);
+    height: calc(100dvh - 72px);
     padding-bottom: 15px;
 }
 
 .sidebar {
-    width: 255px;
+    width: 250px;
     flex-shrink: 0;
     padding: 10px 12px 20px 0;
-    overflow-y: auto;
+    overflow: auto;
 }
 
-.compose-button {
+.compose {
     background: #eac5d8;
-    border-radius: 17px;
-    padding: 18px 23px;
-    margin: 0 0 22px 15px;
     display: flex;
     align-items: center;
     gap: 15px;
+    padding: 18px 24px;
+    border-radius: 17px;
+    margin: 0 0 22px 15px;
     font-weight: 500;
-    box-shadow: 0 2px 5px #5037430d;
 }
 
-.compose-button:hover {
-    box-shadow: 0 3px 8px #50374326;
+.compose:hover {
+    background: #eac5d8;
+    box-shadow: 0 3px 9px #0002;
 }
 
-.nav-item {
+.nav {
     display: flex;
     align-items: center;
     gap: 17px;
-    padding: 10px 20px 10px 27px;
-    border-radius: 0 25px 25px 0;
     width: 100%;
+    padding: 11px 25px;
+    border-radius: 0 25px 25px 0;
     text-align: left;
-    min-height: 40px;
 }
 
-.nav-item:hover {
-    background: #f1e4eb;
-}
-
-.nav-item.active {
+.nav.active {
     background: var(--selected);
     font-weight: 700;
 }
 
-.nav-item .count {
+.count {
     margin-left: auto;
     font-size: 12px;
 }
 
-.label-heading {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 24px 15px 12px 25px;
+.labels-title {
+    padding: 28px 25px 12px;
     font-size: 16px;
     font-weight: 500;
 }
 
-.label-icon {
-    font-size: 18px;
+.sidebar.collapsed { width: 75px; }
+
+.sidebar.collapsed .nav-text,
+.sidebar.collapsed .count,
+.sidebar.collapsed .labels-title,
+.sidebar.collapsed .compose-text {
+    display: none;
 }
 
-.sidebar-note {
-    padding: 25px;
-    color: var(--muted);
-    font-size: 11px;
-    line-height: 1.8;
+.sidebar.collapsed .nav {
+    justify-content: center;
+    padding: 12px;
+}
+
+.sidebar.collapsed .compose {
+    padding: 15px;
+    margin-left: 10px;
 }
 
 .main {
     flex: 1;
     min-width: 0;
     background: white;
+    margin-right: 16px;
     border-radius: 20px;
-    margin-right: 18px;
     display: flex;
     flex-direction: column;
     overflow: hidden;
@@ -257,10 +230,9 @@ header {
 .toolbar {
     display: flex;
     align-items: center;
-    gap: 5px;
-    padding: 9px 15px;
-    min-height: 58px;
-    border-bottom: 1px solid var(--border);
+    gap: 6px;
+    padding: 9px 18px;
+    min-height: 56px;
 }
 
 .toolbar-right {
@@ -268,66 +240,8 @@ header {
     display: flex;
     align-items: center;
     gap: 4px;
-    color: var(--muted);
     font-size: 12px;
-}
-
-.tabs {
-    display: flex;
-    border-bottom: 1px solid var(--border);
-    overflow-x: auto;
-}
-
-.tab {
-    min-width: 170px;
-    display: flex;
-    align-items: center;
-    gap: 13px;
-    padding: 19px 20px;
-    border-bottom: 3px solid transparent;
-    text-align: left;
-}
-
-.tab.active {
-    color: var(--pink);
-    border-bottom-color: var(--pink);
-    font-weight: 500;
-}
-
-.tab:hover {
-    background: #fcf6f9;
-}
-
-.mail-list {
-    overflow: auto;
-    flex: 1;
-}
-
-.mail-row {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    min-height: 53px;
-    padding: 8px 18px;
-    border-bottom: 1px solid var(--border);
-    background: #fdf9fb;
-    cursor: pointer;
-}
-
-.mail-row.unread {
-    background: white;
-    font-weight: 600;
-}
-
-.mail-row:hover {
-    box-shadow: inset 0 1px 0 #ded0d8,
-                inset 0 -1px 0 #ded0d8,
-                0 2px 5px #50374312;
-    position: relative;
-}
-
-.mail-row.selected {
-    background: #f0dce7;
+    color: var(--muted);
 }
 
 input[type="checkbox"] {
@@ -337,109 +251,140 @@ input[type="checkbox"] {
     cursor: pointer;
 }
 
-.star {
-    padding: 4px;
-    color: #a69ba2;
-    font-size: 22px;
-    flex-shrink: 0;
+.tabs {
+    display: flex;
+    border-bottom: 1px solid var(--border);
 }
 
-.star.on {
-    color: #d6a443;
-}
-
-.important {
-    color: #b8aab3;
-    padding: 4px;
-}
-
-.important.on {
+.tab {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    padding: 18px 24px;
+    border-bottom: 3px solid var(--pink);
     color: var(--pink);
-}
-
-.sender {
-    width: 155px;
-    flex-shrink: 0;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
-.mail-summary {
-    flex: 1;
-    min-width: 0;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-}
-
-.snippet {
-    color: var(--muted);
-    font-weight: 400;
-}
-
-.mail-date {
-    width: 62px;
-    flex-shrink: 0;
-    text-align: right;
-    font-size: 12px;
-}
-
-.tag {
-    display: inline-block;
-    font-size: 10px;
-    padding: 4px 7px;
-    border-radius: 4px;
     font-weight: 500;
-    white-space: nowrap;
-    background: #f0e4ec;
-    color: #82536b;
+    min-width: 220px;
 }
 
-.tag.approval {
-    background: #f8e8d1;
-    color: #88602b;
-}
-
-.tag.high {
-    background: #f7dce4;
-    color: #9d425a;
-}
-
-.tag.reviewed {
-    background: #e3eee7;
-    color: #48735a;
-}
-
-.empty {
-    padding: 70px 20px;
-    text-align: center;
-    color: var(--muted);
-}
-
-.reader {
+.mail-list {
     flex: 1;
     overflow: auto;
 }
 
-.reader-content {
-    max-width: 1000px;
-    padding: 30px 45px 50px;
-    margin: auto;
+.mail-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 9px 18px;
+    min-height: 48px;
+    background: #fcf7fa;
+    border-bottom: 1px solid var(--border);
+    cursor: pointer;
 }
 
-.subject-title {
-    font-size: 24px;
+.mail-row.unread {
+    background: white;
+    font-weight: 700;
+}
+
+.mail-row.selected {
+    background: #efd9e5;
+}
+
+.mail-row:hover {
+    box-shadow: inset 0 1px #ded1d9,
+                inset 0 -1px #ded1d9,
+                0 2px 5px #0001;
+}
+
+.star {
+    color: #a99da5;
+    font-size: 23px;
+    padding: 2px;
+}
+
+.star.on { color: #d4a139; }
+
+.important {
+    color: #b9adb4;
+    padding: 3px;
+}
+
+.important.on { color: var(--pink); }
+
+.sender {
+    width: 170px;
+    flex-shrink: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.summary {
+    flex: 1;
+    min-width: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.snippet {
     font-weight: 400;
-    line-height: 1.5;
+    color: var(--muted);
+}
+
+.date {
+    font-size: 12px;
+    width: 65px;
+    flex-shrink: 0;
+    text-align: right;
+}
+
+.label {
+    background: #f1e0ea;
+    color: #80536b;
+    font-size: 10px;
+    padding: 4px 7px;
+    border-radius: 4px;
+    white-space: nowrap;
+    font-weight: 400;
+}
+
+.label.approval {
+    background: #f7e8ce;
+    color: #89632d;
+}
+
+.empty {
+    text-align: center;
+    padding: 60px 20px;
+    color: var(--muted);
+}
+
+.reader {
+    overflow: auto;
+    flex: 1;
+}
+
+.thread {
+    max-width: 1000px;
+    margin: auto;
+    padding: 28px 45px 50px;
+}
+
+.subject {
+    font-size: 25px;
+    font-weight: 400;
+    line-height: 1.4;
     margin: 0 0 15px;
 }
 
 .thread-labels {
     display: flex;
-    flex-wrap: wrap;
     gap: 7px;
     margin-bottom: 30px;
+    flex-wrap: wrap;
 }
 
 .message-header {
@@ -449,177 +394,111 @@ input[type="checkbox"] {
 }
 
 .sender-avatar {
-    width: 42px;
-    height: 42px;
-    flex-shrink: 0;
-    background: #eac5d8;
-    color: var(--dark);
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
+    background: #eac5d8;
+    color: #654256;
     display: grid;
     place-items: center;
-    font-size: 16px;
+    flex-shrink: 0;
 }
 
-.message-meta {
+.meta {
     flex: 1;
     min-width: 0;
     line-height: 1.7;
 }
 
-.email-address {
+.address {
     color: var(--muted);
     font-size: 12px;
     overflow-wrap: anywhere;
 }
 
 .message-time {
-    color: var(--muted);
     font-size: 12px;
+    color: var(--muted);
 }
 
-.message-body {
-    padding: 20px 0 25px 56px;
-    line-height: 1.85;
+.message {
     white-space: pre-wrap;
+    line-height: 1.85;
+    padding: 20px 0 25px 54px;
     overflow-wrap: anywhere;
 }
 
-.thread-divider {
+hr {
     border: none;
     border-top: 1px solid var(--border);
     margin: 20px 0 30px;
 }
 
-.draft-box {
-    margin: 22px 0 25px 56px;
-    border: 1px solid #e3d2dc;
+.reply-box {
+    margin: 20px 0 0 54px;
+    border: 1px solid #e3d3dc;
     border-radius: 12px;
-    box-shadow: 0 2px 7px #5037430b;
+    box-shadow: 0 2px 6px #0001;
     overflow: hidden;
 }
 
-.draft-heading {
-    padding: 15px 20px;
-    color: var(--muted);
-    border-bottom: 1px solid var(--border);
-    display: flex;
-    justify-content: space-between;
-    gap: 10px;
-    flex-wrap: wrap;
-}
-
-.draft-box textarea {
+.reply-box textarea {
     display: block;
     width: 100%;
-    border: none;
+    min-height: 340px;
     padding: 20px;
-    min-height: 400px;
-    resize: vertical;
+    border: none;
     outline: none;
+    resize: vertical;
     line-height: 1.8;
-    color: var(--text);
 }
 
-.draft-actions {
+.reply-actions {
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 10px;
     flex-wrap: wrap;
     padding: 15px;
 }
 
-.primary-button {
+.primary {
     background: var(--pink);
     color: white;
     border-radius: 22px;
-    padding: 11px 20px;
+    padding: 11px 23px;
     font-weight: 500;
 }
 
-.primary-button:hover {
-    background: #90506b;
+.primary:hover {
+    background: #8f4e6a;
 }
 
-.secondary-button {
-    border: 1px solid #d9c6d1;
+.secondary {
+    border: 1px solid #ddc9d4;
     border-radius: 22px;
     padding: 10px 17px;
-    background: white;
-}
-
-.secondary-button:hover {
-    background: var(--light);
-}
-
-.internal-record {
-    margin: 30px 0 0 56px;
-    padding: 23px;
-    background: #fcf6f9;
-    border: 1px solid var(--border);
-    border-radius: 12px;
-}
-
-.internal-record h3 {
-    margin: 0 0 20px;
-    color: var(--pink);
-    font-size: 14px;
-    font-weight: 500;
-}
-
-.record-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
-}
-
-.record-field label {
-    display: block;
-    font-size: 11px;
-    color: var(--muted);
-    margin-bottom: 7px;
-    text-transform: uppercase;
-    letter-spacing: .5px;
-}
-
-.record-field p {
-    margin: 0;
-    line-height: 1.7;
-    font-size: 13px;
-}
-
-.record-field select,
-.record-field input {
-    width: 100%;
-    border: 1px solid #dfced8;
-    background: white;
-    border-radius: 6px;
-    padding: 10px;
-}
-
-.full {
-    grid-column: 1 / -1;
 }
 
 .compose-window {
     position: fixed;
     bottom: 0;
-    right: 30px;
-    width: 570px;
-    max-width: calc(100vw - 30px);
+    right: 25px;
+    width: 550px;
+    max-width: calc(100vw - 25px);
     max-height: 90dvh;
-    overflow-y: auto;
+    overflow: auto;
     background: white;
     border-radius: 12px 12px 0 0;
-    box-shadow: 0 0 30px #50374330;
+    box-shadow: 0 0 30px #0003;
     z-index: 110;
 }
 
 .compose-header {
-    background: #efdae5;
-    padding: 12px 17px;
+    background: #efd9e5;
+    padding: 13px 17px;
     display: flex;
-    align-items: center;
     justify-content: space-between;
+    align-items: center;
     font-weight: 500;
 }
 
@@ -627,17 +506,15 @@ input[type="checkbox"] {
     display: flex;
     align-items: center;
     gap: 12px;
-    padding: 12px 17px;
+    padding: 13px 17px;
     border-bottom: 1px solid var(--border);
 }
 
-.compose-field input,
-.compose-field select {
+.compose-field input {
     flex: 1;
     min-width: 0;
-    outline: none;
     border: none;
-    background: white;
+    outline: none;
 }
 
 .compose-window textarea {
@@ -650,175 +527,53 @@ input[type="checkbox"] {
     line-height: 1.7;
 }
 
-.compose-footer {
-    padding: 15px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
 .toast {
     position: fixed;
-    bottom: 25px;
-    left: 25px;
-    max-width: calc(100vw - 50px);
-    background: var(--dark);
+    bottom: 20px;
+    left: 20px;
+    background: #503743;
     color: white;
-    padding: 16px 22px;
+    padding: 15px 22px;
     border-radius: 6px;
     z-index: 200;
-    box-shadow: 0 4px 12px #50374322;
 }
 
-.demo-notice {
-    font-size: 11px;
+.notice {
+    padding: 9px 18px;
+    font-size: 10px;
     color: var(--muted);
-    padding: 13px 20px;
     border-top: 1px solid var(--border);
-    line-height: 1.6;
 }
 
-.hidden {
-    display: none !important;
+@media(max-width: 900px) {
+    .brand { width: auto; }
+    .brand-name { display: none; }
+    .sender { width: 125px; }
+    .row-label { display: none; }
 }
 
-.sidebar.collapsed {
-    width: 75px;
-}
-
-.sidebar.collapsed .nav-item {
-    justify-content: center;
-    padding: 12px;
-}
-
-.sidebar.collapsed .nav-text,
-.sidebar.collapsed .count,
-.sidebar.collapsed .label-heading,
-.sidebar.collapsed .sidebar-note,
-.sidebar.collapsed .compose-text {
-    display: none;
-}
-
-.sidebar.collapsed .compose-button {
-    padding: 15px;
-    margin-left: 10px;
-}
-
-@media(max-width: 1000px) {
-    .sender {
-        width: 120px;
-    }
-
-    .row-label {
-        display: none;
-    }
-
-    .brand {
-        width: auto;
-    }
-
-    .brand-name {
-        display: none;
-    }
-
-    .sidebar {
-        width: 220px;
-    }
-}
-
-@media(max-width: 700px) {
-    header {
-        padding: 8px;
-        gap: 7px;
-        height: 65px;
-    }
-
-    .layout {
-        height: calc(100dvh - 65px);
-    }
-
-    .sidebar {
-        width: 65px;
-    }
-
+@media(max-width: 650px) {
+    header { padding: 8px; gap: 6px; }
+    .sidebar { width: 65px; }
     .sidebar .nav-text,
     .sidebar .count,
-    .sidebar .label-heading,
-    .sidebar .sidebar-note,
-    .sidebar .compose-text {
-        display: none;
-    }
-
-    .sidebar .nav-item {
-        justify-content: center;
-        padding: 12px;
-    }
-
-    .compose-button {
-        padding: 13px;
-        margin-left: 7px;
-    }
-
-    .main {
-        margin-right: 7px;
-    }
-
-    .header-right .extra {
-        display: none;
-    }
-
-    .mail-logo {
-        display: none;
-    }
-
-    .sender {
-        width: 100%;
-    }
-
-    .mail-row {
-        flex-wrap: wrap;
-        gap: 7px;
-        padding: 12px;
-    }
-
-    .mail-summary {
-        flex-basis: 100%;
-        white-space: normal;
-    }
-
-    .mail-date {
-        margin-left: auto;
-    }
-
-    .reader-content {
-        padding: 20px;
-    }
-
-    .message-body {
-        padding-left: 0;
-    }
-
-    .draft-box,
-    .internal-record {
-        margin-left: 0;
-    }
-
-    .record-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .message-header {
-        flex-wrap: wrap;
-    }
-
-    .compose-window {
-        right: 8px;
-    }
-
-    .tab {
-        min-width: 135px;
-        padding: 16px;
-    }
+    .sidebar .labels-title,
+    .sidebar .compose-text { display: none; }
+    .sidebar .nav { justify-content: center; padding: 12px; }
+    .compose { padding: 13px; margin-left: 7px; }
+    .main { margin-right: 7px; }
+    .brand svg { display: none; }
+    .mail-row { flex-wrap: wrap; padding: 12px; }
+    .sender { flex: 1; width: auto; }
+    .summary { flex-basis: 100%; white-space: normal; }
+    .date { margin-left: auto; }
+    .thread { padding: 20px; }
+    .message { padding-left: 0; }
+    .reply-box { margin-left: 0; }
+    .message-header { flex-wrap: wrap; }
+    .toolbar { padding: 8px; gap: 1px; }
+    .toolbar .icon { width: 30px; }
+    .toolbar-right .icon { display: none; }
 }
 </style>
 </head>
@@ -826,377 +581,220 @@ input[type="checkbox"] {
 <body>
 
 <header>
-
     <div class="brand">
 
-        <button class="icon-button"
-            title="Toggle sidebar"
-            onclick="toggleSidebar()">
+        <button class="icon" title="Main menu"
+            onclick="document.getElementById('sidebar').classList.toggle('collapsed')">
             <span class="material-symbols-outlined">menu</span>
         </button>
 
-        <span class="material-symbols-outlined mail-logo">mail</span>
+        <svg width="35" height="28" viewBox="0 0 40 32">
+            <path d="M3 29V5L20 18L37 5V29"
+                fill="none" stroke="#a65f7d"
+                stroke-width="6" stroke-linejoin="round"/>
+            <path d="M3 5L20 18L37 5"
+                fill="none" stroke="#dca7c0"
+                stroke-width="6" stroke-linejoin="round"/>
+        </svg>
 
-        <span class="brand-name">Mail</span>
-
+        <span class="brand-name">Gmail</span>
     </div>
 
-    <div class="search-bar">
-
+    <div class="search">
         <span class="material-symbols-outlined">search</span>
-
-        <input id="search"
-            placeholder="Search mail"
+        <input id="search" placeholder="Search mail"
             oninput="searchMail()">
-
-        <button class="icon-button"
-            title="Clear search"
+        <button class="icon" title="Clear search"
             onclick="clearSearch()">
             <span class="material-symbols-outlined">close</span>
         </button>
-
     </div>
 
-    <div class="header-right">
-
-        <a class="icon-button extra"
-            href="lead-management.html"
-            title="Open CRM">
-            <span class="material-symbols-outlined">contacts</span>
-        </a>
-
-        <a class="icon-button extra"
-            href="index.html#work"
-            title="Back to portfolio">
-            <span class="material-symbols-outlined">home</span>
-        </a>
-
-        <button class="profile-button"
-            title="Account information"
-            onclick="toggleProfile()">
-
-            <img class="profile-picture"
-                src="dainty-profile.jpeg"
-                alt="Dainty De Guzman">
-
-        </button>
-
-    </div>
-
+    <button class="account" title="Account"
+        onclick="document.getElementById('profile').classList.toggle('hidden')">
+        <img class="avatar" src="dainty-profile.jpeg"
+            alt="Dainty De Guzman">
+    </button>
 </header>
 
-<div id="profileMenu" class="profile-menu hidden">
-
+<div class="profile hidden" id="profile">
     <p>daintydeguzman.work@gmail.com</p>
-
-    <img src="dainty-profile.jpeg"
-        alt="Dainty De Guzman">
-
+    <img src="dainty-profile.jpeg" alt="Dainty De Guzman">
     <h2>Hi, Dainty!</h2>
-
-    <p>Real Estate Virtual Assistant</p>
-
-    <p>Portfolio demonstration account</p>
-
-    <a class="secondary-button"
-        href="index.html">
-        Back to Portfolio
-    </a>
-
+    <button class="secondary"
+        onclick="document.getElementById('profile').classList.add('hidden')">
+        Close
+    </button>
 </div>
 
 <div class="layout">
 
 <aside class="sidebar" id="sidebar">
 
-    <button class="compose-button"
-        onclick="openCompose()">
-
+    <button class="compose" onclick="openCompose()">
         <span class="material-symbols-outlined">edit</span>
-
         <span class="compose-text">Compose</span>
-
     </button>
 
-    <div id="folderNavigation"></div>
+    <div id="folders"></div>
 
-    <div class="label-heading">
-        Labels
-        <span class="material-symbols-outlined">label</span>
-    </div>
+    <div class="labels-title">Labels</div>
 
-    <div id="labelNavigation"></div>
-
-    <div class="label-heading">Workspace</div>
-
-    <a class="nav-item" href="lead-management.html">
-
-        <span class="material-symbols-outlined">contacts</span>
-
-        <span class="nav-text">Lead Management CRM</span>
-
-    </a>
-
-    <a class="nav-item" href="index.html#work">
-
-        <span class="material-symbols-outlined">arrow_back</span>
-
-        <span class="nav-text">Back to Portfolio</span>
-
-    </a>
-
-    <button class="nav-item" onclick="resetDemo()">
-
-        <span class="material-symbols-outlined">restart_alt</span>
-
-        <span class="nav-text">Reset Demo</span>
-
-    </button>
-
-    <div class="sidebar-note">
-        REAL ESTATE EMAIL MANAGEMENT<br>
-        Independent portfolio project<br>
-        Fictional communication records
-    </div>
+    <div id="labels"></div>
 
 </aside>
 
 <main class="main">
 
-    <div id="inboxToolbar" class="toolbar">
+    <div class="toolbar" id="listToolbar">
 
-        <input type="checkbox"
-            id="selectAll"
-            title="Select all visible messages"
-            onchange="selectAllMessages(this.checked)">
+        <input type="checkbox" id="selectAll"
+            title="Select all"
+            onchange="selectAll(this.checked)">
 
-        <button class="icon-button"
-            title="Refresh"
-            onclick="renderInbox()">
+        <button class="icon" title="Refresh"
+            onclick="render()">
             <span class="material-symbols-outlined">refresh</span>
         </button>
 
-        <button class="icon-button"
-            title="Archive selected"
-            onclick="bulkAction('archive')">
+        <button class="icon" title="Archive"
+            onclick="bulk('archive')">
             <span class="material-symbols-outlined">archive</span>
         </button>
 
-        <button class="icon-button"
-            title="Delete selected"
-            onclick="bulkAction('trash')">
+        <button class="icon" title="Delete"
+            onclick="bulk('trash')">
             <span class="material-symbols-outlined">delete</span>
         </button>
 
-        <button class="icon-button"
-            title="Mark selected as read"
-            onclick="bulkAction('read')">
-            <span class="material-symbols-outlined">drafts</span>
+        <button class="icon" title="Mark as unread"
+            onclick="bulk('unread')">
+            <span class="material-symbols-outlined">mark_email_unread</span>
         </button>
 
         <div class="toolbar-right">
-
             <span id="recordCount"></span>
 
-            <button class="icon-button"
-                title="Previous page"
+            <button class="icon" title="Previous page"
                 onclick="changePage(-1)">
                 <span class="material-symbols-outlined">chevron_left</span>
             </button>
 
-            <button class="icon-button"
-                title="Next page"
+            <button class="icon" title="Next page"
                 onclick="changePage(1)">
                 <span class="material-symbols-outlined">chevron_right</span>
             </button>
-
         </div>
 
     </div>
 
-    <div class="tabs" id="inboxTabs">
-
-        <button class="tab active"
-            data-tab="inbox"
-            onclick="setFolder('inbox')">
-
+    <div class="tabs" id="tabs">
+        <div class="tab">
             <span class="material-symbols-outlined">inbox</span>
-            Primary
-
-        </button>
-
-        <button class="tab"
-            data-tab="approval"
-            onclick="setFolder('approval')">
-
-            <span class="material-symbols-outlined">flag</span>
-            Agent Approval
-
-        </button>
-
-        <button class="tab"
-            data-tab="followup"
-            onclick="setFolder('followup')">
-
-            <span class="material-symbols-outlined">schedule</span>
-            Follow-ups
-
-        </button>
-
+            <span id="folderTitle">Primary</span>
+        </div>
     </div>
 
-    <div id="mailList" class="mail-list"></div>
+    <div class="mail-list" id="mailList"></div>
 
-    <div id="readerToolbar" class="toolbar hidden">
+    <div class="toolbar hidden" id="readerToolbar">
 
-        <button class="icon-button"
-            title="Back to inbox"
-            onclick="closeEmail()">
+        <button class="icon" title="Back"
+            onclick="closeMail()">
             <span class="material-symbols-outlined">arrow_back</span>
         </button>
 
-        <button class="icon-button"
-            title="Archive message"
-            onclick="singleAction('archive')">
+        <button class="icon" title="Archive"
+            onclick="single('archive')">
             <span class="material-symbols-outlined">archive</span>
         </button>
 
-        <button class="icon-button"
-            title="Delete message"
-            onclick="singleAction('trash')">
+        <button class="icon" title="Delete"
+            onclick="single('trash')">
             <span class="material-symbols-outlined">delete</span>
         </button>
 
-        <button class="icon-button"
-            title="Mark as unread"
-            onclick="singleAction('unread')">
+        <button class="icon" title="Mark unread"
+            onclick="single('unread')">
             <span class="material-symbols-outlined">mark_email_unread</span>
         </button>
 
-        <button class="icon-button"
-            title="Restore to inbox"
-            onclick="singleAction('restore')">
+        <button class="icon" title="Move to inbox"
+            onclick="single('restore')">
             <span class="material-symbols-outlined">move_to_inbox</span>
         </button>
 
         <div class="toolbar-right">
-
-            <button class="icon-button"
-                title="Previous message"
-                onclick="navigateEmail(-1)">
+            <button class="icon" title="Previous email"
+                onclick="navigate(-1)">
                 <span class="material-symbols-outlined">chevron_left</span>
             </button>
 
-            <button class="icon-button"
-                title="Next message"
-                onclick="navigateEmail(1)">
+            <button class="icon" title="Next email"
+                onclick="navigate(1)">
                 <span class="material-symbols-outlined">chevron_right</span>
             </button>
-
         </div>
 
     </div>
 
-    <div id="reader" class="reader hidden">
-
-        <div id="readerContent"
-            class="reader-content"></div>
-
+    <div class="reader hidden" id="reader">
+        <div class="thread" id="thread"></div>
     </div>
 
-    <div class="demo-notice">
-        Portfolio simulation by Dainty De Guzman.
-        All client conversations are fictional.
-        No actual emails are sent or received.
+    <div class="notice">
+        Fictional portfolio mailbox. No real emails are sent.
     </div>
 
 </main>
-
 </div>
 
 <div class="compose-window hidden" id="composeWindow">
 
     <div class="compose-header">
-
-        <span>New Message</span>
-
-        <button onclick="closeCompose()"
-            title="Close compose">
+        New Message
+        <button onclick="closeCompose()" title="Close">
             <span class="material-symbols-outlined">close</span>
         </button>
-
     </div>
 
-    <form id="composeForm" onsubmit="saveNewDraft(event)">
-
-        <div class="compose-field">
-            <span>From</span>
-            <span>daintydeguzman.work@gmail.com</span>
-        </div>
+    <form id="composeForm" onsubmit="saveNewMail(event)">
 
         <div class="compose-field">
             <span>To</span>
-            <input type="email"
-                name="email"
-                placeholder="Recipient"
-                required>
+            <input type="email" name="recipient" required>
         </div>
 
         <div class="compose-field">
-            <input name="name"
-                placeholder="Contact name"
-                required>
+            <input name="subject" placeholder="Subject" required>
         </div>
 
-        <div class="compose-field">
-            <input name="subject"
-                placeholder="Subject"
-                required>
-        </div>
+        <textarea name="body" required></textarea>
 
-        <div class="compose-field">
+        <div class="reply-actions">
 
-            <span>Client type</span>
-
-            <select name="type">
-                <option>Buyer</option>
-                <option>Seller</option>
-            </select>
-
-        </div>
-
-        <textarea name="draft"
-            placeholder="Write your response..."
-            required></textarea>
-
-        <div class="compose-footer">
-
-            <button class="primary-button" type="submit">
+            <button class="primary" type="submit">
                 Save Draft
             </button>
 
-            <button class="icon-button"
-                type="button"
-                title="Discard draft"
-                onclick="discardCompose()">
-
+            <button type="button" class="icon"
+                title="Discard"
+                onclick="document.getElementById('composeForm').reset();closeCompose()">
                 <span class="material-symbols-outlined">delete</span>
-
             </button>
 
         </div>
 
     </form>
-
 </div>
 
-<div id="toast" class="toast hidden"></div>
+<div class="toast hidden" id="toast"></div>
 
 <script>
 
 const ACCOUNT = "daintydeguzman.work@gmail.com";
-const ACCOUNT_NAME = "Dainty De Guzman";
-const PROFILE = "dainty-profile.jpeg";
+const NAME = "Dainty De Guzman";
+const PHOTO = "dainty-profile.jpeg";
 
 const signature = `
 
@@ -1205,324 +803,347 @@ Dainty De Guzman
 Real Estate Administrative Support
 daintydeguzman.work@gmail.com`;
 
-/* =====================================
-   COMPLETE EMAIL COMMUNICATION DATABASE
-===================================== */
+/* INDEPENDENT EMAIL CONVERSATIONS */
 
-const originalEmails = [
+const original = [
 
 {
-    id: "EM-001",
-    leadId: "RE-004",
-    name: "Ethan Brooks",
-    email: "ethan.brooks@example.com",
-    type: "Buyer",
-    market: "Phoenix, AZ",
-    category: "New Buyer Inquiry",
-    subject: "First-time homebuyer inquiry",
+    id: 1,
+    name: "Charlotte Hayes",
+    email: "charlotte.hayes@example.com",
+    subject: "Inquiry about available homes in Raleigh",
     date: "2026-11-25",
-    time: "9:15 AM MST",
-    priority: "Medium",
-    status: "Draft Prepared",
-    followup: "2026-11-28",
+    time: "10:24 AM",
+    label: "Buyer",
     unread: true,
-    starred: false,
-    archived: false,
-    trashed: false,
+    starred: true,
+    important: true,
+    approval: false,
+    status: "sent",
 
     incoming: `Hi,
 
-I came across your real estate services while looking for townhouses in Phoenix. I'm planning to purchase my first home within the next few months.
+My husband and I are planning to move to Raleigh, North Carolina, early next year. We are currently looking for a three-bedroom home with at least two bathrooms.
 
-My budget is around $320,000, and I'm hoping to find something with at least three bedrooms and two bathrooms.
+Our budget is approximately $420,000, and we would prefer a property with a garage and a backyard.
 
-I'm still exploring financing options and would appreciate some guidance on getting started.
-
-Could you let me know what information you need from me?
+Could you let us know how we can get started?
 
 Thank you,
-Ethan Brooks`,
+Charlotte Hayes`,
 
-    draft: `Hi Ethan,
+    reply: `Hi Charlotte,
 
-Thank you for reaching out! We'd be happy to help you get started with your home search in Phoenix.
+Thank you for reaching out! We'd be happy to assist you with your upcoming move to Raleigh.
 
-I've noted your preference for a three-bedroom, two-bathroom townhouse within your approximate budget of $320,000.
+I've noted your preference for a three-bedroom, two-bathroom home with a garage and backyard, within your approximate budget of $420,000.
 
-To help our agent better understand your requirements, could you please share a few additional details?
+To help our agent narrow down your options, could you please share your preferred move-in timeline and whether you have already started the mortgage preapproval process?
 
-• Your preferred neighborhoods in Phoenix
-• Your estimated purchase timeline
-• Any essential property features
-• Whether you have already spoken with a mortgage lender
+It would also be helpful to know if you have any particular neighborhoods in mind.
 
-Once we have this information, our agent can review your requirements and discuss the appropriate next steps with you.
+Once we receive these details, our agent can review your requirements and discuss suitable next steps.
 
-Please feel free to reply whenever convenient. We look forward to assisting you throughout your home search.` + signature,
-
-    action: "Collect buyer requirements and update the CRM record.",
-
-    approval: "Agent review required before providing financing guidance or specific property recommendations.",
-
-    notes: "New buyer inquiry. Initial property requirements recorded. Financing and preferred neighborhoods remain unconfirmed.",
-
-    owner: "Administrative Support / Assigned Buyer Agent"
+We look forward to helping you with your home search.` + signature
 },
 
 {
-    id: "EM-002",
-    leadId: "RE-003",
-    name: "Sophia Bennett",
-    email: "sophia.bennett@example.com",
-    type: "Buyer",
-    market: "Miami, FL",
-    category: "Property Showing",
-    subject: "Availability for a condominium showing",
+    id: 2,
+    name: "Daniel Foster",
+    email: "daniel.foster@example.com",
+    subject: "Request to reschedule Saturday's property showing",
     date: "2026-11-25",
-    time: "11:40 AM EST",
-    priority: "High",
-    status: "Awaiting Approval",
-    followup: "2026-11-28",
+    time: "9:16 AM",
+    label: "Showings",
     unread: true,
-    starred: true,
-    archived: false,
-    trashed: false,
+    starred: false,
+    important: true,
+    approval: false,
+    status: "sent",
 
-    incoming: `Hello,
+    incoming: `Hi Dainty,
 
-I'm following up regarding the condominium we discussed in downtown Miami.
+Something has come up at work, and unfortunately I won't be able to attend the property showing this Saturday morning.
 
-I'm available this Saturday between 10:00 AM and 1:00 PM and would love to schedule a viewing if the property is still available.
+Would it be possible to move the appointment to Monday afternoon instead?
 
-Could you also confirm whether the unit includes a parking space? That's an important consideration for me.
+I'm available anytime after 2 PM.
 
-Thanks for your help!
+Sorry for the inconvenience, and thank you for understanding.
 
-Sophia`,
+Daniel`,
 
-    draft: `Hi Sophia,
+    reply: `Hi Daniel,
 
-Thank you for sharing your availability.
+Thank you for letting me know. No worries at all!
 
-I've noted your preferred viewing window for Saturday, November 28, between 10:00 AM and 1:00 PM Eastern Time.
+I've noted your availability for Monday afternoon after 2 PM and will coordinate with the assigned agent regarding the requested change.
 
-I'm coordinating with our agent to confirm the property's availability and an appropriate showing time. I've also included your question about the parking space for verification.
+Your new appointment time is currently pending confirmation. I'll send you the updated details as soon as the agent and property access arrangements have been confirmed.
 
-Once the arrangements have been confirmed, we'll provide the appointment details, property address, and any relevant access instructions.
-
-For now, please consider the showing request tentative.
-
-Thank you for your patience. We'll be in touch with an update once the necessary details have been confirmed.` + signature,
-
-    action: "Verify agent availability, property access, and parking information.",
-
-    approval: "Required before confirming the appointment or communicating unverified property information.",
-
-    notes: "Buyer is in the Viewing stage. Appointment is tentative. Parking details have not been verified.",
-
-    owner: "Assigned Showing Agent"
+Thank you for your flexibility, and please feel free to let me know if your availability changes again.` + signature
 },
 
 {
-    id: "EM-003",
-    leadId: "RE-002",
-    name: "James Carter",
-    email: "james.carter@example.com",
-    type: "Seller",
-    market: "Dallas, TX",
-    category: "Listing Consultation",
-    subject: "Interested in selling my home in Dallas",
+    id: 3,
+    name: "Madison Clarke",
+    email: "madison.clarke@example.com",
+    subject: "Questions about listing my property",
     date: "2026-11-24",
-    time: "2:20 PM CST",
-    priority: "High",
-    status: "Awaiting Approval",
-    followup: "2026-11-27",
+    time: "3:42 PM",
+    label: "Seller",
     unread: true,
     starred: true,
-    archived: false,
-    trashed: false,
-
-    incoming: `Good afternoon,
-
-My family is considering relocating early next year, and we're exploring the possibility of selling our home in Dallas.
-
-It's a four-bedroom, three-bathroom property, and we were hoping to sell for approximately $580,000.
-
-I'd like to know what the listing process involves and whether we could arrange a consultation with an agent.
-
-Please let me know what documents or information I should prepare.
-
-Regards,
-James Carter`,
-
-    draft: `Hi James,
-
-Thank you for considering our team to assist with the potential sale of your home.
-
-I've recorded your initial property details and your target selling price of approximately $580,000 for our agent's review.
-
-To help prepare for your listing consultation, it would be useful to have the following information available:
-
-• The property's complete address
-• Approximate floor area and lot size
-• Details of recent renovations or improvements
-• Your preferred selling timeline
-• Your availability for an initial consultation
-
-Our agent will be able to discuss the listing process, review relevant market information, and address your pricing questions during the consultation.
-
-Could you please share two or three convenient times for a meeting?
-
-We'll coordinate with the agent and confirm the arrangements once availability has been established.` + signature,
-
-    action: "Collect preliminary property information and coordinate a listing consultation.",
-
-    approval: "Agent approval required for pricing, market analysis, listing terms, and commission discussions.",
-
-    notes: "The $580,000 amount is the seller's stated target price, not a verified valuation. No listing agreement has been established.",
-
-    owner: "Assigned Listing Agent"
-},
-
-{
-    id: "EM-004",
-    leadId: "RE-001",
-    name: "Olivia Mitchell",
-    email: "olivia.mitchell@example.com",
-    type: "Buyer",
-    market: "Austin, TX",
-    category: "Qualified Lead Follow-up",
-    subject: "Following up on available homes in Austin",
-    date: "2026-11-23",
-    time: "10:30 AM CST",
-    priority: "High",
-    status: "Ready for Review",
-    followup: "2026-11-27",
-    unread: false,
-    starred: true,
-    archived: false,
-    trashed: false,
-
-    incoming: `Hi,
-
-I wanted to check whether there are any updates on homes that match the requirements I sent earlier.
-
-We're still looking for a three-bedroom, two-bathroom home in Austin, preferably with a backyard and an updated kitchen. Our budget remains around $450,000.
-
-We're hoping to start viewing properties soon, so please let me know if there are any suitable options.
-
-Thank you,
-Olivia Mitchell`,
-
-    draft: `Hi Olivia,
-
-Thank you for checking in.
-
-I've reviewed your recorded preferences and confirmed that your search criteria currently include:
-
-• Austin, Texas
-• Single-family home
-• At least three bedrooms and two bathrooms
-• Approximate budget of $450,000
-• A backyard and an updated kitchen
-
-We're organizing a preliminary shortlist for our agent to review based on these requirements.
-
-Before we finalize the next steps, could you let us know whether your preferred areas or purchase timeline have changed?
-
-Once our agent has reviewed the potential matches and verified their availability, we'll be able to share the appropriate property information and discuss possible viewing arrangements.
-
-We appreciate your patience and look forward to helping you move forward with your search.` + signature,
-
-    action: "Prepare a property shortlist for agent review and reconfirm buyer preferences.",
-
-    approval: "Specific property recommendations and listing availability must be verified before release.",
-
-    notes: "Qualified buyer with conventional financing and a one-to-three-month purchase timeline. No specific properties have been promised.",
-
-    owner: "Administrative Support / Assigned Buyer Agent"
-},
-
-{
-    id: "EM-005",
-    leadId: "RE-006",
-    name: "Noah Reed",
-    email: "noah.reed@example.com",
-    type: "Buyer",
-    market: "Denver, CO",
-    category: "Lead Nurturing",
-    subject: "Update regarding our relocation plans",
-    date: "2026-11-19",
-    time: "4:10 PM MST",
-    priority: "Low",
-    status: "Scheduled Follow-up",
-    followup: "2026-12-10",
-    unread: false,
-    starred: false,
-    archived: false,
-    trashed: false,
+    important: true,
+    approval: true,
+    status: "draft",
 
     incoming: `Hello,
 
-I wanted to give you a quick update regarding our plans to move to Denver.
+I'm considering selling my property in Tampa, Florida. It's a four-bedroom house with three bathrooms and a recently renovated kitchen.
 
-We've decided to postpone our relocation until sometime next year, so we're not ready to schedule any property viewings yet.
+I was hoping to list it for around $560,000.
 
-We're still interested in a four-bedroom home within our approximate budget of $650,000. We'd be happy to receive occasional updates while we're preparing for the move.
+Could you tell me whether that is a reasonable asking price and what your commission would be?
 
-Thanks for understanding.
+I'd also like to understand how long the selling process usually takes.
 
-Noah Reed`,
+Kind regards,
+Madison Clarke`,
 
-    draft: `Hi Noah,
+    reply: `Hi Madison,
+
+Thank you for considering our team to assist with the sale of your property.
+
+I've noted the details you provided, including your recent kitchen renovation and proposed asking price of $560,000.
+
+Our listing agent would be the best person to discuss an appropriate pricing strategy, commission arrangements, and the anticipated selling timeline based on your property's characteristics and current market conditions.
+
+I'd be happy to help arrange an initial consultation.
+
+Could you please provide the property's address and two or three convenient times for a meeting with our agent?
+
+We look forward to learning more about your property and discussing your selling goals.` + signature
+},
+
+{
+    id: 4,
+    name: "Benjamin Scott",
+    email: "benjamin.scott@example.com",
+    subject: "Following up on the documents I submitted",
+    date: "2026-11-23",
+    time: "11:08 AM",
+    label: "Documents",
+    unread: false,
+    starred: false,
+    important: true,
+    approval: false,
+    status: "sent",
+
+    incoming: `Hi,
+
+I sent the requested documents through the secure upload link yesterday and wanted to make sure everything was received.
+
+Please let me know if there is anything else I need to submit before our next appointment.
+
+Thanks,
+Benjamin Scott`,
+
+    reply: `Hi Benjamin,
+
+Thank you for the update.
+
+I've noted that you submitted the requested documents through the secure upload link yesterday.
+
+I'll coordinate with the assigned team member to verify receipt and check whether any additional documents are required before your next appointment.
+
+For your privacy, please continue using the designated secure upload channel rather than sending sensitive financial or identification documents through regular email.
+
+We'll be in touch once the review has been completed.
+
+Thank you for your cooperation.` + signature
+},
+
+{
+    id: 5,
+    name: "Amelia Parker",
+    email: "amelia.parker@example.com",
+    subject: "Checking the availability of a listed condominium",
+    date: "2026-11-22",
+    time: "2:35 PM",
+    label: "Buyer",
+    unread: false,
+    starred: true,
+    important: false,
+    approval: true,
+    status: "draft",
+
+    incoming: `Hello,
+
+I recently saw a two-bedroom condominium advertised in Scottsdale, Arizona, and I'm interested in learning more about it.
+
+Is the property still available? I would also like to know whether pets are allowed and how much the monthly HOA fee is.
+
+I'm hoping to arrange a viewing sometime next week.
+
+Thank you,
+Amelia Parker`,
+
+    reply: `Hi Amelia,
+
+Thank you for your interest in the condominium in Scottsdale.
+
+I'd be happy to help coordinate your inquiry.
+
+Could you please send me the listing link or property address so I can make sure we are referring to the correct unit?
+
+I'll forward your questions regarding current availability, pet restrictions, and monthly HOA fees to our agent for verification.
+
+In the meantime, please let me know which days and times would work best for a potential viewing next week.
+
+Once the property details and showing availability have been confirmed, we'll provide you with an update.` + signature
+},
+
+{
+    id: 6,
+    name: "Lucas Morgan",
+    email: "lucas.morgan@example.com",
+    subject: "Photos and property information for our listing",
+    date: "2026-11-21",
+    time: "10:10 AM",
+    label: "Seller",
+    unread: false,
+    starred: false,
+    important: false,
+    approval: false,
+    status: "sent",
+
+    incoming: `Hi Dainty,
+
+We've finished preparing the house for photography and have gathered the information requested for our listing.
+
+Would you prefer that I send everything in one email or upload the files separately?
+
+Please let me know what works best.
+
+Thanks,
+Lucas`,
+
+    reply: `Hi Lucas,
+
+Thank you for preparing everything.
+
+To keep the property information and photographs organized, please upload the files using the designated shared folder provided by our team.
+
+If possible, separate the photographs from the property information documents and use clear filenames.
+
+Once the files are available, I'll organize them for the listing agent's review and flag any missing information that may need clarification.
+
+Please avoid uploading sensitive personal documents to the general listing folder.
+
+Thank you for your help. We appreciate your preparation.` + signature
+},
+
+{
+    id: 7,
+    name: "Grace Sullivan",
+    email: "grace.sullivan@example.com",
+    subject: "Update on my home search timeline",
+    date: "2026-11-20",
+    time: "4:15 PM",
+    label: "Follow-ups",
+    unread: false,
+    starred: false,
+    important: false,
+    approval: false,
+    status: "sent",
+
+    incoming: `Hi,
+
+I wanted to let you know that I've decided to postpone my home purchase until next spring.
+
+I'm still interested in properties in Portland, but I won't be ready to schedule any viewings for a few months.
+
+I'd appreciate occasional updates in the meantime.
+
+Thank you for understanding.
+
+Grace`,
+
+    reply: `Hi Grace,
 
 Thank you for keeping us updated.
 
-I've made a note of your revised relocation timeline and your continued interest in a four-bedroom home in Denver within your approximate budget of $650,000.
+I've noted your revised purchase timeline and your continued interest in properties in Portland.
 
-We completely understand that your plans are still developing. There is no need to schedule viewings until you feel ready to move forward.
+We understand that buying a home is an important decision, and we're happy to work around your preferred schedule.
 
-With your permission, we'll keep your preferences on record and share occasional relevant updates after our agent's review.
+With your permission, we'll keep in touch occasionally with relevant updates reviewed by our agent.
 
-If your timeline, budget, or property requirements change in the meantime, please feel free to let us know.
+If your plans or property preferences change, please feel free to reach out at any time.
 
-We appreciate the opportunity to stay in touch and look forward to assisting you when the time is right.` + signature,
+We look forward to assisting you when you're ready to resume your search.` + signature
+},
 
-    action: "Prepare a permission-based check-in for December 10.",
+{
+    id: 8,
+    name: "Henry Collins",
+    email: "henry.collins@example.com",
+    subject: "Question regarding my purchase offer",
+    date: "2026-11-19",
+    time: "1:20 PM",
+    label: "Buyer",
+    unread: false,
+    starred: true,
+    important: true,
+    approval: true,
+    status: "draft",
 
-    approval: "Agent review required before sending market updates or specific property recommendations.",
+    incoming: `Hello,
 
-    notes: "Lead is in the nurturing stage. Client has expressed interest in occasional updates. Follow-up date is an internal reminder, not an automated email send.",
+I've been thinking about the property we viewed last week and would like to move forward with an offer.
 
-    owner: "Administrative Support"
+The asking price is $395,000, but I'm considering offering $380,000.
+
+Do you think that would be a competitive offer?
+
+I'd appreciate your advice before making a decision.
+
+Henry Collins`,
+
+    reply: `Hi Henry,
+
+Thank you for sharing your interest in moving forward with the property.
+
+I've noted your proposed offer amount of $380,000 and will forward your inquiry to the assigned agent.
+
+Your agent can review the relevant market information, property circumstances, and available offer terms to help you make an informed decision.
+
+I'll also coordinate a suitable time for you to discuss the next steps directly with the agent.
+
+Please let me know your availability for a call.
+
+Thank you, and we look forward to assisting you.` + signature
 }
 
 ];
 
-/* =====================================
-   APPLICATION STATE
-===================================== */
+/* MAILBOX STATE */
 
-const STORAGE = "dainty-gmail-portfolio-v2";
+const STORAGE = "dainty-independent-mailbox-v1";
 
-let emails;
+let mails;
 
 try {
-    const saved = localStorage.getItem(STORAGE);
-
-    emails = saved
-        ? JSON.parse(saved)
-        : structuredClone(originalEmails);
-
-    if (!Array.isArray(emails)) {
-        throw new Error("Invalid data");
-    }
+    mails = JSON.parse(localStorage.getItem(STORAGE))
+        || structuredClone(original);
+    if (!Array.isArray(mails)) throw new Error();
 } catch {
-    emails = structuredClone(originalEmails);
+    mails = structuredClone(original);
 }
 
 let folder = "inbox";
-let currentId = null;
+let current = null;
 let page = 0;
 let selected = new Set();
 
@@ -1531,31 +1152,25 @@ const PAGE_SIZE = 20;
 const folders = [
     ["inbox", "inbox", "Inbox"],
     ["starred", "star", "Starred"],
-    ["followup", "schedule", "Follow-ups"],
     ["important", "label_important", "Important"],
+    ["sent", "send", "Sent"],
     ["drafts", "description", "Drafts"],
-    ["approval", "flag", "Awaiting Approval"],
-    ["reviewed", "task_alt", "Reviewed"],
     ["all", "mail", "All Mail"],
     ["trash", "delete", "Trash"]
 ];
 
 const labels = [
-    ["Buyer", "label", "Buyer Inquiries", "#a65f7d"],
-    ["Seller", "label", "Seller Inquiries", "#8872a3"],
-    ["showing", "label", "Property Showings", "#c18c51"],
-    ["listing", "label", "Listing Consultations", "#718d80"],
-    ["nurturing", "label", "Lead Nurturing", "#7995ad"],
-    ["high", "label", "High Priority", "#b75d73"]
+    ["Buyer", "Buyer Inquiries", "#a65f7d"],
+    ["Seller", "Seller Inquiries", "#9176a5"],
+    ["Showings", "Property Showings", "#b78c55"],
+    ["Documents", "Documents", "#78938a"],
+    ["Follow-ups", "Follow-ups", "#7894ae"],
+    ["approval", "Awaiting Approval", "#bc9361"]
 ];
 
-const statuses = [
-    "Draft Prepared",
-    "Awaiting Approval",
-    "Ready for Review",
-    "Scheduled Follow-up",
-    "Reviewed"
-];
+function icon(name) {
+    return `<span class="material-symbols-outlined">${name}</span>`;
+}
 
 function esc(value) {
     return String(value ?? "")
@@ -1566,21 +1181,14 @@ function esc(value) {
         .replace(/'/g, "&#39;");
 }
 
-function persist() {
+function save() {
     try {
-        localStorage.setItem(
-            STORAGE,
-            JSON.stringify(emails)
-        );
-        return true;
-    } catch {
-        return false;
-    }
+        localStorage.setItem(STORAGE, JSON.stringify(mails));
+    } catch {}
 }
 
 function notify(message) {
     const toast = document.getElementById("toast");
-
     toast.textContent = message;
     toast.classList.remove("hidden");
 
@@ -1588,929 +1196,581 @@ function notify(message) {
 
     notify.timer = setTimeout(() => {
         toast.classList.add("hidden");
-    }, 3000);
+    }, 2800);
 }
 
-function dateText(value, full = false) {
-    if (!value) return "Not scheduled";
-
-    return new Date(value + "T12:00:00")
+function formatDate(date) {
+    return new Date(date + "T12:00:00")
         .toLocaleDateString("en-US", {
             month: "short",
-            day: "numeric",
-            ...(full ? {year: "numeric"} : {})
+            day: "numeric"
         });
 }
 
-function initials(name) {
-    return name.split(" ")
-        .filter(Boolean)
-        .slice(0, 2)
-        .map(word => word[0])
-        .join("")
-        .toUpperCase();
-}
+function match(mail, key) {
 
-function statusClass(status) {
-    if (status === "Awaiting Approval") return "approval";
-    if (status === "Reviewed") return "reviewed";
-    return "";
-}
-
-function toggleSidebar() {
-    document.getElementById("sidebar")
-        .classList.toggle("collapsed");
-}
-
-function toggleProfile() {
-    document.getElementById("profileMenu")
-        .classList.toggle("hidden");
-}
-
-/* =====================================
-   MAILBOX FOLDERS
-===================================== */
-
-function matchesFolder(email, key) {
-
-    if (key === "trash") return email.trashed;
-
-    if (email.trashed) return false;
+    if (key === "trash") return Boolean(mail.trashed);
+    if (mail.trashed) return false;
 
     switch(key) {
-
         case "inbox":
-            return !email.archived && Boolean(email.incoming);
-
+            return !mail.archived && Boolean(mail.incoming);
         case "starred":
-            return email.starred;
-
+            return mail.starred;
         case "important":
-        case "high":
-            return email.priority === "High";
-
+            return mail.important;
+        case "sent":
+            return mail.status === "sent";
         case "drafts":
-            return Boolean(email.draft) &&
-                email.status !== "Reviewed";
-
+            return mail.status === "draft";
         case "approval":
-            return email.status === "Awaiting Approval";
-
-        case "followup":
-            return Boolean(email.followup) &&
-                email.status !== "Reviewed";
-
-        case "reviewed":
-            return email.status === "Reviewed";
-
-        case "Buyer":
-        case "Seller":
-            return email.type === key;
-
-        case "showing":
-            return email.category === "Property Showing";
-
-        case "listing":
-            return email.category === "Listing Consultation";
-
-        case "nurturing":
-            return email.category === "Lead Nurturing";
-
+            return mail.approval;
         case "all":
             return true;
-
         default:
-            return true;
+            return mail.label === key;
     }
 }
 
-function renderNavigation() {
+function filtered() {
 
-    document.getElementById("folderNavigation").innerHTML =
-        folders.map(([key, icon, name]) => {
+    const query = document.getElementById("search")
+        .value.trim().toLowerCase();
 
-            const count = emails.filter(email =>
-                matchesFolder(email, key) &&
-                (key !== "inbox" || email.unread)
+    return mails.filter(mail => {
+
+        if (query) {
+            return !mail.trashed &&
+                Object.values(mail).join(" ")
+                    .toLowerCase().includes(query);
+        }
+
+        return match(mail, folder);
+
+    }).sort((a,b) => b.date.localeCompare(a.date) || b.id - a.id);
+}
+
+function navigation() {
+
+    document.getElementById("folders").innerHTML =
+        folders.map(([key, symbol, title]) => {
+
+            const count = mails.filter(mail =>
+                match(mail, key) &&
+                (key !== "inbox" || mail.unread)
             ).length;
 
             return `
-                <button class="nav-item ${folder === key ? "active" : ""}"
-                    onclick="setFolder('${key}')">
+            <button class="nav ${folder === key ? "active" : ""}"
+                onclick="setFolder('${key}')">
+                ${icon(symbol)}
+                <span class="nav-text">${title}</span>
+                <span class="count">
+                    ${["inbox","drafts"].includes(key) && count ? count : ""}
+                </span>
+            </button>`;
 
-                    <span class="material-symbols-outlined">${icon}</span>
-
-                    <span class="nav-text">${name}</span>
-
-                    <span class="count">${count || ""}</span>
-
-                </button>`;
         }).join("");
 
-    document.getElementById("labelNavigation").innerHTML =
-        labels.map(([key, icon, name, color]) => `
-
-            <button class="nav-item ${folder === key ? "active" : ""}"
+    document.getElementById("labels").innerHTML =
+        labels.map(([key, title, color]) => `
+            <button class="nav ${folder === key ? "active" : ""}"
                 onclick="setFolder('${key}')">
-
-                <span class="material-symbols-outlined label-icon"
-                    style="color:${color}">${icon}</span>
-
-                <span class="nav-text">${name}</span>
-
+                <span style="color:${color}">${icon("label")}</span>
+                <span class="nav-text">${title}</span>
             </button>
-
         `).join("");
 
-    document.querySelectorAll(".tab").forEach(tab => {
+    const entry = folders.find(f => f[0] === folder);
 
-        tab.classList.toggle(
-            "active",
-            tab.dataset.tab === folder
-        );
-
-    });
+    document.getElementById("folderTitle").textContent =
+        document.getElementById("search").value.trim()
+            ? "Search results"
+            : folder === "inbox"
+                ? "Primary"
+                : entry
+                    ? entry[2]
+                    : labels.find(l => l[0] === folder)?.[1] || folder;
 }
 
 function setFolder(key) {
     folder = key;
     page = 0;
     selected.clear();
-
     document.getElementById("search").value = "";
-
-    closeEmail();
-}
-
-function getFilteredEmails() {
-
-    const query = document.getElementById("search")
-        .value.trim().toLowerCase();
-
-    return emails.filter(email => {
-
-        const searchMatch = Object.values(email)
-            .join(" ")
-            .toLowerCase()
-            .includes(query);
-
-        const folderMatch = query
-            ? !email.trashed
-            : matchesFolder(email, folder);
-
-        return searchMatch && folderMatch;
-
-    }).sort((a, b) => b.date.localeCompare(a.date));
+    closeMail();
 }
 
 function searchMail() {
     page = 0;
     selected.clear();
-    closeEmail();
+    closeMail();
 }
 
 function clearSearch() {
     document.getElementById("search").value = "";
-    page = 0;
-    closeEmail();
+    searchMail();
 }
 
-/* =====================================
-   INBOX RENDERING
-===================================== */
+function render() {
 
-function renderInbox() {
+    navigation();
 
-    renderNavigation();
+    const results = filtered();
 
-    const filtered = getFilteredEmails();
-
-    const maxPage = Math.max(
-        0,
-        Math.ceil(filtered.length / PAGE_SIZE) - 1
-    );
-
-    page = Math.min(page, maxPage);
+    page = Math.min(page,
+        Math.max(0, Math.ceil(results.length / PAGE_SIZE) - 1));
 
     const start = page * PAGE_SIZE;
-
-    const visible = filtered.slice(
-        start,
-        start + PAGE_SIZE
-    );
+    const visible = results.slice(start, start + PAGE_SIZE);
 
     document.getElementById("recordCount").textContent =
-        filtered.length
-        ? `${start + 1}–${start + visible.length} of ${filtered.length}`
-        : "0 messages";
+        results.length
+            ? `${start + 1}–${start + visible.length} of ${results.length}`
+            : "0 messages";
 
     document.getElementById("selectAll").checked =
         visible.length > 0 &&
-        visible.every(email => selected.has(email.id));
+        visible.every(mail => selected.has(mail.id));
 
     document.getElementById("mailList").innerHTML =
-        visible.length ? visible.map(email => `
+        visible.length ? visible.map(mail => {
 
+            const outgoing = ["sent","drafts"].includes(folder)
+                || !mail.incoming;
+
+            const preview = outgoing ? mail.reply : mail.incoming;
+
+            return `
             <div class="mail-row
-                ${email.unread ? "unread" : ""}
-                ${selected.has(email.id) ? "selected" : ""}"
-
-                data-id="${esc(email.id)}"
-                onclick="openEmail(this.dataset.id)">
+                ${mail.unread && !outgoing ? "unread" : ""}
+                ${selected.has(mail.id) ? "selected" : ""}"
+                onclick="openMail(${mail.id})">
 
                 <input type="checkbox"
-                    aria-label="Select ${esc(email.name)}"
-                    data-id="${esc(email.id)}"
-                    ${selected.has(email.id) ? "checked" : ""}
+                    aria-label="Select message"
+                    ${selected.has(mail.id) ? "checked" : ""}
                     onclick="event.stopPropagation()"
-                    onchange="toggleSelected(this.dataset.id,this.checked)">
+                    onchange="toggleSelected(${mail.id},this.checked)">
 
-                <button class="star ${email.starred ? "on" : ""}"
-                    title="Toggle star"
-                    data-id="${esc(email.id)}"
-                    onclick="event.stopPropagation();toggleStar(this.dataset.id)">
-
-                    ${email.starred ? "★" : "☆"}
-
+                <button class="star ${mail.starred ? "on" : ""}"
+                    title="Star"
+                    onclick="event.stopPropagation();toggleStar(${mail.id})">
+                    ${mail.starred ? "★" : "☆"}
                 </button>
 
-                <button class="important ${email.priority === "High" ? "on" : ""}"
-                    title="Toggle importance"
-                    data-id="${esc(email.id)}"
-                    onclick="event.stopPropagation();toggleImportant(this.dataset.id)">
-
-                    <span class="material-symbols-outlined">label_important</span>
-
+                <button class="important ${mail.important ? "on" : ""}"
+                    title="Mark important"
+                    onclick="event.stopPropagation();toggleImportant(${mail.id})">
+                    ${icon("label_important")}
                 </button>
 
                 <div class="sender">
-                    ${esc(email.incoming ? email.name : "Draft")}
+                    ${outgoing
+                        ? folder === "drafts" || !mail.incoming
+                            ? "Draft"
+                            : "To: " + esc(mail.name)
+                        : esc(mail.name)}
                 </div>
 
-                <div class="row-label">
-                    <span class="tag">${esc(email.type)}</span>
-                </div>
-
-                <div class="row-label">
-                    <span class="tag ${statusClass(email.status)}">
-                        ${esc(email.status)}
+                ${mail.label ? `
+                    <span class="label row-label">
+                        ${esc(mail.label)}
                     </span>
-                </div>
+                ` : ""}
 
-                <div class="mail-summary">
+                ${mail.approval ? `
+                    <span class="label approval row-label">
+                        Awaiting Approval
+                    </span>
+                ` : ""}
 
-                    ${esc(email.subject)}
-
+                <div class="summary">
+                    ${esc(mail.subject)}
                     <span class="snippet">
-                        — ${esc((email.incoming || email.draft).replace(/\n/g, " "))}
+                        — ${esc(preview.replace(/\n/g," "))}
                     </span>
-
                 </div>
 
-                <div class="mail-date">
-                    ${dateText(email.date)}
-                </div>
+                <span class="date">${formatDate(mail.date)}</span>
 
-            </div>
+            </div>`;
 
-        `).join("") :
+        }).join("") :
 
         `<div class="empty">
-            <span class="material-symbols-outlined"
-                style="font-size:45px;color:#cba5ba">mail</span>
+            ${icon("mail")}
             <p>No messages in this view.</p>
         </div>`;
 }
 
 function changePage(direction) {
-
-    const maxPage = Math.max(
-        0,
-        Math.ceil(getFilteredEmails().length / PAGE_SIZE) - 1
-    );
-
-    page = Math.max(
-        0,
-        Math.min(maxPage, page + direction)
-    );
-
-    renderInbox();
+    page = Math.max(0, page + direction);
+    render();
 }
 
 function toggleSelected(id, checked) {
-
-    if (checked) {
-        selected.add(id);
-    } else {
-        selected.delete(id);
-    }
-
-    renderInbox();
+    checked ? selected.add(id) : selected.delete(id);
+    render();
 }
 
-function selectAllMessages(checked) {
-
-    getFilteredEmails()
-        .slice(page * PAGE_SIZE, (page + 1) * PAGE_SIZE)
-        .forEach(email => {
-
-            if (checked) {
-                selected.add(email.id);
-            } else {
-                selected.delete(email.id);
-            }
-
+function selectAll(checked) {
+    filtered().slice(page * PAGE_SIZE, (page + 1) * PAGE_SIZE)
+        .forEach(mail => {
+            checked ? selected.add(mail.id) : selected.delete(mail.id);
         });
-
-    renderInbox();
+    render();
 }
 
 function toggleStar(id) {
-
-    const email = emails.find(e => e.id === id);
-
-    if (!email) return;
-
-    email.starred = !email.starred;
-
-    persist();
-    renderInbox();
+    const mail = mails.find(m => m.id === id);
+    mail.starred = !mail.starred;
+    save();
+    render();
 }
 
 function toggleImportant(id) {
-
-    const email = emails.find(e => e.id === id);
-
-    if (!email) return;
-
-    email.priority =
-        email.priority === "High" ? "Medium" : "High";
-
-    persist();
-    renderInbox();
+    const mail = mails.find(m => m.id === id);
+    mail.important = !mail.important;
+    save();
+    render();
 }
 
-function applyAction(email, action) {
-
-    if (action === "archive") {
-        email.archived = true;
-    }
-
-    if (action === "trash") {
-        email.trashed = true;
-    }
-
-    if (action === "read") {
-        email.unread = false;
-    }
-
-    if (action === "unread") {
-        email.unread = true;
-    }
+function apply(mail, action) {
+    if (action === "archive") mail.archived = true;
+    if (action === "trash") mail.trashed = true;
+    if (action === "unread") mail.unread = true;
 
     if (action === "restore") {
-        email.archived = false;
-        email.trashed = false;
+        mail.archived = false;
+        mail.trashed = false;
     }
 }
 
-function bulkAction(action) {
+function bulk(action) {
 
     if (!selected.size) {
-        notify("Select at least one message.");
+        notify("Select a message first.");
         return;
     }
 
-    emails.forEach(email => {
-
-        if (selected.has(email.id)) {
-            applyAction(email, action);
-        }
-
+    mails.forEach(mail => {
+        if (selected.has(mail.id)) apply(mail, action);
     });
 
     selected.clear();
-    persist();
-    renderInbox();
-
-    notify("Selected messages updated.");
+    save();
+    render();
+    notify("Messages updated.");
 }
 
-function singleAction(action) {
+function single(action) {
+    const mail = mails.find(m => m.id === current);
+    if (!mail) return;
 
-    const email = emails.find(e => e.id === currentId);
-
-    if (!email) return;
-
-    applyAction(email, action);
-
-    persist();
-    closeEmail();
-
+    apply(mail, action);
+    save();
+    closeMail();
     notify("Message updated.");
 }
 
-/* =====================================
-   EMAIL THREAD
-===================================== */
+/* OPEN EMAIL CONVERSATIONS */
 
-function openEmail(id) {
+function openMail(id) {
 
-    const email = emails.find(e => e.id === id);
+    const mail = mails.find(m => m.id === id);
+    if (!mail) return;
 
-    if (!email) return;
+    current = id;
+    mail.unread = false;
+    save();
+    navigation();
 
-    currentId = id;
-    email.unread = false;
+    document.getElementById("listToolbar").classList.add("hidden");
+    document.getElementById("tabs").classList.add("hidden");
+    document.getElementById("mailList").classList.add("hidden");
 
-    persist();
-    renderNavigation();
+    document.getElementById("readerToolbar").classList.remove("hidden");
+    document.getElementById("reader").classList.remove("hidden");
 
-    document.getElementById("inboxToolbar")
-        .classList.add("hidden");
+    const initials = mail.name.split(" ")
+        .slice(0,2).map(word => word[0]).join("");
 
-    document.getElementById("inboxTabs")
-        .classList.add("hidden");
+    document.getElementById("thread").innerHTML = `
 
-    document.getElementById("mailList")
-        .classList.add("hidden");
-
-    document.getElementById("readerToolbar")
-        .classList.remove("hidden");
-
-    document.getElementById("reader")
-        .classList.remove("hidden");
-
-    document.getElementById("readerContent").innerHTML = `
-
-        <h1 class="subject-title">
-            ${esc(email.subject)}
-        </h1>
+        <h1 class="subject">${esc(mail.subject)}</h1>
 
         <div class="thread-labels">
 
-            <span class="tag">${esc(email.type)}</span>
+            ${mail.label
+                ? `<span class="label">${esc(mail.label)}</span>`
+                : ""}
 
-            <span class="tag">${esc(email.category)}</span>
-
-            <span class="tag ${statusClass(email.status)}">
-                ${esc(email.status)}
-            </span>
-
-            <span class="tag ${email.priority === "High" ? "high" : ""}">
-                ${esc(email.priority)} Priority
-            </span>
+            ${mail.approval
+                ? `<span class="label approval">Awaiting Approval</span>`
+                : ""}
 
         </div>
 
-        ${email.incoming ? `
+        ${mail.incoming ? `
 
             <div class="message-header">
 
-                <div class="sender-avatar">
-                    ${esc(initials(email.name))}
-                </div>
+                <div class="sender-avatar">${esc(initials)}</div>
 
-                <div class="message-meta">
-
-                    <strong>${esc(email.name)}</strong>
-
-                    <span class="email-address">
-                        &lt;${esc(email.email)}&gt;
+                <div class="meta">
+                    <strong>${esc(mail.name)}</strong>
+                    <span class="address">
+                        &lt;${esc(mail.email)}&gt;
                     </span>
-
-                    <div class="email-address">
-                        to ${ACCOUNT}
-                    </div>
-
+                    <div class="address">to me</div>
                 </div>
 
                 <div class="message-time">
-
-                    ${dateText(email.date, true)}
-                    · ${esc(email.time)}
-
+                    ${formatDate(mail.date)}, ${esc(mail.time)}
                 </div>
+
+                <button class="star ${mail.starred ? "on" : ""}"
+                    onclick="toggleStar(${mail.id});openMail(${mail.id})">
+                    ${mail.starred ? "★" : "☆"}
+                </button>
 
             </div>
 
-            <div class="message-body">${esc(email.incoming)}</div>
+            <div class="message">${esc(mail.incoming)}</div>
 
-            <hr class="thread-divider">
+            <hr>
 
         ` : ""}
 
         <div class="message-header">
 
-            <img class="profile-picture"
-                src="${PROFILE}"
-                alt="${ACCOUNT_NAME}">
+            <img class="avatar" src="${PHOTO}" alt="${NAME}">
 
-            <div class="message-meta">
+            <div class="meta">
 
-                <strong>${ACCOUNT_NAME}</strong>
+                <strong>${NAME}</strong>
 
-                <span class="email-address">
+                <span class="address">
                     &lt;${ACCOUNT}&gt;
                 </span>
 
-                <div class="email-address">
-                    to ${esc(email.name)}
-                    &lt;${esc(email.email)}&gt;
+                <div class="address">
+                    to ${esc(mail.name)}
+                    &lt;${esc(mail.email)}&gt;
                 </div>
 
             </div>
 
-            <span class="tag">Draft · Not sent</span>
+            <span class="message-time">
+                ${mail.status === "draft" ? "Draft" : "Sample reply"}
+            </span>
 
         </div>
 
-        <div class="draft-box">
+        ${mail.status === "sent" ? `
 
-            <div class="draft-heading">
+            <div class="message">${esc(mail.reply)}</div>
 
-                <span>
-                    ${email.incoming ? "Re: " : ""}
-                    ${esc(email.subject)}
-                </span>
+            <div class="reply-actions">
 
-                <span>Response draft</span>
-
-            </div>
-
-            <textarea id="responseDraft"
-                aria-label="Response draft">${esc(email.draft)}</textarea>
-
-            <div class="draft-actions">
-
-                <button class="primary-button"
-                    onclick="saveResponse()">
-                    Save Draft
+                <button class="secondary"
+                    onclick="editReply()">
+                    ${icon("reply")} Reply
                 </button>
 
-                <button class="secondary-button"
-                    onclick="flagApproval()">
-
-                    <span class="material-symbols-outlined">flag</span>
-                    Request Approval
-
-                </button>
-
-                <button class="icon-button"
-                    title="Copy response"
-                    onclick="copyResponse()">
-
-                    <span class="material-symbols-outlined">content_copy</span>
-
+                <button class="secondary"
+                    onclick="copyReply()">
+                    ${icon("content_copy")} Copy
                 </button>
 
             </div>
 
-        </div>
+        ` : `
 
-        <div class="internal-record">
+            <div class="reply-box">
 
-            <h3>Internal Communication Record</h3>
+                <textarea id="replyText">${esc(mail.reply)}</textarea>
 
-            <div class="record-grid">
+                <div class="reply-actions">
 
-                <div class="record-field">
-                    <label>Communication ID</label>
-                    <p>${esc(email.id)}</p>
-                </div>
+                    <button class="primary" onclick="saveReply()">
+                        Save Draft
+                    </button>
 
-                <div class="record-field">
-                    <label>CRM Lead ID</label>
-                    <p>${esc(email.leadId)}</p>
-                </div>
+                    <button class="secondary" onclick="flagApproval()">
+                        ${icon("flag")}
+                        ${mail.approval ? "Remove Flag" : "Flag for Approval"}
+                    </button>
 
-                <div class="record-field">
-                    <label>Client Type</label>
-                    <p>${esc(email.type)}</p>
-                </div>
-
-                <div class="record-field">
-                    <label>Preferred Market</label>
-                    <p>${esc(email.market)}</p>
-                </div>
-
-                <div class="record-field">
-                    <label>Priority</label>
-
-                    <select id="recordPriority">
-
-                        ${["High","Medium","Low"].map(value => `
-                            <option ${value === email.priority ? "selected" : ""}>
-                                ${value}
-                            </option>
-                        `).join("")}
-
-                    </select>
-
-                </div>
-
-                <div class="record-field">
-                    <label>Communication Status</label>
-
-                    <select id="recordStatus">
-
-                        ${statuses.map(value => `
-                            <option ${value === email.status ? "selected" : ""}>
-                                ${value}
-                            </option>
-                        `).join("")}
-
-                    </select>
-
-                </div>
-
-                <div class="record-field">
-
-                    <label>Follow-up Date</label>
-
-                    <input id="followupDate"
-                        type="date"
-                        value="${esc(email.followup)}">
-
-                </div>
-
-                <div class="record-field">
-
-                    <label>Responsible Party</label>
-
-                    <p>${esc(email.owner)}</p>
-
-                </div>
-
-                <div class="record-field full">
-
-                    <label>Next Action</label>
-
-                    <p>${esc(email.action)}</p>
-
-                </div>
-
-                <div class="record-field full">
-
-                    <label>Agent Approval Requirements</label>
-
-                    <p>${esc(email.approval)}</p>
-
-                </div>
-
-                <div class="record-field full">
-
-                    <label>Administrative Notes</label>
-
-                    <p>${esc(email.notes)}</p>
-
-                </div>
-
-                <div class="record-field full">
-
-                    <button class="secondary-button"
-                        onclick="saveResponse()">
-
-                        Update Communication Record
-
+                    <button class="icon" title="Copy"
+                        onclick="copyReply()">
+                        ${icon("content_copy")}
                     </button>
 
                 </div>
 
             </div>
 
-        </div>
+        `}
 
     `;
 
     document.getElementById("reader").scrollTop = 0;
 }
 
-function closeEmail() {
+function closeMail() {
+    current = null;
 
-    currentId = null;
+    document.getElementById("reader").classList.add("hidden");
+    document.getElementById("readerToolbar").classList.add("hidden");
 
-    document.getElementById("reader")
-        .classList.add("hidden");
+    document.getElementById("listToolbar").classList.remove("hidden");
+    document.getElementById("tabs").classList.remove("hidden");
+    document.getElementById("mailList").classList.remove("hidden");
 
-    document.getElementById("readerToolbar")
-        .classList.add("hidden");
-
-    document.getElementById("inboxToolbar")
-        .classList.remove("hidden");
-
-    document.getElementById("inboxTabs")
-        .classList.remove("hidden");
-
-    document.getElementById("mailList")
-        .classList.remove("hidden");
-
-    renderInbox();
+    render();
 }
 
-function navigateEmail(direction) {
+function navigate(direction) {
+    const list = filtered();
+    const index = list.findIndex(mail => mail.id === current);
+    const next = list[index + direction];
 
-    const filtered = getFilteredEmails();
+    if (next) openMail(next.id);
+}
 
-    const index = filtered.findIndex(
-        email => email.id === currentId
+function editReply() {
+    const mail = mails.find(m => m.id === current);
+    if (!mail) return;
+
+    document.getElementById("thread").insertAdjacentHTML(
+        "beforeend",
+        `<div class="reply-box" id="newReply">
+            <textarea id="replyText"
+                placeholder="Write a reply..."></textarea>
+            <div class="reply-actions">
+                <button class="primary"
+                    onclick="saveFollowup()">Save Draft</button>
+                <button class="icon" title="Discard"
+                    onclick="document.getElementById('newReply').remove()">
+                    ${icon("delete")}
+                </button>
+            </div>
+        </div>`
     );
 
-    const next = filtered[index + direction];
-
-    if (next) {
-        openEmail(next.id);
-    } else {
-        notify("No additional messages.");
-    }
+    document.getElementById("replyText").focus();
 }
 
-function saveResponse() {
+function saveFollowup() {
+    const mail = mails.find(m => m.id === current);
+    const text = document.getElementById("replyText").value.trim();
 
-    const email = emails.find(e => e.id === currentId);
+    if (!text) return notify("Write your reply first.");
 
-    if (!email) return;
+    mails.push({
+        id: Date.now(),
+        name: mail.name,
+        email: mail.email,
+        subject: "Re: " + mail.subject,
+        date: new Date().toISOString().slice(0,10),
+        time: "",
+        label: mail.label,
+        incoming: "",
+        reply: text,
+        status: "draft",
+        unread: false,
+        starred: false,
+        important: false,
+        approval: false
+    });
 
-    email.draft =
-        document.getElementById("responseDraft").value;
+    save();
+    setFolder("drafts");
+    notify("Reply saved to Drafts.");
+}
 
-    email.priority =
-        document.getElementById("recordPriority").value;
+function saveReply() {
+    const mail = mails.find(m => m.id === current);
+    if (!mail) return;
 
-    email.status =
-        document.getElementById("recordStatus").value;
-
-    email.followup =
-        document.getElementById("followupDate").value;
-
-    const saved = persist();
-
-    openEmail(email.id);
-
-    notify(saved
-        ? "Draft and communication record saved."
-        : "Changes saved for this session only.");
+    mail.reply = document.getElementById("replyText").value;
+    mail.status = "draft";
+    save();
+    notify("Draft saved.");
 }
 
 function flagApproval() {
+    const mail = mails.find(m => m.id === current);
 
-    document.getElementById("recordStatus").value =
-        "Awaiting Approval";
+    mail.reply = document.getElementById("replyText").value;
+    mail.approval = !mail.approval;
 
-    saveResponse();
-
-    notify("Draft flagged for agent approval in this demo.");
+    save();
+    openMail(mail.id);
+    notify(mail.approval ? "Flagged for approval." : "Flag removed.");
 }
 
-async function copyResponse() {
-
-    const draft = document.getElementById("responseDraft");
+async function copyReply() {
+    const mail = mails.find(m => m.id === current);
+    const text = document.getElementById("replyText")?.value || mail.reply;
 
     try {
-
-        await navigator.clipboard.writeText(draft.value);
-
-        notify("Response copied.");
-
+        await navigator.clipboard.writeText(text);
+        notify("Email copied.");
     } catch {
-
-        draft.focus();
-        draft.select();
-
-        notify("Press Ctrl+C to copy the selected response.");
-
+        notify("Select the email text and press Ctrl+C.");
     }
 }
 
-/* =====================================
-   COMPOSE WINDOW
-===================================== */
+/* COMPOSE */
 
 function openCompose() {
-
-    document.getElementById("composeWindow")
-        .classList.remove("hidden");
+    document.getElementById("composeWindow").classList.remove("hidden");
 }
 
 function closeCompose() {
-
-    document.getElementById("composeWindow")
-        .classList.add("hidden");
+    document.getElementById("composeWindow").classList.add("hidden");
 }
 
-function discardCompose() {
-
-    document.getElementById("composeForm").reset();
-
-    closeCompose();
-
-    notify("Unsaved draft discarded.");
-}
-
-function saveNewDraft(event) {
+function saveNewMail(event) {
 
     event.preventDefault();
 
-    const data = Object.fromEntries(
-        new FormData(event.target).entries()
-    );
+    const data = Object.fromEntries(new FormData(event.target));
 
-    const now = new Date();
-
-    const date =
-        now.getFullYear() + "-" +
-        String(now.getMonth() + 1).padStart(2,"0") + "-" +
-        String(now.getDate()).padStart(2,"0");
-
-    const highest = emails.reduce((max,email) => {
-
-        return Math.max(
-            max,
-            Number(email.id.replace("EM-","")) || 0
-        );
-
-    },0);
-
-    const email = {
-
-        id: "EM-" + String(highest + 1).padStart(3,"0"),
-
-        leadId: "Not linked",
-
-        name: data.name,
-        email: data.email,
+    mails.push({
+        id: Date.now(),
+        name: data.recipient,
+        email: data.recipient,
         subject: data.subject,
-        type: data.type,
-        draft: data.draft,
-
-        date: date,
+        date: new Date().toISOString().slice(0,10),
         time: "",
-        market: "Not specified",
-        category: "New Response Draft",
-        priority: "Medium",
-        status: "Draft Prepared",
-        followup: "",
+        label: "",
         incoming: "",
+        reply: data.body,
+        status: "draft",
         unread: false,
         starred: false,
-        archived: false,
-        trashed: false,
+        important: false,
+        approval: false
+    });
 
-        action: "Review the draft and confirm recipient information.",
-
-        approval: "Agent review required before external communication.",
-
-        notes: "Created within the portfolio demonstration. No email has been sent.",
-
-        owner: "Administrative Support"
-
-    };
-
-    emails.push(email);
-
-    persist();
-
+    save();
     event.target.reset();
-
     closeCompose();
-
     setFolder("drafts");
-
-    openEmail(email.id);
-
-    notify("New response draft created.");
-}
-
-/* =====================================
-   RESET AND INITIALIZATION
-===================================== */
-
-function resetDemo() {
-
-    if (!confirm(
-        "Restore the original five fictional email conversations?"
-    )) return;
-
-    emails = structuredClone(originalEmails);
-
-    persist();
-
-    selected.clear();
-
-    setFolder("inbox");
-
-    notify("Original mailbox restored.");
+    notify("Draft saved.");
 }
 
 document.addEventListener("click", event => {
 
-    const menu = document.getElementById("profileMenu");
+    const profile = document.getElementById("profile");
 
-    if (
-        !menu.contains(event.target) &&
-        !event.target.closest(".profile-button")
-    ) {
-        menu.classList.add("hidden");
+    if (!profile.contains(event.target) &&
+        !event.target.closest(".account")) {
+        profile.classList.add("hidden");
     }
 
 });
@@ -2518,25 +1778,13 @@ document.addEventListener("click", event => {
 document.addEventListener("keydown", event => {
 
     if (event.key === "Escape") {
-
-        document.getElementById("profileMenu")
-            .classList.add("hidden");
-
-        if (!document.getElementById("composeWindow")
-            .classList.contains("hidden")) {
-
-            closeCompose();
-
-        } else if (currentId) {
-
-            closeEmail();
-
-        }
+        closeCompose();
+        document.getElementById("profile").classList.add("hidden");
     }
 
 });
 
-renderInbox();
+render();
 
 </script>
 
