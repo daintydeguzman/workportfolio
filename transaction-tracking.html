@@ -5,103 +5,636 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Real Estate Transaction Tracking</title>
+
 <style>
-*{box-sizing:border-box}
-body{margin:0;font:14px Arial,sans-serif;color:#46343f;background:#e6c5d6}
-header{background:#93617c;color:white;display:flex;align-items:center;justify-content:space-between;padding:13px 25px}
-.brand{font-size:23px;font-weight:bold}
-.avatar{width:34px;height:34px;border-radius:50%;object-fit:cover}
-.board-header{background:#cda1b8;padding:20px 25px}
-h1{font-size:23px;margin:0}
-.board{display:flex;gap:15px;padding:20px;overflow:auto;min-height:calc(100vh - 125px);align-items:flex-start}
-.column{background:#f5eaf0;border-radius:12px;padding:12px;width:290px;flex-shrink:0}
-.column h3{font-size:14px;margin:5px 8px 15px}
-.task{background:white;border:1px solid #e9dbe3;border-radius:9px;padding:15px;margin-bottom:10px;box-shadow:0 2px 3px #64445612;cursor:pointer}
-.task:hover{border-color:#a65f7d}
-.label{font-size:11px;background:#ead0df;color:#75465e;padding:4px 9px;border-radius:4px;display:inline-block;margin-bottom:10px}
-.task strong{display:block;line-height:1.5}
-.meta{font-size:12px;color:#89727e;line-height:1.8;margin-top:10px}
-dialog{border:0;border-radius:14px;padding:28px;width:650px;max-width:94vw;color:#46343f;background:#fffafb}
-dialog::backdrop{background:#30202b66}
-.close{float:right;border:0;background:transparent;font-size:25px;cursor:pointer}
-h2{font-size:23px;line-height:1.4}
-h4{margin:25px 0 12px}
-p{line-height:1.7}
-.check{padding:12px 0;border-bottom:1px solid #eadce4}
-.done{color:#62816e}
-.pending{color:#92734b}
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font: 14px Arial, sans-serif;
+    color: #46343f;
+    background: #e6c5d6;
+}
+
+header {
+    background: #93617c;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 13px 25px;
+}
+
+.brand {
+    font-size: 23px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.avatar {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.board-header {
+    background: #cda1b8;
+    padding: 20px 25px;
+}
+
+h1 {
+    font-size: 23px;
+    margin: 0;
+}
+
+.board {
+    display: flex;
+    gap: 15px;
+    padding: 20px;
+    overflow-x: auto;
+    min-height: calc(100vh - 125px);
+    align-items: flex-start;
+}
+
+.column {
+    background: #f5eaf0;
+    border-radius: 12px;
+    padding: 12px;
+    width: 290px;
+    flex-shrink: 0;
+}
+
+.column h3 {
+    font-size: 14px;
+    margin: 5px 8px 15px;
+}
+
+.task {
+    display: block;
+    width: 100%;
+    text-align: left;
+    font: inherit;
+    color: inherit;
+    background: white;
+    border: 1px solid #e9dbe3;
+    border-radius: 9px;
+    padding: 15px;
+    margin-bottom: 10px;
+    box-shadow: 0 2px 3px #64445612;
+    cursor: pointer;
+}
+
+.task:hover,
+.task:focus-visible {
+    border-color: #a65f7d;
+    outline: 1px solid #a65f7d;
+}
+
+.label {
+    font-size: 11px;
+    background: #ead0df;
+    color: #75465e;
+    padding: 4px 9px;
+    border-radius: 4px;
+    display: inline-block;
+    margin-bottom: 10px;
+}
+
+.task strong {
+    display: block;
+    line-height: 1.5;
+}
+
+.meta {
+    font-size: 12px;
+    color: #89727e;
+    line-height: 1.8;
+    margin-top: 10px;
+}
+
+dialog {
+    border: 0;
+    border-radius: 14px;
+    padding: 28px;
+    width: 650px;
+    max-width: 94vw;
+    max-height: 90vh;
+    overflow-y: auto;
+    color: #46343f;
+    background: #fffafb;
+    box-shadow: 0 15px 60px #30202b33;
+}
+
+dialog::backdrop {
+    background: #30202b66;
+}
+
+.close {
+    float: right;
+    border: 0;
+    background: transparent;
+    color: #46343f;
+    font-size: 25px;
+    cursor: pointer;
+    padding: 0 5px;
+}
+
+h2 {
+    font-size: 23px;
+    line-height: 1.4;
+    padding-right: 25px;
+}
+
+h4 {
+    margin: 25px 0 12px;
+}
+
+p {
+    line-height: 1.7;
+}
+
+.check {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 0;
+    border-bottom: 1px solid #eadce4;
+}
+
+.done {
+    color: #62816e;
+}
+
+.pending {
+    color: #92734b;
+}
+
+.check-icon {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+}
+
+@media (max-width: 600px) {
+    header {
+        padding: 13px 16px;
+    }
+
+    .board-header {
+        padding: 20px 16px;
+    }
+
+    h1 {
+        font-size: 20px;
+    }
+
+    .board {
+        padding: 15px;
+        gap: 12px;
+    }
+
+    .column {
+        width: 270px;
+    }
+
+    dialog {
+        padding: 20px;
+    }
+
+    h2 {
+        font-size: 20px;
+    }
+}
 </style>
 </head>
+
 <body>
-<header><span class="brand">▥ Trello</span><img class="avatar" src="dainty-profile.jpeg" alt="Profile"></header>
-<div class="board-header"><h1>Real Estate Transaction Tracking</h1></div>
+
+<header>
+
+    <span class="brand">
+
+        <svg width="23" height="23"
+             viewBox="0 0 24 24"
+             aria-hidden="true">
+
+            <rect width="24" height="24"
+                  rx="4" fill="white"/>
+
+            <rect x="4" y="4" width="6"
+                  height="16" rx="1.5"
+                  fill="#93617c"/>
+
+            <rect x="14" y="4" width="6"
+                  height="11" rx="1.5"
+                  fill="#93617c"/>
+
+        </svg>
+
+        Trello
+
+    </span>
+
+    <img class="avatar"
+         src="dainty-profile.jpeg"
+         alt="Profile">
+
+</header>
+
+<div class="board-header">
+
+    <h1>Real Estate Transaction Tracking</h1>
+
+</div>
+
 <div class="board" id="board"></div>
-<dialog id="modal">
-<button class="close" onclick="modal.close()" aria-label="Close">×</button>
-<div id="content"></div>
+
+<dialog id="modal" aria-labelledby="task-title">
+
+    <button class="close"
+            id="closeModal"
+            type="button"
+            aria-label="Close transaction details">
+
+        &times;
+
+    </button>
+
+    <div id="content"></div>
+
 </dialog>
+
 <script>
-const stages=["Under Contract","Due Diligence","Financing & Appraisal","Closing Preparation","Closed"];
-const tasks=[
-{
-id:"TX-001",name:"Rebecca Stone",property:"115 Example Lane, Seattle, WA",price:"$685,000",stage:0,agent:"Martin Brooks",due:"Nov 27, 2026",
-description:"Purchase agreement recorded. Coordinate outstanding administrative requirements according to the agent-approved transaction timeline.",
-checks:[["Executed agreement received",true],["Transaction folder organized",true],["Deposit receipt requested",false],["Inspection appointment coordinated",false]],
-next:"Confirm deposit documentation with the agent."
-},
-{
-id:"TX-002",name:"Andrew Bishop",property:"225 Sample Court, Portland, OR",price:"$540,000",stage:1,agent:"Natalie Ford",due:"Nov 30, 2026",
-description:"Inspection appointment completed. Inspection documentation is awaiting agent review.",
-checks:[["Executed agreement filed",true],["Deposit receipt filed",true],["Inspection completed",true],["Inspection report reviewed by agent",false]],
-next:"Follow up on inspection report receipt and agent instructions."
-},
-{
-id:"TX-003",name:"Catherine Shaw",property:"335 Demo Drive, Sacramento, CA",price:"$610,000",stage:2,agent:"Martin Brooks",due:"Dec 2, 2026",
-description:"Track lender and appraisal updates. Refer financing decisions and contract questions to the appropriate professionals.",
-checks:[["Agreement filed",true],["Inspection documents received",true],["Appraisal appointment scheduled",true],["Appraisal report received",false],["Lender status confirmed",false]],
-next:"Request a status update through the authorized contact."
-},
-{
-id:"TX-004",name:"Patrick Young",property:"445 Example Avenue, Las Vegas, NV",price:"$470,000",stage:3,agent:"Natalie Ford",due:"Dec 4, 2026",
-description:"Coordinate administrative closing preparations and confirm the availability of relevant parties.",
-checks:[["Inspection documents filed",true],["Financing status confirmed by lender",true],["Closing appointment scheduled",true],["Final walkthrough coordinated",false],["Closing documents confirmed",false]],
-next:"Confirm walkthrough availability with the assigned agent."
-},
-{
-id:"TX-005",name:"Elizabeth Moore",property:"555 Sample Road, San Diego, CA",price:"$820,000",stage:4,agent:"Martin Brooks",due:"Nov 20, 2026",
-description:"Closing confirmed by the assigned agent. Completed administrative records organized for retention.",
-checks:[["Executed agreement filed",true],["Inspection documentation filed",true],["Financing documentation confirmed",true],["Closing confirmed",true],["Transaction folder archived",true]],
-next:"No outstanding administrative tasks."
-},
-{
-id:"TX-006",name:"Christopher Lane",property:"665 Demo Street, Boise, ID",price:"$395,000",stage:0,agent:"Natalie Ford",due:"Nov 28, 2026",
-description:"New transaction entered into the tracking board. Supporting documents and key dates are awaiting verification.",
-checks:[["Agreement received",true],["Key dates verified by agent",false],["Deposit documentation received",false],["Inspection scheduled",false]],
-next:"Obtain the agent-approved milestone schedule."
-}
+
+"use strict";
+
+const stages = [
+    "Under Contract",
+    "Due Diligence",
+    "Financing & Appraisal",
+    "Closing Preparation",
+    "Closed"
 ];
-document.getElementById("board").innerHTML=stages.map((stage,i)=>`
-<section class="column"><h3>${stage}</h3>
-${tasks.map((t,j)=>({t,j})).filter(({t})=>t.stage===i).map(({t,j})=>`
-<article class="task" tabindex="0" onclick="openTask(${j})" onkeydown="if(event.key==='Enter')openTask(${j})">
-<span class="label">${t.id}</span>
-<strong>${t.property}</strong>
-<div class="meta">${t.name}<br>${t.price}<br>Due: ${t.due}<br>Checklist: ${t.checks.filter(c=>c[1]).length}/${t.checks.length}</div>
-</article>`).join("")}
-</section>`).join("");
-function openTask(i){
-const t=tasks[i];
-document.getElementById("content").innerHTML=`
-<h2>${t.property}</h2>
-<p style="color:#8b7280">In list: ${stages[t.stage]}</p>
-<span class="label">${t.id}</span>
-<p><strong>Client:</strong> ${t.name}<br><strong>Assigned agent:</strong> ${t.agent}<br><strong>Purchase price:</strong> ${t.price}<br><strong>Administrative deadline:</strong> ${t.due}</p>
-<h4>Description</h4><p>${t.description}</p>
-<h4>Milestone checklist — ${t.checks.filter(c=>c[1]).length}/${t.checks.length}</h4>
-${t.checks.map(([text,done])=>`<div class="check ${done?"done":"pending"}">${done?"✓":"○"} &nbsp; ${text}</div>`).join("")}
-<h4>Next action</h4><p>${t.next}</p>`;
-document.getElementById("modal").showModal();
+
+const tasks = [
+
+    {
+        id: "TX-001",
+        name: "Rebecca Stone",
+        property: "115 Example Lane, Seattle, WA",
+        price: "$685,000",
+        stage: 0,
+        agent: "Martin Brooks",
+        due: "Nov 27, 2026",
+
+        description:
+            "Purchase agreement recorded. Coordinate outstanding administrative requirements according to the agent-approved transaction timeline.",
+
+        checks: [
+            ["Executed agreement received", true],
+            ["Transaction folder organized", true],
+            ["Deposit receipt requested", false],
+            ["Inspection appointment coordinated", false]
+        ],
+
+        next:
+            "Confirm deposit documentation with the agent."
+    },
+
+    {
+        id: "TX-002",
+        name: "Andrew Bishop",
+        property: "225 Sample Court, Portland, OR",
+        price: "$540,000",
+        stage: 1,
+        agent: "Natalie Ford",
+        due: "Nov 30, 2026",
+
+        description:
+            "Inspection appointment completed. Inspection documentation is awaiting agent review.",
+
+        checks: [
+            ["Executed agreement filed", true],
+            ["Deposit receipt filed", true],
+            ["Inspection completed", true],
+            ["Inspection report reviewed by agent", false]
+        ],
+
+        next:
+            "Follow up on inspection report receipt and agent instructions."
+    },
+
+    {
+        id: "TX-003",
+        name: "Catherine Shaw",
+        property: "335 Demo Drive, Sacramento, CA",
+        price: "$610,000",
+        stage: 2,
+        agent: "Martin Brooks",
+        due: "Dec 2, 2026",
+
+        description:
+            "Track lender and appraisal updates. Refer financing decisions and contract questions to the appropriate professionals.",
+
+        checks: [
+            ["Agreement filed", true],
+            ["Inspection documents received", true],
+            ["Appraisal appointment scheduled", true],
+            ["Appraisal report received", false],
+            ["Lender status confirmed", false]
+        ],
+
+        next:
+            "Request a status update through the authorized contact."
+    },
+
+    {
+        id: "TX-004",
+        name: "Patrick Young",
+        property: "445 Example Avenue, Las Vegas, NV",
+        price: "$470,000",
+        stage: 3,
+        agent: "Natalie Ford",
+        due: "Dec 4, 2026",
+
+        description:
+            "Coordinate administrative closing preparations and confirm the availability of relevant parties.",
+
+        checks: [
+            ["Inspection documents filed", true],
+            ["Financing status confirmed by lender", true],
+            ["Closing appointment scheduled", true],
+            ["Final walkthrough coordinated", false],
+            ["Closing documents confirmed", false]
+        ],
+
+        next:
+            "Confirm walkthrough availability with the assigned agent."
+    },
+
+    {
+        id: "TX-005",
+        name: "Elizabeth Moore",
+        property: "555 Sample Road, San Diego, CA",
+        price: "$820,000",
+        stage: 4,
+        agent: "Martin Brooks",
+        due: "Nov 20, 2026",
+
+        description:
+            "Closing confirmed by the assigned agent. Completed administrative records organized for retention.",
+
+        checks: [
+            ["Executed agreement filed", true],
+            ["Inspection documentation filed", true],
+            ["Financing documentation confirmed", true],
+            ["Closing confirmed", true],
+            ["Transaction folder archived", true]
+        ],
+
+        next:
+            "No outstanding administrative tasks."
+    },
+
+    {
+        id: "TX-006",
+        name: "Christopher Lane",
+        property: "665 Demo Street, Boise, ID",
+        price: "$395,000",
+        stage: 0,
+        agent: "Natalie Ford",
+        due: "Nov 28, 2026",
+
+        description:
+            "New transaction entered into the tracking board. Supporting documents and key dates are awaiting verification.",
+
+        checks: [
+            ["Agreement received", true],
+            ["Key dates verified by agent", false],
+            ["Deposit documentation received", false],
+            ["Inspection scheduled", false]
+        ],
+
+        next:
+            "Obtain the agent-approved milestone schedule."
+    }
+
+];
+
+const board = document.getElementById("board");
+const modal = document.getElementById("modal");
+const content = document.getElementById("content");
+const closeModal = document.getElementById("closeModal");
+
+function completedCount(task) {
+    return task.checks.filter(function(check) {
+        return check[1];
+    }).length;
 }
+
+function renderBoard() {
+
+    board.innerHTML = "";
+
+    stages.forEach(function(stage, stageIndex) {
+
+        const column = document.createElement("section");
+        column.className = "column";
+
+        const heading = document.createElement("h3");
+        heading.textContent = stage;
+
+        column.appendChild(heading);
+
+        tasks.forEach(function(task, taskIndex) {
+
+            if (task.stage !== stageIndex) {
+                return;
+            }
+
+            const card = document.createElement("button");
+
+            card.type = "button";
+            card.className = "task";
+
+            card.setAttribute(
+                "aria-label",
+                "View transaction " + task.id + ": " + task.property
+            );
+
+            card.innerHTML = `
+                <span class="label">
+                    ${task.id}
+                </span>
+
+                <strong>
+                    ${task.property}
+                </strong>
+
+                <div class="meta">
+
+                    ${task.name}<br>
+
+                    ${task.price}<br>
+
+                    Due: ${task.due}<br>
+
+                    Checklist:
+                    ${completedCount(task)}/${task.checks.length}
+
+                </div>
+            `;
+
+            card.addEventListener("click", function() {
+                openTask(taskIndex);
+            });
+
+            column.appendChild(card);
+
+        });
+
+        board.appendChild(column);
+
+    });
+
+}
+
+function checklistIcon(done) {
+
+    if (done) {
+
+        return `
+            <svg class="check-icon"
+                 viewBox="0 0 24 24"
+                 fill="none"
+                 stroke="currentColor"
+                 stroke-width="2"
+                 stroke-linecap="round"
+                 stroke-linejoin="round"
+                 role="img"
+                 aria-label="Completed">
+
+                <circle cx="12" cy="12" r="9"/>
+
+                <path d="M8 12l3 3 5-6"/>
+
+            </svg>
+        `;
+
+    }
+
+    return `
+        <svg class="check-icon"
+             viewBox="0 0 24 24"
+             fill="none"
+             stroke="currentColor"
+             stroke-width="2"
+             role="img"
+             aria-label="Pending">
+
+            <circle cx="12" cy="12" r="9"/>
+
+        </svg>
+    `;
+
+}
+
+function openTask(index) {
+
+    const task = tasks[index];
+
+    if (!task) {
+        return;
+    }
+
+    const checklist = task.checks.map(function(check) {
+
+        const text = check[0];
+        const done = check[1];
+
+        return `
+            <div class="check ${done ? "done" : "pending"}">
+
+                ${checklistIcon(done)}
+
+                <span>${text}</span>
+
+            </div>
+        `;
+
+    }).join("");
+
+    content.innerHTML = `
+
+        <h2 id="task-title">
+            ${task.property}
+        </h2>
+
+        <p style="color:#8b7280">
+            In list: ${stages[task.stage]}
+        </p>
+
+        <span class="label">
+            ${task.id}
+        </span>
+
+        <p>
+
+            <strong>Client:</strong>
+            ${task.name}<br>
+
+            <strong>Assigned agent:</strong>
+            ${task.agent}<br>
+
+            <strong>Purchase price:</strong>
+            ${task.price}<br>
+
+            <strong>Administrative deadline:</strong>
+            ${task.due}
+
+        </p>
+
+        <h4>Description</h4>
+
+        <p>${task.description}</p>
+
+        <h4>
+
+            Milestone checklist &mdash;
+            ${completedCount(task)}/${task.checks.length}
+
+        </h4>
+
+        ${checklist}
+
+        <h4>Next action</h4>
+
+        <p>${task.next}</p>
+
+    `;
+
+    if (!modal.open) {
+        modal.showModal();
+    }
+
+    modal.scrollTop = 0;
+
+}
+
+closeModal.addEventListener("click", function() {
+
+    modal.close();
+
+});
+
+renderBoard();
+
 </script>
+
 </body>
 </html>
