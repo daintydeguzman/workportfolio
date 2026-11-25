@@ -4,31 +4,29 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Google Calendar</title>
+<title>Calendar | Dainty De Guzman</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined&display=swap" rel="stylesheet">
 
 <style>
-* {
-    box-sizing: border-box;
-}
+* { box-sizing: border-box; }
 
 :root {
     --pink: #a65f7d;
     --background: #faf2f6;
-    --border: #e6dce2;
+    --border: #e7dfe4;
     --text: #3c4043;
 }
 
 body {
     margin: 0;
-    font: 14px Roboto, Arial, sans-serif;
-    color: var(--text);
     background: var(--background);
+    color: var(--text);
+    font: 14px Roboto, Arial, sans-serif;
 }
 
-button, input, select, textarea {
+button, input, select {
     font: inherit;
     color: inherit;
 }
@@ -39,14 +37,14 @@ button {
     cursor: pointer;
 }
 
-button:hover {
-    background: #f0e2ea;
-}
+button:hover { background: #f0e2ea; }
 
 .material-symbols-outlined {
     font-size: 22px;
     vertical-align: middle;
 }
+
+.hidden { display: none !important; }
 
 .icon {
     width: 40px;
@@ -55,10 +53,6 @@ button:hover {
     display: inline-grid;
     place-items: center;
     flex-shrink: 0;
-}
-
-.hidden {
-    display: none !important;
 }
 
 header {
@@ -134,30 +128,11 @@ header {
 .sidebar {
     width: 255px;
     flex-shrink: 0;
-    padding: 12px 20px;
+    padding: 22px 20px;
     overflow: auto;
 }
 
-.sidebar.collapsed {
-    display: none;
-}
-
-.create {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    padding: 16px 20px;
-    border-radius: 17px;
-    background: white;
-    box-shadow: 0 2px 6px #0002;
-    margin-bottom: 25px;
-    font-weight: 500;
-}
-
-.create:hover {
-    background: #fff9fc;
-    box-shadow: 0 3px 9px #0003;
-}
+.sidebar.collapsed { display: none; }
 
 .mini-header {
     display: flex;
@@ -207,6 +182,9 @@ header {
     justify-content: space-between;
     font-weight: 500;
     margin: 28px 0 10px;
+    width: 100%;
+    text-align: left;
+    padding: 5px 0;
 }
 
 .calendar-option {
@@ -251,12 +229,7 @@ header {
     border-right: 1px solid var(--border);
     border-bottom: 1px solid var(--border);
     padding: 5px 3px;
-    cursor: pointer;
     min-width: 0;
-}
-
-.day-cell:hover {
-    background: #fffbfd;
 }
 
 .day-number {
@@ -368,11 +341,6 @@ header {
 .hour-cell {
     height: 64px;
     border-bottom: 1px solid var(--border);
-    cursor: pointer;
-}
-
-.hour-cell:hover {
-    background: #faf1f6;
 }
 
 .time-event {
@@ -385,6 +353,10 @@ header {
     text-align: left;
     font-size: 11px;
     overflow: hidden;
+}
+
+.time-event:hover {
+    filter: brightness(.94);
 }
 
 .time-event strong {
@@ -434,7 +406,7 @@ header {
 }
 
 .dialog {
-    background: #fff;
+    background: white;
     width: 500px;
     max-width: 100%;
     max-height: 90dvh;
@@ -498,71 +470,6 @@ header {
     min-width: 0;
 }
 
-.event-form input,
-.event-form textarea,
-.event-form select {
-    width: 100%;
-    border: none;
-    border-radius: 5px;
-    padding: 12px;
-    background: #f7f1f5;
-    outline: none;
-}
-
-.event-form input:focus,
-.event-form textarea:focus {
-    box-shadow: 0 0 0 1px var(--pink);
-}
-
-.event-form textarea {
-    min-height: 190px;
-    resize: vertical;
-    line-height: 1.7;
-}
-
-.event-form .title-input {
-    font-size: 23px;
-    background: transparent;
-    border-bottom: 2px solid var(--pink);
-    border-radius: 0;
-    margin-bottom: 15px;
-}
-
-.form-row {
-    display: flex;
-    align-items: flex-start;
-    gap: 15px;
-    margin: 15px 0;
-}
-
-.form-row .material-symbols-outlined {
-    margin-top: 12px;
-    color: #70757a;
-}
-
-.form-fields {
-    flex: 1;
-    min-width: 0;
-}
-
-.time-fields {
-    display: flex;
-    gap: 8px;
-    margin-top: 8px;
-}
-
-.save {
-    background: var(--pink);
-    color: white;
-    border-radius: 22px;
-    padding: 11px 25px;
-    font-weight: 500;
-}
-
-.save:hover {
-    background: #8f4d69;
-}
-
 .profile {
     position: fixed;
     top: 65px;
@@ -609,21 +516,10 @@ header {
 }
 
 @media(max-width: 950px) {
-    .brand {
-        width: auto;
-    }
-
-    .brand-name {
-        display: none;
-    }
-
-    .sidebar {
-        width: 220px;
-    }
-
-    #monthTitle {
-        font-size: 18px;
-    }
+    .brand { width: auto; }
+    .brand-name { display: none; }
+    .sidebar { width: 220px; }
+    #monthTitle { font-size: 18px; }
 }
 
 @media(max-width: 650px) {
@@ -638,9 +534,7 @@ header {
         height: calc(100dvh - 110px);
     }
 
-    .sidebar {
-        display: none;
-    }
+    .sidebar { display: none; }
 
     .sidebar.mobile-open {
         display: block;
@@ -653,26 +547,16 @@ header {
         box-shadow: 4px 0 15px #0002;
     }
 
-    .logo {
-        display: none;
-    }
-
-    .main {
-        margin: 0 7px;
-    }
+    .logo { display: none; }
+    .main { margin: 0 7px; }
 
     .today {
         padding: 8px 12px;
         margin: 0;
     }
 
-    .header-right {
-        gap: 3px;
-    }
-
-    .search-input {
-        width: 150px;
-    }
+    .header-right { gap: 3px; }
+    .search-input { width: 150px; }
 
     .agenda {
         padding: 10px;
@@ -688,15 +572,19 @@ header {
 
     <div class="brand">
 
-        <button class="icon" title="Main menu" onclick="toggleSidebar()">
+        <button class="icon" title="Main menu"
+            onclick="toggleSidebar()">
             <span class="material-symbols-outlined">menu</span>
         </button>
 
         <svg class="logo" viewBox="0 0 40 40">
-            <rect x="2" y="2" width="36" height="36" rx="4" fill="#a65f7d"/>
-            <rect x="8" y="8" width="24" height="24" fill="white"/>
-            <text x="20" y="25" font-size="16" font-weight="500"
-                text-anchor="middle" fill="#a65f7d">31</text>
+            <rect x="2" y="2" width="36" height="36"
+                rx="4" fill="#a65f7d"/>
+            <rect x="8" y="8" width="24" height="24"
+                fill="white"/>
+            <text x="20" y="25" font-size="16"
+                font-weight="500" text-anchor="middle"
+                fill="#a65f7d">31</text>
             <path d="M26 38L38 26H26Z" fill="#e5b6ce"/>
         </svg>
 
@@ -721,7 +609,8 @@ header {
         <input class="search-input hidden" id="search"
             placeholder="Search calendar" oninput="render()">
 
-        <button class="icon" title="Search" onclick="toggleSearch()">
+        <button class="icon" title="Search"
+            onclick="toggleSearch()">
             <span class="material-symbols-outlined">search</span>
         </button>
 
@@ -742,27 +631,27 @@ header {
 </header>
 
 <div class="profile hidden" id="profile">
+
     <p>daintydeguzman.work@gmail.com</p>
+
     <img src="dainty-profile.jpeg" alt="Dainty De Guzman">
+
     <h2>Hi, Dainty!</h2>
+
     <button onclick="toggleProfile()">Close</button>
+
 </div>
 
 <div class="layout">
 
     <aside class="sidebar" id="sidebar">
 
-        <button class="create" onclick="openForm()">
-            <span class="material-symbols-outlined">add</span>
-            Create
-            <span class="material-symbols-outlined">arrow_drop_down</span>
-        </button>
-
         <div class="mini-header">
 
             <span id="miniTitle"></span>
 
             <div>
+
                 <button class="icon" onclick="moveMini(-1)">
                     <span class="material-symbols-outlined">chevron_left</span>
                 </button>
@@ -770,16 +659,21 @@ header {
                 <button class="icon" onclick="moveMini(1)">
                     <span class="material-symbols-outlined">chevron_right</span>
                 </button>
+
             </div>
 
         </div>
 
         <div class="mini-calendar" id="miniCalendar"></div>
 
-        <div class="sidebar-heading">
+        <button class="sidebar-heading" onclick="toggleCalendars()">
+
             My calendars
-            <span class="material-symbols-outlined">expand_more</span>
-        </div>
+
+            <span class="material-symbols-outlined"
+                id="calendarArrow">expand_more</span>
+
+        </button>
 
         <div id="calendarOptions"></div>
 
@@ -795,132 +689,14 @@ header {
 
         <div class="dialog-toolbar">
 
-            <button class="icon" title="Edit event" onclick="editEvent()">
-                <span class="material-symbols-outlined">edit</span>
-            </button>
-
-            <button class="icon" title="Delete event" onclick="deleteEvent()">
-                <span class="material-symbols-outlined">delete</span>
-            </button>
-
-            <button class="icon" title="Close" onclick="closeDialogs()">
+            <button class="icon" title="Close"
+                onclick="closeDetails()">
                 <span class="material-symbols-outlined">close</span>
             </button>
 
         </div>
 
         <div class="dialog-content" id="eventDetails"></div>
-
-    </div>
-
-</div>
-
-<div class="overlay hidden" id="formOverlay">
-
-    <div class="dialog">
-
-        <div class="dialog-toolbar">
-            <button class="icon" onclick="closeDialogs()">
-                <span class="material-symbols-outlined">close</span>
-            </button>
-        </div>
-
-        <div class="dialog-content">
-
-            <form class="event-form" id="eventForm" onsubmit="saveEvent(event)">
-
-                <input class="title-input" name="title"
-                    placeholder="Add title" required>
-
-                <div class="form-row">
-
-                    <span class="material-symbols-outlined">schedule</span>
-
-                    <div class="form-fields">
-
-                        <input type="date" name="date" required>
-
-                        <div class="time-fields">
-                            <input type="time" name="start" required>
-                            <input type="time" name="end" required>
-                        </div>
-
-                        <p style="font-size:12px;color:#777">
-                            Eastern Time — New York
-                        </p>
-
-                    </div>
-
-                </div>
-
-                <div class="form-row">
-
-                    <span class="material-symbols-outlined">group_add</span>
-
-                    <div class="form-fields">
-                        <input name="guest" placeholder="Add guests" type="email">
-                    </div>
-
-                </div>
-
-                <div class="form-row">
-
-                    <span class="material-symbols-outlined">location_on</span>
-
-                    <div class="form-fields">
-                        <input name="location" placeholder="Add location">
-                    </div>
-
-                </div>
-
-                <div class="form-row">
-
-                    <span class="material-symbols-outlined">notifications</span>
-
-                    <div class="form-fields">
-                        <select name="reminder">
-                            <option>10 minutes before</option>
-                            <option>30 minutes before</option>
-                            <option>1 hour before</option>
-                            <option>1 day before</option>
-                            <option>No notification</option>
-                        </select>
-                    </div>
-
-                </div>
-
-                <div class="form-row">
-
-                    <span class="material-symbols-outlined">calendar_today</span>
-
-                    <div class="form-fields">
-                        <select name="category">
-                            <option>Property Showings</option>
-                            <option>Consultations</option>
-                            <option>Follow-ups</option>
-                        </select>
-                    </div>
-
-                </div>
-
-                <div class="form-row">
-
-                    <span class="material-symbols-outlined">notes</span>
-
-                    <div class="form-fields">
-                        <textarea name="description"
-                            placeholder="Add description"></textarea>
-                    </div>
-
-                </div>
-
-                <div style="text-align:right">
-                    <button class="save" type="submit">Save</button>
-                </div>
-
-            </form>
-
-        </div>
 
     </div>
 
@@ -936,7 +712,9 @@ const categories = {
     "Follow-ups": "#789d90"
 };
 
-const originalEvents = [
+/* EXISTING APPOINTMENTS ONLY */
+
+const events = [
 
 {
     id: 1,
@@ -1267,27 +1045,16 @@ Review the client's home search requirements, preferred locations, and purchase 
 
 ];
 
-const STORAGE = "independent-property-calendar-v2";
-
-let events;
-
-try {
-    events = JSON.parse(localStorage.getItem(STORAGE))
-        || structuredClone(originalEvents);
-
-    if (!Array.isArray(events)) throw new Error();
-} catch {
-    events = structuredClone(originalEvents);
-}
+/* CALENDAR */
 
 let selectedDate = new Date(2026, 10, 25);
 let miniDate = new Date(selectedDate);
-let currentId = null;
-let editingId = null;
 
 const activeCategories = new Set(Object.keys(categories));
 
-const weekdays = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
+const weekdays = [
+    "Sun","Mon","Tue","Wed","Thu","Fri","Sat"
+];
 
 function esc(value) {
     return String(value ?? "")
@@ -1300,12 +1067,6 @@ function esc(value) {
 
 function icon(name) {
     return `<span class="material-symbols-outlined">${name}</span>`;
-}
-
-function save() {
-    try {
-        localStorage.setItem(STORAGE, JSON.stringify(events));
-    } catch {}
 }
 
 function dateKey(date) {
@@ -1361,6 +1122,7 @@ function minutes(value) {
 }
 
 function filteredEvents() {
+
     const query = document.getElementById("search")
         .value.trim().toLowerCase();
 
@@ -1380,9 +1142,8 @@ function eventsOn(date) {
 }
 
 function toggleSidebar() {
-    const sidebar = document.getElementById("sidebar");
 
-    sidebar.classList.toggle(
+    document.getElementById("sidebar").classList.toggle(
         window.innerWidth<=650 ? "mobile-open" : "collapsed"
     );
 }
@@ -1391,20 +1152,37 @@ function toggleProfile() {
     document.getElementById("profile").classList.toggle("hidden");
 }
 
+function toggleCalendars() {
+
+    const options = document.getElementById("calendarOptions");
+
+    options.classList.toggle("hidden");
+
+    document.getElementById("calendarArrow").textContent =
+        options.classList.contains("hidden")
+            ? "expand_less"
+            : "expand_more";
+}
+
 function toggleSearch() {
+
     const input = document.getElementById("search");
 
     input.classList.toggle("hidden");
 
-    if (input.classList.contains("hidden")) {
+    if(input.classList.contains("hidden")) {
+
         input.value = "";
         render();
+
     } else {
+
         input.focus();
     }
 }
 
 function goToday() {
+
     const today = new Intl.DateTimeFormat("en-CA",{
         timeZone:"America/New_York",
         year:"numeric",
@@ -1428,6 +1206,7 @@ function goToday() {
 }
 
 function move(direction) {
+
     const view = document.getElementById("view").value;
 
     selectedDate = view==="month" || view==="schedule"
@@ -1450,7 +1229,21 @@ function chooseDate(value) {
     render();
 }
 
+function openDay(value) {
+
+    selectedDate = parseDate(value);
+
+    miniDate = new Date(selectedDate);
+
+    document.getElementById("view").value = "day";
+
+    render();
+}
+
+/* MINI CALENDAR */
+
 function renderMini() {
+
     document.getElementById("miniTitle").textContent =
         monthName(miniDate);
 
@@ -1475,7 +1268,9 @@ function renderMini() {
                 ${date.getMonth()!==miniDate.getMonth()?"outside":""}
                 ${dateKey(date)===dateKey(selectedDate)?"selected":""}"
                 onclick="chooseDate('${dateKey(date)}')">
+
                 ${date.getDate()}
+
             </button>
         `;
     }
@@ -1484,19 +1279,26 @@ function renderMini() {
 }
 
 function renderOptions() {
+
     document.getElementById("calendarOptions").innerHTML =
         Object.entries(categories).map(([name,color])=>`
+
             <label class="calendar-option">
+
                 <input type="checkbox"
                     style="accent-color:${color}"
                     ${activeCategories.has(name)?"checked":""}
                     onchange="toggleCategory('${name}',this.checked)">
+
                 ${name}
+
             </label>
+
         `).join("");
 }
 
 function toggleCategory(name,checked) {
+
     checked
         ? activeCategories.add(name)
         : activeCategories.delete(name);
@@ -1504,7 +1306,10 @@ function toggleCategory(name,checked) {
     render();
 }
 
+/* MONTH VIEW */
+
 function renderMonth() {
+
     const first = new Date(
         selectedDate.getFullYear(),
         selectedDate.getMonth(),
@@ -1532,19 +1337,23 @@ function renderMonth() {
         const date = addDays(start,i);
 
         html += `
-            <div class="day-cell
-                ${date.getMonth()!==selectedDate.getMonth()?"outside":""}"
-                onclick="openForm('${dateKey(date)}')">
 
-                <div class="day-number
-                    ${dateKey(date)===dateKey(selectedDate)?"selected":""}">
+            <div class="day-cell
+                ${date.getMonth()!==selectedDate.getMonth()?"outside":""}">
+
+                <button class="day-number
+                    ${dateKey(date)===dateKey(selectedDate)?"selected":""}"
+                    onclick="openDay('${dateKey(date)}')">
+
                     ${date.getDate()}
-                </div>
+
+                </button>
 
                 ${eventsOn(date).map(event=>`
+
                     <button class="event"
                         title="${esc(event.title)}"
-                        onclick="event.stopPropagation();openEvent(${event.id})">
+                        onclick="openEvent(${event.id})">
 
                         <span class="event-dot"
                             style="background:${categories[event.category]}">
@@ -1557,6 +1366,7 @@ function renderMonth() {
                         </span>
 
                     </button>
+
                 `).join("")}
 
             </div>
@@ -1565,7 +1375,11 @@ function renderMonth() {
 
     document.getElementById("calendar").innerHTML =
         html+"</div>";
+
+    document.getElementById("calendar").scrollTop = 0;
 }
+
+/* WEEK AND DAY VIEWS */
 
 function renderTimeGrid(view) {
 
@@ -1580,9 +1394,11 @@ function renderTimeGrid(view) {
         (_,i)=>addDays(first,i)
     );
 
-    const columns = `65px repeat(${count},minmax(100px,1fr))`;
+    const columns =
+        `65px repeat(${count},minmax(100px,1fr))`;
 
     let html = `
+
         <div class="time-grid">
 
             <div class="time-header"
@@ -1594,12 +1410,21 @@ function renderTimeGrid(view) {
                 </div>
 
                 ${dates.map(date=>`
+
                     <div class="time-heading">
-                        <small>${weekdays[date.getDay()].toUpperCase()}</small>
+
+                        <small>
+                            ${weekdays[date.getDay()].toUpperCase()}
+                        </small>
+
                         <strong class="${dateKey(date)===dateKey(selectedDate)?"selected":""}">
+
                             ${date.getDate()}
+
                         </strong>
+
                     </div>
+
                 `).join("")}
 
             </div>
@@ -1611,9 +1436,14 @@ function renderTimeGrid(view) {
     `;
 
     for(let hour=0;hour<24;hour++) {
-        html += `<div class="time-label">
-            ${timeText(String(hour).padStart(2,"0")+":00")}
-        </div>`;
+
+        html += `
+            <div class="time-label">
+
+                ${timeText(String(hour).padStart(2,"0")+":00")}
+
+            </div>
+        `;
     }
 
     html += "</div>";
@@ -1624,11 +1454,7 @@ function renderTimeGrid(view) {
 
         for(let hour=0;hour<24;hour++) {
 
-            html += `
-                <div class="hour-cell"
-                    onclick="openForm('${dateKey(date)}','${String(hour).padStart(2,"0")}:00')">
-                </div>
-            `;
+            html += '<div class="hour-cell"></div>';
         }
 
         const daily = eventsOn(date);
@@ -1650,6 +1476,7 @@ function renderTimeGrid(view) {
             const width = 100/overlapping.length;
 
             html += `
+
                 <button class="time-event"
                     style="
                         background:${categories[event.category]};
@@ -1678,32 +1505,43 @@ function renderTimeGrid(view) {
     document.getElementById("calendar").scrollTop = 7*64;
 }
 
+/* SCHEDULE VIEW */
+
 function renderSchedule() {
 
     const query = document.getElementById("search").value.trim();
 
     const list = filteredEvents().filter(event=>
-        query || event.date.startsWith(dateKey(selectedDate).slice(0,7))
+        query ||
+        event.date.startsWith(dateKey(selectedDate).slice(0,7))
     );
 
     document.getElementById("calendar").innerHTML = `
+
         <div class="agenda">
 
             ${list.length?list.map(event=>`
 
-                <div class="agenda-row" onclick="openEvent(${event.id})">
+                <div class="agenda-row"
+                    role="button" tabindex="0"
+                    onclick="openEvent(${event.id})"
+                    onkeydown="if(event.key==='Enter')openEvent(${event.id})">
 
                     <div class="agenda-date">
 
                         <strong style="font-size:23px;font-weight:400">
+
                             ${parseDate(event.date).getDate()}
+
                         </strong>
 
                         <div style="font-size:12px;color:#777">
+
                             ${parseDate(event.date).toLocaleDateString("en-US",{
                                 weekday:"short",
                                 month:"short"
                             })}
+
                         </div>
 
                     </div>
@@ -1713,11 +1551,15 @@ function renderSchedule() {
                     </span>
 
                     <div class="agenda-time">
+
                         ${timeText(event.start)} – ${timeText(event.end)}
+
                     </div>
 
                     <div class="agenda-title">
+
                         ${esc(event.title)}
+
                     </div>
 
                 </div>
@@ -1726,6 +1568,8 @@ function renderSchedule() {
 
         </div>
     `;
+
+    document.getElementById("calendar").scrollTop = 0;
 }
 
 function render() {
@@ -1758,14 +1602,20 @@ function render() {
     }
 }
 
+/* VIEW EXISTING EVENT DETAILS */
+
 function detail(symbol,value) {
 
     if(!value) return "";
 
     return `
+
         <div class="detail">
+
             ${icon(symbol)}
+
             <div class="detail-text">${esc(value)}</div>
+
         </div>
     `;
 }
@@ -1776,12 +1626,11 @@ function openEvent(id) {
 
     if(!event) return;
 
-    currentId = id;
-
     const date = parseDate(event.date).toLocaleDateString("en-US",{
         weekday:"long",
         month:"long",
-        day:"numeric"
+        day:"numeric",
+        year:"numeric"
     });
 
     document.getElementById("eventDetails").innerHTML = `
@@ -1797,9 +1646,13 @@ function openEvent(id) {
                 <h2>${esc(event.title)}</h2>
 
                 <div class="detail-date">
+
                     ${date} ·
+
                     ${timeText(event.start)} – ${timeText(event.end)}
+
                     ET
+
                 </div>
 
             </div>
@@ -1820,130 +1673,33 @@ function openEvent(id) {
 
     `;
 
-    document.getElementById("detailOverlay").classList.remove("hidden");
+    document.getElementById("detailOverlay")
+        .classList.remove("hidden");
 }
 
-function closeDialogs() {
+function closeDetails() {
 
-    document.getElementById("detailOverlay").classList.add("hidden");
-
-    document.getElementById("formOverlay").classList.add("hidden");
-
-    currentId = null;
-    editingId = null;
+    document.getElementById("detailOverlay")
+        .classList.add("hidden");
 }
 
-function openForm(date=dateKey(selectedDate),start="09:00") {
+document.getElementById("detailOverlay")
+    .addEventListener("click",event=>{
 
-    closeDialogs();
+        if(event.target===event.currentTarget) {
 
-    const form = document.getElementById("eventForm");
-
-    form.reset();
-
-    form.elements.date.value = date;
-    form.elements.start.value = start;
-
-    const end = Math.min(minutes(start)+60,1439);
-
-    form.elements.end.value =
-        String(Math.floor(end/60)).padStart(2,"0")+":"+
-        String(end%60).padStart(2,"0");
-
-    document.getElementById("formOverlay").classList.remove("hidden");
-
-    form.elements.title.focus();
-}
-
-function editEvent() {
-
-    const event = events.find(item=>item.id===currentId);
-
-    if(!event) return;
-
-    openForm(event.date,event.start);
-
-    editingId = event.id;
-
-    const form = document.getElementById("eventForm");
-
-    Object.entries(event).forEach(([name,value])=>{
-
-        if(form.elements.namedItem(name)) {
-            form.elements.namedItem(name).value = value;
+            closeDetails();
         }
     });
-}
-
-function saveEvent(submission) {
-
-    submission.preventDefault();
-
-    const data = Object.fromEntries(
-        new FormData(submission.target)
-    );
-
-    if(minutes(data.end)<=minutes(data.start)) {
-
-        alert("End time must be after the start time.");
-
-        return;
-    }
-
-    const appointment = {
-        id:editingId||Date.now(),
-        ...data
-    };
-
-    if(editingId) {
-
-        events = events.map(event=>
-            event.id===editingId?appointment:event
-        );
-
-    } else {
-
-        events.push(appointment);
-    }
-
-    save();
-
-    closeDialogs();
-
-    selectedDate = parseDate(data.date);
-    miniDate = new Date(selectedDate);
-
-    render();
-}
-
-function deleteEvent() {
-
-    if(!confirm("Delete this event?")) return;
-
-    events = events.filter(event=>event.id!==currentId);
-
-    save();
-
-    closeDialogs();
-
-    render();
-}
-
-document.querySelectorAll(".overlay").forEach(overlay=>{
-
-    overlay.addEventListener("click",event=>{
-
-        if(event.target===overlay) closeDialogs();
-    });
-});
 
 document.addEventListener("keydown",event=>{
 
     if(event.key==="Escape") {
 
-        closeDialogs();
+        closeDetails();
 
-        document.getElementById("profile").classList.add("hidden");
+        document.getElementById("profile")
+            .classList.add("hidden");
     }
 });
 
@@ -1952,7 +1708,8 @@ document.addEventListener("click",event=>{
     if(!event.target.closest(".profile") &&
         !event.target.closest(".account")) {
 
-        document.getElementById("profile").classList.add("hidden");
+        document.getElementById("profile")
+            .classList.add("hidden");
     }
 });
 
