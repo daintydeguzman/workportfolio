@@ -1,0 +1,191 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Property Maintenance | Asana</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;font:14px Arial,sans-serif;color:#40363c;background:#fff}
+header{background:#765267;color:white;display:flex;align-items:center;justify-content:space-between;padding:13px 22px}
+.brand{font-size:23px;display:flex;align-items:center;gap:10px}
+.avatar{width:34px;height:34px;border-radius:50%;object-fit:cover}
+.layout{display:flex;min-height:calc(100vh - 60px)}
+aside{width:225px;background:#f3e6ed;padding:25px 15px;flex-shrink:0}
+.project{background:#e9cddd;padding:14px;border-radius:6px;margin-top:15px}
+main{flex:1;min-width:0}
+.heading{padding:25px 30px 0;border-bottom:1px solid #e9dfe5}
+h1{font-size:25px;font-weight:500;margin:0 0 20px}
+.tab{display:inline-block;padding:12px 5px;border-bottom:3px solid #a65f7d;font-weight:bold}
+.table-wrap{overflow:auto;padding:20px 25px}
+table{width:100%;min-width:900px;border-collapse:collapse}
+th,td{text-align:left;padding:15px 12px;border-bottom:1px solid #e9dfe5}
+th{font-size:12px;color:#897780;font-weight:400}
+.section td{font-weight:bold;background:#fbf1f7;padding-top:20px}
+.record:hover{background:#fff3fa;cursor:pointer}
+.priority,.status{padding:5px 10px;border-radius:12px;font-size:12px;white-space:nowrap}
+.high{background:#f2d1d9;color:#99435a}
+.medium{background:#f4e7ce;color:#876a39}
+.low{background:#e3eee5;color:#52765b}
+.status{background:#ecdce6;color:#825570}
+dialog{border:0;border-radius:12px;width:620px;max-width:95vw;padding:30px;color:#40363c}
+dialog::backdrop{background:#392a3455}
+.close{float:right;border:0;background:transparent;font-size:24px;cursor:pointer}
+h2{font-size:24px;line-height:1.4}
+dl{display:grid;grid-template-columns:130px 1fr;gap:15px}
+dt{color:#8b7682}
+dd{margin:0}
+p{line-height:1.8;white-space:pre-wrap}
+@media(max-width:700px){aside{display:none}.heading{padding:20px}.table-wrap{padding:10px}}
+</style>
+</head>
+<body>
+<header>
+<div class="brand">
+<svg width="26" height="26" viewBox="0 0 26 26">
+<circle cx="13" cy="6" r="5" fill="#f3c5db"/>
+<circle cx="6" cy="18" r="5" fill="#f3c5db"/>
+<circle cx="20" cy="18" r="5" fill="#f3c5db"/>
+</svg>
+asana
+</div>
+<img class="avatar" src="dainty-profile.jpeg" alt="Profile">
+</header>
+<div class="layout">
+<aside>
+<strong>Projects</strong>
+<div class="project">Property Maintenance</div>
+</aside>
+<main>
+<div class="heading">
+<h1>Property Maintenance</h1>
+<div class="tab">List</div>
+</div>
+<div class="table-wrap">
+<table>
+<thead><tr>
+<th>Task name</th><th>Assigned vendor</th><th>Due date</th><th>Priority</th><th>Status</th>
+</tr></thead>
+<tbody id="records"></tbody>
+</table>
+</div>
+</main>
+</div>
+<dialog id="details">
+<button class="close" onclick="details.close()" aria-label="Close">×</button>
+<div id="content"></div>
+</dialog>
+<script>
+const records=[
+{
+id:"MR-001",title:"Active kitchen sink leak",tenant:"Alice Spencer",unit:"Unit 204 — Maple Court",vendor:"Summit Plumbing",reported:"Nov 25, 2026",due:"Nov 25, 2026",priority:"High",status:"In progress",
+description:"Tenant reported water leaking beneath the kitchen sink. Maintenance coordinator notified the property manager and requested urgent vendor attendance.",
+message:`Hi Alice,
+
+Thank you for reporting the leak. Your maintenance request has been prioritized and forwarded to the property manager.
+
+If safe to do so, avoid using the affected sink until it has been inspected. Please notify management immediately if the situation worsens.
+
+Best regards,
+Dainty De Guzman`,
+notes:"Awaiting vendor arrival confirmation. Escalate any worsening conditions immediately."
+},
+{
+id:"MR-002",title:"Air-conditioning not cooling",tenant:"Marcus Dean",unit:"Unit 305 — Cedar Place",vendor:"ClearAir Services",reported:"Nov 24, 2026",due:"Nov 26, 2026",priority:"High",status:"Scheduled",
+description:"Tenant reported that the air-conditioning system is running but not cooling. Property manager notified; vendor inspection coordinated.",
+message:`Hi Marcus,
+
+Your air-conditioning concern has been forwarded to maintenance. An inspection is scheduled for November 26, subject to the confirmed access arrangements.
+
+Please let management know if conditions become unsafe or if your availability changes.
+
+Best regards,
+Dainty De Guzman`,
+notes:"Confirm tenant access and monitor any reported health or safety concerns."
+},
+{
+id:"MR-003",title:"Bedroom window latch repair",tenant:"Julia Warren",unit:"Unit 102 — Willow Residence",vendor:"General Maintenance",reported:"Nov 23, 2026",due:"Nov 27, 2026",priority:"Medium",status:"Scheduled",
+description:"Window latch requires repair. Tenant reports that the window is currently closed. Security concern referred to the property manager.",
+message:`Hi Julia,
+
+Thank you for reporting the window latch issue. Maintenance has been notified, and a repair visit is scheduled for November 27.
+
+Please inform management immediately if the window cannot be secured.
+
+Best regards,
+Dainty De Guzman`,
+notes:"Vendor to confirm completion and window security."
+},
+{
+id:"MR-004",title:"Loose cabinet handle",tenant:"Edward Mills",unit:"Unit 408 — Birch Apartments",vendor:"General Maintenance",reported:"Nov 25, 2026",due:"Dec 1, 2026",priority:"Low",status:"Pending",
+description:"Tenant reported a loose kitchen cabinet handle. Routine maintenance request recorded.",
+message:`Hi Edward,
+
+Thank you for letting us know. I've recorded your maintenance request and forwarded it to the maintenance team.
+
+We'll provide an update once the repair schedule has been confirmed.
+
+Best regards,
+Dainty De Guzman`,
+notes:"Awaiting vendor availability."
+},
+{
+id:"MR-005",title:"Bathroom drainage issue",tenant:"Rachel Hudson",unit:"Unit 201 — Maple Court",vendor:"Summit Plumbing",reported:"Nov 19, 2026",due:"Nov 21, 2026",priority:"Medium",status:"Completed",
+description:"Slow bathroom drainage reported. Vendor attended and completed the repair.",
+message:`Hi Rachel,
+
+Maintenance has reported that the bathroom drainage repair is complete.
+
+Please let us know if the issue persists or if any further assistance is needed.
+
+Best regards,
+Dainty De Guzman`,
+notes:"Vendor completion report received November 21. Tenant confirmed normal drainage November 22."
+},
+{
+id:"MR-006",title:"Hallway light replacement",tenant:"Thomas Reeves",unit:"Unit 110 — Cedar Place",vendor:"BrightLine Electrical",reported:"Nov 18, 2026",due:"Nov 20, 2026",priority:"Medium",status:"Completed",
+description:"Nonfunctioning hallway light reported. Qualified maintenance vendor assigned.",
+message:`Hi Thomas,
+
+The hallway light replacement has been completed. Thank you for bringing the issue to our attention.
+
+Please contact management if you notice any further concerns.
+
+Best regards,
+Dainty De Guzman`,
+notes:"Vendor confirmed replacement and operation on November 20."
+}
+];
+const groups=["In progress","Scheduled","Pending","Completed"];
+document.getElementById("records").innerHTML=groups.map(g=>`
+<tr class="section"><td colspan="5">${g}</td></tr>
+${records.map((r,i)=>({r,i})).filter(({r})=>r.status===g).map(({r,i})=>`
+<tr class="record" tabindex="0" onclick="openRecord(${i})" onkeydown="if(event.key==='Enter')openRecord(${i})">
+<td>${r.status==="Completed"?"✓":"○"} &nbsp; ${r.title}</td>
+<td>${r.vendor}</td><td>${r.due}</td>
+<td><span class="priority ${r.priority.toLowerCase()}">${r.priority}</span></td>
+<td><span class="status">${r.status}</span></td>
+</tr>`).join("")}`).join("");
+function openRecord(i){
+const r=records[i];
+document.getElementById("content").innerHTML=`
+<h2>${r.title}</h2>
+<dl>
+<dt>Request ID</dt><dd>${r.id}</dd>
+<dt>Tenant</dt><dd>${r.tenant}</dd>
+<dt>Property</dt><dd>${r.unit}</dd>
+<dt>Reported</dt><dd>${r.reported}</dd>
+<dt>Assigned vendor</dt><dd>${r.vendor}</dd>
+<dt>Due date</dt><dd>${r.due}</dd>
+<dt>Priority</dt><dd><span class="priority ${r.priority.toLowerCase()}">${r.priority}</span></dd>
+<dt>Status</dt><dd>${r.status}</dd>
+</dl>
+<h3>Description</h3><p>${r.description}</p>
+<h3>Tenant communication</h3><p>${r.message}</p>
+<h3>Maintenance notes</h3><p>${r.notes}</p>`;
+document.getElementById("details").showModal();
+}
+</script>
+</body>
+</html>
