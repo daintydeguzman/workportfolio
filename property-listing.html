@@ -1,0 +1,100 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Property Listing Administration</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;font:13px Arial,sans-serif;color:#40343c;background:#fff}
+header{display:flex;align-items:center;gap:15px;padding:16px 22px;background:#faf0f5}
+.logo{background:#a65f7d;color:white;border-radius:5px;padding:12px;font-size:22px}
+h1{font-size:20px;font-weight:400;margin:0 0 9px}
+.sub{color:#87717e;font-size:12px}
+.avatar{width:36px;height:36px;border-radius:50%;object-fit:cover;margin-left:auto}
+.bar{padding:12px 20px;background:#f4e6ee;border-bottom:1px solid #dfced8;color:#745b6a}
+.sheet{height:calc(100dvh - 155px);overflow:auto}
+table{border-collapse:collapse;width:max-content;min-width:100%}
+th,td{border:1px solid #e5dbe1;padding:12px;vertical-align:top;line-height:1.6;max-width:440px;min-width:100px}
+.letters th{background:#f2f0f1;text-align:center;color:#777;font-weight:400;position:sticky;top:0;z-index:2;padding:5px}
+.heading th{background:#b77b99;color:white;text-align:left}
+.number{background:#f2f0f1!important;color:#777!important;text-align:center!important;min-width:40px;width:40px;font-weight:400}
+tbody tr:nth-child(even){background:#fff8fc}
+.tabs{height:45px;background:#f8edf3;display:flex;align-items:center;gap:4px;padding:0 15px;overflow:auto}
+.tabs button{font:inherit;border:0;background:transparent;padding:13px 20px;white-space:nowrap;cursor:pointer}
+.tabs button.active{background:#ead0df;color:#8c4e6b;font-weight:bold;border-bottom:3px solid #a65f7d}
+</style>
+</head>
+<body>
+<header>
+<div class="logo">▤</div>
+<div><h1>Property Listing Administration</h1><div class="sub">View only</div></div>
+<img class="avatar" src="dainty-profile.jpeg" alt="Profile">
+</header>
+<div class="bar" id="sheetTitle"></div>
+<div class="sheet"><table id="table"></table></div>
+<div class="tabs" id="tabs"></div>
+<script>
+const sheets=[
+{
+name:"Property Inventory",
+headers:["Listing ID","Property Address","Market","Property Type","Price (USD)","Beds","Baths","Area (sq ft)","Listing Status","Assigned Agent","Verification"],
+rows:[
+["PL-001","110 Example Grove","Austin, TX","Single-family","$485,000","3","2","1,850","Ready for review","Claire Dawson","Complete"],
+["PL-002","220 Sample Terrace","Denver, CO","Condominium","$395,000","2","2","1,120","Draft","Ryan Walsh","HOA fee pending"],
+["PL-003","330 Demo Boulevard","Phoenix, AZ","Townhouse","$420,000","3","2.5","1,640","Ready for review","Claire Dawson","Complete"],
+["PL-004","440 Example Court","Orlando, FL","Single-family","$560,000","4","3","2,450","Draft","Morgan Ellis","Area discrepancy"],
+["PL-005","550 Sample Drive","Charlotte, NC","Single-family","$510,000","4","2.5","2,180","Ready for review","Ryan Walsh","Complete"],
+["PL-006","660 Demo Avenue","Dallas, TX","Duplex","$695,000","6","4","3,100","On hold","Morgan Ellis","Ownership documents pending"]
+]
+},
+{
+name:"Listing Descriptions",
+headers:["Listing ID","Headline","Property Description","Review Status"],
+rows:[
+["PL-001","Three-bedroom home with open living area","This three-bedroom, two-bathroom residence offers approximately 1,850 square feet of living space, an open living and dining area, an attached garage, and a fenced backyard.","Agent review pending"],
+["PL-002","Two-bedroom condominium","This two-bedroom, two-bathroom condominium features approximately 1,120 square feet of living space, a private balcony, and an open-plan living area. HOA details remain subject to verification.","Hold until HOA verified"],
+["PL-003","Three-bedroom townhouse","This three-bedroom townhouse offers two full bathrooms, one half bathroom, approximately 1,640 square feet, and an attached garage.","Agent review pending"],
+["PL-004","Four-bedroom residential property","This four-bedroom, three-bathroom residence includes a separate dining area and an outdoor patio. Final floor area will be added after verification.","Hold until area verified"],
+["PL-005","Four-bedroom home with covered patio","This four-bedroom residence features two full bathrooms, one half bathroom, approximately 2,180 square feet of living space, and a covered patio.","Agent review pending"],
+["PL-006","Residential duplex","This duplex contains two residential units, each with three bedrooms and two bathrooms. Additional property and ownership details require verification.","On hold"]
+]
+},
+{
+name:"Verification Checklist",
+headers:["Listing ID","Address","Price","Bedrooms / Bathrooms","Floor Area","Photos","Agent Approval","Action"],
+rows:[
+["PL-001","Verified","Verified","Verified","Verified","Received","Pending","Submit draft for review"],
+["PL-002","Verified","Verified","Verified","Verified","Received","Pending","Request HOA documents"],
+["PL-003","Verified","Verified","Verified","Verified","Received","Pending","Submit draft for review"],
+["PL-004","Verified","Verified","Verified","Discrepancy","Received","Pending","Confirm official floor area"],
+["PL-005","Verified","Verified","Verified","Verified","Received","Pending","Submit draft for review"],
+["PL-006","Verified","Verified","Verified","Verified","Pending","Pending","Request ownership documents and photos"]
+]
+},
+{
+name:"Discrepancy Log",
+headers:["Reference","Listing ID","Issue","Source A","Source B","Action Required","Status"],
+rows:[
+["D-001","PL-002","HOA fee not verified","Owner intake: $280/month","HOA statement unavailable","Request current HOA statement","Open"],
+["D-002","PL-004","Floor area mismatch","Owner intake: 2,450 sq ft","Property record: 2,380 sq ft","Refer discrepancy to agent; omit area from draft","Open"],
+["D-003","PL-006","Ownership verification incomplete","Owner intake received","Supporting documents pending","Request documents through secure channel","Open"]
+]
+}
+];
+function openSheet(i){
+const s=sheets[i];
+document.getElementById("sheetTitle").textContent=s.name;
+document.getElementById("tabs").innerHTML=sheets.map((x,j)=>`<button class="${i===j?"active":""}" onclick="openSheet(${j})">${x.name}</button>`).join("");
+document.getElementById("table").innerHTML=`
+<thead>
+<tr class="letters"><th class="number"></th>${s.headers.map((_,j)=>`<th>${String.fromCharCode(65+j)}</th>`).join("")}</tr>
+<tr class="heading"><th class="number">1</th>${s.headers.map(h=>`<th>${h}</th>`).join("")}</tr>
+</thead>
+<tbody>${s.rows.map((r,j)=>`<tr><td class="number">${j+2}</td>${r.map(v=>`<td>${v}</td>`).join("")}</tr>`).join("")}</tbody>`;
+}
+openSheet(0);
+</script>
+</body>
+</html>
