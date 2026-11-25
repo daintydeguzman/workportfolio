@@ -4,97 +4,903 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+
 <title>Property Listing Administration</title>
+
 <style>
-*{box-sizing:border-box}
-body{margin:0;font:13px Arial,sans-serif;color:#40343c;background:#fff}
-header{display:flex;align-items:center;gap:15px;padding:16px 22px;background:#faf0f5}
-.logo{background:#a65f7d;color:white;border-radius:5px;padding:12px;font-size:22px}
-h1{font-size:20px;font-weight:400;margin:0 0 9px}
-.sub{color:#87717e;font-size:12px}
-.avatar{width:36px;height:36px;border-radius:50%;object-fit:cover;margin-left:auto}
-.bar{padding:12px 20px;background:#f4e6ee;border-bottom:1px solid #dfced8;color:#745b6a}
-.sheet{height:calc(100dvh - 155px);overflow:auto}
-table{border-collapse:collapse;width:max-content;min-width:100%}
-th,td{border:1px solid #e5dbe1;padding:12px;vertical-align:top;line-height:1.6;max-width:440px;min-width:100px}
-.letters th{background:#f2f0f1;text-align:center;color:#777;font-weight:400;position:sticky;top:0;z-index:2;padding:5px}
-.heading th{background:#b77b99;color:white;text-align:left}
-.number{background:#f2f0f1!important;color:#777!important;text-align:center!important;min-width:40px;width:40px;font-weight:400}
-tbody tr:nth-child(even){background:#fff8fc}
-.tabs{height:45px;background:#f8edf3;display:flex;align-items:center;gap:4px;padding:0 15px;overflow:auto}
-.tabs button{font:inherit;border:0;background:transparent;padding:13px 20px;white-space:nowrap;cursor:pointer}
-.tabs button.active{background:#ead0df;color:#8c4e6b;font-weight:bold;border-bottom:3px solid #a65f7d}
+
+:root {
+    --pink: #a65f7d;
+    --header: #faf0f5;
+    --toolbar: #f4e6ee;
+    --border: #e5dbe1;
+    --text: #40343c;
+    --muted: #87717e;
+    --selected: #ead0df;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html, body {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    font: 13px Arial, sans-serif;
+    color: var(--text);
+    background: white;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+/* HEADER */
+
+header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 16px 22px;
+    background: var(--header);
+    flex-shrink: 0;
+}
+
+.logo {
+    width: 43px;
+    height: 49px;
+    background: var(--pink);
+    color: white;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.logo svg {
+    width: 26px;
+    height: 30px;
+}
+
+h1 {
+    font-size: 20px;
+    font-weight: 400;
+    margin: 0 0 9px;
+}
+
+.sub {
+    color: var(--muted);
+    font-size: 12px;
+}
+
+.avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-left: auto;
+    flex-shrink: 0;
+}
+
+/* SHEET TITLE */
+
+.bar {
+    padding: 12px 20px;
+    background: var(--toolbar);
+    border-top: 1px solid #eadce4;
+    border-bottom: 1px solid #dfced8;
+    color: #745b6a;
+    font-size: 12px;
+    flex-shrink: 0;
+}
+
+/* SPREADSHEET */
+
+.sheet {
+    flex: 1;
+    min-height: 0;
+    overflow: auto;
+    background: white;
+}
+
+table {
+    border-collapse: separate;
+    border-spacing: 0;
+    width: max-content;
+    min-width: 100%;
+    table-layout: auto;
+}
+
+th, td {
+    border-right: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 12px;
+    vertical-align: top;
+    line-height: 1.6;
+    min-width: 100px;
+    max-width: 440px;
+    overflow-wrap: break-word;
+}
+
+/* COLUMN LETTERS */
+
+.letters th {
+    background: #f2f0f1;
+    text-align: center;
+    color: #777;
+    font-weight: 400;
+    position: sticky;
+    top: 0;
+    z-index: 4;
+    padding: 5px;
+    height: 30px;
+}
+
+/* COLUMN HEADINGS */
+
+.heading th {
+    background: #b77b99;
+    color: white;
+    text-align: left;
+    font-weight: 600;
+    position: sticky;
+    top: 30px;
+    z-index: 3;
+}
+
+/* ROW NUMBERS */
+
+.number {
+    background: #f2f0f1 !important;
+    color: #777 !important;
+    text-align: center !important;
+    min-width: 45px;
+    width: 45px;
+    max-width: 45px;
+    font-weight: 400;
+    position: sticky;
+    left: 0;
+    z-index: 2;
+}
+
+.letters .number {
+    z-index: 6;
+}
+
+.heading .number {
+    z-index: 5;
+}
+
+/* TABLE CONTENT */
+
+tbody tr:nth-child(even) td {
+    background: #fff8fc;
+}
+
+tbody tr:nth-child(odd) td {
+    background: white;
+}
+
+td {
+    font-size: 13px;
+}
+
+td.long-text {
+    min-width: 340px;
+    max-width: 440px;
+}
+
+td.medium-text {
+    min-width: 180px;
+    max-width: 300px;
+}
+
+/* SHEET TABS */
+
+.tabs {
+    min-height: 46px;
+    background: #f8edf3;
+    border-top: 1px solid #dfced8;
+    display: flex;
+    align-items: stretch;
+    gap: 4px;
+    padding: 0 15px;
+    overflow-x: auto;
+    flex-shrink: 0;
+}
+
+.tabs button {
+    font: inherit;
+    color: #745b6a;
+    border: 0;
+    border-bottom: 3px solid transparent;
+    background: transparent;
+    padding: 12px 20px;
+    white-space: nowrap;
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+.tabs button:hover {
+    background: #f1dfe9;
+}
+
+.tabs button.active {
+    background: var(--selected);
+    color: #8c4e6b;
+    font-weight: bold;
+    border-bottom: 3px solid var(--pink);
+}
+
+.tabs button:focus-visible {
+    outline: 2px solid var(--pink);
+    outline-offset: -3px;
+}
+
+/* SCROLLBARS */
+
+.sheet::-webkit-scrollbar,
+.tabs::-webkit-scrollbar {
+    width: 9px;
+    height: 9px;
+}
+
+.sheet::-webkit-scrollbar-track,
+.tabs::-webkit-scrollbar-track {
+    background: #f6edf2;
+}
+
+.sheet::-webkit-scrollbar-thumb,
+.tabs::-webkit-scrollbar-thumb {
+    background: #d3b5c5;
+    border-radius: 8px;
+}
+
+/* MOBILE */
+
+@media (max-width: 600px) {
+
+    header {
+        padding: 13px 15px;
+        gap: 10px;
+    }
+
+    h1 {
+        font-size: 16px;
+        line-height: 1.4;
+        margin-bottom: 5px;
+    }
+
+    .logo {
+        width: 35px;
+        height: 41px;
+    }
+
+    .logo svg {
+        width: 22px;
+        height: 25px;
+    }
+
+    .avatar {
+        width: 30px;
+        height: 30px;
+    }
+
+    .bar {
+        padding: 11px 15px;
+    }
+
+    th, td {
+        padding: 10px;
+        font-size: 12px;
+    }
+
+    .tabs {
+        padding: 0 5px;
+    }
+
+    .tabs button {
+        padding: 12px 15px;
+        font-size: 12px;
+    }
+
+}
+
 </style>
 </head>
+
 <body>
+
+<!-- HEADER -->
+
 <header>
-<div class="logo">▤</div>
-<div><h1>Property Listing Administration</h1><div class="sub">View only</div></div>
-<img class="avatar" src="dainty-profile.jpeg" alt="Profile">
+
+    <div class="logo" aria-hidden="true">
+
+        <svg viewBox="0 0 28 32"
+             fill="none">
+
+            <path d="M5 1H18L25 8V29Q25 31 23 31H5Q3 31 3 29V3Q3 1 5 1Z"
+                  fill="white"/>
+
+            <path d="M18 1V8H25"
+                  fill="#e6c5d6"/>
+
+            <rect x="7" y="12"
+                  width="14" height="13"
+                  rx="1"
+                  stroke="#a65f7d"
+                  stroke-width="1.4"/>
+
+            <path d="M7 16.3H21M7 20.6H21M14 12V25"
+                  stroke="#a65f7d"
+                  stroke-width="1.2"/>
+
+        </svg>
+
+    </div>
+
+    <div>
+
+        <h1>Property Listing Administration</h1>
+
+        <div class="sub">View only</div>
+
+    </div>
+
+    <img class="avatar"
+         src="dainty-profile.jpeg"
+         alt="Profile">
+
 </header>
+
+<!-- CURRENT SHEET -->
+
 <div class="bar" id="sheetTitle"></div>
-<div class="sheet"><table id="table"></table></div>
-<div class="tabs" id="tabs"></div>
+
+<!-- SPREADSHEET -->
+
+<main class="sheet" id="sheetPanel">
+
+    <table id="table"
+           aria-label="Property Inventory">
+    </table>
+
+</main>
+
+<!-- SPREADSHEET TABS -->
+
+<nav class="tabs"
+     id="tabs"
+     aria-label="Spreadsheet sheets">
+</nav>
+
 <script>
-const sheets=[
-{
-name:"Property Inventory",
-headers:["Listing ID","Property Address","Market","Property Type","Price (USD)","Beds","Baths","Area (sq ft)","Listing Status","Assigned Agent","Verification"],
-rows:[
-["PL-001","110 Example Grove","Austin, TX","Single-family","$485,000","3","2","1,850","Ready for review","Claire Dawson","Complete"],
-["PL-002","220 Sample Terrace","Denver, CO","Condominium","$395,000","2","2","1,120","Draft","Ryan Walsh","HOA fee pending"],
-["PL-003","330 Demo Boulevard","Phoenix, AZ","Townhouse","$420,000","3","2.5","1,640","Ready for review","Claire Dawson","Complete"],
-["PL-004","440 Example Court","Orlando, FL","Single-family","$560,000","4","3","2,450","Draft","Morgan Ellis","Area discrepancy"],
-["PL-005","550 Sample Drive","Charlotte, NC","Single-family","$510,000","4","2.5","2,180","Ready for review","Ryan Walsh","Complete"],
-["PL-006","660 Demo Avenue","Dallas, TX","Duplex","$695,000","6","4","3,100","On hold","Morgan Ellis","Ownership documents pending"]
-]
-},
-{
-name:"Listing Descriptions",
-headers:["Listing ID","Headline","Property Description","Review Status"],
-rows:[
-["PL-001","Three-bedroom home with open living area","This three-bedroom, two-bathroom residence offers approximately 1,850 square feet of living space, an open living and dining area, an attached garage, and a fenced backyard.","Agent review pending"],
-["PL-002","Two-bedroom condominium","This two-bedroom, two-bathroom condominium features approximately 1,120 square feet of living space, a private balcony, and an open-plan living area. HOA details remain subject to verification.","Hold until HOA verified"],
-["PL-003","Three-bedroom townhouse","This three-bedroom townhouse offers two full bathrooms, one half bathroom, approximately 1,640 square feet, and an attached garage.","Agent review pending"],
-["PL-004","Four-bedroom residential property","This four-bedroom, three-bathroom residence includes a separate dining area and an outdoor patio. Final floor area will be added after verification.","Hold until area verified"],
-["PL-005","Four-bedroom home with covered patio","This four-bedroom residence features two full bathrooms, one half bathroom, approximately 2,180 square feet of living space, and a covered patio.","Agent review pending"],
-["PL-006","Residential duplex","This duplex contains two residential units, each with three bedrooms and two bathrooms. Additional property and ownership details require verification.","On hold"]
-]
-},
-{
-name:"Verification Checklist",
-headers:["Listing ID","Address","Price","Bedrooms / Bathrooms","Floor Area","Photos","Agent Approval","Action"],
-rows:[
-["PL-001","Verified","Verified","Verified","Verified","Received","Pending","Submit draft for review"],
-["PL-002","Verified","Verified","Verified","Verified","Received","Pending","Request HOA documents"],
-["PL-003","Verified","Verified","Verified","Verified","Received","Pending","Submit draft for review"],
-["PL-004","Verified","Verified","Verified","Discrepancy","Received","Pending","Confirm official floor area"],
-["PL-005","Verified","Verified","Verified","Verified","Received","Pending","Submit draft for review"],
-["PL-006","Verified","Verified","Verified","Verified","Pending","Pending","Request ownership documents and photos"]
-]
-},
-{
-name:"Discrepancy Log",
-headers:["Reference","Listing ID","Issue","Source A","Source B","Action Required","Status"],
-rows:[
-["D-001","PL-002","HOA fee not verified","Owner intake: $280/month","HOA statement unavailable","Request current HOA statement","Open"],
-["D-002","PL-004","Floor area mismatch","Owner intake: 2,450 sq ft","Property record: 2,380 sq ft","Refer discrepancy to agent; omit area from draft","Open"],
-["D-003","PL-006","Ownership verification incomplete","Owner intake received","Supporting documents pending","Request documents through secure channel","Open"]
-]
-}
+
+"use strict";
+
+/* =========================================
+   ORIGINAL PROPERTY LISTING RECORDS
+   ========================================= */
+
+const sheets = [
+
+    /* SHEET 1: PROPERTY INVENTORY */
+
+    {
+        name: "Property Inventory",
+
+        headers: [
+            "Listing ID",
+            "Property Address",
+            "Market",
+            "Property Type",
+            "Price (USD)",
+            "Beds",
+            "Baths",
+            "Area (sq ft)",
+            "Listing Status",
+            "Assigned Agent",
+            "Verification"
+        ],
+
+        rows: [
+
+            [
+                "PL-001",
+                "110 Example Grove",
+                "Austin, TX",
+                "Single-family",
+                "$485,000",
+                "3",
+                "2",
+                "1,850",
+                "Ready for review",
+                "Claire Dawson",
+                "Complete"
+            ],
+
+            [
+                "PL-002",
+                "220 Sample Terrace",
+                "Denver, CO",
+                "Condominium",
+                "$395,000",
+                "2",
+                "2",
+                "1,120",
+                "Draft",
+                "Ryan Walsh",
+                "HOA fee pending"
+            ],
+
+            [
+                "PL-003",
+                "330 Demo Boulevard",
+                "Phoenix, AZ",
+                "Townhouse",
+                "$420,000",
+                "3",
+                "2.5",
+                "1,640",
+                "Ready for review",
+                "Claire Dawson",
+                "Complete"
+            ],
+
+            [
+                "PL-004",
+                "440 Example Court",
+                "Orlando, FL",
+                "Single-family",
+                "$560,000",
+                "4",
+                "3",
+                "2,450",
+                "Draft",
+                "Morgan Ellis",
+                "Area discrepancy"
+            ],
+
+            [
+                "PL-005",
+                "550 Sample Drive",
+                "Charlotte, NC",
+                "Single-family",
+                "$510,000",
+                "4",
+                "2.5",
+                "2,180",
+                "Ready for review",
+                "Ryan Walsh",
+                "Complete"
+            ],
+
+            [
+                "PL-006",
+                "660 Demo Avenue",
+                "Dallas, TX",
+                "Duplex",
+                "$695,000",
+                "6",
+                "4",
+                "3,100",
+                "On hold",
+                "Morgan Ellis",
+                "Ownership documents pending"
+            ]
+
+        ]
+    },
+
+    /* SHEET 2: LISTING DESCRIPTIONS */
+
+    {
+        name: "Listing Descriptions",
+
+        headers: [
+            "Listing ID",
+            "Headline",
+            "Property Description",
+            "Review Status"
+        ],
+
+        rows: [
+
+            [
+                "PL-001",
+                "Three-bedroom home with open living area",
+                "This three-bedroom, two-bathroom residence offers approximately 1,850 square feet of living space, an open living and dining area, an attached garage, and a fenced backyard.",
+                "Agent review pending"
+            ],
+
+            [
+                "PL-002",
+                "Two-bedroom condominium",
+                "This two-bedroom, two-bathroom condominium features approximately 1,120 square feet of living space, a private balcony, and an open-plan living area. HOA details remain subject to verification.",
+                "Hold until HOA verified"
+            ],
+
+            [
+                "PL-003",
+                "Three-bedroom townhouse",
+                "This three-bedroom townhouse offers two full bathrooms, one half bathroom, approximately 1,640 square feet, and an attached garage.",
+                "Agent review pending"
+            ],
+
+            [
+                "PL-004",
+                "Four-bedroom residential property",
+                "This four-bedroom, three-bathroom residence includes a separate dining area and an outdoor patio. Final floor area will be added after verification.",
+                "Hold until area verified"
+            ],
+
+            [
+                "PL-005",
+                "Four-bedroom home with covered patio",
+                "This four-bedroom residence features two full bathrooms, one half bathroom, approximately 2,180 square feet of living space, and a covered patio.",
+                "Agent review pending"
+            ],
+
+            [
+                "PL-006",
+                "Residential duplex",
+                "This duplex contains two residential units, each with three bedrooms and two bathrooms. Additional property and ownership details require verification.",
+                "On hold"
+            ]
+
+        ]
+    },
+
+    /* SHEET 3: VERIFICATION CHECKLIST */
+
+    {
+        name: "Verification Checklist",
+
+        headers: [
+            "Listing ID",
+            "Address",
+            "Price",
+            "Bedrooms / Bathrooms",
+            "Floor Area",
+            "Photos",
+            "Agent Approval",
+            "Action"
+        ],
+
+        rows: [
+
+            [
+                "PL-001",
+                "Verified",
+                "Verified",
+                "Verified",
+                "Verified",
+                "Received",
+                "Pending",
+                "Submit draft for review"
+            ],
+
+            [
+                "PL-002",
+                "Verified",
+                "Verified",
+                "Verified",
+                "Verified",
+                "Received",
+                "Pending",
+                "Request HOA documents"
+            ],
+
+            [
+                "PL-003",
+                "Verified",
+                "Verified",
+                "Verified",
+                "Verified",
+                "Received",
+                "Pending",
+                "Submit draft for review"
+            ],
+
+            [
+                "PL-004",
+                "Verified",
+                "Verified",
+                "Verified",
+                "Discrepancy",
+                "Received",
+                "Pending",
+                "Confirm official floor area"
+            ],
+
+            [
+                "PL-005",
+                "Verified",
+                "Verified",
+                "Verified",
+                "Verified",
+                "Received",
+                "Pending",
+                "Submit draft for review"
+            ],
+
+            [
+                "PL-006",
+                "Verified",
+                "Verified",
+                "Verified",
+                "Verified",
+                "Pending",
+                "Pending",
+                "Request ownership documents and photos"
+            ]
+
+        ]
+    },
+
+    /* SHEET 4: DISCREPANCY LOG */
+
+    {
+        name: "Discrepancy Log",
+
+        headers: [
+            "Reference",
+            "Listing ID",
+            "Issue",
+            "Source A",
+            "Source B",
+            "Action Required",
+            "Status"
+        ],
+
+        rows: [
+
+            [
+                "D-001",
+                "PL-002",
+                "HOA fee not verified",
+                "Owner intake: $280/month",
+                "HOA statement unavailable",
+                "Request current HOA statement",
+                "Open"
+            ],
+
+            [
+                "D-002",
+                "PL-004",
+                "Floor area mismatch",
+                "Owner intake: 2,450 sq ft",
+                "Property record: 2,380 sq ft",
+                "Refer discrepancy to agent; omit area from draft",
+                "Open"
+            ],
+
+            [
+                "D-003",
+                "PL-006",
+                "Ownership verification incomplete",
+                "Owner intake received",
+                "Supporting documents pending",
+                "Request documents through secure channel",
+                "Open"
+            ]
+
+        ]
+    }
+
 ];
-function openSheet(i){
-const s=sheets[i];
-document.getElementById("sheetTitle").textContent=s.name;
-document.getElementById("tabs").innerHTML=sheets.map((x,j)=>`<button class="${i===j?"active":""}" onclick="openSheet(${j})">${x.name}</button>`).join("");
-document.getElementById("table").innerHTML=`
-<thead>
-<tr class="letters"><th class="number"></th>${s.headers.map((_,j)=>`<th>${String.fromCharCode(65+j)}</th>`).join("")}</tr>
-<tr class="heading"><th class="number">1</th>${s.headers.map(h=>`<th>${h}</th>`).join("")}</tr>
-</thead>
-<tbody>${s.rows.map((r,j)=>`<tr><td class="number">${j+2}</td>${r.map(v=>`<td>${v}</td>`).join("")}</tr>`).join("")}</tbody>`;
+
+/* =========================================
+   READ-ONLY SPREADSHEET FUNCTIONALITY
+   ========================================= */
+
+const table = document.getElementById("table");
+const tabs = document.getElementById("tabs");
+const sheetTitle = document.getElementById("sheetTitle");
+const sheetPanel = document.getElementById("sheetPanel");
+
+function columnLetter(index) {
+
+    let letter = "";
+    let number = index + 1;
+
+    while (number > 0) {
+
+        number--;
+
+        letter =
+            String.fromCharCode(65 + number % 26)
+            + letter;
+
+        number = Math.floor(number / 26);
+
+    }
+
+    return letter;
+
 }
+
+/* CREATE SHEET TABS */
+
+function createTabs() {
+
+    tabs.replaceChildren();
+
+    sheets.forEach(function(sheet, index) {
+
+        const button = document.createElement("button");
+
+        button.type = "button";
+
+        button.textContent = sheet.name;
+
+        button.dataset.sheet = index;
+
+        button.setAttribute("aria-pressed", "false");
+
+        button.addEventListener("click", function() {
+
+            openSheet(index);
+
+        });
+
+        tabs.appendChild(button);
+
+    });
+
+}
+
+/* OPEN SELECTED SHEET */
+
+function openSheet(index) {
+
+    const sheet = sheets[index];
+
+    if (!sheet) {
+        return;
+    }
+
+    sheetTitle.textContent = sheet.name;
+
+    table.setAttribute("aria-label", sheet.name);
+
+    Array.from(tabs.children).forEach(function(button, i) {
+
+        const active = i === index;
+
+        button.classList.toggle("active", active);
+
+        button.setAttribute(
+            "aria-pressed",
+            String(active)
+        );
+
+    });
+
+    table.replaceChildren();
+
+    /* TABLE HEAD */
+
+    const thead = document.createElement("thead");
+
+    /* COLUMN LETTERS */
+
+    const letters = document.createElement("tr");
+
+    letters.className = "letters";
+
+    const corner = document.createElement("th");
+
+    corner.className = "number";
+
+    corner.setAttribute("aria-hidden", "true");
+
+    letters.appendChild(corner);
+
+    sheet.headers.forEach(function(header, i) {
+
+        const th = document.createElement("th");
+
+        th.textContent = columnLetter(i);
+
+        letters.appendChild(th);
+
+    });
+
+    thead.appendChild(letters);
+
+    /* FIELD HEADINGS */
+
+    const heading = document.createElement("tr");
+
+    heading.className = "heading";
+
+    const firstNumber = document.createElement("th");
+
+    firstNumber.className = "number";
+
+    firstNumber.textContent = "1";
+
+    heading.appendChild(firstNumber);
+
+    sheet.headers.forEach(function(header) {
+
+        const th = document.createElement("th");
+
+        th.scope = "col";
+
+        th.textContent = header;
+
+        heading.appendChild(th);
+
+    });
+
+    thead.appendChild(heading);
+
+    table.appendChild(thead);
+
+    /* TABLE BODY */
+
+    const tbody = document.createElement("tbody");
+
+    sheet.rows.forEach(function(row, rowIndex) {
+
+        const tr = document.createElement("tr");
+
+        const number = document.createElement("th");
+
+        number.className = "number";
+
+        number.scope = "row";
+
+        number.textContent = rowIndex + 2;
+
+        tr.appendChild(number);
+
+        row.forEach(function(value) {
+
+            const td = document.createElement("td");
+
+            td.textContent = value;
+
+            if (value.length > 100) {
+
+                td.className = "long-text";
+
+            } else if (value.length > 25) {
+
+                td.className = "medium-text";
+
+            }
+
+            tr.appendChild(td);
+
+        });
+
+        tbody.appendChild(tr);
+
+    });
+
+    table.appendChild(tbody);
+
+    sheetPanel.scrollTop = 0;
+
+    sheetPanel.scrollLeft = 0;
+
+}
+
+/* INITIALIZE */
+
+createTabs();
+
 openSheet(0);
+
 </script>
+
 </body>
 </html>
