@@ -3,241 +3,1708 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Gmail</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Inbox | Dainty De Guzman</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined&display=swap" rel="stylesheet">
+
 <style>
-*{box-sizing:border-box}
-body{margin:0;font:14px Arial,sans-serif;background:#faf1f6;color:#3c3439}
-header{height:72px;display:flex;align-items:center;gap:22px;padding:12px 25px}
-.logo{font-size:23px;display:flex;align-items:center;gap:12px;width:210px}
-header input{border:0;background:#f0e0e9;border-radius:28px;padding:15px 24px;width:600px;max-width:50%;font:inherit;outline:none}
-.avatar{width:36px;height:36px;border-radius:50%;object-fit:cover;margin-left:auto}
-.layout{display:flex;height:calc(100dvh - 72px)}
-aside{width:235px;flex-shrink:0;padding:20px 15px}
-.nav{border:0;background:transparent;width:100%;padding:12px 22px;text-align:left;border-radius:24px;font:inherit;cursor:pointer}
-.nav.active{background:#eacbdb;font-weight:bold}
-main{background:white;border-radius:20px;flex:1;margin:0 16px 16px 0;overflow:auto;min-width:0}
-.toolbar{padding:18px 25px;border-bottom:1px solid #eee4e9;display:flex;justify-content:space-between}
-.mail{display:grid;grid-template-columns:180px 1fr 65px;gap:15px;padding:16px 24px;border-bottom:1px solid #eee4e9;background:#fdf8fb;cursor:pointer}
-.mail:hover{background:#f5e6ee}
-.sender,.subject{font-weight:600}
-.preview{color:#8c7e85;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.date{text-align:right;font-size:12px}
-.reader{padding:25px 40px}
-.reader h2{font-size:23px;font-weight:400;margin:20px 0 35px}
-.message{border-bottom:1px solid #eee4e9;padding:20px 0}
-.message-header{display:flex;gap:15px;align-items:center}
-.initial{border-radius:50%;width:40px;height:40px;background:#bd85a1;color:white;display:grid;place-items:center;font-size:19px}
-.message-body{white-space:pre-wrap;line-height:1.8;margin:25px 0 20px 55px}
-.small{font-size:12px;color:#8b7c84}
-.back{border:0;background:transparent;font-size:24px;cursor:pointer}
-@media(max-width:700px){aside{width:105px;padding:10px 4px}.nav{padding:12px}.logo{width:auto}.mail{grid-template-columns:1fr;gap:5px}.date{text-align:left}.reader{padding:20px}.message-body{margin-left:0}}
+:root {
+    --pink: #a65f7d;
+    --background: #faf2f6;
+    --selected: #efd3e2;
+    --border: #eee3e9;
+    --text: #302a2e;
+    --muted: #756b71;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font: 14px Roboto, Arial, sans-serif;
+    background: var(--background);
+    color: var(--text);
+}
+
+button, input {
+    font: inherit;
+}
+
+button {
+    border: none;
+    background: transparent;
+    color: inherit;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #eee0e8;
+}
+
+.material-symbols-outlined {
+    font-size: 21px;
+    vertical-align: middle;
+}
+
+.icon {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    display: inline-grid;
+    place-items: center;
+    flex-shrink: 0;
+}
+
+.hidden {
+    display: none !important;
+}
+
+header {
+    height: 72px;
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+    gap: 18px;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 220px;
+    flex-shrink: 0;
+}
+
+.brand-name {
+    font-size: 23px;
+    color: #60535b;
+}
+
+.search {
+    display: flex;
+    align-items: center;
+    flex: 1;
+    max-width: 720px;
+    background: #f0e2ea;
+    padding: 5px 14px;
+    border-radius: 30px;
+}
+
+.search input {
+    width: 100%;
+    border: none;
+    outline: none;
+    background: transparent;
+    padding: 12px;
+    min-width: 0;
+}
+
+.account {
+    margin-left: auto;
+    border-radius: 50%;
+    padding: 4px;
+    flex-shrink: 0;
+}
+
+.avatar {
+    width: 39px;
+    height: 39px;
+    border-radius: 50%;
+    object-fit: cover;
+    display: block;
+}
+
+.layout {
+    display: flex;
+    height: calc(100dvh - 72px);
+    padding-bottom: 15px;
+}
+
+.sidebar {
+    width: 250px;
+    flex-shrink: 0;
+    padding: 10px 12px 20px 0;
+    overflow: auto;
+}
+
+.mailbox-heading {
+    background: #eac5d8;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 18px 24px;
+    border-radius: 17px;
+    margin: 0 12px 22px 15px;
+    font-weight: 500;
+    color: #654256;
+}
+
+.nav {
+    display: flex;
+    align-items: center;
+    gap: 17px;
+    width: 100%;
+    padding: 11px 25px;
+    border-radius: 0 25px 25px 0;
+    text-align: left;
+}
+
+.nav.active {
+    background: var(--selected);
+    font-weight: 700;
+}
+
+.count {
+    margin-left: auto;
+    font-size: 12px;
+}
+
+.labels-title {
+    padding: 28px 25px 12px;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.main {
+    flex: 1;
+    min-width: 0;
+    background: white;
+    margin-right: 16px;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.toolbar {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 9px 18px;
+    min-height: 56px;
+}
+
+.toolbar-right {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 12px;
+    color: var(--muted);
+}
+
+.view-only {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--muted);
+    font-size: 12px;
+    padding: 8px 4px;
+}
+
+.view-only .material-symbols-outlined {
+    font-size: 18px;
+}
+
+.tabs {
+    display: flex;
+    border-bottom: 1px solid var(--border);
+}
+
+.tab {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    padding: 18px 24px;
+    border-bottom: 3px solid var(--pink);
+    color: var(--pink);
+    font-weight: 500;
+    min-width: 220px;
+}
+
+.mail-list {
+    flex: 1;
+    overflow: auto;
+}
+
+.mail-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 9px 18px;
+    min-height: 48px;
+    background: #fcf7fa;
+    border-bottom: 1px solid var(--border);
+    cursor: pointer;
+}
+
+.mail-row.unread {
+    background: white;
+    font-weight: 700;
+}
+
+.mail-row:hover {
+    box-shadow: inset 0 1px #ded1d9,
+                inset 0 -1px #ded1d9,
+                0 2px 5px #0001;
+}
+
+.mail-row:focus-visible {
+    outline: 2px solid var(--pink);
+    outline-offset: -2px;
+}
+
+.star {
+    color: #a99da5;
+    font-size: 23px;
+    padding: 2px;
+    flex-shrink: 0;
+}
+
+.star.on {
+    color: #d4a139;
+}
+
+.important {
+    color: #b9adb4;
+    padding: 3px;
+    flex-shrink: 0;
+}
+
+.important.on {
+    color: var(--pink);
+}
+
+.sender {
+    width: 170px;
+    flex-shrink: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.summary {
+    flex: 1;
+    min-width: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.snippet {
+    font-weight: 400;
+    color: var(--muted);
+}
+
+.date {
+    font-size: 12px;
+    width: 65px;
+    flex-shrink: 0;
+    text-align: right;
+}
+
+.label {
+    background: #f1e0ea;
+    color: #80536b;
+    font-size: 10px;
+    padding: 4px 7px;
+    border-radius: 4px;
+    white-space: nowrap;
+    font-weight: 400;
+}
+
+.label.approval {
+    background: #f7e8ce;
+    color: #89632d;
+}
+
+.empty {
+    text-align: center;
+    padding: 60px 20px;
+    color: var(--muted);
+}
+
+.reader {
+    overflow: auto;
+    flex: 1;
+}
+
+.thread {
+    max-width: 1000px;
+    margin: auto;
+    padding: 28px 45px 50px;
+}
+
+.subject {
+    font-size: 25px;
+    font-weight: 400;
+    line-height: 1.4;
+    margin: 0 0 15px;
+}
+
+.thread-labels {
+    display: flex;
+    gap: 7px;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+}
+
+.message-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+}
+
+.sender-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #eac5d8;
+    color: #654256;
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
+}
+
+.meta {
+    flex: 1;
+    min-width: 0;
+    line-height: 1.7;
+}
+
+.address {
+    color: var(--muted);
+    font-size: 12px;
+    overflow-wrap: anywhere;
+}
+
+.message-time {
+    font-size: 12px;
+    color: var(--muted);
+}
+
+.message {
+    white-space: pre-wrap;
+    line-height: 1.85;
+    padding: 20px 0 25px 54px;
+    overflow-wrap: anywhere;
+}
+
+hr {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 20px 0 30px;
+}
+
+.reply-box {
+    margin: 20px 0 0 54px;
+    border: 1px solid #e3d3dc;
+    border-radius: 12px;
+    box-shadow: 0 2px 6px #0001;
+    overflow: hidden;
+}
+
+.draft-heading {
+    background: #faf2f6;
+    color: var(--pink);
+    padding: 14px 20px;
+    border-bottom: 1px solid var(--border);
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.draft-content {
+    padding: 20px;
+    white-space: pre-wrap;
+    line-height: 1.8;
+    overflow-wrap: anywhere;
+}
+
+.draft-footer {
+    padding: 12px 20px;
+    border-top: 1px solid var(--border);
+    color: var(--muted);
+    font-size: 11px;
+}
+
+.notice {
+    padding: 9px 18px;
+    font-size: 10px;
+    color: var(--muted);
+    border-top: 1px solid var(--border);
+}
+
+button:disabled {
+    opacity: 0.35;
+    cursor: default;
+    background: transparent;
+}
+
+@media(max-width: 900px) {
+
+    .brand {
+        width: auto;
+    }
+
+    .brand-name {
+        display: none;
+    }
+
+    .sender {
+        width: 125px;
+    }
+
+    .row-label {
+        display: none;
+    }
+
+}
+
+@media(max-width: 650px) {
+
+    header {
+        padding: 8px;
+        gap: 6px;
+    }
+
+    .sidebar {
+        width: 65px;
+        padding-right: 5px;
+    }
+
+    .sidebar .nav-text,
+    .sidebar .count,
+    .sidebar .labels-title,
+    .sidebar .mailbox-text {
+        display: none;
+    }
+
+    .sidebar .nav {
+        justify-content: center;
+        padding: 12px;
+    }
+
+    .mailbox-heading {
+        padding: 13px;
+        margin-left: 7px;
+        margin-right: 0;
+        justify-content: center;
+    }
+
+    .main {
+        margin-right: 7px;
+    }
+
+    .brand svg {
+        width: 30px;
+    }
+
+    .mail-row {
+        flex-wrap: wrap;
+        padding: 12px;
+    }
+
+    .sender {
+        flex: 1;
+        width: auto;
+    }
+
+    .summary {
+        flex-basis: 100%;
+        white-space: normal;
+    }
+
+    .date {
+        margin-left: auto;
+    }
+
+    .thread {
+        padding: 20px;
+    }
+
+    .message {
+        padding-left: 0;
+    }
+
+    .reply-box {
+        margin-left: 0;
+    }
+
+    .message-header {
+        flex-wrap: wrap;
+    }
+
+    .toolbar {
+        padding: 8px;
+        gap: 1px;
+    }
+
+    .toolbar .icon {
+        width: 30px;
+    }
+
+    .subject {
+        font-size: 21px;
+    }
+
+}
 </style>
 </head>
+
 <body>
+
 <header>
-<div class="logo">
-<svg width="34" height="26" viewBox="0 0 34 26">
-<path d="M3 24V3L17 14L31 3V24" fill="none" stroke="#a65f7d" stroke-width="6" stroke-linejoin="round"/>
-</svg>
-Gmail
-</div>
-<input id="search" placeholder="Search mail" oninput="showList()">
-<img class="avatar" src="dainty-profile.jpeg" alt="Profile">
+
+    <div class="brand">
+
+        <span class="icon" aria-hidden="true">
+            <span class="material-symbols-outlined">menu</span>
+        </span>
+
+        <svg width="35" height="28" viewBox="0 0 40 32"
+            aria-label="Mail logo">
+
+            <path d="M3 29V5L20 18L37 5V29"
+                fill="none"
+                stroke="#a65f7d"
+                stroke-width="6"
+                stroke-linejoin="round"/>
+
+            <path d="M3 5L20 18L37 5"
+                fill="none"
+                stroke="#dca7c0"
+                stroke-width="6"
+                stroke-linejoin="round"/>
+
+        </svg>
+
+        <span class="brand-name">Gmail</span>
+
+    </div>
+
+    <div class="search">
+
+        <span class="material-symbols-outlined">search</span>
+
+        <input id="search"
+            placeholder="Search mail"
+            aria-label="Search mail"
+            oninput="searchMail()">
+
+        <button class="icon"
+            title="Clear search"
+            aria-label="Clear search"
+            onclick="clearSearch()">
+
+            <span class="material-symbols-outlined">close</span>
+
+        </button>
+
+    </div>
+
+    <div class="account"
+        title="Dainty De Guzman | daintydeguzman.work@gmail.com">
+
+        <img class="avatar"
+            src="dainty-profile.jpeg"
+            alt="Dainty De Guzman">
+
+    </div>
+
 </header>
+
 <div class="layout">
-<aside id="navigation"></aside>
-<main id="mailbox"></main>
+
+<aside class="sidebar" id="sidebar">
+
+    <div class="mailbox-heading">
+
+        <span class="material-symbols-outlined">mail</span>
+
+        <span class="mailbox-text">Mailbox</span>
+
+    </div>
+
+    <div id="folders"></div>
+
+    <div class="labels-title">Labels</div>
+
+    <div id="labels"></div>
+
+</aside>
+
+<main class="main">
+
+    <div class="toolbar" id="listToolbar">
+
+        <div class="view-only">
+
+            <span class="material-symbols-outlined">
+                visibility
+            </span>
+
+            View only
+
+        </div>
+
+        <div class="toolbar-right">
+
+            <span id="recordCount"></span>
+
+        </div>
+
+    </div>
+
+    <div class="tabs" id="tabs">
+
+        <div class="tab">
+
+            <span class="material-symbols-outlined">inbox</span>
+
+            <span id="folderTitle">Primary</span>
+
+        </div>
+
+    </div>
+
+    <div class="mail-list" id="mailList"></div>
+
+    <div class="toolbar hidden" id="readerToolbar">
+
+        <button class="icon"
+            title="Back"
+            aria-label="Back to mailbox"
+            onclick="closeMail()">
+
+            <span class="material-symbols-outlined">
+                arrow_back
+            </span>
+
+        </button>
+
+        <div class="view-only">
+            View only
+        </div>
+
+        <div class="toolbar-right">
+
+            <span id="threadPosition"></span>
+
+            <button class="icon"
+                id="previousMail"
+                title="Previous email"
+                aria-label="Previous email"
+                onclick="navigate(-1)">
+
+                <span class="material-symbols-outlined">
+                    chevron_left
+                </span>
+
+            </button>
+
+            <button class="icon"
+                id="nextMail"
+                title="Next email"
+                aria-label="Next email"
+                onclick="navigate(1)">
+
+                <span class="material-symbols-outlined">
+                    chevron_right
+                </span>
+
+            </button>
+
+        </div>
+
+    </div>
+
+    <div class="reader hidden" id="reader">
+
+        <div class="thread" id="thread"></div>
+
+    </div>
+
+    <div class="notice">
+
+        Fictional portfolio mailbox. All conversations are
+        available for viewing only. No real emails are sent.
+
+    </div>
+
+</main>
+
 </div>
+
 <script>
-const account="daintydeguzman.work@gmail.com";
-const mails=[
+
+const ACCOUNT = "daintydeguzman.work@gmail.com";
+const NAME = "Dainty De Guzman";
+const PHOTO = "dainty-profile.jpeg";
+
+const signature = `
+
+Best regards,
+Dainty De Guzman
+Real Estate Administrative Support
+daintydeguzman.work@gmail.com`;
+
+/* ========================================
+   ORIGINAL INDEPENDENT EMAIL CONVERSATIONS
+======================================== */
+
+const original = [
+
 {
-name:"Charlotte Hayes",date:"Nov 25",subject:"Inquiry about homes in Raleigh",star:true,folder:"Sent",
-body:`Hello,
+    id: 1,
+    name: "Charlotte Hayes",
+    email: "charlotte.hayes@example.com",
+    subject: "Inquiry about available homes in Raleigh",
+    date: "2026-11-25",
+    time: "10:24 AM",
+    label: "Buyer",
+    unread: true,
+    starred: true,
+    important: true,
+    approval: false,
+    status: "sent",
 
-I'm looking for a three-bedroom, two-bathroom home in Raleigh with a garage and backyard. My budget is around $420,000.
+    incoming: `Hi,
 
-Could you let me know what the next steps are?
+My husband and I are planning to move to Raleigh, North Carolina, early next year. We are currently looking for a three-bedroom home with at least two bathrooms.
+
+Our budget is approximately $420,000, and we would prefer a property with a garage and a backyard.
+
+Could you let us know how we can get started?
 
 Thank you,
-Charlotte`,
-reply:`Hi Charlotte,
+Charlotte Hayes`,
 
-Thank you for reaching out. I've noted your preferred location, property features, and budget.
+    reply: `Hi Charlotte,
 
-I'll forward your requirements to the assigned agent for a review of suitable properties. Could you also share your preferred move-in timeline and availability for an initial consultation?
+Thank you for reaching out! We'd be happy to assist you with your upcoming move to Raleigh.
 
-Best regards,
-Dainty De Guzman`
+I've noted your preference for a three-bedroom, two-bathroom home with a garage and backyard, within your approximate budget of $420,000.
+
+To help our agent narrow down your options, could you please share your preferred move-in timeline and whether you have already started the mortgage preapproval process?
+
+It would also be helpful to know if you have any particular neighborhoods in mind.
+
+Once we receive these details, our agent can review your requirements and discuss suitable next steps.
+
+We look forward to helping you with your home search.` + signature
 },
-{
-name:"Daniel Foster",date:"Nov 24",subject:"Request to reschedule property showing",star:false,folder:"Sent",
-body:`Hi,
 
-I won't be available for Saturday's showing. Would Monday after 2 PM work instead?
+{
+    id: 2,
+    name: "Daniel Foster",
+    email: "daniel.foster@example.com",
+    subject: "Request to reschedule Saturday's property showing",
+    date: "2026-11-25",
+    time: "9:16 AM",
+    label: "Showings",
+    unread: true,
+    starred: false,
+    important: true,
+    approval: false,
+    status: "sent",
+
+    incoming: `Hi Dainty,
+
+Something has come up at work, and unfortunately I won't be able to attend the property showing this Saturday morning.
+
+Would it be possible to move the appointment to Monday afternoon instead?
+
+I'm available anytime after 2 PM.
+
+Sorry for the inconvenience, and thank you for understanding.
+
+Daniel`,
+
+    reply: `Hi Daniel,
+
+Thank you for letting me know. No worries at all!
+
+I've noted your availability for Monday afternoon after 2 PM and will coordinate with the assigned agent regarding the requested change.
+
+Your new appointment time is currently pending confirmation. I'll send you the updated details as soon as the agent and property access arrangements have been confirmed.
+
+Thank you for your flexibility, and please feel free to let me know if your availability changes again.` + signature
+},
+
+{
+    id: 3,
+    name: "Madison Clarke",
+    email: "madison.clarke@example.com",
+    subject: "Questions about listing my property",
+    date: "2026-11-24",
+    time: "3:42 PM",
+    label: "Seller",
+    unread: true,
+    starred: true,
+    important: true,
+    approval: true,
+    status: "draft",
+
+    incoming: `Hello,
+
+I'm considering selling my property in Tampa, Florida. It's a four-bedroom house with three bathrooms and a recently renovated kitchen.
+
+I was hoping to list it for around $560,000.
+
+Could you tell me whether that is a reasonable asking price and what your commission would be?
+
+I'd also like to understand how long the selling process usually takes.
+
+Kind regards,
+Madison Clarke`,
+
+    reply: `Hi Madison,
+
+Thank you for considering our team to assist with the sale of your property.
+
+I've noted the details you provided, including your recent kitchen renovation and proposed asking price of $560,000.
+
+Our listing agent would be the best person to discuss an appropriate pricing strategy, commission arrangements, and the anticipated selling timeline based on your property's characteristics and current market conditions.
+
+I'd be happy to help arrange an initial consultation.
+
+Could you please provide the property's address and two or three convenient times for a meeting with our agent?
+
+We look forward to learning more about your property and discussing your selling goals.` + signature
+},
+
+{
+    id: 4,
+    name: "Benjamin Scott",
+    email: "benjamin.scott@example.com",
+    subject: "Following up on the documents I submitted",
+    date: "2026-11-23",
+    time: "11:08 AM",
+    label: "Documents",
+    unread: false,
+    starred: false,
+    important: true,
+    approval: false,
+    status: "sent",
+
+    incoming: `Hi,
+
+I sent the requested documents through the secure upload link yesterday and wanted to make sure everything was received.
+
+Please let me know if there is anything else I need to submit before our next appointment.
 
 Thanks,
-Daniel`,
-reply:`Hi Daniel,
+Benjamin Scott`,
 
-Thank you for letting us know. I've noted your availability for Monday after 2 PM.
+    reply: `Hi Benjamin,
 
-I'll coordinate with the assigned agent and verify property access before confirming the revised appointment.
+Thank you for the update.
 
-Best regards,
-Dainty De Guzman`
+I've noted that you submitted the requested documents through the secure upload link yesterday.
+
+I'll coordinate with the assigned team member to verify receipt and check whether any additional documents are required before your next appointment.
+
+For your privacy, please continue using the designated secure upload channel rather than sending sensitive financial or identification documents through regular email.
+
+We'll be in touch once the review has been completed.
+
+Thank you for your cooperation.` + signature
 },
+
 {
-name:"Madison Clarke",date:"Nov 23",subject:"Selling my property in Tampa",star:true,folder:"Drafts",
-body:`Hello,
+    id: 5,
+    name: "Amelia Parker",
+    email: "amelia.parker@example.com",
+    subject: "Checking the availability of a listed condominium",
+    date: "2026-11-22",
+    time: "2:35 PM",
+    label: "Buyer",
+    unread: false,
+    starred: true,
+    important: false,
+    approval: true,
+    status: "draft",
 
-I'm considering selling my four-bedroom, three-bathroom home in Tampa. The kitchen was recently renovated, and I'm hoping to list it around $560,000.
+    incoming: `Hello,
 
-Could you provide information about pricing, commission, and the selling timeline?
+I recently saw a two-bedroom condominium advertised in Scottsdale, Arizona, and I'm interested in learning more about it.
 
-Madison`,
-reply:`Hi Madison,
+Is the property still available? I would also like to know whether pets are allowed and how much the monthly HOA fee is.
 
-Thank you for providing these details about your property.
+I'm hoping to arrange a viewing sometime next week.
 
-I've recorded your proposed listing price and property features. Our licensed agent can discuss market pricing, commission arrangements, and the appropriate selling strategy during a consultation.
+Thank you,
+Amelia Parker`,
 
-Please let me know your availability so I can coordinate an appointment.
+    reply: `Hi Amelia,
 
-Best regards,
-Dainty De Guzman`
+Thank you for your interest in the condominium in Scottsdale.
+
+I'd be happy to help coordinate your inquiry.
+
+Could you please send me the listing link or property address so I can make sure we are referring to the correct unit?
+
+I'll forward your questions regarding current availability, pet restrictions, and monthly HOA fees to our agent for verification.
+
+In the meantime, please let me know which days and times would work best for a potential viewing next week.
+
+Once the property details and showing availability have been confirmed, we'll provide you with an update.` + signature
 },
+
 {
-name:"Benjamin Scott",date:"Nov 22",subject:"Document submission instructions",star:false,folder:"Sent",
-body:`Hi,
+    id: 6,
+    name: "Lucas Morgan",
+    email: "lucas.morgan@example.com",
+    subject: "Photos and property information for our listing",
+    date: "2026-11-21",
+    time: "10:10 AM",
+    label: "Seller",
+    unread: false,
+    starred: false,
+    important: false,
+    approval: false,
+    status: "sent",
 
-Could you confirm how I should submit the documents requested by the agent?
+    incoming: `Hi Dainty,
 
-Benjamin`,
-reply:`Hi Benjamin,
+We've finished preparing the house for photography and have gathered the information requested for our listing.
 
-Thank you for checking. For your privacy, please use the secure document submission method provided by the agent rather than sending sensitive documents through ordinary email.
+Would you prefer that I send everything in one email or upload the files separately?
 
-I'll coordinate with the agent to verify the appropriate submission instructions.
+Please let me know what works best.
 
-Best regards,
-Dainty De Guzman`
-},
-{
-name:"Amelia Parker",date:"Nov 21",subject:"Scottsdale condominium inquiry",star:true,folder:"Drafts",
-body:`Hello,
-
-Is the condominium in Scottsdale still available? I'd also like to know whether pets are permitted, the HOA fees, and when I could arrange a viewing.
-
-Amelia`,
-reply:`Hi Amelia,
-
-Thank you for your interest. I'll coordinate with the listing agent to verify current availability, applicable pet restrictions, and HOA information.
-
-Could you share your preferred viewing dates and times?
-
-Best regards,
-Dainty De Guzman`
-},
-{
-name:"Lucas Morgan",date:"Nov 20",subject:"Property photos and listing information",star:false,folder:"Sent",
-body:`Hi,
-
-I've prepared the property photographs and information requested for the listing. Please let me know if anything else is needed.
-
+Thanks,
 Lucas`,
-reply:`Hi Lucas,
 
-Thank you for preparing the materials. I'll organize the photographs and property information for the agent's review and check whether any required listing details are missing.
+    reply: `Hi Lucas,
 
-I'll follow up if further clarification is needed.
+Thank you for preparing everything.
 
-Best regards,
-Dainty De Guzman`
+To keep the property information and photographs organized, please upload the files using the designated shared folder provided by our team.
+
+If possible, separate the photographs from the property information documents and use clear filenames.
+
+Once the files are available, I'll organize them for the listing agent's review and flag any missing information that may need clarification.
+
+Please avoid uploading sensitive personal documents to the general listing folder.
+
+Thank you for your help. We appreciate your preparation.` + signature
 },
-{
-name:"Grace Sullivan",date:"Nov 19",subject:"Update on my property search",star:false,folder:"Sent",
-body:`Hello,
 
-I've decided to postpone my home search until spring. Thank you for your assistance so far.
+{
+    id: 7,
+    name: "Grace Sullivan",
+    email: "grace.sullivan@example.com",
+    subject: "Update on my home search timeline",
+    date: "2026-11-20",
+    time: "4:15 PM",
+    label: "Follow-ups",
+    unread: false,
+    starred: false,
+    important: false,
+    approval: false,
+    status: "sent",
+
+    incoming: `Hi,
+
+I wanted to let you know that I've decided to postpone my home purchase until next spring.
+
+I'm still interested in properties in Portland, but I won't be ready to schedule any viewings for a few months.
+
+I'd appreciate occasional updates in the meantime.
+
+Thank you for understanding.
 
 Grace`,
-reply:`Hi Grace,
 
-Thank you for the update. I've noted that your property search is on hold until spring.
+    reply: `Hi Grace,
 
-With your permission, we can reconnect closer to your intended timeline. Please feel free to reach out whenever you're ready.
+Thank you for keeping us updated.
 
-Best regards,
-Dainty De Guzman`
+I've noted your revised purchase timeline and your continued interest in properties in Portland.
+
+We understand that buying a home is an important decision, and we're happy to work around your preferred schedule.
+
+With your permission, we'll keep in touch occasionally with relevant updates reviewed by our agent.
+
+If your plans or property preferences change, please feel free to reach out at any time.
+
+We look forward to assisting you when you're ready to resume your search.` + signature
 },
+
 {
-name:"Henry Collins",date:"Nov 19",subject:"Question about submitting an offer",star:true,folder:"Drafts",
-body:`Hi,
+    id: 8,
+    name: "Henry Collins",
+    email: "henry.collins@example.com",
+    subject: "Question regarding my purchase offer",
+    date: "2026-11-19",
+    time: "1:20 PM",
+    label: "Buyer",
+    unread: false,
+    starred: true,
+    important: true,
+    approval: true,
+    status: "draft",
 
-I'm interested in the property listed at $395,000 and would like to discuss a possible offer of $380,000.
+    incoming: `Hello,
 
-What should I do next?
+I've been thinking about the property we viewed last week and would like to move forward with an offer.
 
-Henry`,
-reply:`Hi Henry,
+The asking price is $395,000, but I'm considering offering $380,000.
 
-Thank you for sharing your proposed offer amount.
+Do you think that would be a competitive offer?
 
-I'll forward your inquiry to the licensed agent, who can advise you on the offer process and discuss the relevant terms.
+I'd appreciate your advice before making a decision.
 
-Please let me know when you're available for a consultation.
+Henry Collins`,
 
-Best regards,
-Dainty De Guzman`
+    reply: `Hi Henry,
+
+Thank you for sharing your interest in moving forward with the property.
+
+I've noted your proposed offer amount of $380,000 and will forward your inquiry to the assigned agent.
+
+Your agent can review the relevant market information, property circumstances, and available offer terms to help you make an informed decision.
+
+I'll also coordinate a suitable time for you to discuss the next steps directly with the agent.
+
+Please let me know your availability for a call.
+
+Thank you, and we look forward to assisting you.` + signature
 }
+
 ];
-let folder="Inbox";
-const folders=["Inbox","Starred","Sent","Drafts","All Mail"];
-function navigation(){
-document.getElementById("navigation").innerHTML=folders.map(f=>`<button class="nav ${folder===f?"active":""}" onclick="changeFolder('${f}')">${f}</button>`).join("");
+
+/* ========================================
+   READ-ONLY MAILBOX STATE
+======================================== */
+
+const mails = Object.freeze(
+    original.map(mail => Object.freeze({...mail}))
+);
+
+let folder = "inbox";
+let current = null;
+
+const folders = [
+    ["inbox", "inbox", "Inbox"],
+    ["starred", "star", "Starred"],
+    ["important", "label_important", "Important"],
+    ["sent", "send", "Sent"],
+    ["drafts", "description", "Drafts"],
+    ["all", "mail", "All Mail"],
+    ["trash", "delete", "Trash"]
+];
+
+const labels = [
+    ["Buyer", "Buyer Inquiries", "#a65f7d"],
+    ["Seller", "Seller Inquiries", "#9176a5"],
+    ["Showings", "Property Showings", "#b78c55"],
+    ["Documents", "Documents", "#78938a"],
+    ["Follow-ups", "Follow-ups", "#7894ae"],
+    ["approval", "Awaiting Approval", "#bc9361"]
+];
+
+function icon(name) {
+
+    return `<span class="material-symbols-outlined">${name}</span>`;
+
 }
-function changeFolder(f){folder=f;showList()}
-function showList(){
-navigation();
-const q=document.getElementById("search").value.toLowerCase();
-const list=mails.map((m,i)=>({m,i})).filter(({m})=>
-(folder==="Inbox"||folder==="All Mail"||(folder==="Starred"&&m.star)||m.folder===folder)&&
-Object.values(m).join(" ").toLowerCase().includes(q));
-document.getElementById("mailbox").innerHTML=`
-<div class="toolbar"><strong>${folder}</strong><span>${list.length} conversations</span></div>
-${list.map(({m,i})=>`
-<div class="mail" tabindex="0" onclick="openMail(${i})" onkeydown="if(event.key==='Enter')openMail(${i})">
-<div class="sender">${folder==="Drafts"?"Draft: ":folder==="Sent"?"To: ":""}${m.name}</div>
-<div class="preview"><span class="subject">${m.subject}</span> — ${folder==="Sent"||folder==="Drafts"?m.reply:m.body}</div>
-<div class="date">${m.date}</div>
-</div>`).join("")}`;
+
+function esc(value) {
+
+    return String(value ?? "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#39;");
+
 }
-function openMail(i){
-const m=mails[i];
-const email=m.name.toLowerCase().replace(" ",".")+"@example.com";
-document.getElementById("mailbox").innerHTML=`
-<div class="toolbar"><button class="back" onclick="showList()" aria-label="Back">←</button></div>
-<div class="reader">
-<h2>${m.subject}</h2>
-<div class="message">
-<div class="message-header">
-<div class="initial">${m.name[0]}</div>
-<div><strong>${m.name}</strong> <span class="small">&lt;${email}&gt;</span><br><span class="small">to me · ${m.date}, 2026</span></div>
-</div>
-<div class="message-body">${m.body}</div>
-</div>
-<div class="message">
-<div class="message-header">
-<img class="avatar" style="margin:0;width:40px;height:40px" src="dainty-profile.jpeg" alt="Profile">
-<div><strong>Dainty De Guzman</strong> <span class="small">&lt;${account}&gt;</span><br><span class="small">${m.folder==="Drafts"?"Draft · Not sent":"to "+m.name}</span></div>
-</div>
-<div class="message-body">${m.reply}</div>
-</div>
-</div>`;
+
+function formatDate(date) {
+
+    return new Date(date + "T12:00:00")
+        .toLocaleDateString("en-US", {
+            month: "short",
+            day: "numeric"
+        });
+
 }
-showList();
+
+/* ========================================
+   MAILBOX FOLDERS AND LABELS
+======================================== */
+
+function match(mail, key) {
+
+    switch(key) {
+
+        case "inbox":
+            return Boolean(mail.incoming);
+
+        case "starred":
+            return mail.starred;
+
+        case "important":
+            return mail.important;
+
+        case "sent":
+            return mail.status === "sent";
+
+        case "drafts":
+            return mail.status === "draft";
+
+        case "approval":
+            return mail.approval;
+
+        case "all":
+            return true;
+
+        case "trash":
+            return false;
+
+        default:
+            return mail.label === key;
+
+    }
+
+}
+
+function filtered() {
+
+    const query = document.getElementById("search")
+        .value.trim().toLowerCase();
+
+    return mails.filter(mail => {
+
+        if (query) {
+
+            return Object.values(mail)
+                .join(" ")
+                .toLowerCase()
+                .includes(query);
+
+        }
+
+        return match(mail, folder);
+
+    }).sort((a, b) =>
+
+        b.date.localeCompare(a.date) || a.id - b.id
+
+    );
+
+}
+
+function navigation() {
+
+    document.getElementById("folders").innerHTML =
+        folders.map(([key, symbol, title]) => {
+
+            const count = mails.filter(mail =>
+
+                match(mail, key) &&
+                (key !== "inbox" || mail.unread)
+
+            ).length;
+
+            return `
+
+                <button class="nav ${folder === key ? "active" : ""}"
+                    title="${title}"
+                    aria-label="${title}"
+                    onclick="setFolder('${key}')">
+
+                    ${icon(symbol)}
+
+                    <span class="nav-text">
+                        ${title}
+                    </span>
+
+                    <span class="count">
+
+                        ${["inbox", "drafts"].includes(key) && count
+                            ? count
+                            : ""}
+
+                    </span>
+
+                </button>
+
+            `;
+
+        }).join("");
+
+    document.getElementById("labels").innerHTML =
+        labels.map(([key, title, color]) => `
+
+            <button class="nav ${folder === key ? "active" : ""}"
+                title="${title}"
+                aria-label="${title}"
+                onclick="setFolder('${key}')">
+
+                <span style="color:${color}">
+                    ${icon("label")}
+                </span>
+
+                <span class="nav-text">
+                    ${title}
+                </span>
+
+            </button>
+
+        `).join("");
+
+    const entry = folders.find(f => f[0] === folder);
+
+    document.getElementById("folderTitle").textContent =
+
+        document.getElementById("search").value.trim()
+
+            ? "Search results"
+
+            : folder === "inbox"
+
+                ? "Primary"
+
+                : entry
+
+                    ? entry[2]
+
+                    : labels.find(l => l[0] === folder)?.[1]
+                        || folder;
+
+}
+
+function setFolder(key) {
+
+    folder = key;
+
+    document.getElementById("search").value = "";
+
+    closeMail();
+
+}
+
+function searchMail() {
+
+    closeMail();
+
+}
+
+function clearSearch() {
+
+    document.getElementById("search").value = "";
+
+    searchMail();
+
+}
+
+/* ========================================
+   READ-ONLY EMAIL LIST
+======================================== */
+
+function render() {
+
+    navigation();
+
+    const results = filtered();
+
+    document.getElementById("recordCount").textContent =
+
+        results.length
+
+            ? `1–${results.length} of ${results.length}`
+
+            : "0 messages";
+
+    document.getElementById("mailList").innerHTML =
+
+        results.length ? results.map(mail => {
+
+            const outgoing =
+                ["sent", "drafts"].includes(folder);
+
+            const preview =
+                outgoing ? mail.reply : mail.incoming;
+
+            return `
+
+                <div class="mail-row
+                    ${mail.unread && !outgoing ? "unread" : ""}"
+
+                    role="button"
+                    tabindex="0"
+                    aria-label="Read ${esc(mail.subject)}"
+
+                    onclick="openMail(${mail.id})"
+
+                    onkeydown="if(event.key === 'Enter' || event.key === ' ') {
+                        event.preventDefault();
+                        openMail(${mail.id});
+                    }">
+
+                    <span class="star ${mail.starred ? "on" : ""}"
+                        title="${mail.starred ? "Starred" : "Not starred"}">
+
+                        ${mail.starred ? "★" : "☆"}
+
+                    </span>
+
+                    <span class="important ${mail.important ? "on" : ""}"
+                        title="${mail.important ? "Important" : "Not marked important"}">
+
+                        ${icon("label_important")}
+
+                    </span>
+
+                    <div class="sender">
+
+                        ${outgoing
+
+                            ? folder === "drafts"
+
+                                ? '<span style="color:#a65f7d">Draft</span>'
+
+                                : "To: " + esc(mail.name)
+
+                            : esc(mail.name)}
+
+                    </div>
+
+                    ${mail.label ? `
+
+                        <span class="label row-label">
+
+                            ${esc(mail.label)}
+
+                        </span>
+
+                    ` : ""}
+
+                    ${mail.approval ? `
+
+                        <span class="label approval row-label">
+
+                            Awaiting Approval
+
+                        </span>
+
+                    ` : ""}
+
+                    <div class="summary">
+
+                        ${esc(mail.subject)}
+
+                        <span class="snippet">
+
+                            — ${esc(preview.replace(/\n/g, " "))}
+
+                        </span>
+
+                    </div>
+
+                    <span class="date">
+
+                        ${formatDate(mail.date)}
+
+                    </span>
+
+                </div>
+
+            `;
+
+        }).join("") :
+
+        `<div class="empty">
+
+            ${icon("mail")}
+
+            <p>No messages in this view.</p>
+
+        </div>`;
+
+}
+
+/* ========================================
+   OPEN ORIGINAL EMAIL CONVERSATIONS
+======================================== */
+
+function openMail(id) {
+
+    const mail = mails.find(m => m.id === id);
+
+    if (!mail) return;
+
+    current = id;
+
+    document.getElementById("listToolbar")
+        .classList.add("hidden");
+
+    document.getElementById("tabs")
+        .classList.add("hidden");
+
+    document.getElementById("mailList")
+        .classList.add("hidden");
+
+    document.getElementById("readerToolbar")
+        .classList.remove("hidden");
+
+    document.getElementById("reader")
+        .classList.remove("hidden");
+
+    const initials = mail.name.split(" ")
+        .slice(0, 2)
+        .map(word => word[0])
+        .join("");
+
+    document.getElementById("thread").innerHTML = `
+
+        <h1 class="subject">
+
+            ${esc(mail.subject)}
+
+        </h1>
+
+        <div class="thread-labels">
+
+            ${mail.label
+
+                ? `<span class="label">
+
+                    ${esc(mail.label)}
+
+                </span>`
+
+                : ""}
+
+            ${mail.approval
+
+                ? `<span class="label approval">
+
+                    Awaiting Approval
+
+                </span>`
+
+                : ""}
+
+        </div>
+
+        <div class="message-header">
+
+            <div class="sender-avatar">
+
+                ${esc(initials)}
+
+            </div>
+
+            <div class="meta">
+
+                <strong>
+
+                    ${esc(mail.name)}
+
+                </strong>
+
+                <span class="address">
+
+                    &lt;${esc(mail.email)}&gt;
+
+                </span>
+
+                <div class="address">
+
+                    to me
+
+                </div>
+
+            </div>
+
+            <div class="message-time">
+
+                ${formatDate(mail.date)}, ${esc(mail.time)}
+
+            </div>
+
+            <span class="star ${mail.starred ? "on" : ""}">
+
+                ${mail.starred ? "★" : "☆"}
+
+            </span>
+
+        </div>
+
+        <div class="message">${esc(mail.incoming)}</div>
+
+        <hr>
+
+        <div class="message-header">
+
+            <img class="avatar"
+                src="${PHOTO}"
+                alt="${NAME}">
+
+            <div class="meta">
+
+                <strong>
+
+                    ${NAME}
+
+                </strong>
+
+                <span class="address">
+
+                    &lt;${ACCOUNT}&gt;
+
+                </span>
+
+                <div class="address">
+
+                    to ${esc(mail.name)}
+
+                    &lt;${esc(mail.email)}&gt;
+
+                </div>
+
+            </div>
+
+            <span class="message-time">
+
+                ${mail.status === "draft"
+
+                    ? "Draft"
+
+                    : "Sample reply"}
+
+            </span>
+
+        </div>
+
+        ${mail.status === "sent" ? `
+
+            <div class="message">${esc(mail.reply)}</div>
+
+        ` : `
+
+            <div class="reply-box">
+
+                <div class="draft-heading">
+
+                    ${icon("description")}
+
+                    Draft — Awaiting Agent Approval
+
+                </div>
+
+                <div class="draft-content">${esc(mail.reply)}</div>
+
+                <div class="draft-footer">
+
+                    Prepared response · Not sent · View only
+
+                </div>
+
+            </div>
+
+        `}
+
+    `;
+
+    const list = filtered();
+
+    const index = list.findIndex(item => item.id === current);
+
+    document.getElementById("threadPosition").textContent =
+
+        index >= 0
+
+            ? `${index + 1} of ${list.length}`
+
+            : "";
+
+    document.getElementById("previousMail").disabled =
+        index <= 0;
+
+    document.getElementById("nextMail").disabled =
+        index < 0 || index >= list.length - 1;
+
+    document.getElementById("reader").scrollTop = 0;
+
+}
+
+/* ========================================
+   RETURN TO MAILBOX
+======================================== */
+
+function closeMail() {
+
+    current = null;
+
+    document.getElementById("reader")
+        .classList.add("hidden");
+
+    document.getElementById("readerToolbar")
+        .classList.add("hidden");
+
+    document.getElementById("listToolbar")
+        .classList.remove("hidden");
+
+    document.getElementById("tabs")
+        .classList.remove("hidden");
+
+    document.getElementById("mailList")
+        .classList.remove("hidden");
+
+    render();
+
+}
+
+/* ========================================
+   PREVIOUS AND NEXT EMAIL
+======================================== */
+
+function navigate(direction) {
+
+    const list = filtered();
+
+    const index = list.findIndex(mail => mail.id === current);
+
+    const next = list[index + direction];
+
+    if (next) {
+
+        openMail(next.id);
+
+    }
+
+}
+
+/* ========================================
+   KEYBOARD NAVIGATION
+======================================== */
+
+document.addEventListener("keydown", event => {
+
+    if (event.key === "Escape" && current !== null) {
+
+        closeMail();
+
+    }
+
+});
+
+/* ========================================
+   INITIALIZATION
+======================================== */
+
+render();
+
 </script>
+
 </body>
 </html>
