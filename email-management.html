@@ -4,142 +4,119 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Inbox | Dainty De Guzman</title>
+<title>Calendar | Dainty De Guzman</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined&display=swap" rel="stylesheet">
 
 <style>
+* { box-sizing: border-box; }
+
 :root {
     --pink: #a65f7d;
     --background: #faf2f6;
-    --selected: #efd3e2;
-    --border: #eee3e9;
-    --text: #302a2e;
-    --muted: #756b71;
+    --border: #e7dfe4;
+    --text: #3c4043;
 }
-
-* { box-sizing: border-box; }
 
 body {
     margin: 0;
-    font: 14px Roboto, Arial, sans-serif;
     background: var(--background);
     color: var(--text);
+    font: 14px Roboto, Arial, sans-serif;
 }
 
-button, input, textarea {
+button, input, select {
     font: inherit;
+    color: inherit;
 }
 
 button {
     border: none;
     background: transparent;
-    color: inherit;
     cursor: pointer;
 }
 
-button:hover { background: #eee0e8; }
+button:hover { background: #f0e2ea; }
 
 .material-symbols-outlined {
-    font-size: 21px;
+    font-size: 22px;
     vertical-align: middle;
 }
 
+.hidden { display: none !important; }
+
 .icon {
-    width: 38px;
-    height: 38px;
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
     display: inline-grid;
     place-items: center;
     flex-shrink: 0;
 }
 
-.hidden { display: none !important; }
-
 header {
     height: 72px;
     display: flex;
     align-items: center;
-    padding: 10px 20px;
-    gap: 18px;
+    gap: 10px;
+    padding: 8px 18px;
 }
 
 .brand {
     display: flex;
     align-items: center;
     gap: 12px;
-    width: 220px;
+    width: 235px;
     flex-shrink: 0;
 }
 
-.brand-name {
-    font-size: 23px;
-    color: #60535b;
+.logo {
+    width: 38px;
+    height: 38px;
 }
 
-.search {
+.brand-name {
+    font-size: 22px;
+}
+
+.today {
+    border: 1px solid #c9bec5;
+    border-radius: 24px;
+    padding: 10px 23px;
+    margin-right: 10px;
+}
+
+#monthTitle {
+    font-size: 22px;
+    font-weight: 400;
+    margin-left: 8px;
+}
+
+.header-right {
     display: flex;
     align-items: center;
-    flex: 1;
-    max-width: 720px;
-    background: #f0e2ea;
-    padding: 5px 14px;
-    border-radius: 30px;
-}
-
-.search input {
-    width: 100%;
-    border: none;
-    outline: none;
-    background: transparent;
-    padding: 12px;
-}
-
-.account {
+    gap: 12px;
     margin-left: auto;
-    border-radius: 50%;
-    padding: 4px;
+}
+
+.view-select {
+    background: transparent;
+    border: 1px solid #c9bec5;
+    border-radius: 24px;
+    padding: 10px 18px;
 }
 
 .avatar {
-    width: 39px;
-    height: 39px;
+    width: 36px;
+    height: 36px;
     border-radius: 50%;
     object-fit: cover;
-    display: block;
 }
 
-.profile {
-    position: fixed;
-    top: 68px;
-    right: 18px;
-    width: 330px;
-    max-width: 90vw;
-    border-radius: 25px;
-    padding: 25px;
-    text-align: center;
-    background: #f8eaf1;
-    box-shadow: 0 5px 25px #0002;
-    z-index: 100;
-}
-
-.profile img {
-    width: 85px;
-    height: 85px;
-    object-fit: cover;
+.account {
+    padding: 4px;
     border-radius: 50%;
-    margin-top: 15px;
-}
-
-.profile p {
-    overflow-wrap: anywhere;
-    font-size: 13px;
-}
-
-.profile h2 {
-    font-size: 22px;
-    font-weight: 400;
 }
 
 .layout {
@@ -149,431 +126,442 @@ header {
 }
 
 .sidebar {
-    width: 250px;
+    width: 255px;
     flex-shrink: 0;
-    padding: 10px 12px 20px 0;
+    padding: 22px 20px;
     overflow: auto;
 }
 
-.compose {
-    background: #eac5d8;
+.sidebar.collapsed { display: none; }
+
+.mini-header {
     display: flex;
     align-items: center;
-    gap: 15px;
-    padding: 18px 24px;
-    border-radius: 17px;
-    margin: 0 0 22px 15px;
+    justify-content: space-between;
     font-weight: 500;
+    margin-bottom: 10px;
 }
 
-.compose:hover {
-    background: #eac5d8;
-    box-shadow: 0 3px 9px #0002;
+.mini-header .icon {
+    width: 27px;
+    height: 27px;
 }
 
-.nav {
+.mini-calendar {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 2px;
+    text-align: center;
+    font-size: 11px;
+}
+
+.mini-day {
+    width: 27px;
+    height: 27px;
+    padding: 0;
+    border-radius: 50%;
+}
+
+.mini-day.selected {
+    background: var(--pink);
+    color: white;
+}
+
+.mini-day.outside {
+    color: #a89da4;
+}
+
+.mini-weekday {
+    color: #777;
+    padding: 8px 0;
+}
+
+.sidebar-heading {
     display: flex;
     align-items: center;
-    gap: 17px;
+    justify-content: space-between;
+    font-weight: 500;
+    margin: 28px 0 10px;
     width: 100%;
-    padding: 11px 25px;
-    border-radius: 0 25px 25px 0;
     text-align: left;
+    padding: 5px 0;
 }
 
-.nav.active {
-    background: var(--selected);
-    font-weight: 700;
+.calendar-option {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 0;
+    font-size: 13px;
+    cursor: pointer;
 }
 
-.count {
-    margin-left: auto;
-    font-size: 12px;
-}
-
-.labels-title {
-    padding: 28px 25px 12px;
-    font-size: 16px;
-    font-weight: 500;
-}
-
-.sidebar.collapsed { width: 75px; }
-
-.sidebar.collapsed .nav-text,
-.sidebar.collapsed .count,
-.sidebar.collapsed .labels-title,
-.sidebar.collapsed .compose-text {
-    display: none;
-}
-
-.sidebar.collapsed .nav {
-    justify-content: center;
-    padding: 12px;
-}
-
-.sidebar.collapsed .compose {
-    padding: 15px;
-    margin-left: 10px;
+.calendar-option input {
+    width: 16px;
+    height: 16px;
 }
 
 .main {
     flex: 1;
     min-width: 0;
+    margin-right: 15px;
     background: white;
-    margin-right: 16px;
-    border-radius: 20px;
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-}
-
-.toolbar {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    padding: 9px 18px;
-    min-height: 56px;
-}
-
-.toolbar-right {
-    margin-left: auto;
-    display: flex;
-    align-items: center;
-    gap: 4px;
-    font-size: 12px;
-    color: var(--muted);
-}
-
-input[type="checkbox"] {
-    width: 15px;
-    height: 15px;
-    accent-color: var(--pink);
-    cursor: pointer;
-}
-
-.tabs {
-    display: flex;
-    border-bottom: 1px solid var(--border);
-}
-
-.tab {
-    display: flex;
-    align-items: center;
-    gap: 13px;
-    padding: 18px 24px;
-    border-bottom: 3px solid var(--pink);
-    color: var(--pink);
-    font-weight: 500;
-    min-width: 220px;
-}
-
-.mail-list {
-    flex: 1;
+    border-radius: 22px;
     overflow: auto;
 }
 
-.mail-row {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 9px 18px;
-    min-height: 48px;
-    background: #fcf7fa;
-    border-bottom: 1px solid var(--border);
-    cursor: pointer;
+.month-grid {
+    display: grid;
+    grid-template-columns: repeat(7, minmax(100px, 1fr));
+    grid-template-rows: 30px repeat(var(--weeks), minmax(110px, 1fr));
+    min-width: 700px;
+    min-height: 100%;
 }
 
-.mail-row.unread {
-    background: white;
-    font-weight: 700;
-}
-
-.mail-row.selected {
-    background: #efd9e5;
-}
-
-.mail-row:hover {
-    box-shadow: inset 0 1px #ded1d9,
-                inset 0 -1px #ded1d9,
-                0 2px 5px #0001;
-}
-
-.star {
-    color: #a99da5;
-    font-size: 23px;
-    padding: 2px;
-}
-
-.star.on { color: #d4a139; }
-
-.important {
-    color: #b9adb4;
-    padding: 3px;
-}
-
-.important.on { color: var(--pink); }
-
-.sender {
-    width: 170px;
-    flex-shrink: 0;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-}
-
-.summary {
-    flex: 1;
-    min-width: 0;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
-.snippet {
-    font-weight: 400;
-    color: var(--muted);
-}
-
-.date {
-    font-size: 12px;
-    width: 65px;
-    flex-shrink: 0;
-    text-align: right;
-}
-
-.label {
-    background: #f1e0ea;
-    color: #80536b;
-    font-size: 10px;
-    padding: 4px 7px;
-    border-radius: 4px;
-    white-space: nowrap;
-    font-weight: 400;
-}
-
-.label.approval {
-    background: #f7e8ce;
-    color: #89632d;
-}
-
-.empty {
+.weekday {
     text-align: center;
-    padding: 60px 20px;
-    color: var(--muted);
+    font-size: 11px;
+    color: #70757a;
+    padding: 10px 0;
 }
 
-.reader {
-    overflow: auto;
-    flex: 1;
+.day-cell {
+    border-right: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 5px 3px;
+    min-width: 0;
 }
 
-.thread {
-    max-width: 1000px;
-    margin: auto;
-    padding: 28px 45px 50px;
-}
-
-.subject {
-    font-size: 25px;
-    font-weight: 400;
-    line-height: 1.4;
-    margin: 0 0 15px;
-}
-
-.thread-labels {
-    display: flex;
-    gap: 7px;
-    margin-bottom: 30px;
-    flex-wrap: wrap;
-}
-
-.message-header {
-    display: flex;
-    align-items: flex-start;
-    gap: 14px;
-}
-
-.sender-avatar {
-    width: 40px;
-    height: 40px;
+.day-number {
+    width: 26px;
+    height: 26px;
     border-radius: 50%;
-    background: #eac5d8;
-    color: #654256;
     display: grid;
     place-items: center;
+    margin: 0 auto 6px;
+    font-size: 12px;
+}
+
+.day-number.selected {
+    background: var(--pink);
+    color: white;
+}
+
+.outside .day-number {
+    color: #a7a0a4;
+}
+
+.event {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    width: 100%;
+    text-align: left;
+    padding: 5px 6px;
+    margin-bottom: 2px;
+    border-radius: 4px;
+    font-size: 11px;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.event:hover {
+    background: #f3e4ec;
+}
+
+.event-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
     flex-shrink: 0;
 }
 
-.meta {
-    flex: 1;
-    min-width: 0;
-    line-height: 1.7;
-}
-
-.address {
-    color: var(--muted);
-    font-size: 12px;
-    overflow-wrap: anywhere;
-}
-
-.message-time {
-    font-size: 12px;
-    color: var(--muted);
-}
-
-.message {
-    white-space: pre-wrap;
-    line-height: 1.85;
-    padding: 20px 0 25px 54px;
-    overflow-wrap: anywhere;
-}
-
-hr {
-    border: none;
-    border-top: 1px solid var(--border);
-    margin: 20px 0 30px;
-}
-
-.reply-box {
-    margin: 20px 0 0 54px;
-    border: 1px solid #e3d3dc;
-    border-radius: 12px;
-    box-shadow: 0 2px 6px #0001;
+.event-title {
     overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
-.reply-box textarea {
-    display: block;
-    width: 100%;
-    min-height: 340px;
-    padding: 20px;
-    border: none;
-    outline: none;
-    resize: vertical;
-    line-height: 1.8;
+.time-grid {
+    min-width: 700px;
 }
 
-.reply-actions {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    flex-wrap: wrap;
-    padding: 15px;
-}
-
-.primary {
-    background: var(--pink);
-    color: white;
-    border-radius: 22px;
-    padding: 11px 23px;
-    font-weight: 500;
-}
-
-.primary:hover {
-    background: #8f4e6a;
-}
-
-.secondary {
-    border: 1px solid #ddc9d4;
-    border-radius: 22px;
-    padding: 10px 17px;
-}
-
-.compose-window {
-    position: fixed;
-    bottom: 0;
-    right: 25px;
-    width: 550px;
-    max-width: calc(100vw - 25px);
-    max-height: 90dvh;
-    overflow: auto;
+.time-header {
+    display: grid;
+    position: sticky;
+    top: 0;
+    z-index: 5;
     background: white;
-    border-radius: 12px 12px 0 0;
-    box-shadow: 0 0 30px #0003;
-    z-index: 110;
-}
-
-.compose-header {
-    background: #efd9e5;
-    padding: 13px 17px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-weight: 500;
-}
-
-.compose-field {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    padding: 13px 17px;
     border-bottom: 1px solid var(--border);
 }
 
-.compose-field input {
-    flex: 1;
-    min-width: 0;
-    border: none;
-    outline: none;
+.time-heading {
+    text-align: center;
+    padding: 12px 0;
+    border-right: 1px solid var(--border);
 }
 
-.compose-window textarea {
-    width: 100%;
-    min-height: 250px;
+.time-heading small {
+    display: block;
+    color: #777;
+    font-size: 11px;
+}
+
+.time-heading strong {
+    font-size: 26px;
+    font-weight: 400;
+    display: inline-grid;
+    place-items: center;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+}
+
+.time-heading strong.selected {
+    background: var(--pink);
+    color: white;
+}
+
+.time-body {
+    display: grid;
+}
+
+.time-label {
+    height: 64px;
+    font-size: 10px;
+    text-align: center;
+    color: #777;
+}
+
+.time-day {
+    position: relative;
+    border-right: 1px solid var(--border);
+}
+
+.hour-cell {
+    height: 64px;
+    border-bottom: 1px solid var(--border);
+}
+
+.time-event {
+    position: absolute;
+    left: 3px;
+    right: 5px;
+    border-radius: 4px;
+    color: white;
+    padding: 7px;
+    text-align: left;
+    font-size: 11px;
+    overflow: hidden;
+}
+
+.time-event:hover {
+    filter: brightness(.94);
+}
+
+.time-event strong {
+    display: block;
+    margin-bottom: 4px;
+}
+
+.agenda {
+    padding: 20px 35px;
+}
+
+.agenda-row {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 20px 10px;
+    border-bottom: 1px solid var(--border);
+    cursor: pointer;
+}
+
+.agenda-row:hover {
+    background: #fcf4f8;
+}
+
+.agenda-date {
+    width: 110px;
+    flex-shrink: 0;
+}
+
+.agenda-time {
+    width: 150px;
+    flex-shrink: 0;
+}
+
+.agenda-title {
+    flex: 1;
+}
+
+.overlay {
+    position: fixed;
+    inset: 0;
+    background: #0002;
+    display: grid;
+    place-items: center;
     padding: 20px;
-    border: none;
-    outline: none;
-    resize: vertical;
+    z-index: 100;
+}
+
+.dialog {
+    background: white;
+    width: 500px;
+    max-width: 100%;
+    max-height: 90dvh;
+    overflow: auto;
+    border-radius: 26px;
+    box-shadow: 0 8px 30px #0003;
+}
+
+.dialog-toolbar {
+    display: flex;
+    justify-content: flex-end;
+    padding: 10px 14px;
+}
+
+.dialog-content {
+    padding: 5px 25px 30px;
+}
+
+.detail-title {
+    display: flex;
+    align-items: flex-start;
+    gap: 18px;
+    margin-bottom: 25px;
+}
+
+.detail-title h2 {
+    font-size: 23px;
+    font-weight: 400;
+    margin: 0 0 8px;
+}
+
+.color-square {
+    width: 16px;
+    height: 16px;
+    border-radius: 4px;
+    flex-shrink: 0;
+    margin-top: 6px;
+}
+
+.detail-date {
+    line-height: 1.6;
+    font-size: 13px;
+}
+
+.detail {
+    display: flex;
+    gap: 18px;
+    align-items: flex-start;
+    margin: 20px 0;
     line-height: 1.7;
 }
 
-.toast {
+.detail .material-symbols-outlined {
+    color: #70757a;
+    flex-shrink: 0;
+}
+
+.detail-text {
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+    min-width: 0;
+}
+
+.profile {
     position: fixed;
-    bottom: 20px;
-    left: 20px;
-    background: #503743;
-    color: white;
-    padding: 15px 22px;
-    border-radius: 6px;
+    top: 65px;
+    right: 18px;
+    width: 320px;
+    max-width: 90vw;
+    background: #f8eaf1;
+    border-radius: 25px;
+    padding: 25px;
+    text-align: center;
+    box-shadow: 0 5px 25px #0002;
     z-index: 200;
 }
 
-.notice {
-    padding: 9px 18px;
-    font-size: 10px;
-    color: var(--muted);
-    border-top: 1px solid var(--border);
+.profile img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
 }
 
-@media(max-width: 900px) {
+.profile h2 {
+    font-weight: 400;
+}
+
+.profile p {
+    font-size: 13px;
+    overflow-wrap: anywhere;
+}
+
+.search-input {
+    border: none;
+    background: #f0e1e9;
+    padding: 12px 18px;
+    border-radius: 24px;
+    outline: none;
+    width: 240px;
+}
+
+.empty {
+    padding: 60px;
+    text-align: center;
+    color: #777;
+}
+
+@media(max-width: 950px) {
     .brand { width: auto; }
     .brand-name { display: none; }
-    .sender { width: 125px; }
-    .row-label { display: none; }
+    .sidebar { width: 220px; }
+    #monthTitle { font-size: 18px; }
 }
 
 @media(max-width: 650px) {
-    header { padding: 8px; gap: 6px; }
-    .sidebar { width: 65px; }
-    .sidebar .nav-text,
-    .sidebar .count,
-    .sidebar .labels-title,
-    .sidebar .compose-text { display: none; }
-    .sidebar .nav { justify-content: center; padding: 12px; }
-    .compose { padding: 13px; margin-left: 7px; }
-    .main { margin-right: 7px; }
-    .brand svg { display: none; }
-    .mail-row { flex-wrap: wrap; padding: 12px; }
-    .sender { flex: 1; width: auto; }
-    .summary { flex-basis: 100%; white-space: normal; }
-    .date { margin-left: auto; }
-    .thread { padding: 20px; }
-    .message { padding-left: 0; }
-    .reply-box { margin-left: 0; }
-    .message-header { flex-wrap: wrap; }
-    .toolbar { padding: 8px; gap: 1px; }
-    .toolbar .icon { width: 30px; }
-    .toolbar-right .icon { display: none; }
+    header {
+        flex-wrap: wrap;
+        height: 110px;
+        padding: 8px;
+        gap: 4px;
+    }
+
+    .layout {
+        height: calc(100dvh - 110px);
+    }
+
+    .sidebar { display: none; }
+
+    .sidebar.mobile-open {
+        display: block;
+        position: fixed;
+        top: 110px;
+        bottom: 0;
+        left: 0;
+        background: var(--background);
+        z-index: 50;
+        box-shadow: 4px 0 15px #0002;
+    }
+
+    .logo { display: none; }
+    .main { margin: 0 7px; }
+
+    .today {
+        padding: 8px 12px;
+        margin: 0;
+    }
+
+    .header-right { gap: 3px; }
+    .search-input { width: 150px; }
+
+    .agenda {
+        padding: 10px;
+        min-width: 500px;
+    }
 }
 </style>
 </head>
@@ -581,1209 +569,1151 @@ hr {
 <body>
 
 <header>
+
     <div class="brand">
 
         <button class="icon" title="Main menu"
-            onclick="document.getElementById('sidebar').classList.toggle('collapsed')">
+            onclick="toggleSidebar()">
             <span class="material-symbols-outlined">menu</span>
         </button>
 
-        <svg width="35" height="28" viewBox="0 0 40 32">
-            <path d="M3 29V5L20 18L37 5V29"
-                fill="none" stroke="#a65f7d"
-                stroke-width="6" stroke-linejoin="round"/>
-            <path d="M3 5L20 18L37 5"
-                fill="none" stroke="#dca7c0"
-                stroke-width="6" stroke-linejoin="round"/>
+        <svg class="logo" viewBox="0 0 40 40">
+            <rect x="2" y="2" width="36" height="36"
+                rx="4" fill="#a65f7d"/>
+            <rect x="8" y="8" width="24" height="24"
+                fill="white"/>
+            <text x="20" y="25" font-size="16"
+                font-weight="500" text-anchor="middle"
+                fill="#a65f7d">31</text>
+            <path d="M26 38L38 26H26Z" fill="#e5b6ce"/>
         </svg>
 
-        <span class="brand-name">Gmail</span>
+        <span class="brand-name">Calendar</span>
+
     </div>
 
-    <div class="search">
-        <span class="material-symbols-outlined">search</span>
-        <input id="search" placeholder="Search mail"
-            oninput="searchMail()">
-        <button class="icon" title="Clear search"
-            onclick="clearSearch()">
-            <span class="material-symbols-outlined">close</span>
-        </button>
-    </div>
+    <button class="today" onclick="goToday()">Today</button>
 
-    <button class="account" title="Account"
-        onclick="document.getElementById('profile').classList.toggle('hidden')">
-        <img class="avatar" src="dainty-profile.jpeg"
-            alt="Dainty De Guzman">
+    <button class="icon" title="Previous" onclick="move(-1)">
+        <span class="material-symbols-outlined">chevron_left</span>
     </button>
+
+    <button class="icon" title="Next" onclick="move(1)">
+        <span class="material-symbols-outlined">chevron_right</span>
+    </button>
+
+    <div id="monthTitle"></div>
+
+    <div class="header-right">
+
+        <input class="search-input hidden" id="search"
+            placeholder="Search calendar" oninput="render()">
+
+        <button class="icon" title="Search"
+            onclick="toggleSearch()">
+            <span class="material-symbols-outlined">search</span>
+        </button>
+
+        <select class="view-select" id="view" onchange="render()">
+            <option value="day">Day</option>
+            <option value="week">Week</option>
+            <option value="month" selected>Month</option>
+            <option value="schedule">Schedule</option>
+        </select>
+
+        <button class="account" onclick="toggleProfile()">
+            <img class="avatar" src="dainty-profile.jpeg"
+                alt="Dainty De Guzman">
+        </button>
+
+    </div>
+
 </header>
 
 <div class="profile hidden" id="profile">
+
     <p>daintydeguzman.work@gmail.com</p>
+
     <img src="dainty-profile.jpeg" alt="Dainty De Guzman">
+
     <h2>Hi, Dainty!</h2>
-    <button class="secondary"
-        onclick="document.getElementById('profile').classList.add('hidden')">
-        Close
-    </button>
+
+    <button onclick="toggleProfile()">Close</button>
+
 </div>
 
 <div class="layout">
 
-<aside class="sidebar" id="sidebar">
+    <aside class="sidebar" id="sidebar">
 
-    <button class="compose" onclick="openCompose()">
-        <span class="material-symbols-outlined">edit</span>
-        <span class="compose-text">Compose</span>
-    </button>
+        <div class="mini-header">
 
-    <div id="folders"></div>
+            <span id="miniTitle"></span>
 
-    <div class="labels-title">Labels</div>
+            <div>
 
-    <div id="labels"></div>
+                <button class="icon" onclick="moveMini(-1)">
+                    <span class="material-symbols-outlined">chevron_left</span>
+                </button>
 
-</aside>
+                <button class="icon" onclick="moveMini(1)">
+                    <span class="material-symbols-outlined">chevron_right</span>
+                </button>
 
-<main class="main">
+            </div>
 
-    <div class="toolbar" id="listToolbar">
-
-        <input type="checkbox" id="selectAll"
-            title="Select all"
-            onchange="selectAll(this.checked)">
-
-        <button class="icon" title="Refresh"
-            onclick="render()">
-            <span class="material-symbols-outlined">refresh</span>
-        </button>
-
-        <button class="icon" title="Archive"
-            onclick="bulk('archive')">
-            <span class="material-symbols-outlined">archive</span>
-        </button>
-
-        <button class="icon" title="Delete"
-            onclick="bulk('trash')">
-            <span class="material-symbols-outlined">delete</span>
-        </button>
-
-        <button class="icon" title="Mark as unread"
-            onclick="bulk('unread')">
-            <span class="material-symbols-outlined">mark_email_unread</span>
-        </button>
-
-        <div class="toolbar-right">
-            <span id="recordCount"></span>
-
-            <button class="icon" title="Previous page"
-                onclick="changePage(-1)">
-                <span class="material-symbols-outlined">chevron_left</span>
-            </button>
-
-            <button class="icon" title="Next page"
-                onclick="changePage(1)">
-                <span class="material-symbols-outlined">chevron_right</span>
-            </button>
         </div>
 
-    </div>
+        <div class="mini-calendar" id="miniCalendar"></div>
 
-    <div class="tabs" id="tabs">
-        <div class="tab">
-            <span class="material-symbols-outlined">inbox</span>
-            <span id="folderTitle">Primary</span>
-        </div>
-    </div>
+        <button class="sidebar-heading" onclick="toggleCalendars()">
 
-    <div class="mail-list" id="mailList"></div>
+            My calendars
 
-    <div class="toolbar hidden" id="readerToolbar">
+            <span class="material-symbols-outlined"
+                id="calendarArrow">expand_more</span>
 
-        <button class="icon" title="Back"
-            onclick="closeMail()">
-            <span class="material-symbols-outlined">arrow_back</span>
         </button>
 
-        <button class="icon" title="Archive"
-            onclick="single('archive')">
-            <span class="material-symbols-outlined">archive</span>
-        </button>
+        <div id="calendarOptions"></div>
 
-        <button class="icon" title="Delete"
-            onclick="single('trash')">
-            <span class="material-symbols-outlined">delete</span>
-        </button>
+    </aside>
 
-        <button class="icon" title="Mark unread"
-            onclick="single('unread')">
-            <span class="material-symbols-outlined">mark_email_unread</span>
-        </button>
+    <main class="main" id="calendar"></main>
 
-        <button class="icon" title="Move to inbox"
-            onclick="single('restore')">
-            <span class="material-symbols-outlined">move_to_inbox</span>
-        </button>
-
-        <div class="toolbar-right">
-            <button class="icon" title="Previous email"
-                onclick="navigate(-1)">
-                <span class="material-symbols-outlined">chevron_left</span>
-            </button>
-
-            <button class="icon" title="Next email"
-                onclick="navigate(1)">
-                <span class="material-symbols-outlined">chevron_right</span>
-            </button>
-        </div>
-
-    </div>
-
-    <div class="reader hidden" id="reader">
-        <div class="thread" id="thread"></div>
-    </div>
-
-    <div class="notice">
-        Fictional portfolio mailbox. No real emails are sent.
-    </div>
-
-</main>
 </div>
 
-<div class="compose-window hidden" id="composeWindow">
+<div class="overlay hidden" id="detailOverlay">
 
-    <div class="compose-header">
-        New Message
-        <button onclick="closeCompose()" title="Close">
-            <span class="material-symbols-outlined">close</span>
-        </button>
+    <div class="dialog">
+
+        <div class="dialog-toolbar">
+
+            <button class="icon" title="Close"
+                onclick="closeDetails()">
+                <span class="material-symbols-outlined">close</span>
+            </button>
+
+        </div>
+
+        <div class="dialog-content" id="eventDetails"></div>
+
     </div>
 
-    <form id="composeForm" onsubmit="saveNewMail(event)">
-
-        <div class="compose-field">
-            <span>To</span>
-            <input type="email" name="recipient" required>
-        </div>
-
-        <div class="compose-field">
-            <input name="subject" placeholder="Subject" required>
-        </div>
-
-        <textarea name="body" required></textarea>
-
-        <div class="reply-actions">
-
-            <button class="primary" type="submit">
-                Save Draft
-            </button>
-
-            <button type="button" class="icon"
-                title="Discard"
-                onclick="document.getElementById('composeForm').reset();closeCompose()">
-                <span class="material-symbols-outlined">delete</span>
-            </button>
-
-        </div>
-
-    </form>
 </div>
-
-<div class="toast hidden" id="toast"></div>
 
 <script>
 
 const ACCOUNT = "daintydeguzman.work@gmail.com";
-const NAME = "Dainty De Guzman";
-const PHOTO = "dainty-profile.jpeg";
 
-const signature = `
+const categories = {
+    "Property Showings": "#b86c91",
+    "Consultations": "#9a80b5",
+    "Follow-ups": "#789d90"
+};
 
-Best regards,
-Dainty De Guzman
-Real Estate Administrative Support
-daintydeguzman.work@gmail.com`;
+/* EXISTING APPOINTMENTS ONLY */
 
-/* INDEPENDENT EMAIL CONVERSATIONS */
-
-const original = [
+const events = [
 
 {
     id: 1,
-    name: "Charlotte Hayes",
-    email: "charlotte.hayes@example.com",
-    subject: "Inquiry about available homes in Raleigh",
-    date: "2026-11-25",
-    time: "10:24 AM",
-    label: "Buyer",
-    unread: true,
-    starred: true,
-    important: true,
-    approval: false,
-    status: "sent",
+    title: "Property showing — Olivia Mitchell",
+    date: "2026-11-03",
+    start: "10:00",
+    end: "11:00",
+    category: "Property Showings",
+    guest: "olivia.mitchell@example.com",
+    location: "120 Example Lane, Brooklyn, NY",
+    reminder: "1 day before",
+    description: `Client: Olivia Mitchell
+Assigned agent: Hannah Reed
+Property: 3-bedroom townhouse
+Budget: $650,000
+Availability: Tuesday, 9 AM–12 PM ET
+Status: Completed
 
-    incoming: `Hi,
-
-My husband and I are planning to move to Raleigh, North Carolina, early next year. We are currently looking for a three-bedroom home with at least two bathrooms.
-
-Our budget is approximately $420,000, and we would prefer a property with a garage and a backyard.
-
-Could you let us know how we can get started?
-
-Thank you,
-Charlotte Hayes`,
-
-    reply: `Hi Charlotte,
-
-Thank you for reaching out! We'd be happy to assist you with your upcoming move to Raleigh.
-
-I've noted your preference for a three-bedroom, two-bathroom home with a garage and backyard, within your approximate budget of $420,000.
-
-To help our agent narrow down your options, could you please share your preferred move-in timeline and whether you have already started the mortgage preapproval process?
-
-It would also be helpful to know if you have any particular neighborhoods in mind.
-
-Once we receive these details, our agent can review your requirements and discuss suitable next steps.
-
-We look forward to helping you with your home search.` + signature
+The client attended the scheduled property showing. Follow-up feedback requested on November 4.`
 },
 
 {
     id: 2,
-    name: "Daniel Foster",
-    email: "daniel.foster@example.com",
-    subject: "Request to reschedule Saturday's property showing",
-    date: "2026-11-25",
-    time: "9:16 AM",
-    label: "Showings",
-    unread: true,
-    starred: false,
-    important: true,
-    approval: false,
-    status: "sent",
+    title: "Buyer consultation — Ethan Walker",
+    date: "2026-11-05",
+    start: "14:00",
+    end: "15:00",
+    category: "Consultations",
+    guest: "ethan.walker@example.com",
+    location: "Virtual meeting",
+    reminder: "30 minutes before",
+    description: `Client: Ethan Walker
+Assigned agent: Hannah Reed
+Availability: Weekdays after 1 PM ET
+Status: Completed
 
-    incoming: `Hi Dainty,
-
-Something has come up at work, and unfortunately I won't be able to attend the property showing this Saturday morning.
-
-Would it be possible to move the appointment to Monday afternoon instead?
-
-I'm available anytime after 2 PM.
-
-Sorry for the inconvenience, and thank you for understanding.
-
-Daniel`,
-
-    reply: `Hi Daniel,
-
-Thank you for letting me know. No worries at all!
-
-I've noted your availability for Monday afternoon after 2 PM and will coordinate with the assigned agent regarding the requested change.
-
-Your new appointment time is currently pending confirmation. I'll send you the updated details as soon as the agent and property access arrangements have been confirmed.
-
-Thank you for your flexibility, and please feel free to let me know if your availability changes again.` + signature
+Initial consultation regarding preferred property features, purchase timeline, and budget. Property recommendations to be reviewed by the assigned agent.`
 },
 
 {
     id: 3,
-    name: "Madison Clarke",
-    email: "madison.clarke@example.com",
-    subject: "Questions about listing my property",
-    date: "2026-11-24",
-    time: "3:42 PM",
-    label: "Seller",
-    unread: true,
-    starred: true,
-    important: true,
-    approval: true,
-    status: "draft",
+    title: "Condominium viewing — Sophia Turner",
+    date: "2026-11-07",
+    start: "11:00",
+    end: "12:00",
+    category: "Property Showings",
+    guest: "sophia.turner@example.com",
+    location: "245 Sample Avenue, Manhattan, NY",
+    reminder: "1 day before",
+    description: `Client: Sophia Turner
+Assigned agent: James Carter
+Property: 2-bedroom condominium
+Budget: $780,000
+Availability: Saturday, 10 AM–2 PM ET
+Status: Completed
 
-    incoming: `Hello,
-
-I'm considering selling my property in Tampa, Florida. It's a four-bedroom house with three bathrooms and a recently renovated kitchen.
-
-I was hoping to list it for around $560,000.
-
-Could you tell me whether that is a reasonable asking price and what your commission would be?
-
-I'd also like to understand how long the selling process usually takes.
-
-Kind regards,
-Madison Clarke`,
-
-    reply: `Hi Madison,
-
-Thank you for considering our team to assist with the sale of your property.
-
-I've noted the details you provided, including your recent kitchen renovation and proposed asking price of $560,000.
-
-Our listing agent would be the best person to discuss an appropriate pricing strategy, commission arrangements, and the anticipated selling timeline based on your property's characteristics and current market conditions.
-
-I'd be happy to help arrange an initial consultation.
-
-Could you please provide the property's address and two or three convenient times for a meeting with our agent?
-
-We look forward to learning more about your property and discussing your selling goals.` + signature
+Showing completed with the assigned agent. Client feedback requested.`
 },
 
 {
     id: 4,
-    name: "Benjamin Scott",
-    email: "benjamin.scott@example.com",
-    subject: "Following up on the documents I submitted",
-    date: "2026-11-23",
-    time: "11:08 AM",
-    label: "Documents",
-    unread: false,
-    starred: false,
-    important: true,
-    approval: false,
-    status: "sent",
+    title: "Seller consultation — Noah Bennett",
+    date: "2026-11-10",
+    start: "13:00",
+    end: "14:00",
+    category: "Consultations",
+    guest: "noah.bennett@example.com",
+    location: "Virtual meeting",
+    reminder: "1 hour before",
+    description: `Client: Noah Bennett
+Assigned agent: Emily Wilson
+Availability: Tuesday or Thursday afternoons
+Status: Completed
 
-    incoming: `Hi,
-
-I sent the requested documents through the secure upload link yesterday and wanted to make sure everything was received.
-
-Please let me know if there is anything else I need to submit before our next appointment.
-
-Thanks,
-Benjamin Scott`,
-
-    reply: `Hi Benjamin,
-
-Thank you for the update.
-
-I've noted that you submitted the requested documents through the secure upload link yesterday.
-
-I'll coordinate with the assigned team member to verify receipt and check whether any additional documents are required before your next appointment.
-
-For your privacy, please continue using the designated secure upload channel rather than sending sensitive financial or identification documents through regular email.
-
-We'll be in touch once the review has been completed.
-
-Thank you for your cooperation.` + signature
+Initial consultation regarding the client's intention to sell a residential property. Pricing and listing terms discussed by the licensed agent.`
 },
 
 {
     id: 5,
-    name: "Amelia Parker",
-    email: "amelia.parker@example.com",
-    subject: "Checking the availability of a listed condominium",
-    date: "2026-11-22",
-    time: "2:35 PM",
-    label: "Buyer",
-    unread: false,
-    starred: true,
-    important: false,
-    approval: true,
-    status: "draft",
+    title: "Residential showing — Ava Collins",
+    date: "2026-11-13",
+    start: "10:30",
+    end: "11:30",
+    category: "Property Showings",
+    guest: "ava.collins@example.com",
+    location: "310 Demo Court, Queens, NY",
+    reminder: "1 day before",
+    description: `Client: Ava Collins
+Assigned agent: James Carter
+Property: 3-bedroom single-family home
+Budget: $720,000
+Availability: Friday, 10 AM–1 PM ET
+Status: Completed
 
-    incoming: `Hello,
-
-I recently saw a two-bedroom condominium advertised in Scottsdale, Arizona, and I'm interested in learning more about it.
-
-Is the property still available? I would also like to know whether pets are allowed and how much the monthly HOA fee is.
-
-I'm hoping to arrange a viewing sometime next week.
-
-Thank you,
-Amelia Parker`,
-
-    reply: `Hi Amelia,
-
-Thank you for your interest in the condominium in Scottsdale.
-
-I'd be happy to help coordinate your inquiry.
-
-Could you please send me the listing link or property address so I can make sure we are referring to the correct unit?
-
-I'll forward your questions regarding current availability, pet restrictions, and monthly HOA fees to our agent for verification.
-
-In the meantime, please let me know which days and times would work best for a potential viewing next week.
-
-Once the property details and showing availability have been confirmed, we'll provide you with an update.` + signature
+Client requested a property with parking and outdoor space. Showing completed as scheduled.`
 },
 
 {
     id: 6,
-    name: "Lucas Morgan",
-    email: "lucas.morgan@example.com",
-    subject: "Photos and property information for our listing",
-    date: "2026-11-21",
-    time: "10:10 AM",
-    label: "Seller",
-    unread: false,
-    starred: false,
-    important: false,
-    approval: false,
-    status: "sent",
+    title: "Follow-up — Ava Collins",
+    date: "2026-11-14",
+    start: "11:00",
+    end: "11:30",
+    category: "Follow-ups",
+    guest: "ava.collins@example.com",
+    location: "",
+    reminder: "10 minutes before",
+    description: `Status: Completed
 
-    incoming: `Hi Dainty,
+Hi Ava,
 
-We've finished preparing the house for photography and have gathered the information requested for our listing.
+Thank you for attending yesterday's property showing. We'd appreciate your feedback on the home and whether it meets your current requirements.
 
-Would you prefer that I send everything in one email or upload the files separately?
+Please let me know if you have any questions for James or would like to arrange another viewing.
 
-Please let me know what works best.
-
-Thanks,
-Lucas`,
-
-    reply: `Hi Lucas,
-
-Thank you for preparing everything.
-
-To keep the property information and photographs organized, please upload the files using the designated shared folder provided by our team.
-
-If possible, separate the photographs from the property information documents and use clear filenames.
-
-Once the files are available, I'll organize them for the listing agent's review and flag any missing information that may need clarification.
-
-Please avoid uploading sensitive personal documents to the general listing folder.
-
-Thank you for your help. We appreciate your preparation.` + signature
+Best regards,
+Dainty De Guzman`
 },
 
 {
     id: 7,
-    name: "Grace Sullivan",
-    email: "grace.sullivan@example.com",
-    subject: "Update on my home search timeline",
-    date: "2026-11-20",
-    time: "4:15 PM",
-    label: "Follow-ups",
-    unread: false,
-    starred: false,
-    important: false,
-    approval: false,
-    status: "sent",
+    title: "Buyer consultation — Liam Brooks",
+    date: "2026-11-17",
+    start: "15:00",
+    end: "16:00",
+    category: "Consultations",
+    guest: "liam.brooks@example.com",
+    location: "Virtual meeting",
+    reminder: "30 minutes before",
+    description: `Client: Liam Brooks
+Assigned agent: Hannah Reed
+Availability: Weekdays, 3 PM–5 PM ET
+Status: Completed
 
-    incoming: `Hi,
-
-I wanted to let you know that I've decided to postpone my home purchase until next spring.
-
-I'm still interested in properties in Portland, but I won't be ready to schedule any viewings for a few months.
-
-I'd appreciate occasional updates in the meantime.
-
-Thank you for understanding.
-
-Grace`,
-
-    reply: `Hi Grace,
-
-Thank you for keeping us updated.
-
-I've noted your revised purchase timeline and your continued interest in properties in Portland.
-
-We understand that buying a home is an important decision, and we're happy to work around your preferred schedule.
-
-With your permission, we'll keep in touch occasionally with relevant updates reviewed by our agent.
-
-If your plans or property preferences change, please feel free to reach out at any time.
-
-We look forward to assisting you when you're ready to resume your search.` + signature
+Review the client's preferred neighborhoods, property requirements, and intended purchase timeline.`
 },
 
 {
     id: 8,
-    name: "Henry Collins",
-    email: "henry.collins@example.com",
-    subject: "Question regarding my purchase offer",
-    date: "2026-11-19",
-    time: "1:20 PM",
-    label: "Buyer",
-    unread: false,
-    starred: true,
-    important: true,
-    approval: true,
-    status: "draft",
+    title: "Seller appointment — Mia Anderson",
+    date: "2026-11-23",
+    start: "14:00",
+    end: "15:00",
+    category: "Consultations",
+    guest: "mia.anderson@example.com",
+    location: "420 Example Drive, Queens, NY",
+    reminder: "1 day before",
+    description: `Client: Mia Anderson
+Assigned agent: Emily Wilson
+Availability: Monday, 1 PM–4 PM ET
+Status: Completed
 
-    incoming: `Hello,
+Initial property assessment appointment. Agent to review property information and listing requirements.`
+},
 
-I've been thinking about the property we viewed last week and would like to move forward with an offer.
+{
+    id: 9,
+    title: "Apartment showing — Isabella Hayes",
+    date: "2026-11-26",
+    start: "10:00",
+    end: "11:00",
+    category: "Property Showings",
+    guest: "isabella.hayes@example.com",
+    location: "510 Sample Avenue, Manhattan, NY",
+    reminder: "1 day before",
+    description: `Client: Isabella Hayes
+Assigned agent: Hannah Reed
+Property: 2-bedroom apartment
+Budget: $850,000
+Availability: Thursday, 9 AM–12 PM ET
+Status: Confirmed
 
-The asking price is $395,000, but I'm considering offering $380,000.
+Confirmation draft:
 
-Do you think that would be a competitive offer?
+Hi Isabella,
 
-I'd appreciate your advice before making a decision.
+Your property showing has been scheduled for November 26, from 10:00 to 11:00 AM Eastern Time, at 510 Sample Avenue, Manhattan.
 
-Henry Collins`,
+Hannah Reed will be assisting you during the viewing.
 
-    reply: `Hi Henry,
+Please let us know if your availability changes.
 
-Thank you for sharing your interest in moving forward with the property.
+Best regards,
+Dainty De Guzman`
+},
 
-I've noted your proposed offer amount of $380,000 and will forward your inquiry to the assigned agent.
+{
+    id: 10,
+    title: "Townhouse showing — Oliver Scott",
+    date: "2026-11-27",
+    start: "14:00",
+    end: "15:00",
+    category: "Property Showings",
+    guest: "oliver.scott@example.com",
+    location: "620 Demo Lane, Brooklyn, NY",
+    reminder: "1 hour before",
+    description: `Client: Oliver Scott
+Assigned agent: James Carter
+Property: 3-bedroom townhouse
+Budget: $690,000
+Availability: Friday, 2 PM–5 PM ET
+Status: Pending confirmation
 
-Your agent can review the relevant market information, property circumstances, and available offer terms to help you make an informed decision.
+Showing request received. Awaiting agent availability and property access approval.
 
-I'll also coordinate a suitable time for you to discuss the next steps directly with the agent.
+Client response draft:
 
-Please let me know your availability for a call.
+Hi Oliver,
 
-Thank you, and we look forward to assisting you.` + signature
+Thank you for sharing your availability. I've noted your preferred showing time for November 27 at 2 PM Eastern Time.
+
+The appointment is currently tentative. I'll provide confirmation once the agent and property access arrangements have been verified.
+
+Best regards,
+Dainty De Guzman`
+},
+
+{
+    id: 11,
+    title: "Rescheduled showing — Emma Morgan",
+    date: "2026-11-28",
+    start: "11:00",
+    end: "12:00",
+    category: "Property Showings",
+    guest: "emma.morgan@example.com",
+    location: "730 Example Road, Manhattan, NY",
+    reminder: "1 day before",
+    description: `Client: Emma Morgan
+Assigned agent: Hannah Reed
+Property: 2-bedroom condominium
+Availability: Saturday, 10 AM–1 PM ET
+Status: Rescheduled — pending confirmation
+
+Original appointment: November 25
+Proposed appointment: November 28, 11 AM ET
+
+Hi Emma,
+
+Thank you for letting us know about the change in your availability. I've noted your preferred appointment for Saturday at 11 AM.
+
+I'll confirm the revised schedule once the necessary arrangements have been finalized.
+
+Best regards,
+Dainty De Guzman`
+},
+
+{
+    id: 12,
+    title: "Follow-up — Isabella Hayes",
+    date: "2026-11-27",
+    start: "11:00",
+    end: "11:30",
+    category: "Follow-ups",
+    guest: "isabella.hayes@example.com",
+    location: "",
+    reminder: "10 minutes before",
+    description: `Status: Scheduled
+
+Request feedback if the November 26 showing has been completed.
+
+Hi Isabella,
+
+I hope your property viewing went well. We'd love to hear your thoughts about the apartment and whether it meets your expectations.
+
+Please feel free to share any questions or concerns so I can forward them to Hannah.
+
+Best regards,
+Dainty De Guzman`
+},
+
+{
+    id: 13,
+    title: "Listing consultation — William Foster",
+    date: "2026-11-30",
+    start: "13:00",
+    end: "14:00",
+    category: "Consultations",
+    guest: "william.foster@example.com",
+    location: "Virtual meeting",
+    reminder: "30 minutes before",
+    description: `Client: William Foster
+Assigned agent: Emily Wilson
+Availability: Monday, 1 PM–3 PM ET
+Status: Confirmed
+
+Hi William,
+
+This is to confirm your virtual consultation with Emily Wilson on November 30, from 1 to 2 PM Eastern Time.
+
+Please have any relevant property information available for the discussion.
+
+Best regards,
+Dainty De Guzman`
+},
+
+{
+    id: 14,
+    title: "Follow-up — William Foster",
+    date: "2026-12-01",
+    start: "10:00",
+    end: "10:30",
+    category: "Follow-ups",
+    guest: "william.foster@example.com",
+    location: "",
+    reminder: "10 minutes before",
+    description: `Status: Scheduled
+
+Follow up regarding the seller consultation, provided the meeting has taken place. Coordinate any requested documents or additional appointments with the assigned agent.`
+},
+
+{
+    id: 15,
+    title: "Buyer consultation — Harper Lewis",
+    date: "2026-12-02",
+    start: "10:00",
+    end: "11:00",
+    category: "Consultations",
+    guest: "harper.lewis@example.com",
+    location: "Virtual meeting",
+    reminder: "1 day before",
+    description: `Client: Harper Lewis
+Assigned agent: James Carter
+Availability: Wednesday mornings
+Status: Confirmed
+
+Review the client's home search requirements, preferred locations, and purchase timeline with the assigned agent.`
 }
 
 ];
 
-/* MAILBOX STATE */
+/* CALENDAR */
 
-const STORAGE = "dainty-independent-mailbox-v1";
+let selectedDate = new Date(2026, 10, 25);
+let miniDate = new Date(selectedDate);
 
-let mails;
+const activeCategories = new Set(Object.keys(categories));
 
-try {
-    mails = JSON.parse(localStorage.getItem(STORAGE))
-        || structuredClone(original);
-    if (!Array.isArray(mails)) throw new Error();
-} catch {
-    mails = structuredClone(original);
+const weekdays = [
+    "Sun","Mon","Tue","Wed","Thu","Fri","Sat"
+];
+
+function esc(value) {
+    return String(value ?? "")
+        .replace(/&/g,"&amp;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;")
+        .replace(/"/g,"&quot;")
+        .replace(/'/g,"&#39;");
 }
-
-let folder = "inbox";
-let current = null;
-let page = 0;
-let selected = new Set();
-
-const PAGE_SIZE = 20;
-
-const folders = [
-    ["inbox", "inbox", "Inbox"],
-    ["starred", "star", "Starred"],
-    ["important", "label_important", "Important"],
-    ["sent", "send", "Sent"],
-    ["drafts", "description", "Drafts"],
-    ["all", "mail", "All Mail"],
-    ["trash", "delete", "Trash"]
-];
-
-const labels = [
-    ["Buyer", "Buyer Inquiries", "#a65f7d"],
-    ["Seller", "Seller Inquiries", "#9176a5"],
-    ["Showings", "Property Showings", "#b78c55"],
-    ["Documents", "Documents", "#78938a"],
-    ["Follow-ups", "Follow-ups", "#7894ae"],
-    ["approval", "Awaiting Approval", "#bc9361"]
-];
 
 function icon(name) {
     return `<span class="material-symbols-outlined">${name}</span>`;
 }
 
-function esc(value) {
-    return String(value ?? "")
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;")
-        .replace(/'/g, "&#39;");
+function dateKey(date) {
+    return date.getFullYear() + "-" +
+        String(date.getMonth()+1).padStart(2,"0") + "-" +
+        String(date.getDate()).padStart(2,"0");
 }
 
-function save() {
-    try {
-        localStorage.setItem(STORAGE, JSON.stringify(mails));
-    } catch {}
+function parseDate(value) {
+    return new Date(value + "T12:00:00");
 }
 
-function notify(message) {
-    const toast = document.getElementById("toast");
-    toast.textContent = message;
-    toast.classList.remove("hidden");
-
-    clearTimeout(notify.timer);
-
-    notify.timer = setTimeout(() => {
-        toast.classList.add("hidden");
-    }, 2800);
+function addDays(date, number) {
+    const result = new Date(date);
+    result.setDate(result.getDate()+number);
+    return result;
 }
 
-function formatDate(date) {
-    return new Date(date + "T12:00:00")
-        .toLocaleDateString("en-US", {
-            month: "short",
-            day: "numeric"
-        });
+function addMonths(date, number) {
+    const result = new Date(
+        date.getFullYear(),
+        date.getMonth()+number,
+        1
+    );
+
+    const last = new Date(
+        result.getFullYear(),
+        result.getMonth()+1,
+        0
+    ).getDate();
+
+    result.setDate(Math.min(date.getDate(),last));
+
+    return result;
 }
 
-function match(mail, key) {
-
-    if (key === "trash") return Boolean(mail.trashed);
-    if (mail.trashed) return false;
-
-    switch(key) {
-        case "inbox":
-            return !mail.archived && Boolean(mail.incoming);
-        case "starred":
-            return mail.starred;
-        case "important":
-            return mail.important;
-        case "sent":
-            return mail.status === "sent";
-        case "drafts":
-            return mail.status === "draft";
-        case "approval":
-            return mail.approval;
-        case "all":
-            return true;
-        default:
-            return mail.label === key;
-    }
+function monthName(date) {
+    return date.toLocaleDateString("en-US",{
+        month:"long",
+        year:"numeric"
+    });
 }
 
-function filtered() {
+function timeText(value) {
+    const [h,m] = value.split(":").map(Number);
+
+    return `${h%12||12}${m?":"+String(m).padStart(2,"0"):""}${h>=12?"pm":"am"}`;
+}
+
+function minutes(value) {
+    const [h,m] = value.split(":").map(Number);
+    return h*60+m;
+}
+
+function filteredEvents() {
 
     const query = document.getElementById("search")
         .value.trim().toLowerCase();
 
-    return mails.filter(mail => {
+    return events.filter(event =>
+        activeCategories.has(event.category) &&
+        Object.values(event).join(" ").toLowerCase().includes(query)
+    ).sort((a,b)=>
+        a.date.localeCompare(b.date) ||
+        a.start.localeCompare(b.start)
+    );
+}
 
-        if (query) {
-            return !mail.trashed &&
-                Object.values(mail).join(" ")
-                    .toLowerCase().includes(query);
+function eventsOn(date) {
+    return filteredEvents().filter(
+        event => event.date === dateKey(date)
+    );
+}
+
+function toggleSidebar() {
+
+    document.getElementById("sidebar").classList.toggle(
+        window.innerWidth<=650 ? "mobile-open" : "collapsed"
+    );
+}
+
+function toggleProfile() {
+    document.getElementById("profile").classList.toggle("hidden");
+}
+
+function toggleCalendars() {
+
+    const options = document.getElementById("calendarOptions");
+
+    options.classList.toggle("hidden");
+
+    document.getElementById("calendarArrow").textContent =
+        options.classList.contains("hidden")
+            ? "expand_less"
+            : "expand_more";
+}
+
+function toggleSearch() {
+
+    const input = document.getElementById("search");
+
+    input.classList.toggle("hidden");
+
+    if(input.classList.contains("hidden")) {
+
+        input.value = "";
+        render();
+
+    } else {
+
+        input.focus();
+    }
+}
+
+function goToday() {
+
+    const today = new Intl.DateTimeFormat("en-CA",{
+        timeZone:"America/New_York",
+        year:"numeric",
+        month:"2-digit",
+        day:"2-digit"
+    }).formatToParts(new Date());
+
+    const parts = Object.fromEntries(
+        today.map(item=>[item.type,item.value])
+    );
+
+    selectedDate = new Date(
+        Number(parts.year),
+        Number(parts.month)-1,
+        Number(parts.day)
+    );
+
+    miniDate = new Date(selectedDate);
+
+    render();
+}
+
+function move(direction) {
+
+    const view = document.getElementById("view").value;
+
+    selectedDate = view==="month" || view==="schedule"
+        ? addMonths(selectedDate,direction)
+        : addDays(selectedDate,direction*(view==="week"?7:1));
+
+    miniDate = new Date(selectedDate);
+
+    render();
+}
+
+function moveMini(direction) {
+    miniDate = addMonths(miniDate,direction);
+    renderMini();
+}
+
+function chooseDate(value) {
+    selectedDate = parseDate(value);
+    miniDate = new Date(selectedDate);
+    render();
+}
+
+function openDay(value) {
+
+    selectedDate = parseDate(value);
+
+    miniDate = new Date(selectedDate);
+
+    document.getElementById("view").value = "day";
+
+    render();
+}
+
+/* MINI CALENDAR */
+
+function renderMini() {
+
+    document.getElementById("miniTitle").textContent =
+        monthName(miniDate);
+
+    const first = new Date(
+        miniDate.getFullYear(),
+        miniDate.getMonth(),
+        1
+    );
+
+    const start = addDays(first,-first.getDay());
+
+    let html = weekdays.map(day=>
+        `<div class="mini-weekday">${day[0]}</div>`
+    ).join("");
+
+    for(let i=0;i<42;i++) {
+
+        const date = addDays(start,i);
+
+        html += `
+            <button class="mini-day
+                ${date.getMonth()!==miniDate.getMonth()?"outside":""}
+                ${dateKey(date)===dateKey(selectedDate)?"selected":""}"
+                onclick="chooseDate('${dateKey(date)}')">
+
+                ${date.getDate()}
+
+            </button>
+        `;
+    }
+
+    document.getElementById("miniCalendar").innerHTML = html;
+}
+
+function renderOptions() {
+
+    document.getElementById("calendarOptions").innerHTML =
+        Object.entries(categories).map(([name,color])=>`
+
+            <label class="calendar-option">
+
+                <input type="checkbox"
+                    style="accent-color:${color}"
+                    ${activeCategories.has(name)?"checked":""}
+                    onchange="toggleCategory('${name}',this.checked)">
+
+                ${name}
+
+            </label>
+
+        `).join("");
+}
+
+function toggleCategory(name,checked) {
+
+    checked
+        ? activeCategories.add(name)
+        : activeCategories.delete(name);
+
+    render();
+}
+
+/* MONTH VIEW */
+
+function renderMonth() {
+
+    const first = new Date(
+        selectedDate.getFullYear(),
+        selectedDate.getMonth(),
+        1
+    );
+
+    const days = new Date(
+        selectedDate.getFullYear(),
+        selectedDate.getMonth()+1,
+        0
+    ).getDate();
+
+    const weeks = Math.ceil((first.getDay()+days)/7);
+
+    const start = addDays(first,-first.getDay());
+
+    let html = `<div class="month-grid" style="--weeks:${weeks}">`;
+
+    html += weekdays.map(day=>
+        `<div class="weekday">${day.toUpperCase()}</div>`
+    ).join("");
+
+    for(let i=0;i<weeks*7;i++) {
+
+        const date = addDays(start,i);
+
+        html += `
+
+            <div class="day-cell
+                ${date.getMonth()!==selectedDate.getMonth()?"outside":""}">
+
+                <button class="day-number
+                    ${dateKey(date)===dateKey(selectedDate)?"selected":""}"
+                    onclick="openDay('${dateKey(date)}')">
+
+                    ${date.getDate()}
+
+                </button>
+
+                ${eventsOn(date).map(event=>`
+
+                    <button class="event"
+                        title="${esc(event.title)}"
+                        onclick="openEvent(${event.id})">
+
+                        <span class="event-dot"
+                            style="background:${categories[event.category]}">
+                        </span>
+
+                        <span>${timeText(event.start)}</span>
+
+                        <span class="event-title">
+                            ${esc(event.title)}
+                        </span>
+
+                    </button>
+
+                `).join("")}
+
+            </div>
+        `;
+    }
+
+    document.getElementById("calendar").innerHTML =
+        html+"</div>";
+
+    document.getElementById("calendar").scrollTop = 0;
+}
+
+/* WEEK AND DAY VIEWS */
+
+function renderTimeGrid(view) {
+
+    const count = view==="week"?7:1;
+
+    const first = view==="week"
+        ? addDays(selectedDate,-selectedDate.getDay())
+        : selectedDate;
+
+    const dates = Array.from(
+        {length:count},
+        (_,i)=>addDays(first,i)
+    );
+
+    const columns =
+        `65px repeat(${count},minmax(100px,1fr))`;
+
+    let html = `
+
+        <div class="time-grid">
+
+            <div class="time-header"
+                style="grid-template-columns:${columns}">
+
+                <div style="align-self:end;text-align:center;
+                    font-size:10px;padding:10px">
+                    ET
+                </div>
+
+                ${dates.map(date=>`
+
+                    <div class="time-heading">
+
+                        <small>
+                            ${weekdays[date.getDay()].toUpperCase()}
+                        </small>
+
+                        <strong class="${dateKey(date)===dateKey(selectedDate)?"selected":""}">
+
+                            ${date.getDate()}
+
+                        </strong>
+
+                    </div>
+
+                `).join("")}
+
+            </div>
+
+            <div class="time-body"
+                style="grid-template-columns:${columns}">
+
+                <div>
+    `;
+
+    for(let hour=0;hour<24;hour++) {
+
+        html += `
+            <div class="time-label">
+
+                ${timeText(String(hour).padStart(2,"0")+":00")}
+
+            </div>
+        `;
+    }
+
+    html += "</div>";
+
+    dates.forEach(date=>{
+
+        html += '<div class="time-day">';
+
+        for(let hour=0;hour<24;hour++) {
+
+            html += '<div class="hour-cell"></div>';
         }
 
-        return match(mail, folder);
+        const daily = eventsOn(date);
 
-    }).sort((a,b) => b.date.localeCompare(a.date) || b.id - a.id);
+        daily.forEach(event=>{
+
+            const start = minutes(event.start);
+            const end = minutes(event.end);
+
+            const overlapping = daily.filter(other=>
+                minutes(other.start)<end &&
+                minutes(other.end)>start
+            );
+
+            const position = overlapping.findIndex(
+                other=>other.id===event.id
+            );
+
+            const width = 100/overlapping.length;
+
+            html += `
+
+                <button class="time-event"
+                    style="
+                        background:${categories[event.category]};
+                        top:${start/60*64}px;
+                        height:${Math.max(24,(end-start)/60*64-3)}px;
+                        left:calc(${position*width}% + 3px);
+                        width:calc(${width}% - 6px);
+                        right:auto;
+                    "
+                    onclick="openEvent(${event.id})">
+
+                    <strong>${esc(event.title)}</strong>
+
+                    ${timeText(event.start)} – ${timeText(event.end)}
+
+                </button>
+            `;
+        });
+
+        html += "</div>";
+    });
+
+    document.getElementById("calendar").innerHTML =
+        html+"</div></div>";
+
+    document.getElementById("calendar").scrollTop = 7*64;
 }
 
-function navigation() {
+/* SCHEDULE VIEW */
 
-    document.getElementById("folders").innerHTML =
-        folders.map(([key, symbol, title]) => {
+function renderSchedule() {
 
-            const count = mails.filter(mail =>
-                match(mail, key) &&
-                (key !== "inbox" || mail.unread)
-            ).length;
+    const query = document.getElementById("search").value.trim();
 
-            return `
-            <button class="nav ${folder === key ? "active" : ""}"
-                onclick="setFolder('${key}')">
-                ${icon(symbol)}
-                <span class="nav-text">${title}</span>
-                <span class="count">
-                    ${["inbox","drafts"].includes(key) && count ? count : ""}
-                </span>
-            </button>`;
+    const list = filteredEvents().filter(event=>
+        query ||
+        event.date.startsWith(dateKey(selectedDate).slice(0,7))
+    );
 
-        }).join("");
+    document.getElementById("calendar").innerHTML = `
 
-    document.getElementById("labels").innerHTML =
-        labels.map(([key, title, color]) => `
-            <button class="nav ${folder === key ? "active" : ""}"
-                onclick="setFolder('${key}')">
-                <span style="color:${color}">${icon("label")}</span>
-                <span class="nav-text">${title}</span>
-            </button>
-        `).join("");
+        <div class="agenda">
 
-    const entry = folders.find(f => f[0] === folder);
+            ${list.length?list.map(event=>`
 
-    document.getElementById("folderTitle").textContent =
-        document.getElementById("search").value.trim()
-            ? "Search results"
-            : folder === "inbox"
-                ? "Primary"
-                : entry
-                    ? entry[2]
-                    : labels.find(l => l[0] === folder)?.[1] || folder;
-}
+                <div class="agenda-row"
+                    role="button" tabindex="0"
+                    onclick="openEvent(${event.id})"
+                    onkeydown="if(event.key==='Enter')openEvent(${event.id})">
 
-function setFolder(key) {
-    folder = key;
-    page = 0;
-    selected.clear();
-    document.getElementById("search").value = "";
-    closeMail();
-}
+                    <div class="agenda-date">
 
-function searchMail() {
-    page = 0;
-    selected.clear();
-    closeMail();
-}
+                        <strong style="font-size:23px;font-weight:400">
 
-function clearSearch() {
-    document.getElementById("search").value = "";
-    searchMail();
+                            ${parseDate(event.date).getDate()}
+
+                        </strong>
+
+                        <div style="font-size:12px;color:#777">
+
+                            ${parseDate(event.date).toLocaleDateString("en-US",{
+                                weekday:"short",
+                                month:"short"
+                            })}
+
+                        </div>
+
+                    </div>
+
+                    <span class="event-dot"
+                        style="background:${categories[event.category]}">
+                    </span>
+
+                    <div class="agenda-time">
+
+                        ${timeText(event.start)} – ${timeText(event.end)}
+
+                    </div>
+
+                    <div class="agenda-title">
+
+                        ${esc(event.title)}
+
+                    </div>
+
+                </div>
+
+            `).join(""):'<div class="empty">No events</div>'}
+
+        </div>
+    `;
+
+    document.getElementById("calendar").scrollTop = 0;
 }
 
 function render() {
 
-    navigation();
+    const view = document.getElementById("view").value;
 
-    const results = filtered();
+    document.getElementById("monthTitle").textContent =
+        view==="day"
+            ? selectedDate.toLocaleDateString("en-US",{
+                month:"long",
+                day:"numeric",
+                year:"numeric"
+            })
+            : monthName(selectedDate);
 
-    page = Math.min(page,
-        Math.max(0, Math.ceil(results.length / PAGE_SIZE) - 1));
+    renderMini();
 
-    const start = page * PAGE_SIZE;
-    const visible = results.slice(start, start + PAGE_SIZE);
+    if(document.getElementById("search").value.trim() ||
+        view==="schedule") {
 
-    document.getElementById("recordCount").textContent =
-        results.length
-            ? `${start + 1}–${start + visible.length} of ${results.length}`
-            : "0 messages";
+        renderSchedule();
 
-    document.getElementById("selectAll").checked =
-        visible.length > 0 &&
-        visible.every(mail => selected.has(mail.id));
+    } else if(view==="month") {
 
-    document.getElementById("mailList").innerHTML =
-        visible.length ? visible.map(mail => {
+        renderMonth();
 
-            const outgoing = ["sent","drafts"].includes(folder)
-                || !mail.incoming;
+    } else {
 
-            const preview = outgoing ? mail.reply : mail.incoming;
-
-            return `
-            <div class="mail-row
-                ${mail.unread && !outgoing ? "unread" : ""}
-                ${selected.has(mail.id) ? "selected" : ""}"
-                onclick="openMail(${mail.id})">
-
-                <input type="checkbox"
-                    aria-label="Select message"
-                    ${selected.has(mail.id) ? "checked" : ""}
-                    onclick="event.stopPropagation()"
-                    onchange="toggleSelected(${mail.id},this.checked)">
-
-                <button class="star ${mail.starred ? "on" : ""}"
-                    title="Star"
-                    onclick="event.stopPropagation();toggleStar(${mail.id})">
-                    ${mail.starred ? "★" : "☆"}
-                </button>
-
-                <button class="important ${mail.important ? "on" : ""}"
-                    title="Mark important"
-                    onclick="event.stopPropagation();toggleImportant(${mail.id})">
-                    ${icon("label_important")}
-                </button>
-
-                <div class="sender">
-                    ${outgoing
-                        ? folder === "drafts" || !mail.incoming
-                            ? "Draft"
-                            : "To: " + esc(mail.name)
-                        : esc(mail.name)}
-                </div>
-
-                ${mail.label ? `
-                    <span class="label row-label">
-                        ${esc(mail.label)}
-                    </span>
-                ` : ""}
-
-                ${mail.approval ? `
-                    <span class="label approval row-label">
-                        Awaiting Approval
-                    </span>
-                ` : ""}
-
-                <div class="summary">
-                    ${esc(mail.subject)}
-                    <span class="snippet">
-                        — ${esc(preview.replace(/\n/g," "))}
-                    </span>
-                </div>
-
-                <span class="date">${formatDate(mail.date)}</span>
-
-            </div>`;
-
-        }).join("") :
-
-        `<div class="empty">
-            ${icon("mail")}
-            <p>No messages in this view.</p>
-        </div>`;
-}
-
-function changePage(direction) {
-    page = Math.max(0, page + direction);
-    render();
-}
-
-function toggleSelected(id, checked) {
-    checked ? selected.add(id) : selected.delete(id);
-    render();
-}
-
-function selectAll(checked) {
-    filtered().slice(page * PAGE_SIZE, (page + 1) * PAGE_SIZE)
-        .forEach(mail => {
-            checked ? selected.add(mail.id) : selected.delete(mail.id);
-        });
-    render();
-}
-
-function toggleStar(id) {
-    const mail = mails.find(m => m.id === id);
-    mail.starred = !mail.starred;
-    save();
-    render();
-}
-
-function toggleImportant(id) {
-    const mail = mails.find(m => m.id === id);
-    mail.important = !mail.important;
-    save();
-    render();
-}
-
-function apply(mail, action) {
-    if (action === "archive") mail.archived = true;
-    if (action === "trash") mail.trashed = true;
-    if (action === "unread") mail.unread = true;
-
-    if (action === "restore") {
-        mail.archived = false;
-        mail.trashed = false;
+        renderTimeGrid(view);
     }
 }
 
-function bulk(action) {
+/* VIEW EXISTING EVENT DETAILS */
 
-    if (!selected.size) {
-        notify("Select a message first.");
-        return;
-    }
+function detail(symbol,value) {
 
-    mails.forEach(mail => {
-        if (selected.has(mail.id)) apply(mail, action);
+    if(!value) return "";
+
+    return `
+
+        <div class="detail">
+
+            ${icon(symbol)}
+
+            <div class="detail-text">${esc(value)}</div>
+
+        </div>
+    `;
+}
+
+function openEvent(id) {
+
+    const event = events.find(item=>item.id===id);
+
+    if(!event) return;
+
+    const date = parseDate(event.date).toLocaleDateString("en-US",{
+        weekday:"long",
+        month:"long",
+        day:"numeric",
+        year:"numeric"
     });
 
-    selected.clear();
-    save();
-    render();
-    notify("Messages updated.");
-}
+    document.getElementById("eventDetails").innerHTML = `
 
-function single(action) {
-    const mail = mails.find(m => m.id === current);
-    if (!mail) return;
+        <div class="detail-title">
 
-    apply(mail, action);
-    save();
-    closeMail();
-    notify("Message updated.");
-}
+            <div class="color-square"
+                style="background:${categories[event.category]}">
+            </div>
 
-/* OPEN EMAIL CONVERSATIONS */
+            <div>
 
-function openMail(id) {
+                <h2>${esc(event.title)}</h2>
 
-    const mail = mails.find(m => m.id === id);
-    if (!mail) return;
+                <div class="detail-date">
 
-    current = id;
-    mail.unread = false;
-    save();
-    navigation();
+                    ${date} ·
 
-    document.getElementById("listToolbar").classList.add("hidden");
-    document.getElementById("tabs").classList.add("hidden");
-    document.getElementById("mailList").classList.add("hidden");
+                    ${timeText(event.start)} – ${timeText(event.end)}
 
-    document.getElementById("readerToolbar").classList.remove("hidden");
-    document.getElementById("reader").classList.remove("hidden");
+                    ET
 
-    const initials = mail.name.split(" ")
-        .slice(0,2).map(word => word[0]).join("");
+                </div>
 
-    document.getElementById("thread").innerHTML = `
-
-        <h1 class="subject">${esc(mail.subject)}</h1>
-
-        <div class="thread-labels">
-
-            ${mail.label
-                ? `<span class="label">${esc(mail.label)}</span>`
-                : ""}
-
-            ${mail.approval
-                ? `<span class="label approval">Awaiting Approval</span>`
-                : ""}
+            </div>
 
         </div>
 
-        ${mail.incoming ? `
+        ${detail("location_on",event.location)}
 
-            <div class="message-header">
+        ${detail("group",event.guest
+            ? "Organizer: "+ACCOUNT+"\nGuest: "+event.guest
+            : ACCOUNT)}
 
-                <div class="sender-avatar">${esc(initials)}</div>
+        ${detail("notes",event.description)}
 
-                <div class="meta">
-                    <strong>${esc(mail.name)}</strong>
-                    <span class="address">
-                        &lt;${esc(mail.email)}&gt;
-                    </span>
-                    <div class="address">to me</div>
-                </div>
+        ${detail("notifications",event.reminder)}
 
-                <div class="message-time">
-                    ${formatDate(mail.date)}, ${esc(mail.time)}
-                </div>
-
-                <button class="star ${mail.starred ? "on" : ""}"
-                    onclick="toggleStar(${mail.id});openMail(${mail.id})">
-                    ${mail.starred ? "★" : "☆"}
-                </button>
-
-            </div>
-
-            <div class="message">${esc(mail.incoming)}</div>
-
-            <hr>
-
-        ` : ""}
-
-        <div class="message-header">
-
-            <img class="avatar" src="${PHOTO}" alt="${NAME}">
-
-            <div class="meta">
-
-                <strong>${NAME}</strong>
-
-                <span class="address">
-                    &lt;${ACCOUNT}&gt;
-                </span>
-
-                <div class="address">
-                    to ${esc(mail.name)}
-                    &lt;${esc(mail.email)}&gt;
-                </div>
-
-            </div>
-
-            <span class="message-time">
-                ${mail.status === "draft" ? "Draft" : "Sample reply"}
-            </span>
-
-        </div>
-
-        ${mail.status === "sent" ? `
-
-            <div class="message">${esc(mail.reply)}</div>
-
-            <div class="reply-actions">
-
-                <button class="secondary"
-                    onclick="editReply()">
-                    ${icon("reply")} Reply
-                </button>
-
-                <button class="secondary"
-                    onclick="copyReply()">
-                    ${icon("content_copy")} Copy
-                </button>
-
-            </div>
-
-        ` : `
-
-            <div class="reply-box">
-
-                <textarea id="replyText">${esc(mail.reply)}</textarea>
-
-                <div class="reply-actions">
-
-                    <button class="primary" onclick="saveReply()">
-                        Save Draft
-                    </button>
-
-                    <button class="secondary" onclick="flagApproval()">
-                        ${icon("flag")}
-                        ${mail.approval ? "Remove Flag" : "Flag for Approval"}
-                    </button>
-
-                    <button class="icon" title="Copy"
-                        onclick="copyReply()">
-                        ${icon("content_copy")}
-                    </button>
-
-                </div>
-
-            </div>
-
-        `}
+        ${detail("calendar_today",event.category)}
 
     `;
 
-    document.getElementById("reader").scrollTop = 0;
+    document.getElementById("detailOverlay")
+        .classList.remove("hidden");
 }
 
-function closeMail() {
-    current = null;
+function closeDetails() {
 
-    document.getElementById("reader").classList.add("hidden");
-    document.getElementById("readerToolbar").classList.add("hidden");
-
-    document.getElementById("listToolbar").classList.remove("hidden");
-    document.getElementById("tabs").classList.remove("hidden");
-    document.getElementById("mailList").classList.remove("hidden");
-
-    render();
+    document.getElementById("detailOverlay")
+        .classList.add("hidden");
 }
 
-function navigate(direction) {
-    const list = filtered();
-    const index = list.findIndex(mail => mail.id === current);
-    const next = list[index + direction];
+document.getElementById("detailOverlay")
+    .addEventListener("click",event=>{
 
-    if (next) openMail(next.id);
-}
+        if(event.target===event.currentTarget) {
 
-function editReply() {
-    const mail = mails.find(m => m.id === current);
-    if (!mail) return;
-
-    document.getElementById("thread").insertAdjacentHTML(
-        "beforeend",
-        `<div class="reply-box" id="newReply">
-            <textarea id="replyText"
-                placeholder="Write a reply..."></textarea>
-            <div class="reply-actions">
-                <button class="primary"
-                    onclick="saveFollowup()">Save Draft</button>
-                <button class="icon" title="Discard"
-                    onclick="document.getElementById('newReply').remove()">
-                    ${icon("delete")}
-                </button>
-            </div>
-        </div>`
-    );
-
-    document.getElementById("replyText").focus();
-}
-
-function saveFollowup() {
-    const mail = mails.find(m => m.id === current);
-    const text = document.getElementById("replyText").value.trim();
-
-    if (!text) return notify("Write your reply first.");
-
-    mails.push({
-        id: Date.now(),
-        name: mail.name,
-        email: mail.email,
-        subject: "Re: " + mail.subject,
-        date: new Date().toISOString().slice(0,10),
-        time: "",
-        label: mail.label,
-        incoming: "",
-        reply: text,
-        status: "draft",
-        unread: false,
-        starred: false,
-        important: false,
-        approval: false
+            closeDetails();
+        }
     });
 
-    save();
-    setFolder("drafts");
-    notify("Reply saved to Drafts.");
-}
+document.addEventListener("keydown",event=>{
 
-function saveReply() {
-    const mail = mails.find(m => m.id === current);
-    if (!mail) return;
+    if(event.key==="Escape") {
 
-    mail.reply = document.getElementById("replyText").value;
-    mail.status = "draft";
-    save();
-    notify("Draft saved.");
-}
+        closeDetails();
 
-function flagApproval() {
-    const mail = mails.find(m => m.id === current);
-
-    mail.reply = document.getElementById("replyText").value;
-    mail.approval = !mail.approval;
-
-    save();
-    openMail(mail.id);
-    notify(mail.approval ? "Flagged for approval." : "Flag removed.");
-}
-
-async function copyReply() {
-    const mail = mails.find(m => m.id === current);
-    const text = document.getElementById("replyText")?.value || mail.reply;
-
-    try {
-        await navigator.clipboard.writeText(text);
-        notify("Email copied.");
-    } catch {
-        notify("Select the email text and press Ctrl+C.");
+        document.getElementById("profile")
+            .classList.add("hidden");
     }
-}
+});
 
-/* COMPOSE */
+document.addEventListener("click",event=>{
 
-function openCompose() {
-    document.getElementById("composeWindow").classList.remove("hidden");
-}
-
-function closeCompose() {
-    document.getElementById("composeWindow").classList.add("hidden");
-}
-
-function saveNewMail(event) {
-
-    event.preventDefault();
-
-    const data = Object.fromEntries(new FormData(event.target));
-
-    mails.push({
-        id: Date.now(),
-        name: data.recipient,
-        email: data.recipient,
-        subject: data.subject,
-        date: new Date().toISOString().slice(0,10),
-        time: "",
-        label: "",
-        incoming: "",
-        reply: data.body,
-        status: "draft",
-        unread: false,
-        starred: false,
-        important: false,
-        approval: false
-    });
-
-    save();
-    event.target.reset();
-    closeCompose();
-    setFolder("drafts");
-    notify("Draft saved.");
-}
-
-document.addEventListener("click", event => {
-
-    const profile = document.getElementById("profile");
-
-    if (!profile.contains(event.target) &&
+    if(!event.target.closest(".profile") &&
         !event.target.closest(".account")) {
-        profile.classList.add("hidden");
-    }
 
+        document.getElementById("profile")
+            .classList.add("hidden");
+    }
 });
 
-document.addEventListener("keydown", event => {
-
-    if (event.key === "Escape") {
-        closeCompose();
-        document.getElementById("profile").classList.add("hidden");
-    }
-
-});
-
+renderOptions();
 render();
 
 </script>
