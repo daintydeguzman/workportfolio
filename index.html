@@ -1,32 +1,24 @@
 
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<meta name="description" content="Dainty De Guzman — Real Estate Virtual Assistant specializing in CRM organization, property listing administration, client communication, and administrative support.">
-
+<meta name="description" content="Dainty De Guzman | Real Estate Virtual Assistant — CRM management, property listings, client communication, and administrative support.">
 <meta name="theme-color" content="#fffafb">
 
 <title>Dainty De Guzman | Real Estate Virtual Assistant</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
-
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
 
 <style>
 
-/* =========================================
-   GLOBAL DESIGN
-   ========================================= */
+/* GLOBAL DESIGN */
 
 :root {
-
     --background: #fffafb;
     --white: #ffffff;
     --text: #352e33;
@@ -36,7 +28,6 @@
     --light-pink: #c18da3;
     --blush: #f8eff4;
     --border: #eadde5;
-
 }
 
 * {
@@ -49,7 +40,6 @@ html {
 }
 
 body {
-
     margin: 0;
     background: var(--background);
     color: var(--text);
@@ -57,7 +47,6 @@ body {
     font-size: 14px;
     line-height: 1.8;
     -webkit-font-smoothing: antialiased;
-
 }
 
 a {
@@ -74,105 +63,81 @@ h1, h2, h3, p {
     margin-top: 0;
 }
 
-button, a {
-    -webkit-tap-highlight-color: transparent;
-}
-
 a:focus-visible {
     outline: 2px solid var(--pink);
     outline-offset: 5px;
 }
 
 .container {
-
     width: min(1160px, calc(100% - 64px));
     margin: 0 auto;
-
 }
 
 section {
-
     padding: 85px 0;
     border-top: 1px solid var(--border);
-
 }
 
 .eyebrow {
-
     font-size: 10px;
     font-weight: 700;
     letter-spacing: 2px;
     text-transform: uppercase;
     color: var(--pink);
     margin-bottom: 18px;
-
 }
 
 h2 {
-
     font-family: "Playfair Display", Georgia, serif;
     font-size: clamp(32px, 4vw, 48px);
     font-weight: 400;
     line-height: 1.25;
     letter-spacing: -1px;
     margin-bottom: 25px;
-
 }
 
 p {
     color: var(--muted);
 }
 
-/* =========================================
-   NAVIGATION
-   ========================================= */
+/* NAVIGATION */
 
 header {
-
     position: sticky;
     top: 0;
     z-index: 100;
     background: rgba(255, 250, 251, 0.97);
     border-bottom: 1px solid var(--border);
-
 }
 
 .navigation {
-
     min-height: 74px;
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 25px;
-
 }
 
 .logo {
-
     font-family: "Playfair Display", Georgia, serif;
     font-size: 16px;
     font-weight: 600;
     letter-spacing: 0.8px;
-
 }
 
 nav {
-
     display: flex;
     align-items: center;
     gap: 28px;
-
 }
 
 nav a {
-
     font-size: 10px;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 1.2px;
     color: var(--muted);
     transition: color 0.2s;
-
 }
 
 nav a:hover {
@@ -183,21 +148,16 @@ nav .contact-link {
     color: var(--pink);
 }
 
-/* =========================================
-   BUTTONS
-   ========================================= */
+/* BUTTONS */
 
 .actions {
-
     display: flex;
     flex-wrap: wrap;
     gap: 12px;
     margin-top: 30px;
-
 }
 
 .button {
-
     display: inline-flex;
     justify-content: center;
     align-items: center;
@@ -212,63 +172,52 @@ nav .contact-link {
     letter-spacing: 1.1px;
     text-transform: uppercase;
     transition: background 0.2s, color 0.2s;
-
 }
 
 .button:hover {
-
     background: var(--dark-pink);
     border-color: var(--dark-pink);
-
 }
 
 .button-outline {
-
     background: transparent;
     color: var(--pink);
-
 }
 
 .button-outline:hover {
-
     background: var(--pink);
     border-color: var(--pink);
     color: white;
-
 }
 
 .arrow {
-
     width: 13px;
     height: 13px;
     flex-shrink: 0;
-
 }
 
-/* =========================================
-   HERO
-   ========================================= */
+/* HERO */
 
 .hero {
-
     display: grid;
     grid-template-columns: 1.4fr 0.6fr;
     align-items: center;
     gap: 65px;
     padding-top: 95px;
     padding-bottom: 95px;
+}
 
+.hero-content {
+    min-width: 0;
 }
 
 .hero h1 {
-
     font-family: "Playfair Display", Georgia, serif;
     font-size: clamp(48px, 7vw, 90px);
     font-weight: 400;
     letter-spacing: -3px;
     line-height: 1.04;
     margin: 20px 0 25px;
-
 }
 
 .hero h1 span {
@@ -276,102 +225,80 @@ nav .contact-link {
 }
 
 .role {
-
     color: var(--text);
     font-size: 13px;
     font-weight: 700;
     letter-spacing: 2.4px;
     text-transform: uppercase;
     margin-bottom: 22px;
-
 }
 
 .hero-description {
-
     font-family: "Playfair Display", Georgia, serif;
     font-size: clamp(21px, 2.5vw, 28px);
     color: var(--text);
     line-height: 1.5;
     max-width: 570px;
     margin-bottom: 24px;
-
 }
 
 .specialties {
-
     font-size: 10px;
     font-weight: 600;
     letter-spacing: 1.1px;
     line-height: 2.2;
     color: var(--pink);
     text-transform: uppercase;
-
 }
 
 .location {
-
     color: var(--muted);
     font-size: 12px;
     margin-top: 25px;
     margin-bottom: 0;
-
 }
 
 .hero-photo {
-
     width: 100%;
     max-width: 345px;
     justify-self: end;
-
 }
 
 .photo-frame {
-
     background: white;
     padding: 8px;
     border: 1px solid var(--border);
-
 }
 
 .photo-frame img {
-
     width: 100%;
     aspect-ratio: 4 / 5;
     object-fit: cover;
     object-position: center;
-
 }
 
 .photo-caption {
-
     font-size: 9px;
     text-transform: uppercase;
     letter-spacing: 1.8px;
     text-align: center;
     color: var(--muted);
     margin: 16px 0 0;
-
 }
 
-/* =========================================
-   ABOUT ME
-   ========================================= */
+/* ABOUT ME */
 
 .split-layout {
-
     display: grid;
     grid-template-columns: 0.8fr 1.2fr;
     align-items: start;
     gap: 70px;
-
 }
 
 .about-text p {
-
     font-size: 14px;
     line-height: 1.95;
     margin-bottom: 20px;
-
 }
 
 .about-text p:last-child {
@@ -379,52 +306,41 @@ nav .contact-link {
 }
 
 .values {
-
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 15px;
     margin-top: 40px;
     padding-top: 25px;
     border-top: 1px solid var(--border);
-
 }
 
 .value {
-
     color: var(--pink);
     font-size: 10px;
     font-weight: 600;
     letter-spacing: 1.4px;
     text-transform: uppercase;
-
 }
 
-/* =========================================
-   WORK SAMPLES
-   ========================================= */
+/* WORK SAMPLES */
 
 .work-section {
     background: var(--blush);
 }
 
 .section-description {
-
     max-width: 650px;
     font-size: 14px;
     margin-bottom: 35px;
-
 }
 
 .projects {
-
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 18px;
-
 }
 
 .project {
-
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -433,109 +349,82 @@ nav .contact-link {
     border: 1px solid var(--border);
     padding: 28px;
     transition: border-color 0.2s, transform 0.2s;
-
 }
 
 .project:hover {
-
     border-color: var(--light-pink);
     transform: translateY(-3px);
-
 }
 
 .project-number {
-
     color: var(--pink);
     font-size: 9px;
     font-weight: 700;
     letter-spacing: 1.5px;
     text-transform: uppercase;
     margin-bottom: 18px;
-
 }
 
 .project h3 {
-
     font-family: "Playfair Display", Georgia, serif;
     font-size: 23px;
     font-weight: 400;
     line-height: 1.4;
     margin-bottom: 12px;
-
 }
 
 .project p {
-
     font-size: 13px;
     line-height: 1.8;
     margin-bottom: 25px;
-
 }
 
 .project .button {
-
     margin-top: auto;
     min-height: 40px;
     padding: 10px 16px;
     font-size: 9px;
-
 }
 
 .sample-note {
-
     margin: 25px 0 0;
     font-size: 11px;
     color: var(--muted);
-
 }
 
-/* =========================================
-   TOOLS
-   ========================================= */
+/* TOOLS */
 
 .tools-grid {
-
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 25px;
-
 }
 
 .tool-group {
-
     padding-bottom: 20px;
     border-bottom: 1px solid var(--border);
-
 }
 
 .tool-group h3 {
-
     color: var(--pink);
     font-size: 10px;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 1.4px;
     margin-bottom: 10px;
-
 }
 
 .tool-group p {
-
     font-size: 13px;
     line-height: 1.9;
     margin-bottom: 0;
-
 }
 
-/* =========================================
-   BACKGROUND
-   ========================================= */
+/* BACKGROUND */
 
 .background-item {
-
     border-bottom: 1px solid var(--border);
     padding: 19px 0;
-
 }
 
 .background-item:first-child {
@@ -548,7 +437,6 @@ nav .contact-link {
 }
 
 .background-label {
-
     display: block;
     font-size: 9px;
     font-weight: 600;
@@ -556,50 +444,37 @@ nav .contact-link {
     text-transform: uppercase;
     color: var(--pink);
     margin-bottom: 5px;
-
 }
 
 .background-item h3 {
-
     font-size: 15px;
     font-weight: 600;
     margin-bottom: 4px;
-
 }
 
 .background-item p {
-
     font-size: 13px;
     margin-bottom: 0;
-
 }
 
-/* =========================================
-   CONTACT
-   ========================================= */
+/* CONTACT */
 
 .contact-section {
-
     background: var(--blush);
     text-align: center;
     padding: 85px 0;
-
 }
 
 .contact-section h2 {
-
     max-width: 750px;
     margin-left: auto;
     margin-right: auto;
-
 }
 
 .contact-section p {
-
     max-width: 580px;
     margin-left: auto;
     margin-right: auto;
-
 }
 
 .contact-section .actions {
@@ -607,32 +482,25 @@ nav .contact-link {
 }
 
 .email-address {
-
     display: inline-block;
     color: var(--pink);
     font-size: 13px;
     margin-top: 25px;
     overflow-wrap: anywhere;
-
 }
 
 .email-address:hover {
     text-decoration: underline;
 }
 
-/* =========================================
-   FOOTER
-   ========================================= */
+/* FOOTER */
 
 footer {
-
     border-top: 1px solid var(--border);
     background: var(--background);
-
 }
 
 .footer-content {
-
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -641,19 +509,14 @@ footer {
     font-size: 9px;
     letter-spacing: 1px;
     color: var(--muted);
-
 }
 
 .footer-content a {
-
     color: var(--pink);
     font-weight: 600;
-
 }
 
-/* =========================================
-   TABLET RESPONSIVENESS
-   ========================================= */
+/* TABLET */
 
 @media (max-width: 950px) {
 
@@ -675,9 +538,7 @@ footer {
 
 }
 
-/* =========================================
-   MOBILE RESPONSIVENESS
-   ========================================= */
+/* MOBILE */
 
 @media (max-width: 650px) {
 
@@ -690,20 +551,16 @@ footer {
     }
 
     .navigation {
-
         flex-direction: column;
         justify-content: center;
         gap: 12px;
         padding: 15px 0;
-
     }
 
     nav {
-
         flex-wrap: wrap;
         justify-content: center;
         gap: 10px 16px;
-
     }
 
     nav a {
@@ -715,34 +572,26 @@ footer {
     }
 
     .hero {
-
         grid-template-columns: 1fr;
         gap: 35px;
         padding-top: 40px;
         padding-bottom: 55px;
-
     }
 
     .hero-photo {
-
         grid-row: 1;
         max-width: 230px;
         justify-self: center;
-
     }
 
     .hero h1 {
-
-        font-size: clamp(45px, 12vw, 70px);
+        font-size: clamp(38px, 10vw, 70px);
         letter-spacing: -2px;
-
     }
 
     .role {
-
         font-size: 11px;
         letter-spacing: 1.5px;
-
     }
 
     .hero-description {
@@ -754,52 +603,38 @@ footer {
     }
 
     .split-layout {
-
         grid-template-columns: 1fr;
         gap: 15px;
-
     }
 
     .projects {
-
         grid-template-columns: 1fr;
         gap: 14px;
-
     }
 
     .project {
-
         min-height: 235px;
         padding: 25px;
-
     }
 
     .values {
-
         grid-template-columns: 1fr 1fr;
         gap: 18px;
-
     }
 
     .tools-grid {
-
         grid-template-columns: 1fr 1fr;
         gap: 18px;
-
     }
 
     .button {
-
         font-size: 9px;
         padding: 12px 16px;
-
     }
 
     .footer-content {
-
         flex-wrap: wrap;
         font-size: 8px;
-
     }
 
     .contact-section {
@@ -826,18 +661,14 @@ footer {
 
 <body>
 
-<!-- =====================================
-     NAVIGATION
-     ===================================== -->
+<!-- NAVIGATION -->
 
 <header>
 
     <div class="container navigation">
 
         <a class="logo" href="#home">
-
             DAINTY DE GUZMAN
-
         </a>
 
         <nav aria-label="Main navigation">
@@ -848,18 +679,14 @@ footer {
 
             <a href="#tools">Tools</a>
 
-            <a href="dainty-de-guzman-resume.pdf"
+            <a href="./dainty-de-guzman-resume.pdf"
                target="_blank"
                rel="noopener noreferrer">
-
                 R&eacute;sum&eacute;
-
             </a>
 
             <a class="contact-link" href="#contact">
-
                 Contact
-
             </a>
 
         </nav>
@@ -870,47 +697,33 @@ footer {
 
 <main>
 
-<!-- =====================================
-     HERO
-     ===================================== -->
+<!-- HERO -->
 
 <div class="container hero" id="home">
 
     <div class="hero-content">
 
         <p class="eyebrow">
-
             Professional Portfolio
-
         </p>
 
         <h1>
-
             DAINTY<br>
-
             <span>DE GUZMAN</span>
-
         </h1>
 
         <p class="role">
-
             Real Estate Virtual Assistant
-
         </p>
 
         <p class="hero-description">
-
             Reliable support. Precise execution.
             More room for your business to grow.
-
         </p>
 
         <p class="specialties">
-
             CRM Management &middot; Property Listings<br>
-
             Client Communication &middot; Administrative Support
-
         </p>
 
         <div class="actions">
@@ -933,7 +746,7 @@ footer {
             </a>
 
             <a class="button button-outline"
-               href="dainty-de-guzman-resume.pdf"
+               href="./dainty-de-guzman-resume.pdf"
                target="_blank"
                rel="noopener noreferrer">
 
@@ -955,9 +768,7 @@ footer {
         </div>
 
         <p class="location">
-
             Based in the Philippines &middot; Open to remote opportunities
-
         </p>
 
     </div>
@@ -966,25 +777,21 @@ footer {
 
         <div class="photo-frame">
 
-            <img src="dainty-profile.jpeg"
+            <img src="./dainty-profile.jpeg"
                  alt="Professional portrait of Dainty De Guzman"
                  fetchpriority="high">
 
         </div>
 
         <p class="photo-caption">
-
             Organized &middot; Proactive &middot; Dependable
-
         </p>
 
     </div>
 
 </div>
 
-<!-- =====================================
-     ABOUT ME
-     ===================================== -->
+<!-- ABOUT ME -->
 
 <section id="about">
 
@@ -995,15 +802,11 @@ footer {
             <div>
 
                 <p class="eyebrow">
-
                     01 / About Me
-
                 </p>
 
                 <h2>
-
                     Making every detail work in your favor.
-
                 </h2>
 
             </div>
@@ -1011,21 +814,15 @@ footer {
             <div class="about-text">
 
                 <p>
-
                     I am a Real Estate Virtual Assistant with practical experience supporting small-business operations and academic projects. My background in Civil Engineering and Architecture has strengthened my analytical thinking, organizational abilities, and attention to detail, complementing my skills in CRM management, lead organization, client communication, appointment coordination, property listing administration, and transaction tracking.
-
                 </p>
 
                 <p>
-
                     I approach every responsibility with structure, initiative, and a strong sense of accountability. I value clear communication, consistent performance, and delivering accurate, high-quality results. I take pride in being resourceful, anticipating needs, and finding efficient ways to keep operations running smoothly.
-
                 </p>
 
                 <p>
-
                     My goal is to be more than someone who simply completes tasks. I aim to become a dependable extension of your team, bringing organization, precision, and professionalism to your daily operations so you can focus on building client relationships, closing deals, and growing your business.
-
                 </p>
 
             </div>
@@ -1048,30 +845,22 @@ footer {
 
 </section>
 
-<!-- =====================================
-     SELECTED WORK
-     ===================================== -->
+<!-- SELECTED WORK AND PROJECTS -->
 
 <section class="work-section" id="work">
 
     <div class="container">
 
         <p class="eyebrow">
-
             02 / Selected Work &amp; Projects
-
         </p>
 
         <h2>
-
             Capabilities in practice.
-
         </h2>
 
         <p class="section-description">
-
             Practical demonstrations of my approach to real estate administration, organization, and professional client support.
-
         </p>
 
         <div class="projects">
@@ -1081,25 +870,19 @@ footer {
             <article class="project">
 
                 <div class="project-number">
-
                     Project 01 / CRM
-
                 </div>
 
                 <h3>
-
                     Lead Management &amp; CRM Organization
-
                 </h3>
 
                 <p>
-
                     Contact organization, lead tracking, pipeline management, and structured follow-ups.
-
                 </p>
 
                 <a class="button"
-                   href="lead-management.html"
+                   href="./lead-management.html"
                    aria-label="View Lead Management and CRM Organization work sample">
 
                     View Work Sample
@@ -1124,25 +907,19 @@ footer {
             <article class="project">
 
                 <div class="project-number">
-
                     Project 02 / Communication
-
                 </div>
 
                 <h3>
-
                     Real Estate Email Management
-
                 </h3>
 
                 <p>
-
                     Organized correspondence, professional client responses, and approval-ready email drafts.
-
                 </p>
 
                 <a class="button"
-                   href="email-management.html"
+                   href="./email-management.html"
                    aria-label="View Real Estate Email Management work sample">
 
                     View Work Sample
@@ -1167,25 +944,19 @@ footer {
             <article class="project">
 
                 <div class="project-number">
-
                     Project 03 / Scheduling
-
                 </div>
 
                 <h3>
-
                     Property Showing &amp; Appointment Coordination
-
                 </h3>
 
                 <p>
-
                     Calendar management, property viewings, client consultations, and appointment follow-ups.
-
                 </p>
 
                 <a class="button"
-                   href="appointment-coordination.html"
+                   href="./appointment-coordination.html"
                    aria-label="View Appointment Coordination work sample">
 
                     View Work Sample
@@ -1210,25 +981,19 @@ footer {
             <article class="project">
 
                 <div class="project-number">
-
                     Project 04 / Listings
-
                 </div>
 
                 <h3>
-
                     Property Listing Administration
-
                 </h3>
 
                 <p>
-
                     Property inventories, listing descriptions, information verification, and discrepancy tracking.
-
                 </p>
 
                 <a class="button"
-                   href="property-listing.html"
+                   href="./property-listing.html"
                    aria-label="View Property Listing Administration work sample">
 
                     View Work Sample
@@ -1253,25 +1018,19 @@ footer {
             <article class="project">
 
                 <div class="project-number">
-
                     Project 05 / Transactions
-
                 </div>
 
                 <h3>
-
                     Real Estate Transaction Tracking
-
                 </h3>
 
                 <p>
-
                     Transaction milestones, deadline monitoring, document checklists, and closing coordination.
-
                 </p>
 
                 <a class="button"
-                   href="transaction-tracking.html"
+                   href="./transaction-tracking.html"
                    aria-label="View Real Estate Transaction Tracking work sample">
 
                     View Work Sample
@@ -1296,25 +1055,19 @@ footer {
             <article class="project">
 
                 <div class="project-number">
-
                     Project 06 / Property Management
-
                 </div>
 
                 <h3>
-
                     Property Management &amp; Maintenance Coordination
-
                 </h3>
 
                 <p>
-
                     Maintenance requests, tenant communication, priority assessment, and vendor coordination.
-
                 </p>
 
                 <a class="button"
-                   href="property-management.html"
+                   href="./property-management.html"
                    aria-label="View Property Management work sample">
 
                     View Work Sample
@@ -1337,18 +1090,14 @@ footer {
         </div>
 
         <p class="sample-note">
-
             All work samples are independent portfolio simulations using fictional data.
-
         </p>
 
     </div>
 
 </section>
 
-<!-- =====================================
-     TOOLS AND SYSTEMS
-     ===================================== -->
+<!-- TOOLS AND SYSTEMS -->
 
 <section id="tools">
 
@@ -1357,21 +1106,15 @@ footer {
         <div>
 
             <p class="eyebrow">
-
                 03 / Tools &amp; Systems
-
             </p>
 
             <h2>
-
                 Equipped for efficient work.
-
             </h2>
 
             <p>
-
                 Adaptable to established systems and client-specific workflows.
-
             </p>
 
         </div>
@@ -1383,13 +1126,9 @@ footer {
                 <h3>Productivity</h3>
 
                 <p>
-
                     Google Workspace<br>
-
                     Microsoft Office<br>
-
                     Google Drive
-
                 </p>
 
             </div>
@@ -1399,13 +1138,9 @@ footer {
                 <h3>Communication</h3>
 
                 <p>
-
                     Gmail<br>
-
                     Microsoft Outlook<br>
-
                     Zoom &amp; Google Meet
-
                 </p>
 
             </div>
@@ -1415,15 +1150,10 @@ footer {
                 <h3>Organization</h3>
 
                 <p>
-
                     Google Calendar<br>
-
                     Google Sheets<br>
-
                     Microsoft Excel<br>
-
                     Notion
-
                 </p>
 
             </div>
@@ -1433,13 +1163,9 @@ footer {
                 <h3>Design</h3>
 
                 <p>
-
                     Canva<br>
-
                     Google Slides<br>
-
                     Microsoft PowerPoint
-
                 </p>
 
             </div>
@@ -1449,13 +1175,9 @@ footer {
                 <h3>CRM Practice</h3>
 
                 <p>
-
                     HubSpot workflows<br>
-
                     Contact databases<br>
-
                     Lead pipelines
-
                 </p>
 
             </div>
@@ -1465,13 +1187,9 @@ footer {
                 <h3>Project Management Practice</h3>
 
                 <p>
-
                     Trello-style workflows<br>
-
                     Asana-style task tracking<br>
-
                     Administrative trackers
-
                 </p>
 
             </div>
@@ -1482,9 +1200,7 @@ footer {
 
 </section>
 
-<!-- =====================================
-     PROFESSIONAL BACKGROUND
-     ===================================== -->
+<!-- PROFESSIONAL BACKGROUND -->
 
 <section id="background">
 
@@ -1493,21 +1209,17 @@ footer {
         <div>
 
             <p class="eyebrow">
-
                 04 / Background
-
             </p>
 
             <h2>
-
                 A foundation built on precision.
-
             </h2>
 
             <div class="actions">
 
                 <a class="button button-outline"
-                   href="dainty-de-guzman-resume.pdf"
+                   href="./dainty-de-guzman-resume.pdf"
                    target="_blank"
                    rel="noopener noreferrer">
 
@@ -1535,21 +1247,15 @@ footer {
             <div class="background-item">
 
                 <span class="background-label">
-
                     Current Education
-
                 </span>
 
                 <h3>
-
                     BS Civil Engineering
-
                 </h3>
 
                 <p>
-
                     National University &ndash; Fairview
-
                 </p>
 
             </div>
@@ -1557,21 +1263,15 @@ footer {
             <div class="background-item">
 
                 <span class="background-label">
-
                     Previous Studies
-
                 </span>
 
                 <h3>
-
                     BS Architecture
-
                 </h3>
 
                 <p>
-
                     Saint Mary's University
-
                 </p>
 
             </div>
@@ -1579,21 +1279,15 @@ footer {
             <div class="background-item">
 
                 <span class="background-label">
-
                     Professional Exposure
-
                 </span>
 
                 <h3>
-
                     Work Immersion
-
                 </h3>
 
                 <p>
-
                     Arkibuilders
-
                 </p>
 
             </div>
@@ -1601,21 +1295,15 @@ footer {
             <div class="background-item">
 
                 <span class="background-label">
-
                     Transferable Experience
-
                 </span>
 
                 <h3>
-
                     Small-Business Operations
-
                 </h3>
 
                 <p>
-
                     Customer communication, recordkeeping, order coordination, and administrative organization.
-
                 </p>
 
             </div>
@@ -1626,33 +1314,27 @@ footer {
 
 </section>
 
-<!-- =====================================
-     CONTACT
-     ===================================== -->
+<!-- CONTACT -->
 
 <section class="contact-section" id="contact">
 
     <div class="container">
 
         <p class="eyebrow">
-
             05 / Let's Connect
-
         </p>
 
         <h2>
-
             Your business deserves dependable support.
-
         </h2>
 
         <p>
-
             Ready to bring structure, initiative, and attention to detail to your real estate operations.
-
         </p>
 
         <div class="actions">
+
+            <!-- EMAIL BUTTON -->
 
             <a class="button"
                href="mailto:daintydeguzman.work@gmail.com">
@@ -1672,25 +1354,28 @@ footer {
 
             </a>
 
-           <a class="button button-outline"
-href="https://www.linkedin.com/in/dainty-de-guzman/"
-   target="_blank"
-   rel="noopener noreferrer">
+            <!-- CORRECT LINKEDIN BUTTON -->
 
-    LinkedIn
+            <a class="button button-outline"
+               href="https://www.linkedin.com/in/dainty-de-guzman/"
+               target="_blank"
+               rel="noopener noreferrer">
 
-    <svg class="arrow"
-         viewBox="0 0 24 24"
-         fill="none"
-         stroke="currentColor"
-         stroke-width="1.8"
-         aria-hidden="true">
+                LinkedIn
 
-        <path d="M5 19L19 5M5 5H19V19"/>
+                <svg class="arrow"
+                     viewBox="0 0 24 24"
+                     fill="none"
+                     stroke="currentColor"
+                     stroke-width="1.8"
+                     aria-hidden="true">
 
-    </svg>
+                    <path d="M5 19L19 5M5 5H19V19"/>
 
-</a>
+                </svg>
+
+            </a>
+
         </div>
 
         <a class="email-address"
@@ -1706,25 +1391,19 @@ href="https://www.linkedin.com/in/dainty-de-guzman/"
 
 </main>
 
-<!-- =====================================
-     FOOTER
-     ===================================== -->
+<!-- FOOTER -->
 
 <footer>
 
     <div class="container footer-content">
 
         <span>
-
             &copy; 2026 DAINTY DE GUZMAN.
             ALL RIGHTS RESERVED.
-
         </span>
 
         <a href="#home">
-
             BACK TO TOP &uarr;
-
         </a>
 
     </div>
@@ -1732,5 +1411,4 @@ href="https://www.linkedin.com/in/dainty-de-guzman/"
 </footer>
 
 </body>
-
 </html>
