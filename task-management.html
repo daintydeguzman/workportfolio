@@ -1,0 +1,205 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="./favicon.png">
+<title>Administrative Task Management | Dainty De Guzman</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;font:14px Arial,sans-serif;background:#fffafb;color:#393239}
+header{background:white;border-bottom:1px solid #eadce4;padding:18px 30px;display:flex;align-items:center;justify-content:space-between}
+header strong{font-size:17px}
+header img{width:36px;height:36px;border-radius:50%;object-fit:cover}
+.layout{display:flex;min-height:90vh}
+aside{width:235px;background:#f7edf3;padding:25px 16px;border-right:1px solid #eadce4}
+aside small{color:#98677f;letter-spacing:1px}
+aside h3{font-size:14px;margin:25px 10px 15px}
+aside button{display:block;width:100%;border:0;background:transparent;text-align:left;padding:12px;border-radius:6px;cursor:pointer;color:#65545e;margin:4px 0}
+aside button:hover,aside button.active{background:#ead0df;color:#854760}
+main{flex:1;min-width:0;padding:35px}
+h1{font-size:29px;margin:12px 0}
+p{color:#81717b;line-height:1.7}
+.badge{font-size:11px;background:#f0dce7;color:#854760;padding:6px 10px;border-radius:4px}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:15px;margin:30px 0}
+.stat{background:white;border:1px solid #eadce4;border-radius:8px;padding:20px}
+.stat span{font-size:12px;color:#897780}
+.stat strong{display:block;font-size:28px;margin-top:10px;color:#a65f7d}
+.toolbar{display:flex;gap:10px;margin:20px 0;flex-wrap:wrap}
+input,select,button{font:inherit}
+input,select{padding:11px;border:1px solid #dfd1d9;background:white;border-radius:6px;color:#493a43}
+input{flex:1;min-width:180px}
+.table-wrap{overflow:auto;background:white;border:1px solid #eadce4;border-radius:8px}
+table{width:100%;border-collapse:collapse;white-space:nowrap}
+th,td{text-align:left;padding:16px;border-bottom:1px solid #f0e6ec;font-size:12px}
+th{background:#f8edf3;color:#854760;cursor:pointer}
+tbody tr:hover{background:#fff5fa;cursor:pointer}
+.pill{padding:5px 9px;border-radius:5px;font-size:11px}
+.completed{background:#e1eee6;color:#426b50}
+.progress{background:#f6e5c8;color:#8b662c}
+.pending{background:#eee5ed;color:#785e76}
+.high{color:#b14e66;font-weight:bold}
+.medium{color:#98713b}
+.low{color:#678477}
+.note{margin-top:25px;padding:22px;background:white;border:1px solid #eadce4;border-left:3px solid #a65f7d}
+.note h3{margin-top:0}
+footer{font-size:11px;color:#998892;margin-top:30px}
+dialog{border:1px solid #eadce4;border-radius:12px;padding:30px;width:min(520px,90vw);color:#393239}
+dialog::backdrop{background:#30232b66}
+.close{float:right;background:#f3e4ed;border:0;border-radius:5px;padding:8px 12px;cursor:pointer}
+@media(max-width:800px){aside{display:none}main{padding:20px}.stats{grid-template-columns:repeat(2,1fr)}}
+</style>
+</head>
+<body>
+<header>
+<strong>Administrative Workspace</strong>
+<div style="display:flex;align-items:center;gap:12px">
+<span class="badge">View only</span>
+<img src="./dainty-profile.jpeg" alt="Profile">
+</div>
+</header>
+
+<div class="layout">
+<aside>
+<small>WORKSPACE</small>
+<h3>Business Operations</h3>
+<button class="active" onclick="changeView('All',this)">All Tasks</button>
+<button onclick="changeView('Completed',this)">Completed</button>
+<button onclick="changeView('In Progress',this)">In Progress</button>
+<button onclick="changeView('Pending',this)">Pending</button>
+<button onclick="changeView('High',this)">High Priority</button>
+<hr style="border:0;border-top:1px solid #dfcbd7;margin:25px 0">
+<small>PORTFOLIO PROJECT 07</small>
+<p style="font-size:12px">Administrative support and workflow organization.</p>
+</aside>
+
+<main>
+<span class="badge">Administrative Operations</span>
+<h1>Task Management</h1>
+<p>Organized task assignments, priorities, deadlines and administrative progress.</p>
+
+<div class="stats">
+<div class="stat"><span>Total Tasks</span><strong id="total"></strong></div>
+<div class="stat"><span>Completed</span><strong id="completed"></strong></div>
+<div class="stat"><span>In Progress</span><strong id="progress"></strong></div>
+<div class="stat"><span>Pending</span><strong id="pending"></strong></div>
+</div>
+
+<div class="toolbar">
+<input id="search" placeholder="Search tasks..." oninput="render()">
+<select id="priority" onchange="render()">
+<option value="">All priorities</option>
+<option>High</option>
+<option>Medium</option>
+<option>Low</option>
+</select>
+<select id="status" onchange="render()">
+<option value="">All statuses</option>
+<option>Completed</option>
+<option>In Progress</option>
+<option>Pending</option>
+</select>
+</div>
+
+<div class="table-wrap">
+<table>
+<thead>
+<tr>
+<th onclick="sortBy(0)">Task ID</th>
+<th onclick="sortBy(1)">Task Name</th>
+<th onclick="sortBy(2)">Department</th>
+<th onclick="sortBy(3)">Priority</th>
+<th onclick="sortBy(4)">Status</th>
+<th onclick="sortBy(5)">Due Date</th>
+</tr>
+</thead>
+<tbody id="rows"></tbody>
+</table>
+</div>
+
+<div class="note">
+<h3>Administrative Handover</h3>
+<p>Prioritize supplier record reconciliation and the audit of outstanding requests. Confirm missing documents before finalizing the records. Maintain clear updates for tasks awaiting approval.</p>
+</div>
+
+<footer>Independent portfolio simulation. All records are fictional. Prepared by Dainty De Guzman.</footer>
+</main>
+</div>
+
+<dialog id="details">
+<button class="close" onclick="details.close()">Close</button>
+<div id="detailContent"></div>
+</dialog>
+
+<script>
+const tasks=[
+["TASK-001","Prepare weekly meeting agenda","Administration","High","Completed","2026-11-23","Share the approved agenda with team members."],
+["TASK-002","Reconcile supplier records","Administration","High","In Progress","2026-11-30","Verify missing invoices before completing reconciliation."],
+["TASK-003","Organize shared drive","Administration","Medium","In Progress","2026-12-01","Apply consistent folder and file naming conventions."],
+["TASK-004","Update onboarding checklist","Operations","Medium","Pending","2026-12-02","Confirm required onboarding documents."],
+["TASK-005","Review meeting minutes","Operations","Low","Completed","2026-11-26","File the approved meeting minutes."],
+["TASK-006","Schedule team review","Administration","Medium","Pending","2026-12-03","Confirm participant availability and time zones."],
+["TASK-007","Audit outstanding requests","Administration","High","Pending","2026-11-30","Escalate overdue requests to the appropriate supervisor."],
+["TASK-008","Prepare handover notes","Operations","Low","In Progress","2026-12-04","Document outstanding tasks and next actions."]
+];
+
+let view="All",sortColumn=0,ascending=true;
+const statusClass={"Completed":"completed","In Progress":"progress","Pending":"pending"};
+
+document.getElementById("total").textContent=tasks.length;
+document.getElementById("completed").textContent=tasks.filter(t=>t[4]==="Completed").length;
+document.getElementById("progress").textContent=tasks.filter(t=>t[4]==="In Progress").length;
+document.getElementById("pending").textContent=tasks.filter(t=>t[4]==="Pending").length;
+
+function changeView(value,button){
+view=value;
+document.querySelectorAll("aside button").forEach(b=>b.classList.remove("active"));
+button.classList.add("active");
+render();
+}
+
+function sortBy(column){
+ascending=sortColumn===column?!ascending:true;
+sortColumn=column;
+render();
+}
+
+function render(){
+const q=document.getElementById("search").value.toLowerCase();
+const priority=document.getElementById("priority").value;
+const status=document.getElementById("status").value;
+
+const filtered=tasks.filter(t=>
+t.join(" ").toLowerCase().includes(q)&&
+(!priority||t[3]===priority)&&
+(!status||t[4]===status)&&
+(view==="All"||t[3]===view||t[4]===view)
+).sort((a,b)=>a[sortColumn].localeCompare(b[sortColumn])*(ascending?1:-1));
+
+document.getElementById("rows").innerHTML=filtered.length?filtered.map(t=>`
+<tr onclick="openTask('${t[0]}')">
+<td>${t[0]}</td>
+<td><strong>${t[1]}</strong></td>
+<td>${t[2]}</td>
+<td class="${t[3].toLowerCase()}">${t[3]}</td>
+<td><span class="pill ${statusClass[t[4]]}">${t[4]}</span></td>
+<td>${t[5]}</td>
+</tr>`).join(""):'<tr><td colspan="6">No matching tasks.</td></tr>';
+}
+
+function openTask(id){
+const t=tasks.find(x=>x[0]===id);
+document.getElementById("detailContent").innerHTML=`
+<p>${t[0]}</p><h2>${t[1]}</h2>
+<p><strong>Department:</strong> ${t[2]}</p>
+<p><strong>Priority:</strong> ${t[3]}</p>
+<p><strong>Status:</strong> ${t[4]}</p>
+<p><strong>Deadline:</strong> ${t[5]}</p>
+<hr><h3>Next Action</h3><p>${t[6]}</p>`;
+document.getElementById("details").showModal();
+}
+render();
+</script>
+</body>
+</html>
