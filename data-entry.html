@@ -1,0 +1,184 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="icon" href="./favicon.png">
+<title>Data Entry & Database Management | Dainty De Guzman</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;font:13px Arial,sans-serif;background:#fff;color:#393239}
+header{display:flex;align-items:center;gap:15px;padding:18px 22px;background:#faf0f5;border-bottom:1px solid #e6d6df}
+.logo{background:#a65f7d;color:white;padding:10px 14px;border-radius:6px;font-size:23px}
+header h2{font-size:17px;margin:0 0 5px}
+header small{color:#8c7683}
+.avatar{margin-left:auto;width:35px;height:35px;border-radius:50%;object-fit:cover}
+.menu{padding:12px 22px;display:flex;gap:25px;background:#fffafb;border-bottom:1px solid #eadce4;color:#75636e}
+.toolbar{display:flex;align-items:center;gap:12px;padding:12px 20px;background:#f4e6ee;flex-wrap:wrap}
+input,select{font:inherit;padding:8px 12px;background:white;border:1px solid #dfccd7;border-radius:4px}
+input{width:250px;max-width:100%}
+.summary{display:flex;gap:30px;padding:20px;flex-wrap:wrap}
+.summary strong{color:#a65f7d;font-size:20px}
+.summary span{display:block;font-size:11px;margin-top:5px;color:#81717b}
+.sheet{overflow:auto;min-height:400px;border-top:1px solid #dfd2da}
+table{border-collapse:collapse;width:100%;min-width:800px}
+th,td{border:1px solid #e5dbe1;padding:13px;text-align:left;white-space:nowrap}
+.letters th{background:#f2f0f1;text-align:center;color:#887681;padding:7px}
+.headers th{background:#b77b99;color:white;font-weight:normal;cursor:pointer}
+td:first-child{background:#f7f3f5;color:#8e7a86;text-align:center;width:45px}
+tbody tr:nth-child(even){background:#fff8fc}
+tbody tr:hover{background:#f5e4ee}
+.verified{background:#e4efe6;color:#477054;padding:5px 10px;border-radius:4px}
+.review{background:#f7e6ce;color:#8a652f;padding:5px 10px;border-radius:4px}
+.tabs{display:flex;background:#f8edf3;border-top:1px solid #e2d1dc;overflow:auto}
+.tabs button{border:0;border-right:1px solid #e2d1dc;background:transparent;padding:16px 25px;cursor:pointer;white-space:nowrap;color:#745466}
+.tabs button.active{background:#ead0df;font-weight:bold;color:#854760}
+.note{margin:25px;padding:20px;background:#fffafb;border-left:3px solid #a65f7d;line-height:1.7}
+footer{padding:20px;color:#8e7a86;font-size:11px}
+</style>
+</head>
+<body>
+<header>
+<div class="logo">&#9638;</div>
+<div>
+<h2>Customer Database Management</h2>
+<small>Administrative spreadsheet &middot; View only</small>
+</div>
+<img class="avatar" src="./dainty-profile.jpeg" alt="Profile">
+</header>
+
+<div class="menu">
+<span>Customer Records</span>
+<span>Data Cleaning</span>
+<span>Quality Assurance</span>
+</div>
+
+<div class="toolbar">
+<strong id="sheetName">Customer Database</strong>
+<input id="search" placeholder="Search records..." oninput="render()">
+<select id="filter" onchange="render()">
+<option value="">All records</option>
+<option>Verified</option>
+<option>Needs Review</option>
+</select>
+</div>
+
+<div class="summary">
+<div><strong>8</strong><span>Total Records</span></div>
+<div><strong>5</strong><span>Verified Records</span></div>
+<div><strong>3</strong><span>Needs Review</span></div>
+<div><strong>1</strong><span>Potential Duplicate Pair</span></div>
+</div>
+
+<div class="sheet">
+<table id="table"></table>
+</div>
+
+<div class="tabs">
+<button class="active" onclick="openSheet(0,this)">Customer Database</button>
+<button onclick="openSheet(1,this)">Data Cleaning Log</button>
+<button onclick="openSheet(2,this)">Verification Checklist</button>
+</div>
+
+<div class="note">
+<strong>Quality Assurance Notes</strong>
+<p>Preserve original records before making corrections. Standardize formatting and identify incomplete information. Potential duplicate records must be reviewed and approved before merging or deletion.</p>
+</div>
+
+<footer>Independent portfolio simulation using fictional customer information. Prepared by Dainty De Guzman.</footer>
+
+<script>
+const sheets=[
+{
+name:"Customer Database",
+headers:["Customer ID","Full Name","Email Address","City","Country","Status","Remarks"],
+rows:[
+["C-001","Avery Cole","avery@example.com","Austin","United States","Verified","Whitespace removed"],
+["C-002","Jordan Reed","jordan@example.com","Denver","United States","Verified","Capitalization standardized"],
+["C-003","Morgan Lee","morgan@example.com","Seattle","United States","Needs Review","Possible duplicate"],
+["C-004","Taylor Brooks","taylor@example.com","Boston","United States","Verified","City standardized"],
+["C-005","Casey Lane","","Portland","United States","Needs Review","Missing email address"],
+["C-006","Riley Park","riley@example.com","Chicago","United States","Verified","Email format checked"],
+["C-007","Jamie Ellis","jamie@example.com","Dallas","United States","Verified","Unique record confirmed"],
+["C-008","Morgan L.","morgan@example.com","Seattle","United States","Needs Review","Matches C-003 email"]
+]
+},
+{
+name:"Data Cleaning Log",
+headers:["Log ID","Customer ID","Field","Original Value","Updated Value","Action","Status"],
+rows:[
+["CL-001","C-001","Full Name"," Avery Cole ","Avery Cole","Trim spaces","Verified"],
+["CL-002","C-002","Full Name","jordan reed","Jordan Reed","Standardize capitalization","Verified"],
+["CL-003","C-003","Email","morgan@example.com","Unchanged","Flag duplicate email","Needs Review"],
+["CL-004","C-004","City","boston","Boston","Standardize capitalization","Verified"],
+["CL-005","C-005","Email","Blank","Unchanged","Request missing information","Needs Review"],
+["CL-006","C-008","Full Name","Morgan L.","Unchanged","Confirm identity before merging","Needs Review"]
+]
+},
+{
+name:"Verification Checklist",
+headers:["Check ID","Verification Requirement","Result","Status","Next Action"],
+rows:[
+["QA-001","Customer IDs are unique","8 of 8 unique","Verified","Retain assigned IDs"],
+["QA-002","Names follow consistent formatting","Formatting reviewed","Verified","Maintain naming standard"],
+["QA-003","Email completeness","1 missing email","Needs Review","Request contact details"],
+["QA-004","Duplicate detection","1 potential duplicate pair","Needs Review","Confirm C-003 and C-008"],
+["QA-005","City formatting","Standardized","Verified","Maintain consistent format"],
+["QA-006","Record approval","3 records awaiting review","Needs Review","Obtain authorized approval"]
+]
+}
+];
+
+let current=0;
+let sortColumn=-1;
+let ascending=true;
+
+function openSheet(index,button){
+current=index;
+sortColumn=-1;
+document.querySelectorAll(".tabs button").forEach(b=>b.classList.remove("active"));
+button.classList.add("active");
+document.getElementById("sheetName").textContent=sheets[index].name;
+document.getElementById("search").value="";
+document.getElementById("filter").value="";
+render();
+}
+
+function sortBy(i){
+ascending=sortColumn===i?!ascending:true;
+sortColumn=i;
+render();
+}
+
+function render(){
+const sheet=sheets[current];
+const q=document.getElementById("search").value.toLowerCase();
+const filter=document.getElementById("filter").value;
+let rows=sheet.rows.filter(r=>r.join(" ").toLowerCase().includes(q)&&(!filter||r.includes(filter)));
+if(sortColumn>=0)rows.sort((a,b)=>a[sortColumn].localeCompare(b[sortColumn])*(ascending?1:-1));
+
+let html='<thead><tr class="letters"><th></th>';
+sheet.headers.forEach((h,i)=>html+=`<th>${String.fromCharCode(65+i)}</th>`);
+html+='</tr><tr class="headers"><th>#</th>';
+sheet.headers.forEach((h,i)=>html+=`<th onclick="sortBy(${i})">${h}</th>`);
+html+='</tr></thead><tbody>';
+
+rows.forEach((r,i)=>{
+html+=`<tr><td>${i+1}</td>`;
+r.forEach(v=>{
+let value=v||"&mdash;";
+if(v==="Verified")value='<span class="verified">Verified</span>';
+if(v==="Needs Review")value='<span class="review">Needs Review</span>';
+html+=`<td>${value}</td>`;
+});
+html+='</tr>';
+});
+
+if(!rows.length)html+=`<tr><td colspan="${sheet.headers.length+1}">No matching records.</td></tr>`;
+document.getElementById("table").innerHTML=html+"</tbody>";
+}
+render();
+</script>
+</body>
+</html>
