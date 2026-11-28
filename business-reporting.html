@@ -1,0 +1,253 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="icon" href="./favicon.png">
+<title>Business Reporting & Documentation | Dainty De Guzman</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#fffafb;color:#393239;font:14px Arial,sans-serif;line-height:1.7}
+header{background:white;border-bottom:1px solid #eadce4;padding:18px 30px;display:flex;align-items:center;justify-content:space-between}
+header img{width:36px;height:36px;border-radius:50%;object-fit:cover}
+main{max-width:1250px;margin:auto;padding:35px}
+.label{font-size:10px;letter-spacing:2px;color:#a65f7d;text-transform:uppercase}
+h1{font-family:Georgia,serif;font-size:36px;font-weight:normal;line-height:1.3;margin:12px 0}
+h2{font-family:Georgia,serif;font-size:23px;font-weight:normal;margin-top:0}
+p{color:#81717b}
+.report-header{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap}
+.badge{background:#f0dce7;color:#854760;font-size:11px;padding:6px 12px;border-radius:5px}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:15px;margin:30px 0}
+.stat{background:white;border:1px solid #eadce4;border-radius:8px;padding:22px}
+.stat span{color:#81717b;font-size:12px}
+.stat strong{display:block;color:#a65f7d;font-size:30px;margin:8px 0}
+.stat small{color:#7b887c}
+.grid{display:grid;grid-template-columns:1.3fr 1fr;gap:20px}
+.panel{background:white;border:1px solid #eadce4;border-radius:8px;padding:25px;margin-bottom:20px}
+.chart-row{margin:20px 0}
+.chart-title{display:flex;justify-content:space-between;font-size:12px;margin-bottom:7px}
+.track{height:12px;background:#f2e6ed;border-radius:3px;overflow:hidden}
+.bar{height:100%;background:#b77b99;border-radius:3px}
+.target-met{color:#50785a}
+.below{color:#a65f7d}
+.donut{width:165px;height:165px;border-radius:50%;background:conic-gradient(#b77b99 0 50%,#eadce4 50% 100%);display:grid;place-items:center;margin:25px auto}
+.donut-center{width:120px;height:120px;background:white;border-radius:50%;display:flex;flex-direction:column;justify-content:center;align-items:center}
+.donut-center strong{font-size:29px;color:#a65f7d}
+.donut-center span{font-size:11px;color:#81717b}
+.legend{display:flex;justify-content:center;gap:20px;font-size:11px}
+.dot{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:5px}
+.table-wrap{overflow:auto}
+table{width:100%;border-collapse:collapse;white-space:nowrap}
+th,td{padding:14px;border-bottom:1px solid #eee3e9;text-align:left;font-size:12px}
+th{background:#f6e9f0;color:#854760}
+.pill{padding:5px 10px;border-radius:5px;font-size:11px}
+.met{background:#e2eee5;color:#477054}
+.unmet{background:#f6e5d2;color:#926735}
+.tabs{display:flex;gap:10px;margin:25px 0;flex-wrap:wrap}
+.tabs button{border:1px solid #dfccd7;background:white;padding:11px 18px;border-radius:5px;color:#854760;cursor:pointer;font:inherit}
+.tabs button.active{background:#a65f7d;color:white;border-color:#a65f7d}
+.action{padding:17px 0;border-bottom:1px solid #eadce4}
+.action:last-child{border-bottom:0}
+.action h3{font-size:14px;margin:0 0 6px}
+.action p{margin:0;font-size:13px}
+footer{font-size:11px;color:#96828e;margin-top:25px}
+@media(max-width:800px){main{padding:20px}.stats{grid-template-columns:repeat(2,1fr)}.grid{grid-template-columns:1fr}h1{font-size:29px}}
+</style>
+</head>
+<body>
+<header>
+<strong>Business Performance Workspace</strong>
+<div style="display:flex;align-items:center;gap:12px">
+<span class="badge">View only</span>
+<img src="./dainty-profile.jpeg" alt="Profile">
+</div>
+</header>
+
+<main>
+<div class="report-header">
+<div>
+<div class="label">Business Reporting / Project 12</div>
+<h1>Weekly Operations Report</h1>
+<p>Reporting period: November 23&ndash;29, 2026</p>
+</div>
+<span class="badge">Prepared by Dainty De Guzman</span>
+</div>
+
+<div class="stats">
+<div class="stat">
+<span>Tasks Completed</span>
+<strong>38</strong>
+<small>+6 from previous week</small>
+</div>
+<div class="stat">
+<span>Tickets Resolved</span>
+<strong>52</strong>
+<small>+7 from previous week</small>
+</div>
+<div class="stat">
+<span>Orders Fulfilled</span>
+<strong>65</strong>
+<small>Weekly target achieved</small>
+</div>
+<div class="stat">
+<span>On-time Delivery</span>
+<strong>96%</strong>
+<small>+2 percentage points</small>
+</div>
+</div>
+
+<div class="tabs">
+<button class="active" onclick="showPage('dashboard',this)">Performance Dashboard</button>
+<button onclick="showPage('summary',this)">Executive Summary</button>
+<button onclick="showPage('actions',this)">Action Plan</button>
+</div>
+
+<section id="dashboard">
+<div class="grid">
+<div class="panel">
+<h2>Progress Against Weekly Targets</h2>
+<div id="bars"></div>
+<p style="font-size:11px">Bars show target attainment, capped visually at 100%. Open issues are excluded because a lower value is preferable.</p>
+</div>
+<div class="panel">
+<h2>Target Achievement</h2>
+<div class="donut">
+<div class="donut-center">
+<strong>50%</strong>
+<span>Targets achieved</span>
+</div>
+</div>
+<div class="legend">
+<span><i class="dot" style="background:#b77b99"></i>3 Achieved</span>
+<span><i class="dot" style="background:#eadce4"></i>3 Below Target</span>
+</div>
+<p style="text-align:center;font-size:12px">Three of six performance indicators met their weekly targets.</p>
+</div>
+</div>
+
+<div class="panel">
+<h2>Performance Comparison</h2>
+<div class="table-wrap">
+<table>
+<thead>
+<tr><th>Performance Indicator</th><th>Previous Week</th><th>Current Week</th><th>Target</th><th>Change</th><th>Status</th></tr>
+</thead>
+<tbody id="metrics"></tbody>
+</table>
+</div>
+</div>
+</section>
+
+<section id="summary" hidden>
+<div class="panel">
+<div class="label">Executive Summary</div>
+<h2>Weekly Operational Performance</h2>
+<p>Overall performance improved compared with the previous reporting period. Customer support, order fulfillment and on-time delivery achieved their weekly targets.</p>
+<p>Administrative task completion increased from 32 to 38, while verified records increased from 80 to 92. Although both indicators improved, they remained below their respective weekly targets.</p>
+<p>Open issues decreased from nine to five, indicating progress in reducing outstanding concerns. Further follow-up is required to reach the target of four or fewer open issues.</p>
+</div>
+
+<div class="grid">
+<div class="panel">
+<h2>Key Accomplishments</h2>
+<ul>
+<li>Resolved 52 customer support tickets.</li>
+<li>Fulfilled 65 orders.</li>
+<li>Achieved 96% on-time delivery.</li>
+<li>Verified 12 additional records compared with the previous week.</li>
+</ul>
+</div>
+<div class="panel">
+<h2>Areas for Improvement</h2>
+<ul>
+<li>Complete two additional administrative tasks.</li>
+<li>Verify eight additional records.</li>
+<li>Reduce outstanding issues by at least one.</li>
+<li>Maintain achieved service and fulfillment targets.</li>
+</ul>
+</div>
+</div>
+</section>
+
+<section id="actions" hidden>
+<div class="panel">
+<div class="label">Operational Recommendations</div>
+<h2>Next Reporting Period</h2>
+
+<div class="action">
+<h3>01 / Administrative Task Completion</h3>
+<p>Review outstanding tasks, confirm deadlines and prioritize responsibilities required to meet the weekly completion target.</p>
+</div>
+
+<div class="action">
+<h3>02 / Database Verification</h3>
+<p>Prioritize eight remaining records needed to meet the verification target. Confirm incomplete information and document discrepancies.</p>
+</div>
+
+<div class="action">
+<h3>03 / Outstanding Issue Resolution</h3>
+<p>Review the five remaining open issues, identify dependencies and coordinate follow-ups with the appropriate departments.</p>
+</div>
+
+<div class="action">
+<h3>04 / Maintain Service Performance</h3>
+<p>Continue monitoring customer support, fulfillment and delivery performance to maintain achieved targets.</p>
+</div>
+
+<div class="action">
+<h3>05 / Reporting Quality Assurance</h3>
+<p>Verify source records, reporting periods, calculations and metric definitions before submitting the next performance report.</p>
+</div>
+</div>
+</section>
+
+<footer>Independent portfolio simulation. All performance figures are fictional and do not represent an actual business. Prepared by Dainty De Guzman.</footer>
+</main>
+
+<script>
+const metrics=[
+{name:"Tasks Completed",previous:32,current:38,target:40,unit:"",lower:false},
+{name:"Tickets Resolved",previous:45,current:52,target:50,unit:"",lower:false},
+{name:"Orders Fulfilled",previous:60,current:65,target:65,unit:"",lower:false},
+{name:"Records Verified",previous:80,current:92,target:100,unit:"",lower:false},
+{name:"On-time Delivery",previous:94,current:96,target:95,unit:"%",lower:false},
+{name:"Open Issues",previous:9,current:5,target:4,unit:"",lower:true}
+];
+
+function showPage(id,button){
+document.querySelectorAll("main section").forEach(s=>s.hidden=s.id!==id);
+document.querySelectorAll(".tabs button").forEach(b=>b.classList.remove("active"));
+button.classList.add("active");
+}
+
+document.getElementById("metrics").innerHTML=metrics.map(m=>{
+const achieved=m.lower?m.current<=m.target:m.current>=m.target;
+const change=m.current-m.previous;
+const changeText=(change>0?"+":"")+change+(m.unit==="%"?" pp":"");
+
+return `<tr>
+<td><strong>${m.name}</strong></td>
+<td>${m.previous}${m.unit}</td>
+<td>${m.current}${m.unit}</td>
+<td>${m.target}${m.unit}</td>
+<td>${changeText}</td>
+<td><span class="pill ${achieved?"met":"unmet"}">${achieved?"Target Met":"Below Target"}</span></td>
+</tr>`;
+}).join("");
+
+document.getElementById("bars").innerHTML=metrics.filter(m=>!m.lower).map(m=>{
+const percent=Math.round(m.current/m.target*100);
+return `<div class="chart-row">
+<div class="chart-title">
+<span>${m.name}</span>
+<strong>${percent}%</strong>
+</div>
+<div class="track">
+<div class="bar" style="width:${Math.min(percent,100)}%"></div>
+</div>
+</div>`;
+}).join("");
+</script>
+</body>
+</html>
