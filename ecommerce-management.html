@@ -1,0 +1,200 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="icon" href="./favicon.png">
+<title>E-commerce Administration | Dainty De Guzman</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#faf5f8;font:14px Arial,sans-serif;color:#393239}
+header{background:#8e5975;color:white;padding:15px 25px;display:flex;align-items:center;justify-content:space-between}
+header img{width:35px;height:35px;border-radius:50%;object-fit:cover}
+.layout{display:flex;min-height:95vh}
+aside{width:225px;background:#f1e2eb;border-right:1px solid #dfcbd7;padding:25px 15px}
+aside small{color:#987087;letter-spacing:1.2px}
+aside button{display:block;width:100%;text-align:left;background:none;border:0;padding:12px;border-radius:6px;color:#624c59;cursor:pointer;margin:6px 0}
+aside button.active,aside button:hover{background:#dfbfd1;color:#75435e}
+main{flex:1;min-width:0;padding:30px}
+h1{font-size:28px;margin:10px 0}
+p{color:#81717b;line-height:1.7}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:15px;margin:25px 0}
+.stat{background:white;border:1px solid #eadce4;border-radius:9px;padding:20px}
+.stat span{font-size:12px;color:#81717b}
+.stat strong{display:block;font-size:27px;margin-top:10px;color:#a65f7d}
+.panel{background:white;border:1px solid #eadce4;border-radius:9px;margin:20px 0;overflow:hidden}
+.panel h2{font-size:17px;margin:0;padding:20px}
+.toolbar{display:flex;gap:10px;flex-wrap:wrap;padding:0 20px 20px}
+input,select{font:inherit;padding:10px 12px;border:1px solid #dfd1da;border-radius:5px;background:white}
+input{flex:1;min-width:150px}
+.table-wrap{overflow:auto}
+table{width:100%;border-collapse:collapse;white-space:nowrap}
+th,td{padding:15px;text-align:left;border-top:1px solid #eee3e9;font-size:12px}
+th{background:#f8edf3;color:#854760}
+tbody tr:hover{background:#fff7fb}
+.order{color:#a65f7d;font-weight:bold;cursor:pointer}
+.pill{display:inline-block;padding:5px 9px;border-radius:12px;font-size:11px}
+.green{background:#e1eee4;color:#426b50}
+.yellow{background:#f6e7c9;color:#8c672e}
+.red{background:#f4dce1;color:#a24c62}
+.gray{background:#ece6eb;color:#786671}
+.note{padding:22px;background:white;border:1px solid #eadce4;border-left:3px solid #a65f7d;border-radius:5px}
+.note h3{margin-top:0}
+footer{font-size:11px;color:#96828e;margin-top:30px}
+dialog{width:min(500px,90vw);border:1px solid #eadce4;border-radius:10px;padding:25px}
+dialog::backdrop{background:#33232c66}
+.close{float:right;border:0;background:#f0dce7;padding:8px 12px;border-radius:5px;cursor:pointer}
+@media(max-width:800px){aside{display:none}main{padding:18px}.stats{grid-template-columns:repeat(2,1fr)}}
+</style>
+</head>
+<body>
+<header>
+<strong>Store Administration</strong>
+<div style="display:flex;align-items:center;gap:15px">
+<small>Portfolio Store &middot; View only</small>
+<img src="./dainty-profile.jpeg" alt="Profile">
+</div>
+</header>
+
+<div class="layout">
+<aside>
+<small>STORE WORKSPACE</small>
+<button class="active" onclick="showPage('orders',this)">Orders</button>
+<button onclick="showPage('products',this)">Products & Inventory</button>
+<button onclick="showPage('exceptions',this)">Order Exceptions</button>
+</aside>
+
+<main>
+<small style="color:#a65f7d">E-COMMERCE OPERATIONS</small>
+<h1>E-commerce Administration</h1>
+<p>Order processing, product records, inventory monitoring and fulfillment support.</p>
+
+<div class="stats">
+<div class="stat"><span>Total Orders</span><strong>7</strong></div>
+<div class="stat"><span>Processing</span><strong>2</strong></div>
+<div class="stat"><span>Shipped / Delivered</span><strong>2</strong></div>
+<div class="stat"><span>On Hold</span><strong>2</strong></div>
+</div>
+
+<section id="orders">
+<div class="panel">
+<h2>Order Management</h2>
+<div class="toolbar">
+<input id="search" placeholder="Search orders..." oninput="render()">
+<select id="filter" onchange="render()">
+<option value="">All statuses</option>
+<option>Processing</option>
+<option>Shipped</option>
+<option>Delivered</option>
+<option>On Hold</option>
+<option>Cancelled</option>
+</select>
+</div>
+<div class="table-wrap">
+<table>
+<thead><tr><th>Order ID</th><th>Customer</th><th>Product</th><th>Quantity</th><th>Order Total</th><th>Status</th><th>Next Action</th></tr></thead>
+<tbody id="orderRows"></tbody>
+</table>
+</div>
+</div>
+</section>
+
+<section id="products" hidden>
+<div class="panel">
+<h2>Product Inventory</h2>
+<div class="table-wrap">
+<table>
+<thead><tr><th>SKU</th><th>Product</th><th>Unit Price</th><th>Available Stock</th><th>Inventory Status</th><th>Action</th></tr></thead>
+<tbody>
+<tr><td>SKU-001</td><td>Canvas Tote</td><td>$18.00</td><td>18</td><td><span class="pill green">In Stock</span></td><td>Monitor inventory</td></tr>
+<tr><td>SKU-002</td><td>Desk Planner</td><td>$24.00</td><td>4</td><td><span class="pill yellow">Low Stock</span></td><td>Request restock review</td></tr>
+<tr><td>SKU-003</td><td>Notebook Set</td><td>$16.00</td><td>0</td><td><span class="pill red">Out of Stock</span></td><td>Confirm restock schedule</td></tr>
+<tr><td>SKU-004</td><td>Pen Set</td><td>$12.00</td><td>26</td><td><span class="pill green">In Stock</span></td><td>Monitor inventory</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+<p style="font-size:12px">Inventory figures represent a product-level stock snapshot, not individual order quantities.</p>
+</section>
+
+<section id="exceptions" hidden>
+<div class="panel">
+<h2>Order Exceptions</h2>
+<div class="table-wrap">
+<table>
+<thead><tr><th>Order ID</th><th>Issue</th><th>Priority</th><th>Recommended Action</th></tr></thead>
+<tbody>
+<tr><td>ORD-103</td><td>Product unavailable</td><td>High</td><td>Confirm restock or approved alternative</td></tr>
+<tr><td>ORD-106</td><td>Incomplete delivery address</td><td>High</td><td>Request customer confirmation</td></tr>
+<tr><td>ORD-107</td><td>Approved cancellation</td><td>Completed</td><td>Maintain cancellation record</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+
+<div class="note">
+<h3>Operational Handover</h3>
+<p>Review the out-of-stock notebook set and low-stock desk planner. Confirm incomplete delivery details before dispatch. Escalate refunds, cancellations and product substitutions for authorized approval.</p>
+</div>
+
+<footer>Independent portfolio simulation. All store and customer records are fictional. Prepared by Dainty De Guzman.</footer>
+</main>
+</div>
+
+<dialog id="details">
+<button class="close" onclick="document.getElementById('details').close()">Close</button>
+<div id="detailContent"></div>
+</dialog>
+
+<script>
+const orders=[
+["ORD-101","Olivia Reed","Canvas Tote",2,18,"Shipped","Monitor tracking information"],
+["ORD-102","Ethan Cole","Desk Planner",3,24,"Processing","Prepare packing confirmation"],
+["ORD-103","Amelia Scott","Notebook Set",1,16,"On Hold","Confirm restock availability"],
+["ORD-104","Lucas Hayes","Pen Set",2,12,"Delivered","Close fulfillment record"],
+["ORD-105","Mia Foster","Canvas Tote",1,18,"Processing","Prepare shipping label"],
+["ORD-106","Noah Parker","Desk Planner",2,24,"On Hold","Confirm delivery address"],
+["ORD-107","Isabella Lane","Notebook Set",1,16,"Cancelled","Record approved cancellation"]
+];
+
+const colors={"Shipped":"green","Delivered":"green","Processing":"yellow","On Hold":"red","Cancelled":"gray"};
+
+function showPage(id,button){
+document.querySelectorAll("main section").forEach(s=>s.hidden=s.id!==id);
+document.querySelectorAll("aside button").forEach(b=>b.classList.remove("active"));
+button.classList.add("active");
+}
+
+function render(){
+const q=document.getElementById("search").value.toLowerCase();
+const filter=document.getElementById("filter").value;
+const filtered=orders.filter(o=>o.join(" ").toLowerCase().includes(q)&&(!filter||o[5]===filter));
+document.getElementById("orderRows").innerHTML=filtered.length?filtered.map(o=>`
+<tr>
+<td><a class="order" onclick="openOrder('${o[0]}')">${o[0]}</a></td>
+<td>${o[1]}</td><td>${o[2]}</td><td>${o[3]}</td>
+<td>$${(o[3]*o[4]).toFixed(2)}</td>
+<td><span class="pill ${colors[o[5]]}">${o[5]}</span></td>
+<td>${o[6]}</td>
+</tr>`).join(""):'<tr><td colspan="7">No matching orders.</td></tr>';
+}
+
+function openOrder(id){
+const o=orders.find(x=>x[0]===id);
+document.getElementById("detailContent").innerHTML=`
+<h2>${o[0]}</h2>
+<p><strong>Customer:</strong> ${o[1]}</p>
+<p><strong>Product:</strong> ${o[2]}</p>
+<p><strong>Quantity:</strong> ${o[3]}</p>
+<p><strong>Unit price:</strong> $${o[4].toFixed(2)}</p>
+<p><strong>Order total:</strong> $${(o[3]*o[4]).toFixed(2)}</p>
+<p><strong>Status:</strong> ${o[5]}</p>
+<hr><h3>Next Action</h3><p>${o[6]}</p>`;
+document.getElementById("details").showModal();
+}
+render();
+</script>
+</body>
+</html>
